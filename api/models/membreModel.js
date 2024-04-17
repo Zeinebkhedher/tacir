@@ -31,4 +31,4 @@ const membreSchema=mongoose.Schema(
     }  
 
 )
-module.exports=mongoose.model("Membre",membreSchema)
+module.exports=mongoose.model("Membres",membreSchema)

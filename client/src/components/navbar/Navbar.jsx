@@ -1,8 +1,8 @@
 import "./navbar.css";
-import Notification from "../../img/notification.svg";
-import Message from "../../img/message.svg";
-import Logout from "../../img/logout2.png";
-import Settings from "../../img/settings.svg";
+import Notification from "../../components/img/notification.svg";
+import Message from "../../components/img/message.svg";
+import Logout from "../../components/img/logout2.png";
+import Settings from "../../components/img/settings.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
