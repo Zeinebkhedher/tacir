@@ -26,7 +26,7 @@ const register = async (req, res) => {
       numbers: true,
       uppercase: true,
       lowercase: true,
-      symbols: true
+      symbols: true,
     });
     const hashedPassword = await bcrypt.hash(passAleatoire, 10);
     const membre = new Membre({
@@ -34,34 +34,48 @@ const register = async (req, res) => {
       prenom: req.body.prenom,
       email: req.body.email,
       password: hashedPassword,
-      // Add other fields as needed
+      sexe: null,
+      dateNaissance: null,
+      nationalite: null,
+      CIN: null,
+      situationPerso: null,
+      telephone: null,
+      historiqueStatut: null,
+      role: req.body.role,
+     
+     
+      
     });
-
-    if (!membre.nom || !membre.prenom || !membre.email) {
-      return res.status(400).json({ message: "Vous devez remplir tous les champs" });
+    console.log(membre)
+    if (
+      membre.nom === "" ||
+      membre.prenom === "" ||
+      membre.email === "" ||
+      membre.role === ""
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Vous devez remplir tous les champs" });
     }
-   
+    
     const response = await membre.save();
     const corpsEmail = `Bonjour ${membre.prenom} ${membre.nom},<br>
-    Pour accéder à votre compte, voici vos coordonnées.<br>
+    Pour accéder à votre compte,voici vos coordonnées.<br>
     Email: ${membre.email} <br>
     Mot de passe: ${passAleatoire} <br> 
     Cordialement`;
-    
-    await sendEmail(membre.email, "Informations d'inscription", corpsEmail);
-
+    await sendEmail(membre.email, "Informations d'inscriptions", corpsEmail);
     const newMembre = response.toObject();
     delete newMembre.password;
 
     res.status(201).json({
-      message: "Membre créé avec succès",
+      message: "Membre cré avec succés ",
       membre: newMembre,
     });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 const login = async (req, res) => {
   try {
     const membre = await Membre.findOne({ email: req.body.email });

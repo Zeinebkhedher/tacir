@@ -38,6 +38,15 @@ const App = () => {
           
           <Route
             exact
+            path="/dashboard/admin"
+            element={<AdminDashboard />}
+          />
+           <Route
+            path="/dashboard/admin/accounts/register"
+            element={<AdminDashboard load="AcountRegister" />}
+          />
+          <Route
+            exact
             path="/dashboard/manager"
             element={<ManagerDashboard />}
           />
