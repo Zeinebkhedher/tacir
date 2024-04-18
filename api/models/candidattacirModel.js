@@ -61,7 +61,7 @@ const condidattacirSchema = new mongoose.Schema(
         required: true,
       },
       porteur: {
-        type: Boolean,
+        type: String,
         required: true,
       },
       membres: {
@@ -69,7 +69,7 @@ const condidattacirSchema = new mongoose.Schema(
         required: false,
       },
       aventure: {
-        type: Boolean,
+        type: String,
         required: true,
       },
       motivation: {
@@ -89,4 +89,4 @@ const condidattacirSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("candidatTacir", condidattacirSchema);
+module.exports = mongoose.model("candidats", condidattacirSchema);

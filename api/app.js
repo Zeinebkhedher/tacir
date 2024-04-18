@@ -30,7 +30,8 @@ const statisticsRoute = require("./routes/statistiqueRoute");
 const placementRoute = require("./routes/placementRoute");
 const cors = require("cors");
 const resetRoute = require("./routes/resetRoute");
-
+const candidatTacirRoute = require("./routes/candidatTacirRoute")
+const membreTacirRoute = require ("./routes/membreTacirRoute")
 dotenv.config();
 
 mongoose
@@ -158,17 +159,29 @@ app.get("/", (req, res) => {
 })
 app.use("/api/choeur", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use("/api/candidats", candidatRoute);
+//app.use("/api/candidats", candidatRoute);
+app.use("/api/candidats", candidatTacirRoute);
+/////////////////////////////////////////////
 app.use("/api/auditions", auditionRoute);
+
+///////////////////////////////////
 app.use("/api/saison", saisonRoute);
+
+///////////////////////////////////
 app.use("/api/oeuvre", oeuvreRoute);
+
+////////////////////////////////
 app.use("/api/conge", congeRoute);
 app.use("/api/repetition", repetitionRoute);
 app.use("/api/presence", presenceRoute);
 app.use("/api/concerts", concertRoute);
 app.use("/api/disponibility/cancert", disponibilityToCancertRoute);
 app.use("/api/profile", ProfileRoute);
+///////////////////////////////////
 app.use("/api/membre", membreRoute);
+app.use("/api/membres", membreTacirRoute);
+
+///////////////////////////////////////
 app.use("/api/absence", absenceRoute);
 app.use("/api/statistics", statisticsRoute);
 app.use("/api/placement", placementRoute);

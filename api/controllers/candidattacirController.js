@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 //const Saison=require("../models/saisonModel")
 const Candidats = require("../models/candidattacirModel");
-const CandidatsVerif = require("../models/candidatMailVerifTacir");
+const CandidatsVerif = require("../models/candidatMailVerifModel");
 const sendEmail = require("../utils/sendEmail");
 //const Audition = require("../models/auditionModel");
 //const Membre=require("../models/membreModel")
@@ -166,7 +166,7 @@ const updateDateRange = async (req, res) => {
   }
 };
 
-const rempForm = async (req, res) => {
+const rempFormulaire = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -182,25 +182,21 @@ const rempForm = async (req, res) => {
 
     const {
         nom,
-          prenom,
-          
-          CIN,
-            telephone,        
-          sexe,
-          
-         
-          nationalite,
-          dateNaissance,
-         
-          situationPerso,
-          titre,
-            descriptif,
-            ideeProjet,
-            lien,
-            porteur,
-            membres,
-            aventure,
-            motivation,
+        prenom,
+        CIN,
+        telephone,        
+        sexe,
+        nationalite,
+        dateNaissance,
+        situationPerso,
+        titre,
+        descriptif,
+        ideeProjet,
+        lien,
+        porteur,
+        membres,
+        aventure,
+        motivation,
 
       
       
@@ -210,22 +206,19 @@ const rempForm = async (req, res) => {
         prenom,
         email: condidat.email,
         CIN,
-          telephone,        
+        telephone,        
         sexe,
-        
-       
         nationalite,
-        dateNaissance,
-       
+        dateNaissance,      
         situationPerso,
         titre,
-          descriptif,
-          ideeProjet,
-          lien,
-          porteur,
-          membres,
-          aventure,
-          motivation,
+        descriptif,
+        ideeProjet,
+        lien,
+        porteur,
+        membres,
+        aventure,
+        motivation,
     }).save();
     res.status(201).send({
       message: "le candidat a été créé avec sucéé",
@@ -412,8 +405,8 @@ module.exports = {
   getToken,
   dateFormRange,
   updateDateRange,
-  rempForm,
-  accepterCandidatParAudition,
-  candidatsParTessiture,
-  confirmParticipationEtDevenirChoriste
+  rempFormulaire,
+  //accepterCandidatParAudition,
+  //candidatsParTessiture,
+  //confirmParticipationEtDevenirChoriste
 };

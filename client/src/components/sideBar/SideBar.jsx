@@ -33,6 +33,7 @@ function Sidebar() {
       </NavLink>
       {/* Concerts */}
       <li className="menu-header small text-uppercase">
+<<<<<<< HEAD
         <span className="menu-header-text">Concerts</span>
       </li>
       <NavLink to="/dashboard/admin/concert">
@@ -94,19 +95,50 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
+=======
+        <span className="menu-header-text">Cearthons</span>
+      </li>
+      <NavLink to="/dashboard/admin/projets">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Lancer créathons</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/admin/gereComptes">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Gérer projets</div>
+          </a>
+        </li>
+      </NavLink>
+      
+
+     
+>>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       <NavLink to="/dashboard/admin/Audition/genererPlanning">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">
+<<<<<<< HEAD
               Générer un planning d'auditions
+=======
+              Générer un planning des créathons
+>>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
             </div>
           </a>
         </li>
       </NavLink>
       {/* auditions */}
       <li className="menu-header small text-uppercase">
+<<<<<<< HEAD
         <span className="menu-header-text">Candidatures</span>
+=======
+        <span className="menu-header-text">Membres de TACIR</span>
+>>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       </li>
       <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
         <li className="menu-item">
@@ -116,6 +148,7 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
+<<<<<<< HEAD
       <NavLink to="/dashboard/admin/Candidature/listV2" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -158,14 +191,33 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Repetitions</span>
       </li>
+=======
+      <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des mentors</div>
+          </a>
+        </li>
+      </NavLink>
+>>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       <NavLink to="/dashboard/admin/repetition/liste-absence">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
+<<<<<<< HEAD
             <div data-i18n="Account Settings">absences repetions</div>
           </a>
         </li>
       </NavLink>
+=======
+            <div data-i18n="Account Settings">Listes des absences </div>
+          </a>
+        </li>
+      </NavLink>
+      
+     
+>>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>

@@ -1,4 +1,4 @@
-const mongoose=require('mongoose')
+{/*const mongoose=require('mongoose')
 const membreSchema=mongoose.Schema(
     {
        nom:{type:String,required:true},
@@ -31,4 +31,4 @@ const membreSchema=mongoose.Schema(
     }  
 
 )
-module.exports=mongoose.model("Membre",membreSchema)
+module.exports=mongoose.model("Membres",membreSchema)*/}
