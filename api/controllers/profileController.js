@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Member = require("../models/membreModel");
+const Member = require("../models/membreTacirModel");
 const Concert = require("../models/concertModel");
 const Oeuvre = require("../models/oeuvreModel");
 const Repetition = require("../models/repetitionModel");
@@ -50,7 +50,7 @@ const fetchHistory = async (req, res) => {
   }
 };
 
-const getUser = async (req, res) => {
+const   getUser = async (req, res) => {
   const memberId = req.params.id;
   try {
     const member = await Member.findOne({ _id: memberId });

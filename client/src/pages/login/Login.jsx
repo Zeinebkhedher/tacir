@@ -8,8 +8,9 @@ import { jwtDecode } from "jwt-decode";
 //import loginBackground from "../../img/orchestre.jpg";
 import "./login.css";
 import { Link } from "react-router-dom";
-import ChoristeDashboard from "../choriste/ChoristeDashboard";
-import ChefPupitreDashboard from "../chefPupitre/ChefPupitreDashboard";
+import MentorDashboard from "../mentor/MentorDashboard";
+import TacirLogo from "../../components/img/tacir_logo.jpg"
+import PorteurProjetDashboard from "../porteurProjet/PorteurProjetDashboard";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -67,7 +68,7 @@ const Login = () => {
 
     if (!newErrors.email && !newErrors.password) {
       try {
-        const res = await axios.post("http://localhost:8000/api/membre/login", {
+        const res = await axios.post("http://localhost:8000/api/membres/login", {
           email,
           password,
         });
@@ -117,16 +118,18 @@ const Login = () => {
 
   return (
     <div>
+
       {storedToken ? (
         <>
           {decodedToken ? (
             <>
               {decodedToken.role === "admin" ? (
                 <AdminDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "choriste" ? (
-                <ChoristeDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "chef du pupitre" ? (
-                <ChefPupitreDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "Mentor" ? (
+                <MentorDashboard socket={socket} load="home" />
+              ) 
+              : decodedToken.role === "porteurProjet" ? (
+                <PorteurProjetDashboard socket={socket} load="home" />
               ) : (
                 // Redirection vers une page par défaut ou affichage d'un message d'erreur
                 <p>
@@ -142,12 +145,13 @@ const Login = () => {
         </>
       ) : (
         <div className="login-container">
+
           <div className="login">
-           {/* <img
-              src={loginBackground}
+           <img
+              src={TacirLogo}
               alt="login image"
               className="login__img"
-      />*/}
+      />
             <form action className="login__form">
               <h1 className="login__title">Login</h1>
               <div className="login__content">

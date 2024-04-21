@@ -35,7 +35,8 @@ const membreTacirRoute = require ("./routes/membreTacirRoute")
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO_URL + "choeurProjectBD")
+  .connect(process.env.MONGO_URL + "Tacir")
+  .then(console.log(process.env.MONGO_URL))
   .then(console.log("connected to mongodb"))
   .catch((err) => console.log(err));
 

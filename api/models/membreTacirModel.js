@@ -15,7 +15,10 @@ const membreTacirSchema=mongoose.Schema(
         type: String,
         
       },
-      role:{type:String,enum:["admin","mentor","proteurProjet"],required:true},
+      role:
+      {type:String,
+         enum: ["admin", "Mentor", "proteurProjet","coordinateur régional", "cordinateur créa","coordinateur innov"]
+         ,required:true},
 
        
     }  

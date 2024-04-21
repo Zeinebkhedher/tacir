@@ -48,52 +48,57 @@ const AccountRegister = () => {
 
   
   const handleCreateAccountButton = async () => {
-    console.log("clicked");
-    const newErrors = {};
-    const newErrorsText = {};
-
-    if (inputs.prenom == "") {
-      newErrors.prenom = true;
-      newErrorsText.prenom = "Ce champ est obligatoire";
-    } else {
-      newErrors.prenom = false;
-      newErrorsText.prenom = "";
-    }
-    if (inputs.nom == "") {
-      newErrors.nom = true;
-      newErrorsText.nom = "Ce champ est obligatoire";
-    } else {
-      newErrors.nom = false;
-      newErrorsText.nom = "";
-    }
-
-    if (validateEmail(inputs.email) == false) {
-      newErrors.email = true;
-      newErrorsText.email = "Veuillez entrer un email valide";
-    } else {
-      newErrors.email = false;
-      newErrorsText.email = "";
-    }
-    if (inputs.role == "") {
-      newErrors.role = true;
-      newErrorsText.role = "Ce champ est obligatoire";
-    } else {
-      newErrors.role = false;
-      newErrorsText.role = "";
-    }
+    try {
+      const newErrors = {};
+      const newErrorsText = {};
   
-
-    setErrors(newErrors);
-    setErrorsText(newErrorsText);
-
-    if (
-      newErrors.prenom == false &&
-      newErrors.nom == false &&
-      newErrors.email == false &&
-      newErrors.role == false
-    ) {
-      console.log(errors);
-      try {
+      // Vérification des champs obligatoires
+      if (!inputs.prenom) {
+        newErrors.prenom = true;
+        newErrorsText.prenom = "Le prénom est requis";
+      } else {
+        newErrors.prenom = false;
+        newErrorsText.prenom = "";
+      }
+  
+      if (!inputs.nom) {
+        newErrors.nom = true;
+        newErrorsText.nom = "Le nom est requis";
+      } else {
+        newErrors.nom = false;
+        newErrorsText.nom = "";
+      }
+  
+      if (!inputs.email) {
+        newErrors.email = true;
+        newErrorsText.email = "L'email est requis";
+      } else if (!validateEmail(inputs.email)) {
+        newErrors.email = true;
+        newErrorsText.email = "Veuillez entrer une adresse email valide";
+      } else {
+        newErrors.email = false;
+        newErrorsText.email = "";
+      }
+  
+      if (!inputs.role) {
+        newErrors.role = true;
+        newErrorsText.role = "Le rôle est requis";
+      } else {
+        newErrors.role = false;
+        newErrorsText.role = "";
+      }
+  
+      // Mise à jour des erreurs
+      setErrors(newErrors);
+      setErrorsText(newErrorsText);
+  
+      // Vérification s'il y a des erreurs
+      if (
+        !newErrors.prenom &&
+        !newErrors.nom &&
+        !newErrors.email &&
+        !newErrors.role
+      ) {
         const res = await axios.post(
           "http://localhost:8000/api/membres/register",
           {
@@ -101,7 +106,13 @@ const AccountRegister = () => {
             nom: inputs.nom,
             email: inputs.email,
             role: inputs.role,
-           
+            sexe: null,
+            dateNaissance: null,
+            nationalite: null,
+            CIN: null,
+            situationPerso: null,
+            telephone: null,
+            historiqueStatut: null,
           },
           {
             headers: {
@@ -109,16 +120,27 @@ const AccountRegister = () => {
             },
           }
         );
-        console.log("DATA",res)
+  
+        // Afficher un message de succès et réinitialiser les champs si la requête est réussie
         if (res) {
           setOpenModal(true);
-          console.log("openModal :",openModal);
+          setInputs({
+            prenom: "",
+            nom: "",
+            email: "",
+            role: "",
+          });
         }
-      } catch (e) {
-        console.log("eerors",e);
+      }
+    } catch (error) {
+      // Afficher les erreurs
+      console.error("Erreur lors de la création du compte :", error);
+      if (error.response && error.response.data) {
+        console.error("Erreurs de validation :", error.response.data);
       }
     }
   };
+  
 
   function validateEmail($email) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

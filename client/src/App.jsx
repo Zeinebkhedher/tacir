@@ -9,12 +9,11 @@ import "./assets/css/demo.css";
 import "./assets/vendor/css/core.css";
 import "./assets/vendor/css/theme-default.css";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ChefPupitreDashboard from "./pages/chefPupitre/ChefPupitreDashboard";
-import ChoristeDashboard from "./pages/choriste/ChoristeDashboard";
-import ManagerDashboard from "./pages/ManagerDashboard";
 import FormCandidature from "./pages/FormCandidature";
 import Login from "./pages/login/Login"
 import EmailVerification from "./components/verify/EmailVerification"
+import MentorDashboard from "./pages/mentor/MentorDashboard";
+import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
 const App = () => {
   return (
     <Router>
@@ -45,20 +44,20 @@ const App = () => {
             path="/dashboard/admin/accounts/register"
             element={<AdminDashboard load="AcountRegister" />}
           />
-          <Route
-            exact
-            path="/dashboard/manager"
-            element={<ManagerDashboard />}
+            <Route
+            path="/dashboard/admin/mentorList"
+            element={<AdminDashboard load="mentorList" />}
           />
           <Route
             exact
-            path="/dashboard/choriste"
-            element={<ChoristeDashboard />}
+            path="/dashboard/mentor"
+            element={<MentorDashboard />}
           />
+         
           <Route
             exact
-            path="/dashboard/chef-de-pupitre"
-            element={<ChefPupitreDashboard />}
+            path="/dashboard/porteur-de-projet"
+            element={<PorteurProjetDashboard />}
           />
           <Route exact path="/dashboard/admin" element={<AdminDashboard />} />
           

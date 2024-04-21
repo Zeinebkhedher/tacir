@@ -1,7 +1,7 @@
 import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import TacirLogo from "../../components/img/tacir_logo.jpg"
-function Sidebar() {
+function SideBarPoreturProjet() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
       scrollInterval = setInterval(function () {
@@ -26,7 +26,7 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Pages</span>
       </li>
-      <NavLink to="/dashboard/admin/home">
+      <NavLink to="/dashboard/potreur-de-projet/home">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -38,74 +38,54 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
-      <NavLink to="/dashboard/admin/projets">
+      <NavLink to="/dashboard/potreur-de-projet/formulaire">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Lancer créathons</div>
+            <div data-i18n="Account Settings">Formulaire</div>
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/admin/gereComptes">
+      <NavLink to="/dashboard/potreur-de-projet/projets">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Gérer projets</div>
+            <div data-i18n="Account Settings">Liste de projets</div>
           </a>
         </li>
       </NavLink>
+      <NavLink to="/dashboard/potreur-de-projet/calendrier">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Calendrier d'accompagnement</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/potreur-de-projet/depotsRendus">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Dépot des rendus</div>
+          </a>
+        </li>
+      </NavLink>
+     
       
 
      
-      <NavLink to="/dashboard/admin/Audition/genererPlanning">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">
-              Générer un planning des créathons
-            </div>
-          </a>
-        </li>
-      </NavLink>
-      {/* auditions */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Membres de TACIR</span>
-      </li>
-      <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidatures</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/admin/mentorList" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des mentors</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/admin/repetition/liste-absence">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Listes des absences </div>
-          </a>
-        </li>
-      </NavLink>
-      
+     
+     
      
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Comptes</span>
+        <span className="menu-header-text">Compte</span>
       </li>
-      <NavLink to="/dashboard/admin/accounts/register" onClick={goup}>
+      <NavLink to="/dashboard/potreur-de-projet/profile" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Création des comptes</div>
+            <div data-i18n="Account Settings">Paramétres du compte</div>
           </a>
         </li>
       </NavLink>
@@ -113,4 +93,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SideBarPoreturProjet;
