@@ -7,6 +7,9 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import CoordinateurGeneralDashboard from "../coordinateurGeneral/CoordinateurGeneralDashboard";
 import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurRegionalDashboard";
+import MentorDashboard from "../mentor/MentorDashboard";
+import TacirLogo from "../../components/img/tacir_logo.jpg";
+import PorteurProjetDashboard from "../porteurProjet/PorteurProjetDashboard";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -127,6 +130,10 @@ const Login = () => {
                 <CoordinateurGeneralDashboard socket={socket} load="home" />
               ) : decodedToken.role === "coordinateurRegional" ? (
                 <CoordinateurRegionalDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "Mentor" ? (
+                <MentorDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "porteurProjet" ? (
+                <PorteurProjetDashboard socket={socket} load="home" />
               ) : (
                 // Redirection vers une page par défaut ou affichage d'un message d'erreur
                 <p>
@@ -145,11 +152,7 @@ const Login = () => {
       ) : (
         <div className="login-container">
           <div className="login">
-            {/* <img
-              src={loginBackground}
-              alt="login image"
-              className="login__img"
-      />*/}
+            <img src={TacirLogo} alt="login image" className="login__img" />
             <form action className="login__form">
               <h1 className="login__title">Login</h1>
               <div className="login__content">

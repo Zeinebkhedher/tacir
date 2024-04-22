@@ -1,19 +1,14 @@
-//import Login from "./routes/Login";
-import PresenceConcert from "./routes/PresenceConcert";
-import PresenceRepetition from "./routes/PresenceRepetititon";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import "./assets/css/demo.css";
 import "./assets/vendor/css/core.css";
 import "./assets/vendor/css/theme-default.css";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ChefPupitreDashboard from "./pages/chefPupitre/ChefPupitreDashboard";
-import ChoristeDashboard from "./pages/choriste/ChoristeDashboard";
-import ManagerDashboard from "./pages/ManagerDashboard";
 import FormCandidature from "./pages/FormCandidature";
 import Login from "./pages/login/Login";
 import EmailVerification from "./components/verify/EmailVerification";
 import HomePage from "./pages/admin/pages/HomePage";
+import MentorDashboard from "./pages/mentor/MentorDashboard";
+import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
 const App = () => {
   return (
     <Router>
@@ -42,6 +37,18 @@ const App = () => {
             path="/dashboard/admin/accounts/register"
             element={<AdminDashboard load="AcountRegister" />}
           />
+          <Route
+            path="/dashboard/admin/mentorList"
+            element={<AdminDashboard load="mentorList" />}
+          />
+          <Route exact path="/dashboard/mentor" element={<MentorDashboard />} />
+
+          <Route
+            exact
+            path="/dashboard/porteur-de-projet"
+            element={<PorteurProjetDashboard />}
+          />
+          <Route exact path="/dashboard/admin" element={<AdminDashboard />} />
         </Routes>
       </>
     </Router>

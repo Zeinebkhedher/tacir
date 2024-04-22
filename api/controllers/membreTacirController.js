@@ -124,7 +124,12 @@ const getMemberById = async (req, res) => {
 
 const getAllMembers = async (req, res) => {
   try {
-    const membres = await Membre.find();
+    let membres;
+    if (req.query.role) {
+      membres = await Membre.find({ role: req.query.role });
+    } else {
+      membres = await Membre.find();
+    }
     membres.forEach((membre) => {
       membre.password = undefined;
     });
@@ -136,6 +141,7 @@ const getAllMembers = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 const deleteMember = async (req, res) => {
   try {

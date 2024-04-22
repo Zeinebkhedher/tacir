@@ -3,8 +3,10 @@ import Sidebar from "../../components/sideBar/SideBar";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
 import "../admin/adminDashboard.css";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/home/HomePage";
 import AccountRegister from "../../components/comptes/AccountRegister";
+import MentorListInterface from "./pages/mentorListInterface/MentorListInterface";
+import MentorList from "../../components/mentorList/MentorList";
 
 
 const AdminDashboard = (props) => {
@@ -12,6 +14,7 @@ const AdminDashboard = (props) => {
     <div>
       <div>
         <div className="layout-wrapper layout-content-navbar">
+          
           <div className="layout-container">
             <aside
               id="layout-menu"
@@ -23,6 +26,7 @@ const AdminDashboard = (props) => {
             <Navbar1 />
             
             {props.load === "home" && <HomePage />}
+             {props.load === "mentorList" && <MentorListInterface/>}
              {props.load === "AcountRegister" && <AccountRegister />}
 
 

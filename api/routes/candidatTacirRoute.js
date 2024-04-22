@@ -8,8 +8,8 @@ const upload=multer({storage:storage})
 
 router.post("/verif",candidatController.addEmailCandidat)
 router.get("/:id/verify/:token/", candidatController.getToken)
-router.post("/form/date",middlewareDate.loggedMiddleware,middlewareDate.isAdmin,candidatController.dateFormRange)
-//router.put("/form/date",middlewareDate.loggedMiddleware,middlewareDate.isAdmin,candidatController.updateDateRange)
+router.post("/formulaire/date",/*middlewareDate.loggedMiddleware,middlewareDate.isAdmin,*/candidatController.dateFormRange)
+router.put("/form/date",middlewareDate.loggedMiddleware,middlewareDate.isAdmin,candidatController.updateDateRange)
 router.post("/formulaire/:id",dateMiddleware,candidatController.rempFormulaire)
 //router.get("/",middlewareDate.loggedMiddleware,middlewareDate.isAdmin,  candidatController.fetshCandidats);
 //router.get("/listeCandidatParPupitre/:tessiture",middlewareDate.loggedMiddleware,middlewareDate.AdminManager,candidatController.candidatsParTessiture)
