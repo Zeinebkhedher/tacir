@@ -4,10 +4,7 @@ import Navbar1 from "../../components/navBar1/NavBar1";
 
 import "../admin/adminDashboard.css";
 import HomePage from "./pages/HomePage";
-<<<<<<< HEAD
-=======
 import AccountRegister from "../../components/comptes/AccountRegister";
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
 
 
 const AdminDashboard = (props) => {
@@ -26,10 +23,7 @@ const AdminDashboard = (props) => {
             <Navbar1 />
             
             {props.load === "home" && <HomePage />}
-<<<<<<< HEAD
-=======
              {props.load === "AcountRegister" && <AccountRegister />}
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
 
 
             {/*{props.load === "adminAudition" && <AdminAudition />}

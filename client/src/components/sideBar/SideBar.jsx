@@ -33,69 +33,6 @@ function Sidebar() {
       </NavLink>
       {/* Concerts */}
       <li className="menu-header small text-uppercase">
-<<<<<<< HEAD
-        <span className="menu-header-text">Concerts</span>
-      </li>
-      <NavLink to="/dashboard/admin/concert">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Concert</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/admin/AbsenceConcerts">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Absence Concerts</div>
-          </a>
-        </li>
-      </NavLink>
-      {/* Saisons */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Saisons</span>
-      </li>
-
-      <NavLink to="/dashboard/admin/nouvelleSaison">
-        <li className="menu-item">
-          <a href="javascript:void(0)" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-box" />
-            <div data-i18n="User interface">Nouvelle Saison</div>
-          </a>
-        </li>
-      </NavLink>
-
-      <NavLink to="/dashboard/admin/saisonActuelle">
-        <li className="menu-item">
-          <a href="javascript:void(0)" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-box" />
-            <div data-i18n="User interface">Saison Actuelle</div>
-          </a>
-        </li>
-      </NavLink>
-
-      <NavLink to="/dashboard/admin/archive">
-        <li className="menu-item">
-          <a href="javascript:void(0)" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-copy" />
-            <div data-i18n="Extended UI">Archives</div>
-          </a>
-        </li>
-      </NavLink>
-      {/* Candidature */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Audition</span>
-      </li>
-      <NavLink to="/dashboard/admin/Audition/list" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des auditions</div>
-          </a>
-        </li>
-      </NavLink>
-=======
         <span className="menu-header-text">Cearthons</span>
       </li>
       <NavLink to="/dashboard/admin/projets">
@@ -117,28 +54,19 @@ function Sidebar() {
       
 
      
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       <NavLink to="/dashboard/admin/Audition/genererPlanning">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">
-<<<<<<< HEAD
-              Générer un planning d'auditions
-=======
               Générer un planning des créathons
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
             </div>
           </a>
         </li>
       </NavLink>
       {/* auditions */}
       <li className="menu-header small text-uppercase">
-<<<<<<< HEAD
-        <span className="menu-header-text">Candidatures</span>
-=======
         <span className="menu-header-text">Membres de TACIR</span>
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       </li>
       <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
         <li className="menu-item">
@@ -148,50 +76,6 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
-<<<<<<< HEAD
-      <NavLink to="/dashboard/admin/Candidature/listV2" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidatures V2</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/admin/Candidature/listParpupitre">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">
-              Liste des candidatures par pupitre
-            </div>
-          </a>
-        </li>
-      </NavLink>
-      {/* Ouevres */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Œuvres</span>
-      </li>
-      <NavLink to="/dashboard/admin/oeuvres/liste">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des œuvres</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/admin/oeuvres/addoeuvre">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Ajouter œuvre</div>
-          </a>
-        </li>
-      </NavLink>
-      {/* repeptions */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Repetitions</span>
-      </li>
-=======
       <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -200,24 +84,16 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       <NavLink to="/dashboard/admin/repetition/liste-absence">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-<<<<<<< HEAD
-            <div data-i18n="Account Settings">absences repetions</div>
-          </a>
-        </li>
-      </NavLink>
-=======
             <div data-i18n="Account Settings">Listes des absences </div>
           </a>
         </li>
       </NavLink>
       
      
->>>>>>> ae1b9c2f1706811650329d9869b7f361bfe56904
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>

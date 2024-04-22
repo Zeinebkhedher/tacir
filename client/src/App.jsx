@@ -33,8 +33,8 @@ const App = () => {
           />
           <Route exact path="/candidatsFormulaire  " element={<FormCandidature />} />
 
-          <Route exact path="/presence/cancert/:idC" element={<PresenceConcert />} />
-          <Route exact path="/presence/repetition/:idR" element={<PresenceRepetition />} />
+          {/* <Route exact path="/presence/cancert/:idC" element={<PresenceConcert />} />
+          <Route exact path="/presence/repetition/:idR" element={<PresenceRepetition />} /> */}
           
           <Route
             exact
@@ -45,7 +45,9 @@ const App = () => {
             path="/dashboard/admin/accounts/register"
             element={<AdminDashboard load="AcountRegister" />}
           />
-          <Route
+
+          
+          {/* <Route
             exact
             path="/dashboard/manager"
             element={<ManagerDashboard />}
@@ -71,7 +73,7 @@ const App = () => {
             exact
             path="/presence/repetition/:idR"
             element={<PresenceRepetition />}
-          />
+          /> */}
         </Routes>
       </>
     </Router>

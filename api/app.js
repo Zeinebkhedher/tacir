@@ -5,6 +5,7 @@ const swaggerUi = require("swagger-ui-express");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
 const candidatRoute = require("./routes/candidatRoute");
+const candidatTacirRoute = require("./routes/candidatTacirRoute");
 const auditionRoute = require("./routes/auditionRoute");
 const congeRoute = require("./routes/congeRoute");
 const saisonRoute = require("./routes/saisonRoute");
@@ -30,12 +31,12 @@ const statisticsRoute = require("./routes/statistiqueRoute");
 const placementRoute = require("./routes/placementRoute");
 const cors = require("cors");
 const resetRoute = require("./routes/resetRoute");
-const candidatTacirRoute = require("./routes/candidatTacirRoute")
-const membreTacirRoute = require ("./routes/membreTacirRoute")
+const membreTacirRoute = require("./routes/membreTacirRoute");
+
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO_URL + "choeurProjectBD")
+  .connect(process.env.MONGO_URL + "Tacir")
   .then(console.log("connected to mongodb"))
   .catch((err) => console.log(err));
 
@@ -155,36 +156,11 @@ const options = {
 
 const swaggerSpec = swaggerJsdoc(options);
 app.get("/", (req, res) => {
-    res.json("Hello");
-})
+  res.json("Hello");
+});
 app.use("/api/choeur", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-//app.use("/api/candidats", candidatRoute);
-app.use("/api/candidats", candidatTacirRoute);
-/////////////////////////////////////////////
-app.use("/api/auditions", auditionRoute);
-
-///////////////////////////////////
-app.use("/api/saison", saisonRoute);
-
-///////////////////////////////////
-app.use("/api/oeuvre", oeuvreRoute);
-
-////////////////////////////////
-app.use("/api/conge", congeRoute);
-app.use("/api/repetition", repetitionRoute);
-app.use("/api/presence", presenceRoute);
-app.use("/api/concerts", concertRoute);
-app.use("/api/disponibility/cancert", disponibilityToCancertRoute);
-app.use("/api/profile", ProfileRoute);
-///////////////////////////////////
-app.use("/api/membre", membreRoute);
+app.use("/api/Candidats", candidatTacirRoute);
 app.use("/api/membres", membreTacirRoute);
-
-///////////////////////////////////////
-app.use("/api/absence", absenceRoute);
-app.use("/api/statistics", statisticsRoute);
-app.use("/api/placement", placementRoute);
-app.use("/api/reset", resetRoute);
 
 module.exports = app;
