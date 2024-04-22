@@ -162,5 +162,6 @@ app.use("/api/choeur", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/Candidats", candidatTacirRoute);
 app.use("/api/membres", membreTacirRoute);
+app.use("/api/profile", ProfileRoute);
 
 module.exports = app;

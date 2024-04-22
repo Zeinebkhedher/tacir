@@ -16,7 +16,13 @@ const membreTacirSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["admin", "mentor", "proteurProjet"],
+    enum: [
+      "admin",
+      "mentor",
+      "proteurProjet",
+      "coordinateurGeneral",
+      "coordinateurRegional",
+    ],
     required: true,
   },
 });

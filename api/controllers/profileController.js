@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Member = require("../models/membreModel");
+const Member = require("../models/membreTacirModel");
 const Concert = require("../models/concertModel");
 const Oeuvre = require("../models/oeuvreModel");
 const Repetition = require("../models/repetitionModel");
-const Saison=require('../models/saisonModel')
+const Saison = require("../models/saisonModel");
 const sendEmail = require("../utils/sendEmail");
 
 const fetchHistory = async (req, res) => {
@@ -99,12 +99,12 @@ const fetchAbsences = async (memberId) => {
     }
 
     const concerts = await Concert.find({
-      "_id": { $in: saisonCourante.concerts },
+      _id: { $in: saisonCourante.concerts },
       "listeMembres.membre": memberId,
     });
 
     const repetitions = await Repetition.find({
-      "_id": { $in: saisonCourante.repetitions },
+      _id: { $in: saisonCourante.repetitions },
       "membres.member": memberId,
     });
 
@@ -116,7 +116,8 @@ const fetchAbsences = async (memberId) => {
     for (const concert of concerts) {
       if (concert.listeMembres) {
         const isAbsent = concert.listeMembres.some(
-          (item) => item.membre && item.membre.toString() === memberId && !item.presence
+          (item) =>
+            item.membre && item.membre.toString() === memberId && !item.presence
         );
 
         if (isAbsent) {
@@ -132,7 +133,8 @@ const fetchAbsences = async (memberId) => {
     for (const repetition of repetitions) {
       if (repetition.listeMembres) {
         const isAbsent = repetition.listeMembres.some(
-          (item) => item.member && item.member.toString() === memberId && !item.presence
+          (item) =>
+            item.member && item.member.toString() === memberId && !item.presence
         );
 
         if (isAbsent) {
@@ -143,7 +145,8 @@ const fetchAbsences = async (memberId) => {
         }
       }
     }
-    const totalAbsences = absences.concerts.length + absences.repetitions.length;
+    const totalAbsences =
+      absences.concerts.length + absences.repetitions.length;
     return {
       number_of_concert_absences: absences.concerts.length,
       number_of_repetition_absences: absences.repetitions.length,
@@ -156,28 +159,26 @@ const fetchAbsences = async (memberId) => {
   }
 };
 
-
-
-
 const fetchHistoriqueStatus = async (req, res) => {
   try {
     const memberId = req.params.id;
     const membre = await Member.findById(memberId);
 
     if (!membre) {
-      return res.status(404).json({ message: 'Membre non trouvé' });
+      return res.status(404).json({ message: "Membre non trouvé" });
     }
 
     return res.status(200).json({ historiqueStatut: membre.historiqueStatut });
   } catch (error) {
-    console.error('Erreur lors de la récupération de l\'historique du statut du membre :', error);
-    return res.status(500).json({ erreur: 'Erreur interne du serveur' });
+    console.error(
+      "Erreur lors de la récupération de l'historique du statut du membre :",
+      error
+    );
+    return res.status(500).json({ erreur: "Erreur interne du serveur" });
   }
 };
 
 const fetchNominatedMembers = async (req, res) => {
-  
-
   try {
     const saisonCourante = await Saison.findOne({ saisonCourante: true });
 
@@ -185,13 +186,14 @@ const fetchNominatedMembers = async (req, res) => {
       return res.status(404).json({ error: "Current season not found" });
     }
     const seuilNominations = saisonCourante.seuilnomination;
-    const membresSaisonCourante = saisonCourante.membres.map(memberId => memberId.toString());
+    const membresSaisonCourante = saisonCourante.membres.map((memberId) =>
+      memberId.toString()
+    );
 
     const members = await Member.find({
       _id: { $in: membresSaisonCourante },
-      role: 'choriste' 
+      role: "choriste",
     });
-
 
     if (!members || members.length === 0) {
       return res.status(404).json({ error: "Members not found" });
@@ -202,14 +204,17 @@ const fetchNominatedMembers = async (req, res) => {
     for (const member of members) {
       const absencesResponse = await fetchAbsences(member._id.toString());
 
-      if (absencesResponse && absencesResponse.total_absences < seuilNominations) {
+      if (
+        absencesResponse &&
+        absencesResponse.total_absences < seuilNominations
+      ) {
         nominatedMembers.push({
           memberId: member._id,
           nom: member.nom,
           prenom: member.prenom,
           total_absences: absencesResponse.total_absences,
         });
-        const emailSubject = 'Vous avez été nominé !';
+        const emailSubject = "Vous avez été nominé !";
         const emailText = `Cher ${member.nom}, vous avez été nominé pour votre excellente présence. Félicitations !`;
         await sendEmail(member.email, emailSubject, emailText);
       }
@@ -232,13 +237,14 @@ const fetchEliminatedMembers = async (req, res) => {
     }
 
     const seuilEliminations = saisonCourante.seuilelimination;
-    
 
-    const membresSaisonCourante = saisonCourante.membres.map(memberId => memberId.toString());
+    const membresSaisonCourante = saisonCourante.membres.map((memberId) =>
+      memberId.toString()
+    );
 
     const members = await Member.find({
       _id: { $in: membresSaisonCourante },
-      role: 'choriste' 
+      role: "choriste",
     });
 
     if (!members || members.length === 0) {
@@ -250,7 +256,10 @@ const fetchEliminatedMembers = async (req, res) => {
     for (const member of members) {
       const absencesResponse = await fetchAbsences(member._id.toString());
 
-      if (absencesResponse && absencesResponse.total_absences >= seuilEliminations) {
+      if (
+        absencesResponse &&
+        absencesResponse.total_absences >= seuilEliminations
+      ) {
         eliminatedMembers.push({
           memberId: member._id,
           nom: member.nom,
@@ -258,9 +267,7 @@ const fetchEliminatedMembers = async (req, res) => {
           total_absences: absencesResponse.total_absences,
         });
 
-
-
-        const emailSubject = 'Vous avez été éliminé !';
+        const emailSubject = "Vous avez été éliminé !";
         const emailText = `Cher ${member.nom}, vous avez été éliminé en raison d'un dépassement du seuil d'absences. Merci pour votre participation.`;
         await sendEmail(member.email, emailSubject, emailText);
         await Member.deleteOne({ _id: member._id });
@@ -281,11 +288,13 @@ const eliminateChoristeForReason = async (req, res) => {
 
     const chorister = await Member.findById(memberId);
 
-    if (!chorister || chorister.role !== 'choriste') {
-      return res.status(404).json({ error: 'Chorister not found or not a chorister' });
+    if (!chorister || chorister.role !== "choriste") {
+      return res
+        .status(404)
+        .json({ error: "Chorister not found or not a chorister" });
     }
 
-    chorister.statut = 'éliminé';
+    chorister.statut = "éliminé";
 
     await chorister.save();
     chorister.eliminationReason = reason;
@@ -295,38 +304,44 @@ const eliminateChoristeForReason = async (req, res) => {
     const saisonCourante = await Saison.findOne({ saisonCourante: true });
 
     if (!saisonCourante) {
-      return res.status(404).json({ error: 'Current season not found' });
+      return res.status(404).json({ error: "Current season not found" });
     }
 
     const eliminatedMember = {
       memberId: chorister._id,
       nom: chorister.nom,
       prenom: chorister.prenom,
-      total_absences: chorister.total_absences,  
+      total_absences: chorister.total_absences,
       eliminationReason: reason,
     };
 
     saisonCourante.eliminatedMembers.push(eliminatedMember);
     await saisonCourante.save();
 
-    const emailSubject = 'Vous avez été éliminé !';
+    const emailSubject = "Vous avez été éliminé !";
     const emailText = `Cher ${chorister.nom}, vous avez été éliminé pour une raison disciplinaire. Merci pour votre participation.`;
     await sendEmail(chorister.email, emailSubject, emailText);
     await Member.deleteOne({ _id: chorister._id });
-    res.status(200).json({ success: true, message: 'Choriste éliminé pour une raison disciplinaire' });
+    res.status(200).json({
+      success: true,
+      message: "Choriste éliminé pour une raison disciplinaire",
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: 'Error eliminating choriste for disciplinary reason' });
+    res.status(500).json({
+      success: false,
+      message: "Error eliminating choriste for disciplinary reason",
+    });
   }
 };
-
-
-
 
 module.exports = {
   fetchHistory,
   getUser,
   updateNotificationField,
-  fetchAbsences,fetchHistoriqueStatus,fetchNominatedMembers,fetchEliminatedMembers,eliminateChoristeForReason
-  
+  fetchAbsences,
+  fetchHistoriqueStatus,
+  fetchNominatedMembers,
+  fetchEliminatedMembers,
+  eliminateChoristeForReason,
 };

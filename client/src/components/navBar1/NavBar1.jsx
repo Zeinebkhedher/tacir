@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-//import Table from "../table/Table";
-//import Notification from "../../img/notification.svg";
+import Notification from "../img/notification.jpg";
 import adminIcon from "../../assets/img/avatars/admin-icon.png";
 import { io } from "socket.io-client";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import PowerSettingsNewRoundedIcon from "@mui/icons-material/PowerSettingsNewRounded";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Navbar1() {
   const [notifications, setNotifications] = useState([]);
@@ -66,13 +65,13 @@ function Navbar1() {
       if (res) {
         setUser(res.data);
         console.log(res.data.notifications);
-        setNotifications(res.data.notifications);
-        let count = 0;
-        for (let i = 0; i < res.data.notifications.length; i++) {
-          if (res.data.notifications[i].read == false) {
-            setCouter((prevCounter) => prevCounter + 1);
-          }
-        }
+        // setNotifications(res.data.notifications);
+        // let count = 0;
+        // for (let i = 0; i < res.data.notifications.length; i++) {
+        //   if (res.data.notifications[i].read == false) {
+        //     setCouter((prevCounter) => prevCounter + 1);
+        //   }
+        // }
       }
     }
   };
@@ -103,7 +102,7 @@ function Navbar1() {
     setStoredToken(null);
     localStorage.removeItem("token");
     setNotifications([]);
-    navigate('/');
+    navigate("/");
     window.location.reload();
   };
 
@@ -149,7 +148,12 @@ function Navbar1() {
             {/* Place this tag where you want the button to render. */}
             <li className="nav-item lh-1 me-3">
               <div className="icon" onClick={() => setOpen(!open)}>
-                <img src={Notification} className="iconImg" alt="" />
+                <img
+                  src={Notification}
+                  className="iconImg"
+                  alt=""
+                  width="30vw"
+                />
                 {couter > 0 && <div className="counter">{couter}</div>}
               </div>
               {open && (
@@ -203,8 +207,12 @@ function Navbar1() {
                         </div>
                       </div>
                       <div className="flex-grow-1">
-                        <span className="fw-semibold d-block">John Doe</span>
-                        <small className="text-muted">Admin</small>
+                        <span className="fw-semibold d-block">
+                          {user && `${user.prenom} ${user.nom}`}
+                        </span>
+                        <small className="text-muted">
+                          {user && user.role}
+                        </small>
                       </div>
                     </div>
                   </a>
