@@ -2,8 +2,7 @@ import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
 import "../admin/adminDashboard.css";
-import HomePage from "../admin/pages/HomePage";
-
+import HomePage from "../home/HomePage";
 import AccountRegister from "../../components/comptes/AccountRegister";
 import SidebarCoordinateurRegional from "../../components/sideBar/SideBarCoordinateurRegional";
 
@@ -24,8 +23,6 @@ const CoordinateurRegionalDashboard = (props) => {
 
             {props.load === "home" && <HomePage />}
             {props.load === "AcountRegister" && <AccountRegister />}
-
-   
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

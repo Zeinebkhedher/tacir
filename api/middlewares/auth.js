@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
-const Membre = require("../models/membreModel");
+const membres = require("../models/membreTacirModel");
 const loggedMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN");
     const membreId = decodedToken.membreId;
     try {
-      const membre = await Membre.findOne({ _id: membreId });
+      const membre = await membres.findOne({ _id: membreId });
       if (!membre) {
         return res.status(404).json({
           message: "Membre non trouvé",

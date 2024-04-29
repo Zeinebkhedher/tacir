@@ -80,6 +80,10 @@ const condidattacirSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status:{
+      type: String,
+      enum: ["accepté", "refusé"],
+    },
 
     confirm: {
       type: Boolean,

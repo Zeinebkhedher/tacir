@@ -1,7 +1,7 @@
 import React from 'react'
 import SideBarMentor from '../../components/sideBarMentor/SideBarMentor'
 import Navbar1 from '../../components/navBar1/NavBar1'
-import HomePage from '../admin/pages/home/HomePage'
+import HomePage from '../home/HomePage'
 
 const MentorDashboard = (props) => {
   return (

@@ -19,9 +19,10 @@ const membreTacirSchema = mongoose.Schema({
     enum: [
       "admin",
       "mentor",
-      "proteurProjet",
+      "porteurProjet",
       "coordinateurGeneral",
       "coordinateurRegional",
+      "candidat",
     ],
     required: true,
   },

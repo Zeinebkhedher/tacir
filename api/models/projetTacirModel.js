@@ -2,13 +2,12 @@ const mongoose = require("mongoose");
 
 const projetSchema = new mongoose.Schema(
   {
-    candidats: [
+    members: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "candidat",
+        FullName: { type: String, required: true },
+        age: { type: Number, required: true },
       },
     ],
-
     Dateprojet: {
       type: Date,
       required: true,
@@ -23,32 +22,11 @@ const projetSchema = new mongoose.Schema(
     },
     region: {
       type: String,
-      enum: ["Tunis", "Kef"],
+      enum: ["TUNIS", "KEF"],
     },
-    booked: {
-      type: Boolean,
-      default: false,
+    comments: {
+      type: String,
     },
-    archived: {
-      type: Boolean,
-      default: false,
-    },
-    candidatsInfo: [
-      {
-        extraitChante: {
-          type: String,
-          default: false,
-        },
-
-        decision: {
-          type: String,
-          enum: ["Retenu", "Refusé", "En attente"],
-        },
-        remarque: {
-          type: String,
-        },
-      },
-    ],
   },
   { timestamps: true }
 );

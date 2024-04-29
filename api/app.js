@@ -32,6 +32,7 @@ const placementRoute = require("./routes/placementRoute");
 const cors = require("cors");
 const resetRoute = require("./routes/resetRoute");
 const membreTacirRoute = require("./routes/membreTacirRoute");
+const tacirProjectRoute = require("./routes/tacirProjectRoute");
 
 dotenv.config();
 
@@ -163,5 +164,6 @@ app.use("/api/choeur", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/Candidats", candidatTacirRoute);
 app.use("/api/membres", membreTacirRoute);
 app.use("/api/profile", ProfileRoute);
+app.use("/api/projects", tacirProjectRoute);
 
 module.exports = app;

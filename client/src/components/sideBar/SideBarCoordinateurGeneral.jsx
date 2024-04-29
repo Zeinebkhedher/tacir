@@ -23,7 +23,7 @@ function SidebarCoordinateurGeneral() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Pages</span>
       </li>
-      <NavLink to="/dashboard/admin/home">
+      <NavLink to="/dashboard/coordinateurGeneral/Home">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -36,7 +36,7 @@ function SidebarCoordinateurGeneral() {
         <span className="menu-header-text">Cearthons</span>
       </li>
 
-      <NavLink to="/dashboard/admin/gereComptes">
+      <NavLink to="/dashboard/coordinateurGeneral/gereComptes">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -49,15 +49,18 @@ function SidebarCoordinateurGeneral() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>
       </li>
-      <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
+      <NavLink
+        to="/dashboard/coordinateurGeneral/listesCandidats"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidatures</div>
+            <div data-i18n="Account Settings">Liste des candidats</div>
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
+      <NavLink to="/dashboard/coordinateurGeneral/list" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -65,7 +68,7 @@ function SidebarCoordinateurGeneral() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/admin/repetition/liste-absence">
+      <NavLink to="/dashboard/coordinateurGeneral/liste-absence">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -78,7 +81,7 @@ function SidebarCoordinateurGeneral() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>
       </li>
-      <NavLink to="/dashboard/admin/accounts/register" onClick={goup}>
+      <NavLink to="/dashboard/coordinateurGeneral/register" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import Notification from "../img/notification.jpg";
-import adminIcon from "../../assets/img/avatars/admin-icon.png";
+import Notification from "../../assets/img/notification.jpg";
+import adminIcon from "../../assets/img/adminIcon.png";
 import { io } from "socket.io-client";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import PowerSettingsNewRoundedIcon from "@mui/icons-material/PowerSettingsNewRounded";

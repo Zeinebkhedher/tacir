@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import CoordinateurGeneralDashboard from "../coordinateurGeneral/CoordinateurGeneralDashboard";
 import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurRegionalDashboard";
 import MentorDashboard from "../mentor/MentorDashboard";
-import TacirLogo from "../../components/img/tacir_logo.jpg";
+import TacirLogo from "../../assets/img/tacir_logo.jpg";
 import PorteurProjetDashboard from "../porteurProjet/PorteurProjetDashboard";
 
 const Login = () => {

@@ -3,12 +3,14 @@ import "./assets/css/demo.css";
 import "./assets/vendor/css/core.css";
 import "./assets/vendor/css/theme-default.css";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import FormCandidature from "./pages/FormCandidature";
+import FormCandidature from "./pages/candidat/FormCandidature";
 import Login from "./pages/login/Login";
 import EmailVerification from "./components/verify/EmailVerification";
-import HomePage from "./pages/admin/pages/HomePage";
+import HomePage from "./pages/home/HomePage";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
+import CoordinateurGeneralDashboard from "./pages/coordinateurGeneral/CoordinateurGeneralDashboard";
+import AddProject from "./components/projects/AddProject"
 const App = () => {
   return (
     <Router>
@@ -45,10 +47,29 @@ const App = () => {
 
           <Route
             exact
+            path="/dashboard/coordinateurGeneral/Home"
+            element={<CoordinateurGeneralDashboard load="Home" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurGeneral/listesCandidats"
+            element={<CoordinateurGeneralDashboard load="ListeCandidats" />}
+          />
+          <Route
+            exact
             path="/dashboard/porteur-de-projet"
             element={<PorteurProjetDashboard />}
           />
           <Route exact path="/dashboard/admin" element={<AdminDashboard />} />
+
+          <Route
+            path="/dashboard/porteurProjet/ListeProjets"
+            element={<PorteurProjetDashboard load="ListeProjet" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/ListeProjets/addProject"
+            element={<PorteurProjetDashboard load="AddProject" />}
+          />
         </Routes>
       </>
     </Router>
