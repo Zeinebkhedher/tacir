@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddProject.css";
 
 const AddProject = () => {
@@ -13,6 +13,15 @@ const AddProject = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [ownerId, setOwnerId] = useState("");
+  const [storedToken, setStoredToken] = useState("");
+  useEffect(() => {
+    const storedTokenValue = localStorage.getItem("token");
+
+    if (storedTokenValue && storedTokenValue !== "null") {
+      setStoredToken(storedTokenValue);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,12 +46,29 @@ const AddProject = () => {
     e.preventDefault();
 
     try {
+      // Get the stored token from localStorage
+      const storedToken = localStorage.getItem("token");
+
+      if (!storedToken) {
+        throw new Error("Token not found");
+      }
+
+      // Decode the token to extract the owner's ID
+      const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
+      const ownerId = decodedToken.membreId;
+
+      const formDataWithOwner = {
+        ...formData,
+        ownerId: ownerId,
+      };
+
       const response = await fetch("http://localhost:8000/api/projects/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataWithOwner),
       });
 
       if (!response.ok) {
@@ -73,7 +99,6 @@ const AddProject = () => {
       {errorMessage && <div className="error">{errorMessage}</div>}
       {successMessage && <div className="success">{successMessage}</div>}
       <form onSubmit={handleSubmit}>
-      
         <div className="form-group">
           <label htmlFor="members">Members:</label>
           {formData.members.map((member, index) => (

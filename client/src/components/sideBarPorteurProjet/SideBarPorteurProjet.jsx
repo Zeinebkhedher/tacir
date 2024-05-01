@@ -62,6 +62,14 @@ function SideBarPoreturProjet() {
           </a>
         </li>
       </NavLink>
+      <NavLink to="/dashboard/porteurProjet/ListeProjets/evaluation">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Evaluation</div>
+          </a>
+        </li>
+      </NavLink>
       <NavLink to="/dashboard/potreur-de-projet/calendrier">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">

@@ -10,7 +10,6 @@ import HomePage from "./pages/home/HomePage";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
 import CoordinateurGeneralDashboard from "./pages/coordinateurGeneral/CoordinateurGeneralDashboard";
-import AddProject from "./components/projects/AddProject"
 const App = () => {
   return (
     <Router>
@@ -69,6 +68,18 @@ const App = () => {
           <Route
             path="/dashboard/porteurProjet/ListeProjets/addProject"
             element={<PorteurProjetDashboard load="AddProject" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/ListeProjets/evaluation"
+            element={<PorteurProjetDashboard load="Evaluation" />}
+          />
+          <Route
+            path="/dashboard/Mentor/ListeProjets"
+            element={<MentorDashboard load="ListeProject" />}
+          />
+          <Route
+            path="/dashboard/Mentor/ListeProjets/EvaluateProject"
+            element={<MentorDashboard load="EvaluateProject" />}
           />
         </Routes>
       </>

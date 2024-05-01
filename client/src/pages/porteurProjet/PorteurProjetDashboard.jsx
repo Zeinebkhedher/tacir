@@ -4,6 +4,7 @@ import Navbar1 from "../../components/navBar1/NavBar1";
 import HomePage from "../home/HomePage";
 import ListeProjets from "../../pages/porteurProjet/ListeProjets";
 import AddProject from "../../components/projects/AddProject";
+import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
 
 const PorteurProjetDashboard = (props) => {
   return (
@@ -23,6 +24,7 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "home" && <HomePage />}
             {props.load === "ListeProjet" && <ListeProjets />}
             {props.load === "AddProject" && <AddProject />}
+            {props.load === "Evaluation" && <AfficherEvaluation />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

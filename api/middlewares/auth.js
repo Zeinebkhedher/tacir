@@ -143,6 +143,19 @@ const isMentor = (req, res, next) => {
     res.status(401).json({ error: error.message });
   }
 };
+const isProteurProjet = (req, res, next) => {
+  try {
+    if (req.auth.role === "porteurProjet") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
+  }
+};
 
 module.exports = {
   loggedMiddleware,
@@ -155,4 +168,5 @@ module.exports = {
   isChefPupitre,
   isChefChoeur,
   AdminManager,
+  isProteurProjet,
 };
