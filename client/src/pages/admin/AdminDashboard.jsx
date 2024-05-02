@@ -3,10 +3,10 @@ import Sidebar from "../../components/sideBar/SideBar";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
 import "../admin/adminDashboard.css";
-import HomePage from "./pages/home/HomePage";
+import HomePage from "../home/HomePage";
+
 import AccountRegister from "../../components/comptes/AccountRegister";
-import MentorListInterface from "./pages/mentorListInterface/MentorListInterface";
-import MentorList from "../../components/mentorList/MentorList";
+import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
 
 
 const AdminDashboard = (props) => {

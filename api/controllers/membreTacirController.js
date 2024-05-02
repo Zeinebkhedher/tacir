@@ -1,8 +1,10 @@
 const Membre = require("../models/membreTacirModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const generatePassword = require('generate-password');
-const { sendNotificationMiddleware } = require("../middlewares/sendNotificationMiddleware");
+const generatePassword = require("generate-password");
+const {
+  sendNotificationMiddleware,
+} = require("../middlewares/sendNotificationMiddleware");
 const sendEmail = require("../utils/sendEmail");
 
 const modifierTessiture = async (req, res) => {
@@ -12,7 +14,7 @@ const modifierTessiture = async (req, res) => {
       return res.status(404).json({ message: "Membre non trouvé" });
     }
     // Your modification logic here
-    
+
     res.status(200).json({ message: "Modification réussie", membre });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -33,6 +35,7 @@ const register = async (req, res) => {
       nom: req.body.nom,
       prenom: req.body.prenom,
       email: req.body.email,
+      region: req.body.region,
       password: hashedPassword,
       sexe: null,
       dateNaissance: null,
@@ -42,11 +45,8 @@ const register = async (req, res) => {
       telephone: null,
       historiqueStatut: null,
       role: req.body.role,
-     
-     
-      
     });
-    console.log(membre)
+    console.log(membre);
     if (
       membre.nom === "" ||
       membre.prenom === "" ||
@@ -57,7 +57,7 @@ const register = async (req, res) => {
         .status(400)
         .json({ message: "Vous devez remplir tous les champs" });
     }
-    
+
     const response = await membre.save();
     const corpsEmail = `Bonjour ${membre.prenom} ${membre.nom},<br>
     Pour accéder à votre compte,voici vos coordonnées.<br>
@@ -81,16 +81,24 @@ const login = async (req, res) => {
     const membre = await Membre.findOne({ email: req.body.email });
 
     if (!membre) {
-      return res.status(401).json({ message: "Email ou mot de passe incorrects" });
+      return res
+        .status(401)
+        .json({ message: "Email ou mot de passe incorrects" });
     }
     const valid = await bcrypt.compare(req.body.password, membre.password);
     if (!valid) {
-      return res.status(401).json({ message: "Email ou mot de passe incorrects" });
+      return res
+        .status(401)
+        .json({ message: "Email ou mot de passe incorrects" });
     }
 
-    const token = jwt.sign({ membreId: membre._id }, "RANDOM_TOKEN", {
-      expiresIn: "24h",
-    });
+    const token = jwt.sign(
+      { membreId: membre._id, role: membre.role },
+      "RANDOM_TOKEN",
+      {
+        expiresIn: "24h",
+      }
+    );
 
     res.status(200).json({ token });
   } catch (error) {
@@ -151,7 +159,11 @@ const deleteMember = async (req, res) => {
 
 const updateMember = async (req, res) => {
   try {
-    const membre = await Membre.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+    const membre = await Membre.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true }
+    );
     if (!membre) {
       return res.status(404).json({ message: "Membre non trouvé" });
     }
@@ -172,5 +184,5 @@ module.exports = {
   getMemberById,
   getAllMembers,
   deleteMember,
-  updateMember
+  updateMember,
 };

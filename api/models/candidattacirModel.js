@@ -16,76 +16,81 @@ const condidattacirSchema = new mongoose.Schema(
       required: true,
     },
     CIN: {
-        type: String,
-        required: true,
-      },
-      telephone: {
-        type: String,
-        required: true,
-      },
-      
+      type: String,
+      required: true,
+    },
+    telephone: {
+      type: String,
+      required: true,
+    },
+
     sexe: {
       type: String,
       enum: ["Homme", "Femme"],
       required: true,
     },
-    
-   
-    nationalite:{
+
+    region: {
+      type: String,
+      enum: ["Tunis", "Kef"],
+    },
+
+    nationalite: {
       type: String,
       required: true,
     },
-    dateNaissance:{
+    dateNaissance: {
       type: String,
       required: true,
     },
-   
-    situationPerso:{
+
+    situationPerso: {
       type: String,
       required: true,
     },
     titre: {
-        type: String,
-        required: true,
-      },
-      descriptif: {
-        type: String,
-        required: true,
-      },
-      ideeProjet: {
-        type: String,
-        required: true,
-      },
-      lien: {
-        type: String,
-        required: true,
-      },
-      porteur: {
-        type: String,
-        required: true,
-      },
-      membres: {
-        type: [String],
-        required: false,
-      },
-      aventure: {
-        type: String,
-        required: true,
-      },
-      motivation: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
+    descriptif: {
+      type: String,
+      required: true,
+    },
+    ideeProjet: {
+      type: String,
+      required: true,
+    },
+    lien: {
+      type: String,
+      required: true,
+    },
+    porteur: {
+      type: String,
+      required: true,
+    },
+    membres: {
+      type: [String],
+      required: false,
+    },
+    aventure: {
+      type: String,
+      required: true,
+    },
+    motivation: {
+      type: String,
+      required: true,
+    },
+    status:{
+      type: String,
+      enum: ["accepté", "refusé"],
+    },
 
-
-    confirm:{
-      type:Boolean,
-      default:false
-    }
-   
-    
+    confirm: {
+      type: Boolean,
+      default: false,
+    },
   },
-  
+
   { timestamps: true }
 );
 

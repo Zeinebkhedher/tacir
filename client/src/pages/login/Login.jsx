@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import AdminDashboard from "../admin/AdminDashboard";
-import Navbar from "../../components/navbar/Navbar";
 import { io } from "socket.io-client";
-import { posts } from "../../data"; // Import your data.js file
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-//import loginBackground from "../../img/orchestre.jpg";
 import "./login.css";
 import { Link } from "react-router-dom";
+import CoordinateurGeneralDashboard from "../coordinateurGeneral/CoordinateurGeneralDashboard";
+import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurRegionalDashboard";
 import MentorDashboard from "../mentor/MentorDashboard";
-import TacirLogo from "../../components/img/tacir_logo.jpg"
+import TacirLogo from "../../assets/img/tacir_logo.jpg";
 import PorteurProjetDashboard from "../porteurProjet/PorteurProjetDashboard";
 
 const Login = () => {
@@ -68,10 +67,13 @@ const Login = () => {
 
     if (!newErrors.email && !newErrors.password) {
       try {
-        const res = await axios.post("http://localhost:8000/api/membres/login", {
-          email,
-          password,
-        });
+        const res = await axios.post(
+          "http://localhost:8000/api/membres/login",
+          {
+            email,
+            password,
+          }
+        );
         if (res) {
           setStoredToken(res.data.token);
           localStorage.setItem("token", res.data.token);
@@ -80,8 +82,8 @@ const Login = () => {
           if (decodedToken) {
             setUser(decodedToken.membreId);
             console.log("decodetoken", decodedToken);
-            console.log("id memebre : ", decodedToken.membreId);
-            console.log("role memebre : ", decodedToken.role);
+            console.log("id membre : ", decodedToken.membreId);
+            console.log("role membre : ", decodedToken.role);
           } else {
             console.log("User not found");
           }
@@ -100,7 +102,7 @@ const Login = () => {
     // If a value is found, set the state with that value
     if (storedTokenValue) {
       setStoredToken(storedTokenValue);
-      console.log(decodedToken);  
+      console.log(decodedToken);
       setDecodedToken(jwtDecode(storedTokenValue));
     }
   }, []);
@@ -118,21 +120,25 @@ const Login = () => {
 
   return (
     <div>
-
       {storedToken ? (
         <>
           {decodedToken ? (
             <>
               {decodedToken.role === "admin" ? (
                 <AdminDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "coordinateurGeneral" ? (
+                <CoordinateurGeneralDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "coordinateurRegional" ? (
+                <CoordinateurRegionalDashboard socket={socket} load="home" />
               ) : decodedToken.role === "Mentor" ? (
                 <MentorDashboard socket={socket} load="home" />
-              ) 
-              : decodedToken.role === "porteurProjet" ? (
+              ) : decodedToken.role === "porteurProjet" ? (
                 <PorteurProjetDashboard socket={socket} load="home" />
               ) : (
                 // Redirection vers une page par défaut ou affichage d'un message d'erreur
                 <p>
+                  {console.log(decodedToken)}
+                  {console.log(decodedToken.role)}
                   Vous n'avez pas les permissions nécessaires pour accéder à
                   cette page.
                 </p>
@@ -145,13 +151,8 @@ const Login = () => {
         </>
       ) : (
         <div className="login-container">
-
           <div className="login">
-           <img
-              src={TacirLogo}
-              alt="login image"
-              className="login__img"
-      />
+            <img src={TacirLogo} alt="login image" className="login__img" />
             <form action className="login__form">
               <h1 className="login__title">Login</h1>
               <div className="login__content">

@@ -1,16 +1,16 @@
-const jwt = require("jsonwebtoken")
-const Membre = require("../models/membreModel");
+const jwt = require("jsonwebtoken");
+const membres = require("../models/membreTacirModel");
 const loggedMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN");
     const membreId = decodedToken.membreId;
     try {
-      const membre = await Membre.findOne({ _id: membreId })
+      const membre = await membres.findOne({ _id: membreId });
       if (!membre) {
         return res.status(404).json({
           message: "Membre non trouvé",
-        })
+        });
       }
       req.auth = {
         membreId: membreId,
@@ -24,92 +24,149 @@ const loggedMiddleware = async (req, res, next) => {
     return res.status(401).json({ error: "please sign in first" });
   }
 };
-const isAdmin=(req,res,next)=>{
-    try{
-      if(req.auth.role==="admin"){
-        next()
-      }else{
-        res.status(403).json({error:"Vous ne pouvez pas accéder à cette route"})
-      }
-  
+const isAdmin = (req, res, next) => {
+  try {
+    if (req.auth.role === "admin") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
-    catch(e){
-      res.status(401).json({error:error.message})
-    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
   }
-const isChoriste=(req,res,next)=>{
-    try{
-      if(req.auth.role==="choriste"){
-        next()
-      }else{
-        res.status(403).json({error:"Vous ne pouvez pas accéder à cette route"})
-      }
-  
+};
+const isChoriste = (req, res, next) => {
+  try {
+    if (req.auth.role === "choriste") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
-    catch(e){
-      res.status(401).json({error:error.message})
-    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
   }
-  const isManager=(req,res,next)=>{
-    try{
-      if(req.auth.role==="manager"){
-        next()
-      }else{
-        res.status(403).json({error:"Vous ne pouvez pas accéder à cette route"})
-      }
-  
+};
+const isManager = (req, res, next) => {
+  try {
+    if (req.auth.role === "manager") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
-    catch(e){
-      res.status(401).json({error:error.message})
-    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
   }
-  const isChefPupitre=(req,res,next)=>{
-    try{
-      if(req.auth.role==="chef du pupitre"){
-        next()
-      }else{
-        res.status(403).json({error:"Vous ne pouvez pas accéder à cette route"})
-      }
-  
+};
+const isChefPupitre = (req, res, next) => {
+  try {
+    if (req.auth.role === "chef du pupitre") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
-    catch(e){
-      res.status(401).json({error:error.message})
-    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
   }
-  const isChefChoeur=(req,res,next)=>{
-    try{
-      if(req.auth.role==="chef de choeur"){
-        next()
-      }else{
-        res.status(403).json({error:"Vous ne pouvez pas accéder à cette route"})
-      }
-  
+};
+const isChefChoeur = (req, res, next) => {
+  try {
+    if (req.auth.role === "chef de choeur") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
-    catch(e){
-      res.status(401).json({error:error.message})
-    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
   }
-  const AdminManager=(req,res,next)=>{
-    try{
-      if(req.auth.role==="manager" || req.auth.role==="admin"){
-        next()
-      }else{
-        res.status(403).json({error:"Vous ne pouvez pas accéder à cette route"})
-      }
-  
+};
+const AdminManager = (req, res, next) => {
+  try {
+    if (req.auth.role === "manager" || req.auth.role === "admin") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
-    catch(e){
-      res.status(401).json({error:error.message})
-    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
   }
+};
 
-module.exports={
-    loggedMiddleware,
-    isAdmin,
-    isChoriste,
-    isManager,
-    isChefPupitre,
-    isChefChoeur,
-    AdminManager,
-    
-}
+const isCoordinateurGeneral = (req, res, next) => {
+  try {
+    if (req.auth.role === "coordinateurGeneral") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
+  }
+};
+
+const isCoordinateurRegional = (req, res, next) => {
+  try {
+    if (req.auth.role === "coordinateurRegional") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
+  }
+};
+const isMentor = (req, res, next) => {
+  try {
+    if (req.auth.role === "mentor") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
+  }
+};
+const isProteurProjet = (req, res, next) => {
+  try {
+    if (req.auth.role === "porteurProjet") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+    }
+  } catch (e) {
+    res.status(401).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  loggedMiddleware,
+  isAdmin,
+  isCoordinateurGeneral,
+  isCoordinateurRegional,
+  isMentor,
+  isChoriste,
+  isManager,
+  isChefPupitre,
+  isChefChoeur,
+  AdminManager,
+  isProteurProjet,
+};

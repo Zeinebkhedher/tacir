@@ -2,49 +2,37 @@ const mongoose = require("mongoose");
 
 const projetSchema = new mongoose.Schema(
   {
-    candidats: [{
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "candidat",
-      
-    }],
-
+      ref: "Members",
+      required: true,
+    },
+    members: [
+      {
+        FullName: { type: String, required: true },
+        age: { type: Number, required: true },
+      },
+    ],
     Dateprojet: {
       type: Date,
       required: true,
     },
     titre: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    booked: {
-      type: Boolean,
-      default: false,
+      type: String,
+      required: true,
+      unique: true,
     },
-    archived: {
-      type: Boolean,
-      default: false,
+    description: {
+      type: String,
+      required: true,
     },
-    candidatsInfo: [
-      {
-        extraitChante: {
-          type: String,
-          default: false,
-        },
-        
-       
-        decision: {
-          type: String,
-          enum: ["Retenu", "Refusé", "En attente"]
-        },
-        remarque: {
-          type: String,
-        }
-      },
-    ],
+    region: {
+      type: String,
+      enum: ["TUNIS", "KEF"],
+    },
+    comments: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

@@ -1,6 +1,6 @@
 import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import TacirLogo from "../../components/img/tacir_logo.jpg"
+import TacirLogo from "../../assets/img/tacir_logo.jpg"
 function Sidebar() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
