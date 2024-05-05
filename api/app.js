@@ -33,7 +33,7 @@ const cors = require("cors");
 const resetRoute = require("./routes/resetRoute");
 const membreTacirRoute = require("./routes/membreTacirRoute");
 const tacirProjectRoute = require("./routes/tacirProjectRoute");
-
+const creathonRoutes = require ('./routes/creathonRoute')
 dotenv.config();
 
 mongoose
@@ -165,5 +165,6 @@ app.use("/api/Candidats", candidatTacirRoute);
 app.use("/api/membres", membreTacirRoute);
 app.use("/api/profile", ProfileRoute);
 app.use("/api/projects", tacirProjectRoute);
+app.use("/api/creathons", creathonRoutes);
 
 module.exports = app;

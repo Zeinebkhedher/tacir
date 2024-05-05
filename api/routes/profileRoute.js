@@ -8,6 +8,8 @@ router.get("/liste-des-nomines",authMiddleware.loggedMiddleware,authMiddleware.i
 router.get("/liste-des-elimines",authMiddleware.loggedMiddleware,authMiddleware.isAdmin,profileController.fetchEliminatedMembers)
 router.get("/history/:id",authMiddleware.loggedMiddleware,authMiddleware.isChoriste,  profileController.fetchHistory);
 router.get("/getUser/:id", profileController.getUser);
+router.patch("/updateUserData/:id", profileController.updateUserData);
+
 router.put("/notification/:id", profileController.updateNotificationField);
 router.get('/absences/:id',authMiddleware.loggedMiddleware,authMiddleware.isAdmin, async (req, res) => {
     const memberId = req.params.id;
