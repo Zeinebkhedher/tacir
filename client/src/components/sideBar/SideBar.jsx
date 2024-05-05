@@ -1,6 +1,5 @@
-import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import TacirLogo from "../../assets/img/tacir_logo.jpg"
+import TacirLogo from "../../assets/img/tacir_logo.jpg";
 function Sidebar() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
@@ -38,7 +37,7 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
-      <NavLink to="/dashboard/admin/projets">
+      <NavLink to="/dashboard/admin/creathonForm">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -57,7 +56,7 @@ function Sidebar() {
       
 
      
-      <NavLink to="/dashboard/admin/Audition/genererPlanning">
+      <NavLink to="/dashboard/admin/creathonList">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -106,6 +105,14 @@ function Sidebar() {
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Création des comptes</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/admin/parametresComptes" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Paramètres</div>
           </a>
         </li>
       </NavLink>

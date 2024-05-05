@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
 import {
-  TextField,
+  Box,
   Button,
   Card,
   CardContent,
   Modal,
-  Box,
+  TextField,
   Typography,
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import axios from "axios";
+import React, { useState } from "react";
 import "./acountRegister.css";
 
 const AccountRegister = () => {
@@ -43,6 +43,8 @@ const AccountRegister = () => {
     { title: "admin" },
     { title: "Mentor" },
     { title: "Porteur de projet" },
+    { title: "coordinateur géneral" },
+    { title: "coordinateur régional" },
     
   ];
 

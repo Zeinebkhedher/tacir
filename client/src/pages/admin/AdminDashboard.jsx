@@ -1,11 +1,14 @@
 import React from "react";
-import Sidebar from "../../components/sideBar/SideBar";
 import Navbar1 from "../../components/navBar1/NavBar1";
+import Sidebar from "../../components/sideBar/SideBar";
 
 import "../admin/adminDashboard.css";
 import HomePage from "../home/HomePage";
 
+import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
+import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
+import CreathonListInterface from "../../components/creathonListInterface/CreathonListInterface";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
 
 
@@ -26,8 +29,12 @@ const AdminDashboard = (props) => {
             <Navbar1 />
             
             {props.load === "home" && <HomePage />}
-             {props.load === "mentorList" && <MentorListInterface/>}
-             {props.load === "AcountRegister" && <AccountRegister />}
+            {props.load === "mentorList" && <MentorListInterface/>}
+            {props.load === "AcountRegister" && <AccountRegister />}
+            {props.load === "creathonForm" && <CreathonInterface />}
+            {props.load === "creathonList" && <CreathonListInterface />}
+            {props.load === "parametresComptes" && <CompteInterface />}
+
 
 
             {/*{props.load === "adminAudition" && <AdminAudition />}

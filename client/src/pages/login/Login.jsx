@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import AdminDashboard from "../admin/AdminDashboard";
-import { io } from "socket.io-client";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import "./login.css";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { io } from "socket.io-client";
+import TacirLogo from "../../assets/img/tacir_logo.jpg";
+import AdminDashboard from "../admin/AdminDashboard";
 import CoordinateurGeneralDashboard from "../coordinateurGeneral/CoordinateurGeneralDashboard";
 import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurRegionalDashboard";
 import MentorDashboard from "../mentor/MentorDashboard";
-import TacirLogo from "../../assets/img/tacir_logo.jpg";
 import PorteurProjetDashboard from "../porteurProjet/PorteurProjetDashboard";
+import "./login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -126,9 +126,9 @@ const Login = () => {
             <>
               {decodedToken.role === "admin" ? (
                 <AdminDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "coordinateurGeneral" ? (
+              ) : decodedToken.role === "coordinateur géneral" ? (
                 <CoordinateurGeneralDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "coordinateurRegional" ? (
+              ) : decodedToken.role === "coordinateur régional" ? (
                 <CoordinateurRegionalDashboard socket={socket} load="home" />
               ) : decodedToken.role === "Mentor" ? (
                 <MentorDashboard socket={socket} load="home" />

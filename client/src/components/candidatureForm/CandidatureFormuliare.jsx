@@ -1,33 +1,29 @@
 /* eslint-disable jsx-a11y/alt-text */
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { GiPerson } from "react-icons/gi";
-import { Transition } from "react-transition-group";
+import { BiSolidWinkSmile } from "react-icons/bi";
 import {
-  FcBusinessContact,
-  FcCallback,
-  FcCalendar,
-  FcContacts,
   FcAddressBook,
-  FcGlobe,
-  FcReadingEbook,
-  FcPrevious,
-  FcDisplay,
-  FcMusic,
-  FcLink,
-  FcGenericSortingDesc,
-  FcIdea,
-  FcSelfie,
+  FcBusinessContact,
+  FcCalendar,
+  FcCallback,
   FcConferenceCall,
-  FcAdvertising,
+  FcContacts,
+  FcDisplay,
   FcDribbble,
   FcFlashOn,
-  FcRating,
+  FcGenericSortingDesc,
+  FcGlobe,
+  FcIdea,
+  FcLink,
+  FcPrevious,
+  FcRating
 } from "react-icons/fc";
-import note from "../../assets/img/note.png";
-import confirm from "../../assets/img/valide.png";
-import axios from "axios";
+import { GiPerson } from "react-icons/gi";
 import { useParams } from "react-router-dom";
-import { BiSolidWinkSmile } from "react-icons/bi";
+import { Transition } from "react-transition-group";
+import note from "../../assets/img/tacir_logo.jpg";
+import confirm from "../../assets/img/valide.png";
 
 const CandidatureFormulaire = () => {
   const [formData, setFormData] = useState({
@@ -290,7 +286,7 @@ const CandidatureFormulaire = () => {
                   src={note}
                   alt="note"
                   style={{
-                    maxWidth: "15%",
+                    maxWidth: "10%",
                     position: "fixed",
                     height: "auto",
                     display: "block",

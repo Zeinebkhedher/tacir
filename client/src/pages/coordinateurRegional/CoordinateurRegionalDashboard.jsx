@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
-import "../admin/adminDashboard.css";
-import HomePage from "../home/HomePage";
+import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
 import SidebarCoordinateurRegional from "../../components/sideBar/SideBarCoordinateurRegional";
+import "../admin/adminDashboard.css";
+import HomePage from "../home/HomePage";
 
 const CoordinateurRegionalDashboard = (props) => {
   return (
@@ -23,6 +24,8 @@ const CoordinateurRegionalDashboard = (props) => {
 
             {props.load === "home" && <HomePage />}
             {props.load === "AcountRegister" && <AccountRegister />}
+            {props.load === "parametresComptes" && <CompteInterface />}
+
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

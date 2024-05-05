@@ -1,10 +1,11 @@
 import React from "react";
-import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarPorteurProjet";
-import Navbar1 from "../../components/navBar1/NavBar1";
-import HomePage from "../home/HomePage";
-import ListeProjets from "../../pages/porteurProjet/ListeProjets";
-import AddProject from "../../components/projects/AddProject";
 import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
+import CompteInterface from "../../components/compteInterface/CompteInterface";
+import Navbar1 from "../../components/navBar1/NavBar1";
+import AddProject from "../../components/projects/AddProject";
+import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarPorteurProjet";
+import ListeProjets from "../../pages/porteurProjet/ListeProjets";
+import HomePage from "../home/HomePage";
 
 const PorteurProjetDashboard = (props) => {
   return (
@@ -25,6 +26,9 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "ListeProjet" && <ListeProjets />}
             {props.load === "AddProject" && <AddProject />}
             {props.load === "Evaluation" && <AfficherEvaluation />}
+            {props.load === "parametresComptes" && <CompteInterface />}
+
+
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

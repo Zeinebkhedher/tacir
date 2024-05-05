@@ -1,4 +1,3 @@
-import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 function SidebarCoordinateurGeneral() {
@@ -86,6 +85,14 @@ function SidebarCoordinateurGeneral() {
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Création des comptes</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/coordinateurGeneral/profile/parametresComptes" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Paramètres</div>
           </a>
         </li>
       </NavLink>

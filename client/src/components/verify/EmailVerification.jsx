@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import { FcPrevious } from "react-icons/fc";
 import { Transition } from "react-transition-group";
 import confirm from "../../assets/img/confirm.png";
-import { FcPrevious } from "react-icons/fc";
-
+import logo from "../../assets/img/tacir_logo.jpg";
 function EmailVerification() {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -81,6 +81,14 @@ function EmailVerification() {
     error: {
       color: "red",
       marginTop: "10px",
+    },
+    container: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+      backgroundImage: `url(${logo})`, // Ajout de l'image de fond
+      backgroundSize: "cover", // Assure que l'image de fond couvre tout le conteneur
     },
   };
 

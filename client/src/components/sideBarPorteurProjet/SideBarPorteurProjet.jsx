@@ -1,6 +1,5 @@
-import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import TacirLogo from "../../assets/img/tacir_logo.jpg"
+import TacirLogo from "../../assets/img/tacir_logo.jpg";
 function SideBarPoreturProjet() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
@@ -91,7 +90,7 @@ function SideBarPoreturProjet() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Compte</span>
       </li>
-      <NavLink to="/dashboard/potreur-de-projet/profile" onClick={goup}>
+      <NavLink to="/dashboard/potreur-de-projet/profile/parametresComptes" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />

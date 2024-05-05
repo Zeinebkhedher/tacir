@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
-import "../admin/adminDashboard.css";
-import HomePage from "../home/HomePage";
+import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
 import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordinateurGeneral";
-import ListeCandidats from "../../components/candidats/ListeCandidat";
+import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
+import HomePage from "../home/HomePage";
 
 const CoordinateurGeneralDashboard = (props) => {
   return (
@@ -26,6 +26,8 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "Home" && <HomePage />}
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
+            {props.load === "parametresComptes" && <CompteInterface />}
+
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

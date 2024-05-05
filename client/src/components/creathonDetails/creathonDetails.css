@@ -1,0 +1,28 @@
+/* creathonDetails.css */
+.creathon-details-container {
+    position: relative; /* Changer à relative pour que les éléments enfants puissent être positionnés correctement */
+    border: 1px solid #ccc; /* Utiliser une couleur de bordure plus douce */
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    width: 100%; /* Utiliser la largeur complète du parent */
+    margin: 0 auto; /* Centrer horizontalement */
+}
+
+.creathon-details-title {
+    margin: 0 0 10px; /* Supprimer la marge inférieure pour l'image et réduire la marge sous le titre */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.creathon-details-info {
+    margin-bottom: 10px; /* Ajuster l'espacement entre les éléments d'information */
+    font-size: 16px;
+}
+
+.creathon-details-description {
+    font-size: 14px;
+    line-height: 1.6; /* Augmenter l'espacement entre les lignes pour une meilleure lisibilité */
+}

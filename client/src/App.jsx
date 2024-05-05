@@ -1,15 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./assets/css/demo.css";
 import "./assets/vendor/css/core.css";
 import "./assets/vendor/css/theme-default.css";
+import EmailVerification from "./components/verify/EmailVerification";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import FormCandidature from "./pages/candidat/FormCandidature";
-import Login from "./pages/login/Login";
-import EmailVerification from "./components/verify/EmailVerification";
+import CoordinateurGeneralDashboard from "./pages/coordinateurGeneral/CoordinateurGeneralDashboard";
+import CoordinateurRegionalDashboard from "./pages/coordinateurRegional/CoordinateurRegionalDashboard";
 import HomePage from "./pages/home/HomePage";
+import Login from "./pages/login/Login";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
-import CoordinateurGeneralDashboard from "./pages/coordinateurGeneral/CoordinateurGeneralDashboard";
 const App = () => {
   return (
     <Router>
@@ -29,7 +30,7 @@ const App = () => {
           />
           <Route
             exact
-            path="/candidatsFormulaire  "
+            path="/candidatFormulaire  "
             element={<FormCandidature />}
           />
 
@@ -41,6 +42,20 @@ const App = () => {
           <Route
             path="/dashboard/admin/mentorList"
             element={<AdminDashboard load="mentorList" />}
+          />
+          
+          <Route
+            path="/dashboard/admin/creathonForm"
+            element={<AdminDashboard load="creathonForm" />}
+          />
+          
+          <Route
+            path="/dashboard/admin/creathonList"
+            element={<AdminDashboard load="creathonList" />}
+          />
+          <Route
+            path="/dashboard/admin/parametresComptes"
+            element={<AdminDashboard load="parametresComptes" />}
           />
           <Route exact path="/dashboard/mentor" element={<MentorDashboard />} />
 
@@ -55,9 +70,17 @@ const App = () => {
             element={<CoordinateurGeneralDashboard load="ListeCandidats" />}
           />
           <Route
+            path="/dashboard/coordinateurGeneral/profile/parametresComptes"
+            element={<PorteurProjetDashboard load="parametresComptes" />}
+          />
+          <Route
             exact
             path="/dashboard/porteur-de-projet"
             element={<PorteurProjetDashboard />}
+          />
+          <Route
+            path="/dashboard/potreur-de-projet/profile/parametresComptes"
+            element={<PorteurProjetDashboard load="parametresComptes" />}
           />
           <Route exact path="/dashboard/admin" element={<AdminDashboard />} />
 
@@ -80,6 +103,10 @@ const App = () => {
           <Route
             path="/dashboard/Mentor/ListeProjets/EvaluateProject"
             element={<MentorDashboard load="EvaluateProject" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/profile/parametresComptes"
+            element={<CoordinateurRegionalDashboard load="parametresComptes" />}
           />
         </Routes>
       </>
