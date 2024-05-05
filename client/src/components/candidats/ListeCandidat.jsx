@@ -139,101 +139,140 @@ const ListeCandidats = () => {
     setShowRejected(false);
   };
 
-  return (
-    <div className="contenuListeCandidat">
-      <h1>Liste des Candidats</h1>
-      <div className="buttons-container">
-        <button onClick={handleShowAccepted}>Candidats acceptés</button>
-        <button onClick={handleShowRejected} className="rejectedbut">
-          Candidats refusés
-        </button>
-        <button onClick={handleShowAll} className="allbut">
-          Tous les candidats
-        </button>
-      </div>
-      {showAccepted && (
-        <div>
-          <h2>Candidats acceptés</h2>
-          <ul>
-            {acceptedCandidates.map((candidat) => (
-              <li key={candidat._id}>
-                <div>Nom: {candidat.nom}</div>
-                <div>Prénom: {candidat.prenom}</div>
-                <div>Email: {candidat.email}</div>
-                <div>CIN: {candidat.CIN}</div>
-                <div>ideeProjet: {candidat.ideeProjet}</div>
-                <div>descriptif: {candidat.descriptif}</div>
-                <button
-                  onClick={() => handleRefuseFromAccepted(candidat._id)}
-                  className="rejectedbut"
-                >
-                  Refuser
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {showRejected && (
-        <div>
-          <h2>Candidats refusés</h2>
-          <ul>
-            {rejectedCandidates.map((candidat) => (
-              <li key={candidat._id}>
-                <div>Nom: {candidat.nom}</div>
-                <div>Prénom: {candidat.prenom}</div>
-                <div>Email: {candidat.email}</div>
-                <div>CIN: {candidat.CIN}</div>
-                <div>ideeProjet: {candidat.ideeProjet}</div>
-                <div>descriptif: {candidat.descriptif}</div>
-                <button onClick={() => handleAcceptFromRejected(candidat._id)}>
-                  Accepter
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {!showAccepted && !showRejected && (
-        <table>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th>CIN</th>
-              <th>Description</th>
-              <th>Idée de projet</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {candidats.map((candidat) => (
-              <tr key={candidat._id}>
-                <td>{candidat.nom}</td>
-                <td>{candidat.prenom}</td>
-                <td>{candidat.email}</td>
-                <td>{candidat.CIN}</td>
-                <td>{candidat.descriptif}</td>
-                <td>{candidat.ideeProjet}</td>
-                <td>
-                  <button
-                    onClick={() => handleRefuse(candidat._id)}
-                    className="buttonRefusé"
-                  >
-                    Refuser
-                  </button>
-                  <button onClick={() => handleAccept(candidat._id)}>
-                    Accepter
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
+ return (
+   <div className="contenuListeCandidat">
+     <h1>Liste des Candidats</h1>
+     <div className="buttons-container">
+       <button onClick={handleShowAccepted}>Candidats acceptés</button>
+       <button onClick={handleShowRejected} className="rejectedbut">
+         Candidats refusés
+       </button>
+       <button onClick={handleShowAll} className="allbut">
+         Tous les candidats
+       </button>
+     </div>
+     {showAccepted && (
+       <div>
+         <h2>Candidats acceptés</h2>
+         <table>
+           <thead>
+             <tr>
+               <th>Nom</th>
+               <th>Prénom</th>
+               <th>Email</th>
+               <th>CIN</th>
+               <th>Description</th>
+               <th>Idée de projet</th>
+               <th>Actions</th>
+             </tr>
+           </thead>
+           <tbody>
+             {acceptedCandidates.map((candidat) => (
+               <tr key={candidat._id}>
+                 <td>{candidat.nom}</td>
+                 <td>{candidat.prenom}</td>
+                 <td>{candidat.email}</td>
+                 <td>{candidat.CIN}</td>
+                 <td>{candidat.descriptif}</td>
+                 <td>{candidat.ideeProjet}</td>
+                 <td>
+                   <button
+                     onClick={() => handleRefuseFromAccepted(candidat._id)}
+                     className="rejectedbut"
+                   >
+                     Refuser
+                   </button>
+                 </td>
+               </tr>
+             ))}
+           </tbody>
+         </table>
+       </div>
+     )}
+     {showRejected && (
+       <div>
+         <h2>Candidats refusés</h2>
+         <table>
+           <thead>
+             <tr>
+               <th>Nom</th>
+               <th>Prénom</th>
+               <th>Email</th>
+               <th>CIN</th>
+               <th>Description</th>
+               <th>Idée de projet</th>
+               <th>Actions</th>
+             </tr>
+           </thead>
+           <tbody>
+             {rejectedCandidates.map((candidat) => (
+               <tr key={candidat._id}>
+                 <td>{candidat.nom}</td>
+                 <td>{candidat.prenom}</td>
+                 <td>{candidat.email}</td>
+                 <td>{candidat.CIN}</td>
+                 <td>{candidat.descriptif}</td>
+                 <td>{candidat.ideeProjet}</td>
+                 <td>
+                   <button
+                     onClick={() => handleAcceptFromRejected(candidat._id)}
+                   >
+                     Accepter
+                   </button>
+                 </td>
+               </tr>
+             ))}
+           </tbody>
+         </table>
+       </div>
+     )}
+     {!showAccepted && !showRejected && (
+       <div>
+         {candidats.length === 0 ? (
+           <p>Aucun candidat disponible</p>
+         ) : (
+           <table>
+             <thead>
+               <tr>
+                 <th>Nom</th>
+                 <th>Prénom</th>
+                 <th>Email</th>
+                 <th>CIN</th>
+                 <th>Description</th>
+                 <th>Idée de projet</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody>
+               {candidats.map((candidat) => (
+                 <tr key={candidat._id}>
+                   <td>{candidat.nom}</td>
+                   <td>{candidat.prenom}</td>
+                   <td>{candidat.email}</td>
+                   <td>{candidat.CIN}</td>
+                   <td>{candidat.descriptif}</td>
+                   <td>{candidat.ideeProjet}</td>
+                   <td>
+                     <button
+                       onClick={() => handleRefuse(candidat._id)}
+                       className="buttonRefusé"
+                     >
+                       Refuser
+                     </button>
+                     <button onClick={() => handleAccept(candidat._id)}>
+                       Accepter
+                     </button>
+                   </td>
+                 </tr>
+               ))}
+             </tbody>
+           </table>
+         )}
+       </div>
+     )}
+   </div>
+ );
+
 };
 
 export default ListeCandidats;

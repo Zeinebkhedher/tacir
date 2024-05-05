@@ -33,6 +33,7 @@ const cors = require("cors");
 const resetRoute = require("./routes/resetRoute");
 const membreTacirRoute = require("./routes/membreTacirRoute");
 const tacirProjectRoute = require("./routes/tacirProjectRoute");
+const tacirFormationRoute = require("./routes/FormationTacirRoute");
 
 dotenv.config();
 
@@ -165,5 +166,5 @@ app.use("/api/Candidats", candidatTacirRoute);
 app.use("/api/membres", membreTacirRoute);
 app.use("/api/profile", ProfileRoute);
 app.use("/api/projects", tacirProjectRoute);
-
+app.use("/api/formations", tacirFormationRoute);
 module.exports = app;

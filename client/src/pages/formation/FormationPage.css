@@ -1,0 +1,15 @@
+.ForamtionContainer{
+    width: 80vw;
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        position: absolute;
+        top: 20vh;
+        left: 30vw;
+}
+.CreateFormationButton
+{
+    background-color: rebeccapurple;
+    padding: 10px;
+    margin-block: 20px;
+}

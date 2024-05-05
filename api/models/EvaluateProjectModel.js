@@ -17,6 +17,10 @@ const evaluateProjectSchema = new mongoose.Schema({
     ref: "Membres",
     required: true,
   },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Membres",
+  },
   comment: {
     type: String,
     required: true,

@@ -1,0 +1,58 @@
+.formation-box {
+    border: 2px solid blue;
+    /* Border color is blue */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add shadow effect */
+    padding: 10px;
+    margin-bottom: 20px;
+    /* Add some spacing between formation boxes */
+    text-align: center;
+    background-color:wheat;
+}
+
+
+
+.containerFormation{
+   
+        max-width: 700px;
+        margin: auto;
+        padding: 20px;
+        position: absolute;
+        top: 20vh;
+        left: 30vw;
+       
+}
+.formation .line {
+    margin: 5px 0;
+    width:70vw;    
+    text-align: center;
+}
+
+.formation .line p {
+    text-decoration: underline;
+    /* Add underline */
+    font-weight: bold;
+    /* Set text to bold */
+    color: #003366;
+    /* Set dark blue color */
+}
+
+.formation .line span {
+    color: #000;
+    margin-left:5px;
+}
+.line{
+    display: flex;
+}
+.formation{
+  
+    align-content: center;
+
+}
+.sinscrire
+{
+  margin-left: 30vw;
+  width: 10vw;
+font-weight: bold;
+font-size: large;
+}

@@ -70,6 +70,10 @@ const App = () => {
             element={<PorteurProjetDashboard load="AddProject" />}
           />
           <Route
+            path="/dashboard/porteurProjet/Formations/UpcomingFormations"
+            element={<PorteurProjetDashboard load="upcomingFormations" />}
+          />
+          <Route
             path="/dashboard/porteurProjet/ListeProjets/evaluation"
             element={<PorteurProjetDashboard load="Evaluation" />}
           />
@@ -80,6 +84,22 @@ const App = () => {
           <Route
             path="/dashboard/Mentor/ListeProjets/EvaluateProject"
             element={<MentorDashboard load="EvaluateProject" />}
+          />
+          <Route
+            path="/dashboard/admin/formations"
+            element={<AdminDashboard load="formation" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/formations/sinscrire/:formationId"
+            element={<PorteurProjetDashboard load="sinscrireFormation" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/formations"
+            element={<PorteurProjetDashboard load="AllFormation" />}
+          />
+          <Route
+            path="/dashboard/admin/formations/createFormation"
+            element={<AdminDashboard load="createFormation" />}
           />
         </Routes>
       </>

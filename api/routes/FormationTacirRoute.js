@@ -1,0 +1,19 @@
+const express = require("express");
+const router = express.Router();
+const formationController = require("../controllers/tacirFormationController");
+
+router.post("/", formationController.createFormation);
+router.post("/:id", formationController.addParticipantToFormation);
+
+router.get("/", formationController.getAllFormations);
+
+// Get a single formation by ID
+router.get("/:id", formationController.getFormationById);
+
+// Update a formation
+router.put("/:id", formationController.updateFormation);
+
+// Delete a formation
+router.delete("/:id", formationController.deleteFormation);
+
+module.exports = router;

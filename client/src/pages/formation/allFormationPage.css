@@ -1,0 +1,28 @@
+.containerFormation {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formation-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    width: 50vw;
+}
+
+.formation-box.past {
+    background-color:lightgray;
+    color: #fff;
+}
+
+
+.line {
+    margin-bottom: 5px;
+}
+
+.line p {
+    font-weight: bold;
+}
+

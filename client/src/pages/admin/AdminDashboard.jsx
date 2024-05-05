@@ -5,16 +5,16 @@ import Navbar1 from "../../components/navBar1/NavBar1";
 import "../admin/adminDashboard.css";
 import HomePage from "../home/HomePage";
 
-import AccountRegister from "../../components/comptes/AccountRegister";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-
+import FormationPage from "../formation/FormationPage";
+import CreateFormation from "../../components/formations/CreateFormation";
+import SinscrireFormation from "../../components/formations/SinscrireFormation";
 
 const AdminDashboard = (props) => {
   return (
     <div>
       <div>
         <div className="layout-wrapper layout-content-navbar">
-          
           <div className="layout-container">
             <aside
               id="layout-menu"
@@ -24,37 +24,14 @@ const AdminDashboard = (props) => {
             </aside>
 
             <Navbar1 />
-            
+
             {props.load === "home" && <HomePage />}
-             {props.load === "mentorList" && <MentorListInterface/>}
-             {props.load === "AcountRegister" && <AccountRegister />}
-
-
-            {/*{props.load === "adminAudition" && <AdminAudition />}
-            {props.load === "Concert" && <Concert />}
-            {props.load === "nouvelleSaison" && <NouvelleSaison />}
-            {props.load === "saisonActuelle" && <SaisonActuelle />}
-            {props.load === "auditionAddInfo" && <AdminAuditionInfo />}
-            {props.load === "archives" && <Archive />}
-            {props.load === "candidatesList" && <CandidatesList />}
-            {props.load === "updateAudition" && <AuditionUpdate />}
-            {props.load === "ListeOeuvres" && <ListeOeuvres />}
-            {props.load === "AddOeuvre" && <AddOeuvre />}
-            {props.load === "ListeCandidatesParPupitre" && (
-              <ListeCandidatesParPupitre />
-            )}
-            {props.load === "genererPlanning" && <PlanningAudition />}
-            {props.load === "absenceRep" && <AbsenceRepetition />}
-            {props.load === "candidatesListV2" && <CandidatesListV2 />}
-            {props.load === "AcountRegister" && <AcountRegister />}*/}
-        
-        
-        
+            {props.load === "mentorList" && <MentorListInterface />}
+            {props.load === "formation" && <FormationPage />}
+            {props.load === "createFormation" && <CreateFormation />}
+            {props.load === "sinscrireFormation" && <SinscrireFormation />}
           </div>
-          
-      
-         
-          
+
           <div className="layout-overlay layout-menu-toggle" />
         </div>
       </div>
