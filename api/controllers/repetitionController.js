@@ -27,7 +27,7 @@ else{
 const createRepetition = async (req, res) => {
   try {
     
-    const {concert,lieu,DateRep,HeureDeb,HeureFin,pourcentages,chefsPupitres}=req.body
+    const {lieu,DateRep,HeureDeb,HeureFin,pourcentages,chefsPupitres}=req.body
 
     const chefsSoprano=await Membre.findOne({_id:chefsPupitres.soprano,role:"chef du pupitre"})
     const chefsAlto=await Membre.findOne({_id:chefsPupitres.alto,role:"chef du pupitre"})
