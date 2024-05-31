@@ -62,6 +62,14 @@ function SideBarMentor() {
           </a>
         </li>
       </NavLink>
+      <NavLink to="/dashboard/Mentor/ListeProjets/Evaluations">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste Evaluations</div>
+          </a>
+        </li>
+      </NavLink>
       <NavLink to="/dashboard/mentor/gereComptes">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -71,6 +79,17 @@ function SideBarMentor() {
         </li>
       </NavLink>
 
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text"> Contacts</span>
+      </li>
+      <NavLink to="/dashboard/Mentor/contact" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">contact</div>
+          </a>
+        </li>
+      </NavLink>
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Compte</span>

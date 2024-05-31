@@ -15,6 +15,7 @@ const loggedMiddleware = async (req, res, next) => {
       req.auth = {
         membreId: membreId,
         role: membre.role,
+        email: membre.email,
       };
       next();
     } catch (error) {

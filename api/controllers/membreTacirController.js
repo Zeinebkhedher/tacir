@@ -93,7 +93,7 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { membreId: membre._id, role: membre.role },
+      { membreId: membre._id, role: membre.role, email: membre.email },
       "RANDOM_TOKEN",
       {
         expiresIn: "24h",
@@ -142,7 +142,6 @@ const getAllMembers = async (req, res) => {
   }
 };
 
-
 const deleteMember = async (req, res) => {
   try {
     const membre = await Membre.findByIdAndDelete({ _id: req.params.id });
@@ -177,12 +176,38 @@ const updateMember = async (req, res) => {
   }
 };
 
+const getAllMentors = async (req, res) => {
+  try {
+    const mentors = await Membre.find({ role: "Mentor" }, "-password");
+    res.status(200).json({
+      message: "Mentors retrieved successfully",
+      mentors,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve mentors" });
+  }
+};
+
+const getAllPorteurDeProjet = async (req, res) => {
+  try {
+    const porteurs = await Membre.find({ role: "PorteurProjet" }, "-password");
+    res.status(200).json({
+      message: "Porteur de projet retrieved successfully",
+      porteurs,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve porteur de projet" });
+  }
+};
+
 module.exports = {
   modifierTessiture,
   register,
   login,
   getMemberById,
   getAllMembers,
+  getAllMentors,
+  getAllPorteurDeProjet,
   deleteMember,
   updateMember,
 };

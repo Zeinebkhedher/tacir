@@ -10,6 +10,7 @@ import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarP
 import ListeProjets from "../../pages/porteurProjet/ListeProjets";
 import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
+import Contact from "../../components/Contact/Contact";
 
 const PorteurProjetDashboard = (props) => {
   return (
@@ -32,11 +33,10 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "Evaluation" && <AfficherEvaluation />}
             {props.load === "parametresComptes" && <CompteInterface />}
             {props.load === "creathonList" && <InterfaceCreathon />}
-
-
             {props.load === "upcomingFormations" && <UpcomingFormations />}
             {props.load === "AllFormation" && <AllFormationPage />}
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
+            {props.load === "contact" && <Contact />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

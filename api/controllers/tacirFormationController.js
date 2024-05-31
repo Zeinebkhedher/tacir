@@ -40,12 +40,10 @@ exports.addParticipantToFormation = async (req, res) => {
     res.status(200).json({ status: "success", data: formation });
   } catch (error) {
     console.error("Error:", error.message);
-    res
-      .status(500)
-      .json({
-        status: "error",
-        message: "Failed to add participant to the formation",
-      });
+    res.status(500).json({
+      status: "error",
+      message: "Failed to add participant to the formation",
+    });
   }
 };
 
@@ -117,5 +115,29 @@ exports.deleteFormation = async (req, res) => {
     res.status(204).json({ status: "success", data: null });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
+  }
+};
+
+exports.getParticipantsByFormationId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find the formation by its ID
+    const formation = await Formation.findById(id).populate("participants");
+
+    if (!formation) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Formation not found" });
+    }
+
+    // Return the participants of the formation
+    res.status(200).json({ status: "success", data: formation.participants });
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({
+      status: "error",
+      message: "Failed to fetch participants for the formation",
+    });
   }
 };

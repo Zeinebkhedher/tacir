@@ -6,6 +6,8 @@ import EvaluateProject from "../../components/projects/EvaluateProject";
 import ListeProjects from "../../components/projects/ListeProjects";
 import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import HomePage from "../home/HomePage";
+import Contact from "../../components/Contact/Contact";
+import EvaluationTable from "../../components/projects/Evaluation";
 
 const MentorDashboard = (props) => {
   return (
@@ -27,6 +29,8 @@ const MentorDashboard = (props) => {
             {props.load === "EvaluateProject" && <EvaluateProject />}
             {props.load === "Profil" && <Profile />}
             {props.load === "updateprofil" && <UpdateProfile />}
+            {props.load === "contact" && <Contact />}
+            {props.load === "Evaluations" && <EvaluationTable />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

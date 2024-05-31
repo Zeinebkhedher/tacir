@@ -111,11 +111,26 @@ function SideBarPoreturProjet() {
         </li>
       </NavLink>
 
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Contacts</span>
+      </li>
+      <NavLink to="/dashboard/porteurProjet/contact" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">contact</div>
+          </a>
+        </li>
+      </NavLink>
+
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Compte</span>
       </li>
-      <NavLink to="/dashboard/potreur-de-projet/profile/parametresComptes" onClick={goup}>
+      <NavLink
+        to="/dashboard/potreur-de-projet/profile/parametresComptes"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />

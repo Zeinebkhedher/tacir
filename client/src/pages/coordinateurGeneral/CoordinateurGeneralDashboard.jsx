@@ -7,6 +7,8 @@ import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordina
 import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
+import ListeProjects from "../../components/projects/ListeProjects";
+import Creathons from "../../components/creathons/Creathons";
 
 const CoordinateurGeneralDashboard = (props) => {
   return (
@@ -27,7 +29,8 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
             {props.load === "parametresComptes" && <CompteInterface />}
-
+            {props.load === "ListeProject" && <ListeProjects />}
+            {props.load === "creathonList" && <Creathons />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

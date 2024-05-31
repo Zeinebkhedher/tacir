@@ -1,151 +1,154 @@
 import React, { useState } from "react";
-import "./createFormation.css"
-function CreateFormation() {
-  const [formData, setFormData] = useState({
+import axios from "axios"; // Assuming you're using axios for HTTP requests
+
+const CreateFormation = () => {
+  const [formationData, setFormationData] = useState({
     Name: "",
-    formateur: {
-      FirstName: "",
-      LastName: "",
-      informations: "",
-    },
+    FirstName: "",
+    LastName: "",
+    informations: "",
     Date: "",
+    description: "",
     startHour: "",
     FinishHour: "",
+    status: "Upcoming", // Assuming default status is "Upcoming"
+    region: "TUNIS", // Assuming default region is "TUNIS"
   });
- const [successMessage, setSuccessMessage] = useState("");
- const [errorMessage, setErrorMessage] = useState("");
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.includes("formateur.")) {
-      const formateurKey = name.split(".")[1];
-      setFormData({
-        ...formData,
-        formateur: {
-          ...formData.formateur,
-          [formateurKey]: value,
-        },
+    setFormationData({ ...formationData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/formations/",
+        formationData
+      ); // Adjust the URL if needed
+      setSuccessMessage("Formation created successfully.");
+      setErrorMessage("");
+      console.log("Formation created:", response.data);
+      // Reset form data after successful creation
+      setFormationData({
+        Name: "",
+        FirstName: "",
+        LastName: "",
+        informations: "",
+        Date: "",
+        description: "",
+        startHour: "",
+        FinishHour: "",
+        status: "Upcoming",
+        region: "TUNIS",
       });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+    } catch (error) {
+      setSuccessMessage("");
+      setErrorMessage("Failed to create formation. Please try again.");
+      console.error("Error creating formation:", error.message);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:8000/api/formations/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSuccessMessage("Formation créée avec succès !");
-          setErrorMessage("");
-          // Optionally, you can reset the form here
-          setFormData({
-            Name: "",
-            formateur: {
-              FirstName: "",
-              LastName: "",
-              informations: "",
-            },
-            Date: "",
-            startHour: "",
-            FinishHour: "",
-          });
-        } else {
-          setSuccessMessage("");
-          setErrorMessage("Erreur lors de la création de la formation.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error creating formation:", error);
-        setSuccessMessage("");
-        setErrorMessage(
-          "Une erreur s'est produite lors de la création de la formation."
-        );
-      });
-  };
-
   return (
-    <div className="container">
-      <h2>Créer une formation</h2>
-      {successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
+    <div className="content">
+      <h2>Create Formation</h2>
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <label>
-          Nom:
+          Formation Name:
           <input
             type="text"
             name="Name"
-            value={formData.Name}
+            value={formationData.Name}
             onChange={handleChange}
+            placeholder="Formation Name"
+            required
           />
         </label>
         <label>
-          Prénom du formateur:
+          Formateur First Name:
           <input
             type="text"
-            name="formateur.FirstName"
-            value={formData.formateur.FirstName}
+            name="FirstName"
+            value={formationData.FirstName}
             onChange={handleChange}
+            placeholder="Formateur First Name"
+            required
           />
         </label>
         <label>
-          Nom du formateur:
+          Formateur Last Name:
           <input
             type="text"
-            name="formateur.LastName"
-            value={formData.formateur.LastName}
+            name="LastName"
+            value={formationData.LastName}
             onChange={handleChange}
+            placeholder="Formateur Last Name"
+            required
           />
         </label>
         <label>
-          Informations du formateur:
-          <textarea
-            name="formateur.informations"
-            value={formData.formateur.informations}
+          Informations:
+          <input
+            type="text"
+            name="informations"
+            value={formationData.informations}
             onChange={handleChange}
-          ></textarea>
+            placeholder="Informations"
+            required
+          />
         </label>
         <label>
           Date:
           <input
             type="date"
             name="Date"
-            value={formData.Date}
+            value={formationData.Date}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
-          Heure de début:
+          Description:
+          <textarea
+            name="description"
+            value={formationData.description}
+            onChange={handleChange}
+            placeholder="Description"
+            required
+          />
+        </label>
+        <label>
+          Start Hour:
           <input
             type="text"
             name="startHour"
-            value={formData.startHour}
+            value={formationData.startHour}
             onChange={handleChange}
+            placeholder="Start Hour"
+            required
           />
         </label>
         <label>
-          Heure de fin:
+          Finish Hour:
           <input
             type="text"
             name="FinishHour"
-            value={formData.FinishHour}
+            value={formationData.FinishHour}
             onChange={handleChange}
+            placeholder="Finish Hour"
+            required
           />
         </label>
-        <button type="submit">Créer</button>
+        <button type="submit">Create Formation</button>
       </form>
     </div>
   );
-}
+};
 
 export default CreateFormation;

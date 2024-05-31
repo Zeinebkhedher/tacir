@@ -126,13 +126,13 @@ const Login = () => {
             <>
               {decodedToken.role === "admin" ? (
                 <AdminDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "coordinateur géneral" ? (
+              ) : decodedToken.role === "coordinateurGeneral" ? (
                 <CoordinateurGeneralDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "coordinateur régional" ? (
+              ) : decodedToken.role === "coordinateurRegional" ? (
                 <CoordinateurRegionalDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "mentor" ? (
+              ) : decodedToken.role === "Mentor" ? (
                 <MentorDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "porteurProjet" ? (
+              ) : decodedToken.role === "PorteurProjet" ? (
                 <PorteurProjetDashboard socket={socket} load="home" />
               ) : (
                 // Redirection vers une page par défaut ou affichage d'un message d'erreur

@@ -29,19 +29,19 @@ const AdminDashboard = (props) => {
             </aside>
 
             <Navbar1 />
-            
-            {props.load === "home" && <HomePage />}
-            {props.load === "mentorList" && <MentorListInterface/>}
+
+            {props.load === "Home" && <HomePage />}
+            {props.load === "mentorList" && <MentorListInterface />}
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "formation" && <FormationPage />}
             {props.load === "createFormation" && <CreateFormation />}
             {props.load === "creathonForm" && <CreathonInterface />}
             {props.load === "creathonList" && <CreathonList />}
-            {props.load === "demande_candidature_creathon" && <InterfaceDemandeCreathon />}
+            {props.load === "demande_candidature_creathon" && (
+              <InterfaceDemandeCreathon />
+            )}
 
             {props.load === "parametresComptes" && <CompteInterface />}
-
-
 
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
           </div>
