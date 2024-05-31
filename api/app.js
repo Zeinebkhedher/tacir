@@ -34,6 +34,8 @@ const resetRoute = require("./routes/resetRoute");
 const membreTacirRoute = require("./routes/membreTacirRoute");
 const tacirProjectRoute = require("./routes/tacirProjectRoute");
 const creathonRoutes = require ('./routes/creathonRoute')
+const tacirFormationRoute = require("./routes/FormationTacirRoute");
+const candidatCreathon = require ("./routes/candidatCreathonRoute")
 dotenv.config();
 
 mongoose
@@ -166,5 +168,7 @@ app.use("/api/membres", membreTacirRoute);
 app.use("/api/profile", ProfileRoute);
 app.use("/api/projects", tacirProjectRoute);
 app.use("/api/creathons", creathonRoutes);
+app.use("/api/candidatureCreathon", candidatCreathon);
 
+app.use("/api/formations", tacirFormationRoute);
 module.exports = app;

@@ -4,7 +4,7 @@ import CreathonList from '../creathonList/CreathonList';
 
 const CreathonListInterface = () => {
   return (
-    <div  className="position-absolute top-50 start-50 translate-middle"> 
+    <div  className="position-absolute top-50 start-50 translate-middle auditionTable"> 
       <CreathonList />
     </div>
   );

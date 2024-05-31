@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import Notification from "../../assets/img/notification.jpg";
-import adminIcon from "../../assets/img/adminIcon.png";
-import { io } from "socket.io-client";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import PowerSettingsNewRoundedIcon from "@mui/icons-material/PowerSettingsNewRounded";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Tooltip } from "@mui/material";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
+import adminIcon from "../../assets/img/adminIcon.png";
+import Notification from "../../assets/img/notification.jpg";
 
 function Navbar1() {
   const [notifications, setNotifications] = useState([]);
@@ -221,11 +221,59 @@ function Navbar1() {
                   <div className="dropdown-divider" />
                 </li>
                 <li>
-                  <Link className="dropdown-item">
-                    <PermIdentityRoundedIcon className="bx bx-user me-2"></PermIdentityRoundedIcon>
-                    <span className="align-middle">My Profile</span>
-                  </Link>
-                </li>
+  <Tooltip
+    title="Consulter votre profil"
+    placement="bottom-end"
+  >
+    {user?.role === "admin" && (
+      <NavLink
+        to="/dashboard/admin/profileadmin"
+        className="dropdown-item"
+      >
+        <PermIdentityRoundedIcon className="bx bx-user me-2" />
+        <span className="align-middle">Mon Profil</span>
+      </NavLink>
+    )}
+    {user?.role === "Mentor" && (
+      <NavLink
+        to="/dashboard/Mentor/profile"
+        className="dropdown-item"
+      >
+        <PermIdentityRoundedIcon className="bx bx-user me-2" />
+        <span className="align-middle">Mon Profil</span>
+      </NavLink>
+    )}
+    {user?.role === "coordinateur géneral" && (
+      <NavLink
+        to="/dashboard/coordinateur_géneral/profile"
+        className="dropdown-item"
+      >
+        <PermIdentityRoundedIcon className="bx bx-user me-2" />
+        <span className="align-middle">Mon Profil</span>
+      </NavLink>
+    )}
+      {user?.role === "Porteu de projet" && (
+      <NavLink
+        to="/dashboard/Porteu_ de_projet/profile"
+        className="dropdown-item"
+      >
+        <PermIdentityRoundedIcon className="bx bx-user me-2" />
+        <span className="align-middle">Mon Profil</span>
+      </NavLink>
+    )}
+       {user?.role === "coordinateur régional" && (
+      <NavLink
+        to="/dashboard/coordinateur_régional/profile"
+        className="dropdown-item"
+      >
+        <PermIdentityRoundedIcon className="bx bx-user me-2" />
+        <span className="align-middle">Mon Profil</span>
+      </NavLink>
+    )}
+  </Tooltip>
+</li>
+
+
 
                 <li>
                   <div className="dropdown-divider" />

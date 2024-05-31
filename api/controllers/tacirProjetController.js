@@ -1,5 +1,6 @@
 const Project = require("../models/projetTacirModel");
 const EvaluateProject = require("../models/EvaluateProjectModel");
+const Membres = require("../models/membreTacirModel");
 
 // Controller function to create a new project
 const createProject = async (req, res) => {
@@ -63,11 +64,16 @@ const addEvaluation = async (req, res) => {
       return res.status(404).json({ error: "Project not found" });
     }
 
+    const owner = await Membres.findOne();
+    if (!owner) {
+      return res.status(404).json({ error: "owner not found" });
+    }
     const evaluation = new EvaluateProject({
       projectName: projectNameField,
       projectId: project._id,
       evaluatorId,
       comment,
+      owner,
     });
 
     await evaluation.save();
@@ -83,10 +89,12 @@ const getEvaluationById = async (req, res) => {
   try {
     const { evaluationId } = req.params;
 
-    // Find the evaluation by ID and populate the project field
-    const evaluation = await EvaluateProject.findById(evaluationId).populate(
-      "projectId"
-    );
+    // Find the evaluation by ID
+    const evaluation = await EvaluateProject.findOne({ _id: evaluationId })
+      .populate("projectId")
+      .populate("evaluatorId")
+      .populate("owner")
+      .exec();
 
     if (!evaluation) {
       return res.status(404).json({ error: "Evaluation not found" });
@@ -102,7 +110,10 @@ const getEvaluationById = async (req, res) => {
 const getAllEvaluations = async (req, res) => {
   try {
     // Query the database to fetch all evaluations
-    const evaluations = await EvaluateProject.find().populate("projectId");
+    const evaluations = await EvaluateProject.find()
+      .populate("projectId")
+      .populate("owner")
+      .populate("evaluatorId");
 
     res.status(200).json(evaluations); // Return the evaluations in the response
   } catch (error) {

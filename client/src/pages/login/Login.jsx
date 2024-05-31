@@ -130,7 +130,7 @@ const Login = () => {
                 <CoordinateurGeneralDashboard socket={socket} load="home" />
               ) : decodedToken.role === "coordinateur régional" ? (
                 <CoordinateurRegionalDashboard socket={socket} load="home" />
-              ) : decodedToken.role === "Mentor" ? (
+              ) : decodedToken.role === "mentor" ? (
                 <MentorDashboard socket={socket} load="home" />
               ) : decodedToken.role === "porteurProjet" ? (
                 <PorteurProjetDashboard socket={socket} load="home" />

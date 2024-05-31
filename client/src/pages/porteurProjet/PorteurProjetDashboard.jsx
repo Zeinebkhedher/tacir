@@ -1,10 +1,14 @@
 import React from "react";
 import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
 import CompteInterface from "../../components/compteInterface/CompteInterface";
+import SinscrireFormation from "../../components/formations/SinscrireFormation";
+import UpcomingFormations from "../../components/formations/UpcomingFormations";
+import InterfaceCreathon from "../../components/interfaceCreathon/InterfaceCreathon";
 import Navbar1 from "../../components/navBar1/NavBar1";
 import AddProject from "../../components/projects/AddProject";
 import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarPorteurProjet";
 import ListeProjets from "../../pages/porteurProjet/ListeProjets";
+import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
 
 const PorteurProjetDashboard = (props) => {
@@ -27,8 +31,12 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "AddProject" && <AddProject />}
             {props.load === "Evaluation" && <AfficherEvaluation />}
             {props.load === "parametresComptes" && <CompteInterface />}
+            {props.load === "creathonList" && <InterfaceCreathon />}
 
 
+            {props.load === "upcomingFormations" && <UpcomingFormations />}
+            {props.load === "AllFormation" && <AllFormationPage />}
+            {props.load === "sinscrireFormation" && <SinscrireFormation />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

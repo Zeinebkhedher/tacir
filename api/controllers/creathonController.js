@@ -6,6 +6,7 @@ const Saison=require("../models/saisonModel")
 const addQrCodeToRepetition = require("../middlewares/createQrCodeMiddleware");
 const {sendNotificationMiddleware} = require("../middlewares/sendNotificationMiddleware")
 const { userSocketMap } = require("../utils/socket");
+const mongoose = require("mongoose");
 
 const genererListeMembres=async(pupitre,pourcentage)=>{
   const membresPupitre=await Membre.find({pupitre,role:{$in:['choriste']},statut:{$ne:'En congé'}})
@@ -26,42 +27,50 @@ else{
 }
 const createCreathon = async (req, res) => {
   try {
-    
-    const {titre,date,lieu,affiche}=req.body
+    const { titre, dateDebut, dateFin, lieu, affiche, status } = req.body;
 
-   
+    // Validate that dateDebut is before dateFin
+    if (new Date(dateDebut) >= new Date(dateFin)) {
+      return res.status(400).json({
+        error: "La date de début doit être inférieure à la date de fin",
+      });
+    }
 
-    const creathon=new Creathon({
-     titre,
-      date,
+    const creathon = new Creathon({
+      titre,
+      dateDebut,
+      dateFin,
       lieu,
-      affiche
-    })
-    
-    
-    const nouveauCreathon= creathon;
+      affiche,
+      status: status || "en cours",
+    });
 
     const currentSaison = await Saison.findOne({ saisonCourante: true });
     if (currentSaison) {
-      currentSaison.creathons.push(nouvelleRepition);
+      currentSaison.creathons.push(creathon);
       await currentSaison.save();
     }
-    await creathon.save()
 
-    req.creathonId = creathon._id;
-    //await addQrCodeToRepetition.addQrCodeToRepetition(req, res, () => {});
-  }catch (error) {
-    return res.status(500).json({ error: error.message })
+    await creathon.save();
+
+    // Envoyer une réponse de succès
+    res.status(201).json({ message: "Creathon créé avec succès", creathon });
+  } catch (error) {
+    // Gérer les erreurs et renvoyer une réponse appropriée en cas d'erreur
+    console.error("Erreur lors de la création du Creathon:", error);
+    res.status(500).json({ error: error.message });
   }
-}
-const deleteRepetition=async(req,res)=>{
+};
+
+
+const deleteCreathon=async(req,res)=>{
   try{
-    const repetition=await Repetition.findByIdAndDelete({_id:req.params.id})
+    const repetition=await Creathon.findByIdAndDelete({_id:req.params.id})
     if(repetition){
-      return res.status(200).json({message:"Répétition annulée avec succées"})
+      return res.status(200).json({message:"Crathon annulée avec succées"})
     }
     else{
-      return res.status(200).json({message:"Répétition n'existe pas"})
+      return res.status(200).json({message:"Creathon n'existe pas"})
     }
 
   }
@@ -69,6 +78,47 @@ const deleteRepetition=async(req,res)=>{
     res.status(400).json({error:error.message})
   }
 };
+
+
+
+
+const updateCreathonStatus = async (req, res) => {
+  try {
+    const { id } = req.params; // Récupérer l'ID du Creathon à mettre à jour
+    const { newStatus } = req.body; // Récupérer le nouveau statut depuis le corps de la requête
+
+    // Vérifier si l'ID du Creathon est valide
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "ID de Creathon invalide" });
+    }
+
+    // Vérifier si le nouveau statut est valide
+    if (newStatus !== "fini") {
+      return res.status(400).json({ error: "Statut invalide, doit être 'fini'" });
+    }
+
+    // Mettre à jour le statut du Creathon dans la base de données
+    const updatedCreathon = await Creathon.findByIdAndUpdate(
+      id,
+      { status: newStatus },
+      { new: true }
+    );
+
+    if (!updatedCreathon) {
+      return res.status(404).json({ error: "Creathon non trouvé" });
+    }
+
+    // Envoyer une réponse de succès avec le Creathon mis à jour
+    res.json({ message: "Statut du Creathon mis à jour avec succès", creathon: updatedCreathon });
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du statut du Creathon:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
 const getRepetitionById=async(req,res)=>{
   try{
     const repetition=await Repetition.findOne({_id:req.params.id}).populate({path:"concert",select:"titre"}).populate({path:"membres.member",select:"nom prenom email pupitre role"}).exec()
@@ -123,9 +173,11 @@ const getAllCreathons = async (req, res) => {
       const formattedCreathons = creathons.map((creathon) => ({
         _id: creathon._id,
         titre: creathon.titre,
-        date: creathon.date,
+        dateDebut: creathon.dateDebut,
+        dateFin: creathon.dateFin,
         lieu: creathon.lieu,
         affiche: creathon.affiche,
+        status: creathon.status
       }));
   
       res.status(200).json({
@@ -201,4 +253,6 @@ const listPresenceByPupitre = async (req, res) => {
   }
 };
 
-module.exports = {createCreathon,listPresenceByPupitre,deleteRepetition,getRepetitionById,getAllCreathons,updateRepetition};
+module.exports = {createCreathon,listPresenceByPupitre,updateCreathonStatus,deleteCreathon,getRepetitionById,getAllCreathons,updateRepetition};
+
+

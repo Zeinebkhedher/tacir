@@ -1,0 +1,21 @@
+.centered-candidatures {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-39%, -60%);
+  }
+  
+  .button-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .button-container button {
+    position: absolute;
+  }
+  
+  .button-container button:nth-child(2) {
+    left: 20%;
+    transform: translateX(5%);
+    top: 50px;
+  }

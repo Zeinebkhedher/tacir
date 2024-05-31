@@ -1,14 +1,15 @@
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    FormControl,
-    FormHelperText,
-    InputLabel,
-    Modal,
-    OutlinedInput,
-    Typography
+  Box,
+  Button,
+  Card,
+  CardContent,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  Modal,
+  OutlinedInput,
+  TextField,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
@@ -16,21 +17,24 @@ import React, { useState } from "react";
 const CreathonForm = () => {
   const [inputs, setInputs] = useState({
     titre: "",
-    date: "",
+    dateDebut: "",
+    dateFin: "",
     lieu: "",
     affiche: "",
   });
 
   const [errors, setErrors] = useState({
     titre: null,
-    date: null,
+    dateDebut: null,
+    dateFin: null,
     lieu: null,
     affiche: null,
   });
 
   const [errorsText, setErrorsText] = useState({
     titre: "",
-    date: "",
+    dateDebut: "",
+    dateFin: "",
     lieu: "",
     affiche: "",
   });
@@ -51,12 +55,27 @@ const CreathonForm = () => {
         newErrorsText.titre = "";
       }
 
-      if (!inputs.date) {
-        newErrors.date = true;
-        newErrorsText.date = "La date est requise";
+      if (!inputs.dateDebut) {
+        newErrors.dateDebut = true;
+        newErrorsText.dateDebut = "La date de début est requise";
       } else {
-        newErrors.date = false;
-        newErrorsText.date = "";
+        newErrors.dateDebut = false;
+        newErrorsText.dateDebut = "";
+      }
+
+      if (!inputs.dateFin) {
+        newErrors.dateFin = true;
+        newErrorsText.dateFin = "La date de fin est requise";
+      } else {
+        newErrors.dateFin = false;
+        newErrorsText.dateFin = "";
+      }
+
+      if (inputs.dateDebut && inputs.dateFin && inputs.dateDebut >= inputs.dateFin) {
+        newErrors.dateDebut = true;
+        newErrors.dateFin = true;
+        newErrorsText.dateDebut = "La date de début doit être inférieure à la date de fin";
+        newErrorsText.dateFin = "La date de fin doit être supérieure à la date de début";
       }
 
       if (!inputs.lieu) {
@@ -80,12 +99,19 @@ const CreathonForm = () => {
       setErrorsText(newErrorsText);
 
       // Vérification s'il y a des erreurs
-      if (!newErrors.titre && !newErrors.date && !newErrors.lieu && !newErrors.affiche) {
+      if (
+        !newErrors.titre &&
+        !newErrors.dateDebut &&
+        !newErrors.dateFin &&
+        !newErrors.lieu &&
+        !newErrors.affiche
+      ) {
         const res = await axios.post(
           "http://localhost:8000/api/creathons/create",
           {
             titre: inputs.titre,
-            date: inputs.date,
+            dateDebut: inputs.dateDebut,
+            dateFin: inputs.dateFin,
             lieu: inputs.lieu,
             affiche: inputs.affiche,
           },
@@ -101,7 +127,8 @@ const CreathonForm = () => {
           setOpenModal(true);
           setInputs({
             titre: "",
-            date: "",
+            dateDebut: "",
+            dateFin: "",
             lieu: "",
             affiche: "",
           });
@@ -118,15 +145,26 @@ const CreathonForm = () => {
 
   return (
     <div style={{ marginTop: "20px" }}>
-       <h4 style={{ position: "absolute",
-  marginTop: "110px",
-  marginLeft:" -1150px"}}>
-        <span style={{ color: "#5456FC" , position: "absolute"}}>
-          CREATHON /
-        </span>{" "}
+      <h4
+        style={{
+          position: "absolute",
+          marginTop: "110px",
+          marginLeft: "-1150px",
+        }}
+      >
+        <span style={{ color: "#5456FC", position: "absolute" }}>CREATHON /</span>{" "}
         Créer un Creathon
       </h4>
-      <Card sx={{ maxWidth: 600, mx: "auto", mt: 5, p: 4, borderRadius: 4, marginTop:"20%" }}>
+      <Card
+        sx={{
+          maxWidth: 600,
+          mx: "auto",
+          mt: 5,
+          p: 4,
+          borderRadius: 4,
+          marginTop: "20%",
+        }}
+      >
         <CardContent>
           <Typography variant="h5" gutterBottom>
             Créer un Creathon
@@ -138,22 +176,57 @@ const CreathonForm = () => {
               value={inputs.titre}
               error={errors.titre}
               onChange={(e) =>
-                setInputs((prevInputs) => ({ ...prevInputs, titre: e.target.value }))
+                setInputs((prevInputs) => ({
+                  ...prevInputs,
+                  titre: e.target.value,
+                }))
               }
             />
-            {errors.titre && <FormHelperText error>{errorsText.titre}</FormHelperText>}
+            {errors.titre && (
+              <FormHelperText error>{errorsText.titre}</FormHelperText>
+            )}
           </FormControl>
           <FormControl fullWidth sx={{ mb: 3 }}>
-            <InputLabel htmlFor="date">Date</InputLabel>
-            <OutlinedInput
-              id="date"
-              value={inputs.date}
-              error={errors.date}
+            <TextField
+              id="dateDebut"
+              label="Date de début"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={inputs.dateDebut}
+              error={errors.dateDebut}
               onChange={(e) =>
-                setInputs((prevInputs) => ({ ...prevInputs, date: e.target.value }))
+                setInputs((prevInputs) => ({
+                  ...prevInputs,
+                  dateDebut: e.target.value,
+                }))
               }
             />
-            {errors.date && <FormHelperText error>{errorsText.date}</FormHelperText>}
+            {errors.dateDebut && (
+              <FormHelperText error>{errorsText.dateDebut}</FormHelperText>
+            )}
+          </FormControl>
+          <FormControl fullWidth sx={{ mb: 3 }}>
+            <TextField
+              id="dateFin"
+              label="Date de fin"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={inputs.dateFin}
+              error={errors.dateFin}
+              onChange={(e) =>
+                setInputs((prevInputs) => ({
+                  ...prevInputs,
+                  dateFin: e.target.value,
+                }))
+              }
+            />
+            {errors.dateFin && (
+              <FormHelperText error>{errorsText.dateFin}</FormHelperText>
+            )}
           </FormControl>
           <FormControl fullWidth sx={{ mb: 3 }}>
             <InputLabel htmlFor="lieu">Lieu</InputLabel>
@@ -162,10 +235,15 @@ const CreathonForm = () => {
               value={inputs.lieu}
               error={errors.lieu}
               onChange={(e) =>
-                setInputs((prevInputs) => ({ ...prevInputs, lieu: e.target.value }))
+                setInputs((prevInputs) => ({
+                  ...prevInputs,
+                  lieu: e.target.value,
+                }))
               }
             />
-            {errors.lieu && <FormHelperText error>{errorsText.lieu}</FormHelperText>}
+            {errors.lieu && (
+              <FormHelperText error>{errorsText.lieu}</FormHelperText>
+            )}
           </FormControl>
           <FormControl fullWidth sx={{ mb: 3 }}>
             <InputLabel htmlFor="affiche">Affiche</InputLabel>
@@ -174,10 +252,15 @@ const CreathonForm = () => {
               value={inputs.affiche}
               error={errors.affiche}
               onChange={(e) =>
-                setInputs((prevInputs) => ({ ...prevInputs, affiche: e.target.value }))
+                setInputs((prevInputs) => ({
+                  ...prevInputs,
+                  affiche: e.target.value,
+                }))
               }
             />
-            {errors.affiche && <FormHelperText error>{errorsText.affiche}</FormHelperText>}
+            {errors.affiche && (
+              <FormHelperText error>{errorsText.affiche}</FormHelperText>
+            )}
           </FormControl>
           <Button
             type="submit"
@@ -216,7 +299,8 @@ const CreathonForm = () => {
             onClick={() => {
               setInputs({
                 titre: "",
-                date: "",
+                dateDebut: "",
+                dateFin: "",
                 lieu: "",
                 affiche: "",
               });

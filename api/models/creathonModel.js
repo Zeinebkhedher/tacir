@@ -7,7 +7,11 @@ const creathonSchema = new Schema({
     type: String,
     required: true,
   },
-  date: {
+  dateDebut: {
+    type: Date,
+    required: true,
+  },
+  dateFin: {
     type: Date,
     required: true,
   },
@@ -18,13 +22,12 @@ const creathonSchema = new Schema({
   affiche: {
     type: String,
   },
- 
-  QrCode: {
+  status: {
     type: String,
-    default: "",
+    enum: ["en cours", "fini"],
+    default: "en cours",
   },
-});
-
+}, { timestamps: true });  
 
 const Creathon = mongoose.model("Creathon", creathonSchema);
 

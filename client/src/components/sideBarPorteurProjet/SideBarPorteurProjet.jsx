@@ -45,14 +45,17 @@ function SideBarPoreturProjet() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
-      <NavLink to="/dashboard/potreur-de-projet/formulaire">
+      <NavLink to="/dashboard/porteurProjet/creathonsList">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Formulaire</div>
+            <div data-i18n="Account Settings">Liste des créathons</div>
           </a>
         </li>
       </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Projects</span>
+      </li>
       <NavLink to="/dashboard/porteurProjet/ListeProjets">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -69,6 +72,28 @@ function SideBarPoreturProjet() {
           </a>
         </li>
       </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Formations</span>
+      </li>
+      <NavLink to="/dashboard/porteurProjet/Formations/UpcomingFormations">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">UpcomingFormations</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/porteurProjet/formations">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Formations</div>
+          </a>
+        </li>
+      </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Mentorship</span>
+      </li>
       <NavLink to="/dashboard/potreur-de-projet/calendrier">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">

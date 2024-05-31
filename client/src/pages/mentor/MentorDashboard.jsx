@@ -1,10 +1,11 @@
 import React from "react";
-import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import Navbar1 from "../../components/navBar1/NavBar1";
-import HomePage from "../home/HomePage";
-import AddProject from "../porteurProjet/ListeProjets";
-import ListeProjects from "../../components/projects/ListeProjects";
+import Profile from "../../components/profil/Profile";
+import UpdateProfile from "../../components/profil/UpdateProfile";
 import EvaluateProject from "../../components/projects/EvaluateProject";
+import ListeProjects from "../../components/projects/ListeProjects";
+import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
+import HomePage from "../home/HomePage";
 
 const MentorDashboard = (props) => {
   return (
@@ -24,6 +25,8 @@ const MentorDashboard = (props) => {
             {props.load === "home" && <HomePage />}
             {props.load === "ListeProject" && <ListeProjects />}
             {props.load === "EvaluateProject" && <EvaluateProject />}
+            {props.load === "Profil" && <Profile />}
+            {props.load === "updateprofil" && <UpdateProfile />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

@@ -4,8 +4,8 @@ const authMiddleware = require("../middlewares/auth");
 
 const profileController = require("../controllers/profileController");
 const { fetchAbsences} = require('../controllers/profileController');
-router.get("/liste-des-nomines",authMiddleware.loggedMiddleware,authMiddleware.isAdmin,profileController.fetchNominatedMembers)
-router.get("/liste-des-elimines",authMiddleware.loggedMiddleware,authMiddleware.isAdmin,profileController.fetchEliminatedMembers)
+//router.get("/liste-des-nomines",authMiddleware.loggedMiddleware,authMiddleware.isAdmin,profileController.fetchNominatedMembers)
+//router.get("/liste-des-elimines",authMiddleware.loggedMiddleware,authMiddleware.isAdmin,profileController.fetchEliminatedMembers)
 router.get("/history/:id",authMiddleware.loggedMiddleware,authMiddleware.isChoriste,  profileController.fetchHistory);
 router.get("/getUser/:id", profileController.getUser);
 router.patch("/updateUserData/:id", profileController.updateUserData);

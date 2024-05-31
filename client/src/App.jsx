@@ -53,6 +53,13 @@ const App = () => {
             path="/dashboard/admin/creathonList"
             element={<AdminDashboard load="creathonList" />}
           />
+
+
+
+          <Route
+            path="/dashboard/admin/demande_candidature_creathon"
+            element={<AdminDashboard load="demande_candidature_creathon" />}
+          />
           <Route
             path="/dashboard/admin/parametresComptes"
             element={<AdminDashboard load="parametresComptes" />}
@@ -88,9 +95,17 @@ const App = () => {
             path="/dashboard/porteurProjet/ListeProjets"
             element={<PorteurProjetDashboard load="ListeProjet" />}
           />
+            <Route
+            path="/dashboard/porteurProjet/creathonsList"
+            element={<PorteurProjetDashboard load="creathonList" />}
+          />
           <Route
             path="/dashboard/porteurProjet/ListeProjets/addProject"
             element={<PorteurProjetDashboard load="AddProject" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/Formations/UpcomingFormations"
+            element={<PorteurProjetDashboard load="upcomingFormations" />}
           />
           <Route
             path="/dashboard/porteurProjet/ListeProjets/evaluation"
@@ -104,9 +119,34 @@ const App = () => {
             path="/dashboard/Mentor/ListeProjets/EvaluateProject"
             element={<MentorDashboard load="EvaluateProject" />}
           />
+            <Route
+            path="/dashboard/Mentor/profile"
+            element={<MentorDashboard load="Profil" />}
+          />
+          
+          <Route
+            path="/dashboard/Mentor/updateprofile"
+            element={<MentorDashboard load="updateprofil" />}
+          />
           <Route
             path="/dashboard/coordinateurRegional/profile/parametresComptes"
             element={<CoordinateurRegionalDashboard load="parametresComptes" />}
+            />
+            <Route
+            path="/dashboard/admin/formations"
+            element={<AdminDashboard load="formation" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/formations/sinscrire/:formationId"
+            element={<PorteurProjetDashboard load="sinscrireFormation" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/formations"
+            element={<PorteurProjetDashboard load="AllFormation" />}
+          />
+          <Route
+            path="/dashboard/admin/formations/createFormation"
+            element={<AdminDashboard load="createFormation" />}
           />
         </Routes>
       </>

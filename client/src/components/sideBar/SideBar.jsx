@@ -12,12 +12,20 @@ function Sidebar() {
   return (
     <ul className="menu-inner py-1">
       {/* Dashboard */}
-      <img src ={TacirLogo} style={{ maxWidth: '50%', height: 'auto', display: 'block', margin: '0 auto' }} />
+      <img
+        src={TacirLogo}
+        style={{
+          maxWidth: "50%",
+          height: "auto",
+          display: "block",
+          margin: "0 auto",
+        }}
+      />
 
       <li className="menu-item active">
         <a href="index.html" className="menu-link">
           <i className="menu-icon tf-icons bx bx-home-circle" />
-          
+
           <div data-i18n="Analytics">Dashboard</div>
         </a>
       </li>
@@ -33,7 +41,7 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
-      {/* Concerts */}
+     
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
@@ -45,18 +53,8 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/admin/gereComptes">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Gérer projets</div>
-          </a>
-        </li>
-      </NavLink>
-      
-
-     
       <NavLink to="/dashboard/admin/creathonList">
+      {/*</NavLink>{<NavLink to="/dashboard/admin/Audition/genererPlanning">*/}
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -66,6 +64,36 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
+      <NavLink to="/dashboard/admin/demande_candidature_creathon">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Demande candidature créathons</div>
+          </a>
+        </li>
+      </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Formations</span>
+      </li>
+      <NavLink to="/dashboard/admin/gereComptes">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Gérer projets</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/admin/formations">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Gérer Formations</div>
+          </a>
+        </li>
+      </NavLink>
+
+     
+     
       {/* auditions */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>
@@ -94,8 +122,7 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
-      
-     
+
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>
