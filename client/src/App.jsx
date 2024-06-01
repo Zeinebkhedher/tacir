@@ -141,6 +141,10 @@ const App = () => {
             element={<PorteurProjetDashboard load="contact" />}
           />
           <Route
+            path="/dashboard/porteurProjet/Rendu/depot"
+            element={<PorteurProjetDashboard load="deposerRendu" />}
+          />
+          <Route
             path="/dashboard/Mentor/ListeProjets"
             element={<MentorDashboard load="ListeProject" />}
           />
@@ -163,6 +167,14 @@ const App = () => {
           <Route
             path="/dashboard/Mentor/contact"
             element={<MentorDashboard load="contact" />}
+          />
+          <Route
+            path="/dashboard/Mentor/Rendu/espaceDepot"
+            element={<MentorDashboard load="espaceDepot" />}
+          />
+          <Route
+            path="/dashboard/Mentor/Rendu/listeRendu"
+            element={<MentorDashboard load="ListeRendu" />}
           />
         </Routes>
       </>

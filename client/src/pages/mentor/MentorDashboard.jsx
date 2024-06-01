@@ -8,6 +8,8 @@ import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import HomePage from "../home/HomePage";
 import Contact from "../../components/Contact/Contact";
 import EvaluationTable from "../../components/projects/Evaluation";
+import EspaceDepot from "../../components/rendu/EspaceDepot";
+import ListeRendu from "../../components/rendu/ListeRendu";
 
 const MentorDashboard = (props) => {
   return (
@@ -31,6 +33,8 @@ const MentorDashboard = (props) => {
             {props.load === "updateprofil" && <UpdateProfile />}
             {props.load === "contact" && <Contact />}
             {props.load === "Evaluations" && <EvaluationTable />}
+            {props.load === "espaceDepot" && <EspaceDepot />}
+            {props.load === "ListeRendu" && <ListeRendu />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

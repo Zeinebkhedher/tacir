@@ -11,6 +11,7 @@ import ListeProjets from "../../pages/porteurProjet/ListeProjets";
 import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
 import Contact from "../../components/Contact/Contact";
+import DeposerRendu from "../../components/rendu/DeposerRendu";
 
 const PorteurProjetDashboard = (props) => {
   return (
@@ -37,6 +38,7 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "AllFormation" && <AllFormationPage />}
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
             {props.load === "contact" && <Contact />}
+            {props.load === "deposerRendu" && <DeposerRendu />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

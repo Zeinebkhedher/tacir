@@ -78,6 +78,25 @@ function SideBarMentor() {
           </a>
         </li>
       </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text"> Espace de depot</span>
+      </li>
+      <NavLink to="/dashboard/Mentor/Rendu/espaceDepot" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">session des rendus</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/Mentor/Rendu/listeRendu" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des Rendus</div>
+          </a>
+        </li>
+      </NavLink>
 
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text"> Contacts</span>

@@ -110,6 +110,17 @@ function SideBarPoreturProjet() {
           </a>
         </li>
       </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Espace de depot</span>
+      </li>
+      <NavLink to="/dashboard/porteurProjet/Rendu/depot" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Travail à faire</div>
+          </a>
+        </li>
+      </NavLink>
 
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Contacts</span>
