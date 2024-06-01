@@ -18,6 +18,7 @@ const AccountRegister = () => {
     nom: "",
     email: "",
     role: "",
+    region:""
     
   });
 
@@ -26,6 +27,7 @@ const AccountRegister = () => {
     nom: null,
     email: null,
     role: null,
+    region:null
     
   });
 
@@ -34,6 +36,7 @@ const AccountRegister = () => {
     nom: "",
     email: "",
     role: "",
+    region:""
     
   });
 
@@ -42,7 +45,7 @@ const AccountRegister = () => {
   const roleArray = [
     { title: "admin" },
     { title: "Mentor" },
-    { title: "Porteur de projet" },
+    { title: "porteurProjet" },  // Corrected the role name
     { title: "coordinateur géneral" },
     { title: "coordinateur régional" },
     
@@ -89,6 +92,14 @@ const AccountRegister = () => {
         newErrors.role = false;
         newErrorsText.role = "";
       }
+
+      if (!inputs.region) {
+        newErrors.region = true;
+        newErrorsText.region = "La région est requiss";
+      } else {
+        newErrors.region = false;
+        newErrorsText.region = "";
+      }
   
       // Mise à jour des erreurs
       setErrors(newErrors);
@@ -99,7 +110,8 @@ const AccountRegister = () => {
         !newErrors.prenom &&
         !newErrors.nom &&
         !newErrors.email &&
-        !newErrors.role
+        !newErrors.role && 
+        !newErrors.region
       ) {
         const res = await axios.post(
           "http://localhost:8000/api/membres/register",
@@ -115,6 +127,7 @@ const AccountRegister = () => {
             situationPerso: null,
             telephone: null,
             historiqueStatut: null,
+            region:inputs.region
           },
           {
             headers: {
@@ -131,6 +144,7 @@ const AccountRegister = () => {
             nom: "",
             email: "",
             role: "",
+            region:""
           });
         }
       }
@@ -255,7 +269,24 @@ const AccountRegister = () => {
                 />
               )}
             />
-           
+             <TextField
+            value={inputs.region}
+              error={errors.region}
+              label="Region"
+              type="text"
+              style={{ width: "45%", marginLeft: "6%" }}
+              helperText={errorsText.nom}
+              onChange={(e) =>
+                setInputs((prevInputs) => ({
+                  ...prevInputs,
+                  region: e.target.value,
+                }))
+              }
+              //   value={candidatsPerHour}
+              //   onChange={handleCandidatsPerHourChange}
+              //   error={!!formErrors.candidatsPerHour}
+              //   helperText={formErrors.candidatsPerHour}
+            />
           </div>
           <div
             style={{

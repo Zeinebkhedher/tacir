@@ -44,11 +44,11 @@ const MentorList = () => {
     { field: "email", headerName: "Email", width: 100 },
     { field: "sexe", headerName: "Sexe", width: 80 },
     { field: "CIN", headerName: "CIN", width: 100 },
-    { field: "telephone", headerName: "Tlph", width: 100 },
+    { field: "telephone", headerName: "Téléphone", width: 100 },
     { field: "nationalite", headerName: "Nationalite", width: 100 },
+    { field: "region", headerName: "Région", width: 100 },
     { field: "dateNaissance", headerName: "DateN", width: 100 },
     { field: "situationPerso", headerName: "SituationPerso", width: 100 },
-    { field: "confirm", headerName: "Confirm", type: "boolean", width: 100 },
   ];
   const actionColumn = [
     {
@@ -94,17 +94,17 @@ const MentorList = () => {
           <DialogTitle id="mentor-dialog-title">Mentor Details</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              <div><strong>ID:</strong> {selectedMentor._id}</div>
+            <div><strong>ID:</strong> {selectedMentor._id}</div>
               <div><strong>Nom:</strong> {selectedMentor.nom}</div>
               <div><strong>Prénom:</strong> {selectedMentor.prenom}</div>
               <div><strong>Email:</strong> {selectedMentor.email}</div>
               <div><strong>Sexe:</strong> {selectedMentor.sexe}</div>
-              <div><strong>CIN:</strong> {selectedMentor.CIN}</div>
+              <div><strong>CIN:</strong> {selectedMentor.cin}</div>
               <div><strong>Téléphone:</strong> {selectedMentor.telephone}</div>
               <div><strong>Nationalité:</strong> {selectedMentor.nationalite}</div>
-              <div><strong>Date de Naissance:</strong> {selectedMentor.dateNaissance}</div>
-              <div><strong>Situation Personnelle:</strong> {selectedMentor.situationPerso}</div>
-              <div><strong>Confirmé:</strong> {selectedMentor.confirm ? "Yes" : "No"}</div>
+              <div><strong>Date de naissance:</strong> {selectedMentor.dateNaissance}</div>
+              <div><strong>Situation personnelle:</strong> {selectedMentor.situtionPerso}</div>
+              <div><strong>Région:</strong> {selectedMentor.region}</div>
             </DialogContentText>
           </DialogContent>
           <DialogActions>

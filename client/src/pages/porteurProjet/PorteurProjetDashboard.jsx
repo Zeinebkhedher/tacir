@@ -1,12 +1,13 @@
 import React from "react";
 import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
-import CompteInterface from "../../components/compteInterface/CompteInterface";
 import SinscrireFormation from "../../components/formations/SinscrireFormation";
 import UpcomingFormations from "../../components/formations/UpcomingFormations";
 import InterfaceCreathon from "../../components/interfaceCreathon/InterfaceCreathon";
 import Navbar1 from "../../components/navBar1/NavBar1";
+import Profile from "../../components/profil/Profile";
 import AddProject from "../../components/projects/AddProject";
 import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarPorteurProjet";
+import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
 import ListeProjets from "../../pages/porteurProjet/ListeProjets";
 import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
@@ -30,8 +31,9 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "ListeProjet" && <ListeProjets />}
             {props.load === "AddProject" && <AddProject />}
             {props.load === "Evaluation" && <AfficherEvaluation />}
-            {props.load === "parametresComptes" && <CompteInterface />}
+            {props.load === "parametresComptes" && <Profile/>}
             {props.load === "creathonList" && <InterfaceCreathon />}
+            {props.load === "syntheseInterface" && <SyntheseInterface />}
 
 
             {props.load === "upcomingFormations" && <UpcomingFormations />}

@@ -48,11 +48,25 @@ const App = () => {
             path="/dashboard/admin/creathonForm"
             element={<AdminDashboard load="creathonForm" />}
           />
+           <Route
+            path="/dashboard/admin/PorteurProjetListe"
+            element={<AdminDashboard load="PorteurProjetListe" />}
+          />
+
+          <Route
+            path="/dashboard/admin/coordinateurRegionalListe"
+            element={<AdminDashboard load="coordinateurRegionalListe" />}
+          />
           
+          <Route
+            path="/dashboard/admin/CoordinateurGeneraleInterface"
+            element={<AdminDashboard load="CoordinateurGeneraleInterface" />}
+          />
+
           <Route
             path="/dashboard/admin/creathonList"
             element={<AdminDashboard load="creathonList" />}
-          />
+          />  
 
 
 
@@ -76,6 +90,11 @@ const App = () => {
             path="/dashboard/coordinateurGeneral/listesCandidats"
             element={<CoordinateurGeneralDashboard load="ListeCandidats" />}
           />
+           <Route
+            exact
+            path="/dashboard/coordinateurGeneral/mentorList"
+            element={<CoordinateurGeneralDashboard load="mentorList" />}
+          />
           <Route
             path="/dashboard/coordinateurGeneral/profile/parametresComptes"
             element={<PorteurProjetDashboard load="parametresComptes" />}
@@ -85,12 +104,15 @@ const App = () => {
             path="/dashboard/porteur-de-projet"
             element={<PorteurProjetDashboard />}
           />
+            
+
           <Route
             path="/dashboard/potreur-de-projet/profile/parametresComptes"
             element={<PorteurProjetDashboard load="parametresComptes" />}
           />
           <Route exact path="/dashboard/admin" element={<AdminDashboard />} />
-
+          
+          
           <Route
             path="/dashboard/porteurProjet/ListeProjets"
             element={<PorteurProjetDashboard load="ListeProjet" />}
@@ -123,7 +145,10 @@ const App = () => {
             path="/dashboard/Mentor/profile"
             element={<MentorDashboard load="Profil" />}
           />
-          
+          <Route
+            path="/dashboard/Mentor/syntheseInterface"
+            element={<MentorDashboard load="syntheseInterface" />}
+          />
           <Route
             path="/dashboard/Mentor/updateprofile"
             element={<MentorDashboard load="updateprofil" />}

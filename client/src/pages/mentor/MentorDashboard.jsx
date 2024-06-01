@@ -6,6 +6,7 @@ import EvaluateProject from "../../components/projects/EvaluateProject";
 import ListeProjects from "../../components/projects/ListeProjects";
 import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import HomePage from "../home/HomePage";
+import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
 
 const MentorDashboard = (props) => {
   return (
@@ -27,6 +28,8 @@ const MentorDashboard = (props) => {
             {props.load === "EvaluateProject" && <EvaluateProject />}
             {props.load === "Profil" && <Profile />}
             {props.load === "updateprofil" && <UpdateProfile />}
+            {props.load === "syntheseInterface" && <SyntheseInterface />}
+
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

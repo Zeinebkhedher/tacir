@@ -305,8 +305,8 @@ function Profile() {
                       className="lesinfos"
                       style={{ paddingBottom: "10px" }}
                     >
-                      <b>Connaissance Musicale : </b>{" "}
-                      {user?.connaissanceMusic ? "Oui ✔ " : "Non ✘"}
+                      <b>Région : </b>{" "}
+                      {user?.region }
                     </Typography>
                     <Typography
                       variant="body1"
@@ -315,13 +315,7 @@ function Profile() {
                     >
                       <b>Numéro de Téléphone :</b> {user?.telephone}
                     </Typography>
-                    <Typography
-                      variant="body1"
-                      className="lesinfos"
-                      style={{ paddingBottom: "10px" }}
-                    >
-                      <b>Pupitre : </b> {user?.pupitre}
-                    </Typography>
+                   
                     <Typography
                       variant="body1"
                       className="lesinfos"
@@ -337,14 +331,7 @@ function Profile() {
                     >
                       <b>Niveau Experience :</b> {user?.niveauExperience}
                     </Typography>
-                    <Typography
-                      variant="body1"
-                      className="lesinfos"
-                      style={{ paddingBottom: "10px" }}
-                    >
-                      <b>Date d'intégration au choeur :</b>{" "}
-                      {getDateFromCreatedAt()}
-                    </Typography>
+                    
                   </Grid>
                 </Grid>
               </Grid>

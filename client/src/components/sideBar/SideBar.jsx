@@ -41,7 +41,17 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
-     
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Candidatures</span>
+      </li>
+      <NavLink to="/dashboard/admin/candidatureListe">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des candidtures</div>
+          </a>
+        </li>
+      </NavLink>
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
@@ -98,11 +108,11 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>
       </li>
-      <NavLink to="/dashboard/admin/Candidature/list" onClick={goup}>
+      <NavLink to="/dashboard/admin/PorteurProjetListe" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidatures</div>
+            <div data-i18n="Account Settings">Liste des porteur de projets </div>
           </a>
         </li>
       </NavLink>
@@ -114,14 +124,25 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/admin/repetition/liste-absence">
+      
+      <NavLink to="/dashboard/admin/CoordinateurGeneraleInterface" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Listes des absences </div>
+            <div data-i18n="Account Settings">Liste des coordinateur géneral</div>
           </a>
         </li>
       </NavLink>
+
+      <NavLink to="/dashboard/admin/coordinateurRegionalListe" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des coordinateur régional</div>
+          </a>
+        </li>
+      </NavLink>
+      
 
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">

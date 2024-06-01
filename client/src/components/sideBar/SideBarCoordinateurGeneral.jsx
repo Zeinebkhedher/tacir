@@ -35,14 +35,7 @@ function SidebarCoordinateurGeneral() {
         <span className="menu-header-text">Cearthons</span>
       </li>
 
-      <NavLink to="/dashboard/coordinateurGeneral/gereComptes">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Gérer projets</div>
-          </a>
-        </li>
-      </NavLink>
+      
 
       {/* auditions */}
       <li className="menu-header small text-uppercase">
@@ -59,7 +52,7 @@ function SidebarCoordinateurGeneral() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/coordinateurGeneral/list" onClick={goup}>
+      <NavLink to="/dashboard/coordinateurGeneral/mentorList" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -67,14 +60,7 @@ function SidebarCoordinateurGeneral() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/coordinateurGeneral/liste-absence">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Listes des absences </div>
-          </a>
-        </li>
-      </NavLink>
+      
 
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
@@ -97,7 +83,7 @@ function SidebarCoordinateurGeneral() {
         </li>
       </NavLink>
     </ul>
-  );
+  );  
 }
 
 export default SidebarCoordinateurGeneral;

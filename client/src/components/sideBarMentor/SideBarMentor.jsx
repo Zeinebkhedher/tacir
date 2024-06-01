@@ -1,4 +1,3 @@
-import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import TacirLogo from "../../assets/img/tacir_logo.jpg";
 function SideBarMentor() {
@@ -62,11 +61,11 @@ function SideBarMentor() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/mentor/gereComptes">
+      <NavLink to="/dashboard/Mentor/syntheseInterface">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Synthèse</div>
+            <div data-i18n="Account Settings">Synthèse des créathons</div>
           </a>
         </li>
       </NavLink>

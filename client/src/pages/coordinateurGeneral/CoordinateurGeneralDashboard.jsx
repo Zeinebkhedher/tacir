@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
-import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
+import Profile from "../../components/profil/Profile";
 import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordinateurGeneral";
 import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
+import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
 
 const CoordinateurGeneralDashboard = (props) => {
   return (
@@ -26,7 +27,9 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "Home" && <HomePage />}
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
-            {props.load === "parametresComptes" && <CompteInterface />}
+            {props.load === "parametresComptes" && <Profile/>}
+            {props.load === "mentorList" && <MentorListInterface/>}
+
 
           </div>
 

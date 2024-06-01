@@ -5,6 +5,7 @@ import Sidebar from "../../components/sideBar/SideBar";
 import "../admin/adminDashboard.css";
 import HomePage from "../home/HomePage";
 
+import PorteurProjetListeInterface from "../../components/porteurProjetListeInterface/PorteurProjetListeInterface";
 import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
 import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
@@ -14,6 +15,8 @@ import SinscrireFormation from "../../components/formations/SinscrireFormation";
 import InterfaceDemandeCreathon from "../../components/inetrfaceDemandeCreathon/InterfaceDeamndeCreathon";
 import FormationPage from "../formation/FormationPage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
+import CoordinateurRegionalListeInterface from "../../components/coordinateurRegionalInterface/CoordinateurRegionalListeInterface";
+import CoordinateurGeneraleInterface from "../../components/coordinateurGeneraleInterface/CoordinateurGeneraleInterface";
 
 const AdminDashboard = (props) => {
   return (
@@ -40,8 +43,13 @@ const AdminDashboard = (props) => {
             {props.load === "demande_candidature_creathon" && <InterfaceDemandeCreathon />}
 
             {props.load === "parametresComptes" && <CompteInterface />}
+            
+            {props.load === "CoordinateurGeneraleInterface" && <CoordinateurGeneraleInterface />}
 
+            {props.load === "coordinateurRegionalListe" && <CoordinateurRegionalListeInterface />}
 
+            {props.load === "PorteurProjetListe" && <PorteurProjetListeInterface />}
+            
 
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
           </div>

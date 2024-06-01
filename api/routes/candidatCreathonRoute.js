@@ -10,9 +10,10 @@ router.get("/", candidatCreathonController.getCandidatCreathon);
 
 // Route pour supprimer un candidat Creathon
 router.delete("/:id", candidatCreathonController.deleteCandidatCreathon);
-
+router.patch('/:id', candidatCreathonController.updateCandidature);
 
 router.get("/details/:id", candidatCreathonController.getCandidatCreathonById);
+router.patch('/acceptatCandidature/:id', candidatCreathonController.acceptCandidature);
 
 
 module.exports = router;

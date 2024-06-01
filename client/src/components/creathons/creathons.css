@@ -11,11 +11,44 @@
     text-align: center;
     margin-bottom: 20px;
   }
+  .main-container { /* Assuming this is the parent container */
+    padding: 20px;
+  }
   
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    justify-content: space-between;
+    margin-left: 2px; /* Add 20px of space between items */
+    /* Display 3 creathons per line */
+    gap: 40px;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: space-between; /* Add 20px of space between items */
+    align-items: center;
+  }
+  /* Smaller layout for screens below 768px */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 200px);
+    }
+  }
+  
+  /* Even smaller layout for screens below 576px */
+  @media (max-width: 576px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 100%);
+    }
+  }
   .formation-box {
-    border: 1px solid #ccc;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s;
+    width: 50px
+
   }
   
   .past {
@@ -37,13 +70,13 @@
   
   .line {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    
   }
   
   .line p {
     font-weight: bold;
-    margin-right: 10px;
+    text-decoration: none;
+    
   }
   
   .line span {
@@ -59,7 +92,10 @@
     cursor: pointer;
     margin-right: 10px; /* Ajoutez une marge pour l'espace entre les boutons */
   }
-
+  .formation-box:hover {
+    transform: scale(1.05);
+  }
+  
   .inputStyle  {
     width: 100%;
     padding : 10px;
@@ -75,6 +111,11 @@
   }
 
   .iconStyle  {
-    marginRight: 10px;
-    fontSize: 25px;
+    marginRight: 20px;
+    fontSize: 45px;
+  }
+
+  .separator {
+    border-top: 1px solid #ccc; /* Couleur gris clair */
+  /* Espacement sous la ligne */
   }
