@@ -133,7 +133,7 @@ const isCoordinateurRegional = (req, res, next) => {
 };
 const isMentor = (req, res, next) => {
   try {
-    if (req.auth.role === "mentor") {
+    if (req.auth.role === "Mentor") {
       next();
     } else {
       res
@@ -146,7 +146,7 @@ const isMentor = (req, res, next) => {
 };
 const isProteurProjet = (req, res, next) => {
   try {
-    if (req.auth.role === "porteurProjet") {
+    if (req.auth.role === "PorteurProjet") {
       next();
     } else {
       res

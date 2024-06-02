@@ -1,6 +1,5 @@
-// controllers/planningController.js
 const Planning = require('../models/Planning');
-const candidatsCreathon = require('../models/candidatCreathon');
+const candidatCreathon = require('../models/candidatCreathon'); // Correction du nom de l'import
 
 const getAllEvents = async (req, res) => {
     try {
@@ -15,9 +14,9 @@ const getAllEvents = async (req, res) => {
 const createEvent = async (req, res) => {
     try {
         const { title, start, end, candidatsCreathonId } = req.body;
-        const candidatsCreathon = await candidatsCreathon.findById(candidatsCreathonId);
+        const candidatCreathon = await candidatCreathon.findById(candidatsCreathonId); // Correction du nom de la variable
 
-        if (!candidatsCreathon) {
+        if (!candidatCreathon) {
             return res.status(404).json({ error: 'candidatsCreathon non trouvée' });
         }
 

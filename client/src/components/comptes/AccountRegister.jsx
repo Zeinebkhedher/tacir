@@ -47,7 +47,7 @@ const AccountRegister = () => {
     { title: "Mentor" },
     { title: "porteurProjet" },  // Corrected the role name
     { title: "coordinateur géneral" },
-    { title: "coordinateur régional" },
+    { title: "coordinateurRegional" },
     
   ];
 

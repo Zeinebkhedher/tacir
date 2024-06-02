@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "./upcomingFormation.css"; // Import CSS file for component-specific styles
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./upcomingFormation.css"; // Import CSS file for component-specific styles
 
 function FormationList() {
   const [upcomingFormations, setUpcomingFormations] = useState([]);
@@ -58,17 +58,17 @@ function FormationList() {
                 <span>{formation.Date}</span>
               </div>
               <div className="line">
-                <p>Nom du formateur:</p>
-                <span> {formation.formateur[0].LastName}</span>
-              </div>
-              <div className="line">
-                <p>Prénom du formateur:</p>
-                <span> {formation.formateur[0].FirstName}</span>
-              </div>
-              <div className="line">
-                <p>Information:</p>{" "}
-                <span>{formation.formateur[0].informations}</span>
-              </div>
+  <p>Nom du formateur:</p>
+  <span> {formation.formateur[0]?.LastName}</span>
+</div>
+<div className="line">
+  <p>Prénom du formateur:</p>
+  <span> {formation.formateur[0]?.FirstName}</span>
+</div>
+<div className="line">
+  <p>Information:</p>{" "}
+  <span>{formation.formateur[0]?.informations}</span>
+</div>
               <div className="line">
                 <p>Start Hour:</p> <span>{formation.startHour}</span>
               </div>

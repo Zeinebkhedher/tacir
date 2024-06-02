@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./allFormationPage.css"; // Import CSS file for component-specific styles
 
 function AllFormationPage() {
@@ -46,17 +46,17 @@ function AllFormationPage() {
                 <span>{formation.Date}</span>
               </div>
               <div className="line">
-                <p>Nom du formateur:</p>
-                <span> {formation.formateur[0].LastName}</span>
-              </div>
-              <div className="line">
-                <p>Prénom du formateur:</p>
-                <span> {formation.formateur[0].FirstName}</span>
-              </div>
-              <div className="line">
-                <p>Information:</p>{" "}
-                <span>{formation.formateur[0].informations}</span>
-              </div>
+  <p>Nom du formateur:</p>
+  <span> {formation.formateur[0]?.LastName}</span>
+</div>
+<div className="line">
+  <p>Prénom du formateur:</p>
+  <span> {formation.formateur[0]?.FirstName}</span>
+</div>
+<div className="line">
+  <p>Information:</p>{" "}
+  <span>{formation.formateur[0]?.informations}</span>
+</div>
               <div className="line">
                 <p>Start Hour:</p> <span>{formation.startHour}</span>
               </div>
