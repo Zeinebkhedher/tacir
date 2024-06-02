@@ -15,6 +15,7 @@ import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterf
 import ListeProjets from "../../pages/porteurProjet/ListeProjets";
 import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
+import MonProjet from "../../components/projects/MonProjet";
 
 const PorteurProjetDashboard = (props) => {
   return (
@@ -35,17 +36,19 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "ListeProjet" && <ListeProjets />}
             {props.load === "AddProject" && <AddProject />}
             {props.load === "Evaluation" && <AfficherEvaluation />}
-            {props.load === "parametresComptes" && <Profile/>}
+            {props.load === "parametresComptes" && <Profile />}
             {props.load === "creathonList" && <InterfaceCreathon />}
-            {props.load === "syntheseInterface" && <SyntheseInterface />} 
+            {props.load === "syntheseInterface" && <SyntheseInterface />}
             {props.load === "besoinAccompagnement" && <BesoinInterface />}
-            {props.load === "PlannigAccompagnementInterface" && <PlannigAccompagnementInterface />}
-
+            {props.load === "PlannigAccompagnementInterface" && (
+              <PlannigAccompagnementInterface />
+            )}
             {props.load === "upcomingFormations" && <UpcomingFormations />}
             {props.load === "AllFormation" && <AllFormationPage />}
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
             {props.load === "contact" && <Contact />}
             {props.load === "deposerRendu" && <DeposerRendu />}
+            {props.load === "Monprojet" && <MonProjet />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

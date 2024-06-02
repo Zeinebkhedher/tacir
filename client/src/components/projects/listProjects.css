@@ -1,12 +1,17 @@
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
+
+.content{
     position: absolute;
     top: 20vh;
-    left: 30vw;
+    left: 25vw;
 }
-
+.evaluateContent
+{
+position: absolute;
+    top: 8vh;
+    left: 25vw;
+    
+    width: 60vw;
+}
 h2 {
     margin-bottom: 20px;
 }

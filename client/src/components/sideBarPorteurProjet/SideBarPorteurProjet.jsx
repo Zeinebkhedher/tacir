@@ -46,7 +46,6 @@ function SideBarPoreturProjet() {
         <span className="menu-header-text">Cearthons</span>
       </li>
 
-
       <NavLink to="/dashboard/porteurProjet/creathonsList">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -55,10 +54,6 @@ function SideBarPoreturProjet() {
           </a>
         </li>
       </NavLink>
-      
-
-      
-
 
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Projects</span>
@@ -68,6 +63,14 @@ function SideBarPoreturProjet() {
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Liste de projets</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/porteurProjet/projet/MonProjet">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Mon Projet</div>
           </a>
         </li>
       </NavLink>
@@ -113,7 +116,9 @@ function SideBarPoreturProjet() {
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Besoin au cours de l'accompagnement</div>
+            <div data-i18n="Account Settings">
+              Besoin au cours de l'accompagnement
+            </div>
           </a>
         </li>
       </NavLink>

@@ -4,7 +4,7 @@ const projetSchema = new mongoose.Schema(
   {
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Members",
+      ref: "Membres",
       required: true,
     },
     members: [

@@ -5,6 +5,8 @@ import "./sinscrireFormation.css";
 function SinscrireFormation() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const { formationId } = useParams();
 
   console.log("Formation ID:", formationId);
@@ -37,14 +39,20 @@ function SinscrireFormation() {
       // Reset form fields
       setFullName("");
       setEmail("");
+      setSuccessMessage("Participant added successfully!");
+      setErrorMessage("");
     } catch (error) {
       console.error("Error:", error.message);
+      setErrorMessage("Failed to add participant to the formation");
+      setSuccessMessage("");
     }
   };
 
   return (
     <div className="container">
       <h2>Inscription à la Formation</h2>
+      {errorMessage && <p className="error">{errorMessage}</p>}
+      {successMessage && <p className="success">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="fullName">Nom complet:</label>

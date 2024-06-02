@@ -13,6 +13,7 @@ import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
 import HomePage from "../home/HomePage";
 import ListeBesoinInsterface from "../../components/listeBesoinsInterface/ListeBesoinInsterface";
+import EvaluationList from "../../components/projects/ListeEvaluations";
 
 const MentorDashboard = (props) => {
   return (
@@ -33,8 +34,10 @@ const MentorDashboard = (props) => {
             {props.load === "ListeProject" && <ListeProjects />}
             {props.load === "EvaluateProject" && <EvaluateProject />}
             {props.load === "Profil" && <Profile />}
-            {props.load === "updateprofil" && <UpdateProfile />} 
-            {props.load === "ListeCandidatCreathonAcceptes" && <CreathonAcceptedInterface />}
+            {props.load === "updateprofil" && <UpdateProfile />}
+            {props.load === "ListeCandidatCreathonAcceptes" && (
+              <CreathonAcceptedInterface />
+            )}
 
             {props.load === "syntheseInterface" && <SyntheseInterface />}
             {props.load === "ListeBesoins" && <ListeBesoinInsterface />}
@@ -43,6 +46,7 @@ const MentorDashboard = (props) => {
             {props.load === "Evaluations" && <EvaluationTable />}
             {props.load === "espaceDepot" && <EspaceDepot />}
             {props.load === "ListeRendu" && <ListeRendu />}
+            {props.load === "ListeEvaluations" && <EvaluationList />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

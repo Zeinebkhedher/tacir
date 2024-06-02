@@ -1,0 +1,23 @@
+
+.evaluation-container {
+    margin-top: 20px;
+    position: absolute;
+    top: 15vh;
+    left: 30vw;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
