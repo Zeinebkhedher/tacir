@@ -36,6 +36,7 @@ const candidatCreathon = require ("./routes/candidatCreathonRoute")
 const syntheseRoute = require ("./routes/syntheseRoute")
 const tacirContactRoute = require("./routes/contactRouteTacir");
 const besoinsRoutes = require("./routes/besoinRoutes");
+const renduRoute = require("./routes/renduRoute");
 
 dotenv.config();
 
@@ -175,5 +176,6 @@ app.use("/api/besoins", besoinsRoutes)
 
 app.use("/api/formations", tacirFormationRoute);
 app.use("/api/contacts", tacirContactRoute);
+app.use("/api/rendus", renduRoute);
 
 module.exports = app;

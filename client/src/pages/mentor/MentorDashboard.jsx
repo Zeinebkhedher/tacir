@@ -7,6 +7,8 @@ import UpdateProfile from "../../components/profil/UpdateProfile";
 import EvaluateProject from "../../components/projects/EvaluateProject";
 import EvaluationTable from "../../components/projects/Evaluation";
 import ListeProjects from "../../components/projects/ListeProjects";
+import EspaceDepot from "../../components/rendu/EspaceDepot";
+import ListeRendu from "../../components/rendu/ListeRendu";
 import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
 import HomePage from "../home/HomePage";
@@ -37,6 +39,8 @@ const MentorDashboard = (props) => {
 
             {props.load === "contact" && <Contact />}
             {props.load === "Evaluations" && <EvaluationTable />}
+            {props.load === "espaceDepot" && <EspaceDepot />}
+            {props.load === "ListeRendu" && <ListeRendu />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

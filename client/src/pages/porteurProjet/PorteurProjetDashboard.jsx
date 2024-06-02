@@ -8,6 +8,7 @@ import InterfaceCreathon from "../../components/interfaceCreathon/InterfaceCreat
 import Navbar1 from "../../components/navBar1/NavBar1";
 import Profile from "../../components/profil/Profile";
 import AddProject from "../../components/projects/AddProject";
+import DeposerRendu from "../../components/rendu/DeposerRendu";
 import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarPorteurProjet";
 import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
 import ListeProjets from "../../pages/porteurProjet/ListeProjets";
@@ -42,6 +43,7 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "AllFormation" && <AllFormationPage />}
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
             {props.load === "contact" && <Contact />}
+            {props.load === "deposerRendu" && <DeposerRendu />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />
