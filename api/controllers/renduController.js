@@ -89,7 +89,7 @@ const uploadFile = async (req, res) => {
       const { renduId } = req.params;
       const file = {
         filename: req.file.filename,
-        path: req.file.path,
+        path: req.file.filename, // Save only the filename
       };
 
       const rendu = await Rendu.findById(renduId);
@@ -108,12 +108,36 @@ const uploadFile = async (req, res) => {
   });
 };
 
+
 const getAllRendus = async (req, res) => {
   try {
     const rendus = await Rendu.find();
     res.status(200).json(rendus);
   } catch (error) {
     console.error("Error fetching rendus:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+const fs = require("fs");
+
+const downloadFile = (req, res) => {
+  try {
+    const { filePath } = req.params;
+    const decodedFilePath = decodeURIComponent(filePath);
+    const fullFilePath = path.join(__dirname, "../uploads", decodedFilePath);
+
+    if (fs.existsSync(fullFilePath)) {
+      res.download(fullFilePath, (err) => {
+        if (err) {
+          console.error("Error downloading file:", err);
+          res.status(500).json({ message: "Error downloading file" });
+        }
+      });
+    } else {
+      res.status(404).json({ message: "File not found" });
+    }
+  } catch (error) {
+    console.error("Error in downloadFile:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -124,4 +148,5 @@ module.exports = {
   updateExpirationDate,
   uploadFile,
   getAllRendus,
+  downloadFile,
 };
