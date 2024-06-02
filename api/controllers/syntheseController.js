@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 const Synthese = require('../models/syntheseModel');
 
 // Enregistrer une synthèse

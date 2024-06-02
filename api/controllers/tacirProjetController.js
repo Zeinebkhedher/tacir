@@ -111,8 +111,9 @@ const getAllEvaluations = async (req, res) => {
   try {
     // Query the database to fetch all evaluations
     const evaluations = await EvaluateProject.find()
-      .populate("projectId")
       .populate("owner")
+      .populate("projectId")
+
       .populate("evaluatorId");
 
     res.status(200).json(evaluations); // Return the evaluations in the response

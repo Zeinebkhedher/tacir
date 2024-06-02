@@ -36,6 +36,14 @@ function SidebarCoordinateurGeneral() {
       </li>
 
       
+      <NavLink to="/dashboard/coordinateurGeneral/creathons">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">creathons</div>
+          </a>
+        </li>
+      </NavLink>
 
       {/* auditions */}
       <li className="menu-header small text-uppercase">
@@ -61,6 +69,25 @@ function SidebarCoordinateurGeneral() {
         </li>
       </NavLink>
       
+      <NavLink to="/dashboard/coordinateurGeneral/liste-absence">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Listes des absences </div>
+          </a>
+        </li>
+      </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Projets</span>
+      </li>
+      <NavLink to="/dashboard/coordinateurGeneral/ListeProjets" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Projets</div>
+          </a>
+        </li>
+      </NavLink>
 
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
@@ -74,7 +101,10 @@ function SidebarCoordinateurGeneral() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/coordinateurGeneral/profile/parametresComptes" onClick={goup}>
+      <NavLink
+        to="/dashboard/coordinateurGeneral/profile/parametresComptes"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />

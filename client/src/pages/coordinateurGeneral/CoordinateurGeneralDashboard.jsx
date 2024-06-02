@@ -1,8 +1,11 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
+import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
+import Creathons from "../../components/creathons/Creathons";
 import Profile from "../../components/profil/Profile";
+import ListeProjects from "../../components/projects/ListeProjects";
 import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordinateurGeneral";
 import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
@@ -31,6 +34,9 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "mentorList" && <MentorListInterface/>}
 
 
+            {props.load === "parametresComptes" && <CompteInterface />}
+            {props.load === "ListeProject" && <ListeProjects />}
+            {props.load === "creathonList" && <Creathons />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

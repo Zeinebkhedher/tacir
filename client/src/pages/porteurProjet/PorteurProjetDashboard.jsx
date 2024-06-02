@@ -1,5 +1,7 @@
 import React from "react";
+import Contact from "../../components/Contact/Contact";
 import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
+import BesoinInterface from "../../components/besoinInterface/BesoinInterface";
 import SinscrireFormation from "../../components/formations/SinscrireFormation";
 import UpcomingFormations from "../../components/formations/UpcomingFormations";
 import InterfaceCreathon from "../../components/interfaceCreathon/InterfaceCreathon";
@@ -33,12 +35,13 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "Evaluation" && <AfficherEvaluation />}
             {props.load === "parametresComptes" && <Profile/>}
             {props.load === "creathonList" && <InterfaceCreathon />}
-            {props.load === "syntheseInterface" && <SyntheseInterface />}
-
+            {props.load === "syntheseInterface" && <SyntheseInterface />} 
+            {props.load === "besoinAccompagnement" && <BesoinInterface />}
 
             {props.load === "upcomingFormations" && <UpcomingFormations />}
             {props.load === "AllFormation" && <AllFormationPage />}
             {props.load === "sinscrireFormation" && <SinscrireFormation />}
+            {props.load === "contact" && <Contact />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

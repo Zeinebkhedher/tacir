@@ -1,12 +1,15 @@
 import React from "react";
+import Contact from "../../components/Contact/Contact";
+import CreathonAcceptedInterface from "../../components/creathonAcceptedInterface/CreathonAcceptedInterface";
 import Navbar1 from "../../components/navBar1/NavBar1";
 import Profile from "../../components/profil/Profile";
 import UpdateProfile from "../../components/profil/UpdateProfile";
 import EvaluateProject from "../../components/projects/EvaluateProject";
+import EvaluationTable from "../../components/projects/Evaluation";
 import ListeProjects from "../../components/projects/ListeProjects";
 import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
-import HomePage from "../home/HomePage";
 import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
+import HomePage from "../home/HomePage";
 
 const MentorDashboard = (props) => {
   return (
@@ -27,9 +30,13 @@ const MentorDashboard = (props) => {
             {props.load === "ListeProject" && <ListeProjects />}
             {props.load === "EvaluateProject" && <EvaluateProject />}
             {props.load === "Profil" && <Profile />}
-            {props.load === "updateprofil" && <UpdateProfile />}
+            {props.load === "updateprofil" && <UpdateProfile />} 
+            {props.load === "ListeCandidatCreathonAcceptes" && <CreathonAcceptedInterface />}
+
             {props.load === "syntheseInterface" && <SyntheseInterface />}
 
+            {props.load === "contact" && <Contact />}
+            {props.load === "Evaluations" && <EvaluationTable />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />

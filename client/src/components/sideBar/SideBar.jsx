@@ -33,7 +33,7 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Pages</span>
       </li>
-      <NavLink to="/dashboard/admin/home">
+      <NavLink to="/dashboard/admin/Home">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -44,7 +44,7 @@ function Sidebar() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Candidatures</span>
       </li>
-      <NavLink to="/dashboard/admin/candidatureListe">
+      <NavLink to="/dashboard/admin/listesCandidats">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -52,6 +52,7 @@ function Sidebar() {
           </a>
         </li>
       </NavLink>
+
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
@@ -64,7 +65,7 @@ function Sidebar() {
         </li>
       </NavLink>
       <NavLink to="/dashboard/admin/creathonList">
-      {/*</NavLink>{<NavLink to="/dashboard/admin/Audition/genererPlanning">*/}
+        {/*</NavLink>{<NavLink to="/dashboard/admin/Audition/genererPlanning">*/}
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -78,21 +79,16 @@ function Sidebar() {
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Demande candidature créathons</div>
+            <div data-i18n="Account Settings">
+              Demande candidature créathons
+            </div>
           </a>
         </li>
       </NavLink>
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Formations</span>
       </li>
-      <NavLink to="/dashboard/admin/gereComptes">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Gérer projets</div>
-          </a>
-        </li>
-      </NavLink>
+
       <NavLink to="/dashboard/admin/formations">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -102,8 +98,6 @@ function Sidebar() {
         </li>
       </NavLink>
 
-     
-     
       {/* auditions */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>

@@ -49,6 +49,11 @@
         type: Boolean,
         default: false,
       },
+      syntheses: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Synthese',
+        }]
     },
 
     { timestamps: true }

@@ -5,18 +5,19 @@ import Sidebar from "../../components/sideBar/SideBar";
 import "../admin/adminDashboard.css";
 import HomePage from "../home/HomePage";
 
-import PorteurProjetListeInterface from "../../components/porteurProjetListeInterface/PorteurProjetListeInterface";
 import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
+import CoordinateurGeneraleInterface from "../../components/coordinateurGeneraleInterface/CoordinateurGeneraleInterface";
+import CoordinateurRegionalListeInterface from "../../components/coordinateurRegionalInterface/CoordinateurRegionalListeInterface";
 import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 import CreathonList from "../../components/creathonList/CreathonList";
 import CreateFormation from "../../components/formations/CreateFormation";
 import SinscrireFormation from "../../components/formations/SinscrireFormation";
 import InterfaceDemandeCreathon from "../../components/inetrfaceDemandeCreathon/InterfaceDeamndeCreathon";
+import PorteurProjetListeInterface from "../../components/porteurProjetListeInterface/PorteurProjetListeInterface";
+import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import FormationPage from "../formation/FormationPage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-import CoordinateurRegionalListeInterface from "../../components/coordinateurRegionalInterface/CoordinateurRegionalListeInterface";
-import CoordinateurGeneraleInterface from "../../components/coordinateurGeneraleInterface/CoordinateurGeneraleInterface";
 
 const AdminDashboard = (props) => {
   return (
@@ -32,15 +33,19 @@ const AdminDashboard = (props) => {
             </aside>
 
             <Navbar1 />
-            
-            {props.load === "home" && <HomePage />}
-            {props.load === "mentorList" && <MentorListInterface/>}
+
+            {props.load === "Home" && <HomePage />} 
+            {props.load === "ListeCandidats" && <ListeCandidatsPage />}
+
+            {props.load === "mentorList" && <MentorListInterface />}
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "formation" && <FormationPage />}
             {props.load === "createFormation" && <CreateFormation />}
             {props.load === "creathonForm" && <CreathonInterface />}
             {props.load === "creathonList" && <CreathonList />}
-            {props.load === "demande_candidature_creathon" && <InterfaceDemandeCreathon />}
+            {props.load === "demande_candidature_creathon" && (
+              <InterfaceDemandeCreathon />
+            )}
 
             {props.load === "parametresComptes" && <CompteInterface />}
             

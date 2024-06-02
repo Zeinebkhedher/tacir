@@ -14,6 +14,12 @@ router.patch('/:id', candidatCreathonController.updateCandidature);
 
 router.get("/details/:id", candidatCreathonController.getCandidatCreathonById);
 router.patch('/acceptatCandidature/:id', candidatCreathonController.acceptCandidature);
+router.patch('/sendRejectionEmail/:id', candidatCreathonController.sendRejectionEmail);
+
+router.get('/confirmed', candidatCreathonController.getConfirmedCandidats);
+router.get('/rejected', candidatCreathonController.getRejectedCandidatures);
+router.get('/acceptedCandidaturesCreathonListe', candidatCreathonController.getAcceptedCandidaturesCreathon);
+router.patch('/synthese/:id', candidatCreathonController.addSynthese);
 
 
 module.exports = router;

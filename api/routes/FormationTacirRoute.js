@@ -9,7 +9,10 @@ router.get("/", formationController.getAllFormations);
 
 // Get a single formation by ID
 router.get("/:id", formationController.getFormationById);
-
+router.get(
+  "/:id/participants",
+  formationController.getParticipantsByFormationId
+);
 // Update a formation
 router.put("/:id", formationController.updateFormation);
 

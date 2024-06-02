@@ -99,13 +99,21 @@ function SideBarPoreturProjet() {
         </li>
       </NavLink>
       <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Mentorship</span>
+        <span className="menu-header-text">Accompagnement</span>
       </li>
       <NavLink to="/dashboard/potreur-de-projet/calendrier">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Calendrier d'accompagnement</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/potreur-de-projet/besoinAccompagnement">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Besoin au cours de l'accompagnement</div>
           </a>
         </li>
       </NavLink>
@@ -118,11 +126,26 @@ function SideBarPoreturProjet() {
         </li>
       </NavLink>
 
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Contacts</span>
+      </li>
+      <NavLink to="/dashboard/porteurProjet/contact" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">contact</div>
+          </a>
+        </li>
+      </NavLink>
+
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Compte</span>
       </li>
-      <NavLink to="/dashboard/potreur-de-projet/profile/parametresComptes" onClick={goup}>
+      <NavLink
+        to="/dashboard/potreur-de-projet/profile/parametresComptes"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />

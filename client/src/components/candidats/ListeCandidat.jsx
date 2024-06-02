@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./listeCandidats.css";
 
 const ListeCandidats = () => {
@@ -163,6 +163,7 @@ const ListeCandidats = () => {
                <th>CIN</th>
                <th>Description</th>
                <th>Idée de projet</th>
+               <th>Région</th>
                <th>Actions</th>
              </tr>
            </thead>
@@ -175,6 +176,7 @@ const ListeCandidats = () => {
                  <td>{candidat.CIN}</td>
                  <td>{candidat.descriptif}</td>
                  <td>{candidat.ideeProjet}</td>
+                 <td>{candidat.region}</td>
                  <td>
                    <button
                      onClick={() => handleRefuseFromAccepted(candidat._id)}
@@ -201,6 +203,7 @@ const ListeCandidats = () => {
                <th>CIN</th>
                <th>Description</th>
                <th>Idée de projet</th>
+               <th>Région</th>
                <th>Actions</th>
              </tr>
            </thead>
@@ -213,6 +216,7 @@ const ListeCandidats = () => {
                  <td>{candidat.CIN}</td>
                  <td>{candidat.descriptif}</td>
                  <td>{candidat.ideeProjet}</td>
+                 <td>{candidat.region}</td>
                  <td>
                    <button
                      onClick={() => handleAcceptFromRejected(candidat._id)}
@@ -240,6 +244,9 @@ const ListeCandidats = () => {
                  <th>CIN</th>
                  <th>Description</th>
                  <th>Idée de projet</th>
+
+                 <th>Région</th>
+
                  <th>Actions</th>
                </tr>
              </thead>
@@ -252,6 +259,7 @@ const ListeCandidats = () => {
                    <td>{candidat.CIN}</td>
                    <td>{candidat.descriptif}</td>
                    <td>{candidat.ideeProjet}</td>
+                   <td>{candidat.region}</td>
                    <td>
                      <button
                        onClick={() => handleRefuse(candidat._id)}

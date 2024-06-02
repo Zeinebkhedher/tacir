@@ -10,85 +10,106 @@ const CandidaturesCreathon = () => {
   const [acceptConfirmationOpen, setAcceptConfirmationOpen] = useState(false);
   const [candidatureIdToUpdate, setCandidatureIdToUpdate] = useState(null);
   const [selectedCandidature, setSelectedCandidature] = useState(null);
+  const [showAccepted, setShowAccepted] = useState(false);
+  const [showRejected, setShowRejected] = useState(false);
+  const [showConfirmed, setShowConfirmed] = useState(false);
+  const [confirmedCandidatures, setConfirmedCandidatures] = useState([]);
+  const [rejectedCandidatures, setRejectedCandidatures] = useState([]);
+  const [acceptedCandidatures, setAcceptedCandidatures] = useState([]);
 
   useEffect(() => {
-    const fetchCandidatures = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/candidatureCreathon/");
-        if (response.status === 200) {
-          const dataWithDetails = await Promise.all(response.data.map(async (candidature) => {
-            try {
-              // Récupérer les détails du Créathon lié à cette candidature
-              const creathonResponse = await axios.get(`http://localhost:8000/api/creathons/details/${candidature.creathon}`);
-              if (creathonResponse.status === 200) {
-                return {
-                  ...candidature,
-                  id: candidature._id, // Utilisez l'ID réel de la base de données
-                  creathonTitle: creathonResponse.data.titre, // Ajoutez le titre du Créathon
-                  dateDebut: creathonResponse.data.dateDebut, // Ajoutez la date de début du Créathon
-                  dateFin: creathonResponse.data.dateFin, // Ajoutez la date de fin du Créathon
-                  lieu: creathonResponse.data.lieu // Ajoutez le lieu du Créathon
-                };
-              } else {
-                throw new Error("Error fetching creathon details");
-              }
-            } catch (error) {
-              console.error("Error fetching creathon details:", error.message);
-              return null;
-            }
-          }));
-          // Filtrer les candidatures null (en cas d'erreur de récupération des détails du Créathon)
-          const filteredData = dataWithDetails.filter(candidature => candidature !== null);
-          setCandidatures(filteredData);
-        }
-      } catch (error) {
-        console.error("Error fetching candidatures:", error.message);
-      }
-    };
-  
-    fetchCandidatures();
+    fetchAllCandidatures();
   }, []);
-useEffect(() => {
-  const fetchCandidatures = async () => {
+
+  const fetchAllCandidatures = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/candidatureCreathon/");
       if (response.status === 200) {
-        const dataWithDetails = await Promise.all(response.data.map(async (candidature) => {
-          try {
-            // Récupérer les détails du Créathon lié à cette candidature
-            const creathonResponse = await axios.get(`http://localhost:8000/api/creathons/details/${candidature.creathon}`);
-            if (creathonResponse.status === 200) {
-              return {
-                ...candidature,
-                id: candidature._id, // Utilisez l'ID réel de la base de données
-                creathonTitle: creathonResponse.data.titre, // Ajoutez le titre du Créathon
-                dateDebut: creathonResponse.data.dateDebut, // Ajoutez la date de début du Créathon
-                dateFin: creathonResponse.data.dateFin, // Ajoutez la date de fin du Créathon
-                lieu: creathonResponse.data.lieu // Ajoutez le lieu du Créathon
-              };
-            } else {
-              throw new Error("Error fetching creathon details");
-            }
-          } catch (error) {
-            console.error("Error fetching creathon details:", error.message);
-            return null;
-          }
-        }));
-        // Filtrer les candidatures null (en cas d'erreur de récupération des détails du Créathon)
-        const filteredData = dataWithDetails.filter(candidature => candidature !== null);
-        setCandidatures(filteredData);
+        const dataWithDetails = await addCreathonDetails(response.data);
+        setCandidatures(dataWithDetails);
       }
     } catch (error) {
       console.error("Error fetching candidatures:", error.message);
     }
   };
 
-  fetchCandidatures();
-}, []);
+  const addCreathonDetails = async (candidatures) => {
+    return Promise.all(candidatures.map(async (candidature) => {
+      try {
+        const creathonResponse = await axios.get(`http://localhost:8000/api/creathons/details/${candidature.creathon}`);
+        if (creathonResponse.status === 200) {
+          return {
+            ...candidature,
+            id: candidature._id,
+            creathonTitle: creathonResponse.data.titre,
+            dateDebut: creathonResponse.data.dateDebut,
+            dateFin: creathonResponse.data.dateFin,
+            lieu: creathonResponse.data.lieu
+          };
+        } else {
+          throw new Error("Error fetching creathon details");
+        }
+      } catch (error) {
+        console.error("Error fetching creathon details:", error.message);
+        return null;
+      }
+    })).then(data => data.filter(candidature => candidature !== null));
+  };
+
+  const fetchConfirmedCandidatures = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/candidatureCreathon/confirmed");
+      if (response.status === 200) {
+        const dataWithDetails = await addCreathonDetails(response.data);
+        setConfirmedCandidatures(dataWithDetails);
+      }
+    } catch (error) {
+      console.error("Error fetching confirmed candidatures:", error.message);
+    }
+  };
+
+  const fetchRejectedCandidatures = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/candidatureCreathon/rejected");
+      if (response.status === 200) {
+        const dataWithDetails = await addCreathonDetails(response.data);
+        setRejectedCandidatures(dataWithDetails);
+      }
+    } catch (error) {
+      console.error("Error fetching rejected candidatures:", error.message);
+    }
+  };
+  const handleRejectConfirm = async () => {
+    try {
+      // Envoi d'une demande pour envoyer l'email de refus au backend
+      const emailResponse = await axios.patch(`http://localhost:8000/api/candidatureCreathon/sendRejectionEmail/${candidatureIdToUpdate}`);
+      if (emailResponse.status === 200) {
+        console.log("Email de refus envoyé avec succès");
+        setConfirmationOpen(false);
+      } else {
+        console.error("Erreur lors de l'envoi de l'email de refus");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'email de refus :", error.message);
+    }
+  };
   
+  
+  
+  const fetchAcceptedCandidatures = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/candidatureCreathon/accepted");
+      if (response.status === 200) {
+        const dataWithDetails = await addCreathonDetails(response.data);
+        setAcceptedCandidatures(dataWithDetails);
+      }
+    } catch (error) {
+      console.error("Error fetching accepted candidatures:", error.message);
+    }
+  };
 
   const handleAcceptClick = (candidature) => {
-    setCandidatureIdToUpdate(candidature.id); // Use the ID of the candidature
+    setCandidatureIdToUpdate(candidature.id);
     setSelectedCandidature(candidature);
     setAcceptConfirmationOpen(true);
   };
@@ -115,6 +136,35 @@ useEffect(() => {
     setCandidatureIdToUpdate(id);
     setConfirmationOpen(true);
   };
+
+  const handleShowAccepted = () => {
+    fetchAcceptedCandidatures();
+    setShowAccepted(true);
+    setShowRejected(false);
+    setShowConfirmed(false);
+  };
+
+  const handleShowRejected = () => {
+    fetchRejectedCandidatures();
+    setShowAccepted(false);
+    setShowRejected(true);
+    setShowConfirmed(false);
+  };
+
+  const handleShowAll = () => {
+    fetchAllCandidatures();
+    setShowAccepted(false);
+    setShowRejected(false);
+    setShowConfirmed(false);
+  };
+
+  const handleShowConfirmed = () => {
+    fetchConfirmedCandidatures();
+    setShowAccepted(false);
+    setShowRejected(false);
+    setShowConfirmed(true);
+  };
+
   const columns = [
     { field: 'nom', headerName: 'Nom', width: 70 },
     { field: 'prenom', headerName: 'Prénom', width: 70 },
@@ -124,7 +174,8 @@ useEffect(() => {
     { field: 'ideeProjet', headerName: 'Idée Projet', width: 80 },
     { field: 'lien', headerName: 'Lien', width: 60 },
     { field: 'membres', headerName: 'Membres', width: 100 },
-    { field: 'confirm', headerName: 'Confirmation', width: 50 },{ field: 'creathonTitle', headerName: 'Titre Créathon', width: 150 }, // Ajout du titre du Créathon
+    { field: 'confirm', headerName: 'Confirmation', width: 50 },
+    { field: 'creathonTitle', headerName: 'Titre Créathon', width: 150 }, // Ajout du titre du Créathon
     { field: 'dateDebut', headerName: 'Date Début', width: 100 }, // Ajout de la date de début du Créathon
     { field: 'dateFin', headerName: 'Date Fin', width: 100 }, // Ajout de la date de fin du Créathon
     { field: 'lieu', headerName: 'Lieu', width: 70 },
@@ -134,40 +185,36 @@ useEffect(() => {
       width: 200,
       renderCell: (params) => (
         <div style={{ display: 'flex', justifyContent: 'space-around', width: '90%' }}>
-        {params.row.confirm ? (
-          <Button onClick={() => handleRejectClick(params.row.id)} variant="contained" style={{ backgroundColor: 'red', color: 'white', width: '65px' , fontSize:"10px"}}>Refuser</Button>
-        ) : (
-          <>
-            <Button onClick={() => handleAcceptClick(params.row)} variant="contained" style={{ backgroundColor: 'green', color: 'white', width: '65px' , fontSize:"10px"}}>Accepter</Button>
-            <Button onClick={() => handleRejectClick(params.row.id)} variant="contained" style={{ backgroundColor: 'red', color: 'white', wwidth: '65px' , fontSize:"10px"}}>Refuser</Button>
-          </>
-        )}
-      </div>
+          {params.row.confirm ? (
+            <Button onClick={() => handleRejectClick(params.row.id)} variant="contained" style={{ backgroundColor: 'red', color: 'white', width: '65px', fontSize: "10px" }}>Refuser</Button>
+          ) : (
+            <>
+              <Button onClick={() => handleAcceptClick(params.row)} variant="contained" style={{ backgroundColor: 'green', color: 'white', width: '65px', fontSize: "10px" }}>Accepter</Button>
+              <Button onClick={() => handleRejectClick(params.row.id)} variant="contained" style={{ backgroundColor: 'red', color: 'white', width: '65px', fontSize: "10px" }}>Refuser</Button>
+            </>
+          )}
+        </div>
       )
     }
   ];
+
   const handleConfirmationClose = () => {
     setConfirmationOpen(false);
     setAcceptConfirmationOpen(false);
   };
-  const handleRejectConfirm = async () => {
-    try {
-      const response = await axios.delete(`http://localhost:8000/api/candidatureCreathon/${candidatureIdToUpdate}`);
-      if (response.status === 200) {
-        const updatedCandidatures = candidatures.filter(candidature => candidature._id !== candidatureIdToUpdate);
-        setCandidatures(updatedCandidatures);
-        setConfirmationOpen(false);
-      }
-    } catch (error) {
-      console.error("Error rejecting candidature:", error.message);
-    }
-  };
+
+
   return (
     <>
       <div style={{ marginLeft: "180px", fontSize: "32px" }}>Liste des créathons</div>
+      <div style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
+        <Button onClick={handleShowAll} variant="contained" style={{ marginRight: '10px' }}>Afficher Tout</Button>
+        <Button onClick={handleShowConfirmed} variant="contained" style={{ marginRight: '10px' }}>Afficher Confirmés</Button>
+        <Button onClick={handleShowRejected} variant="contained">Afficher Rejetés</Button>
+      </div>
       <div style={{ height: 400, width: '90%', marginLeft: '15%', marginTop: "5%" }}>
         <DataGrid
-          rows={candidatures}
+          rows={showConfirmed ? confirmedCandidatures : showAccepted ? acceptedCandidatures : showRejected ? rejectedCandidatures : candidatures}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

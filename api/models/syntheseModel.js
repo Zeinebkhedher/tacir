@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 
 const syntheseSchema = new mongoose.Schema({
-  day: {
-    type: Number,
-    required: true,
-  },
   synthesis: {
     type: String,
     required: true,
   },
   date: {
     type: Date,
+    required: true,
+  },
+  candidatCreathon: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'CandidatCreathon',
     required: true,
   },
 });

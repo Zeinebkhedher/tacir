@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import Navbar from "../components/navbar/Navbar";
 import { io } from "socket.io-client";
-import { posts } from "../data"; // Import your data.js file
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 

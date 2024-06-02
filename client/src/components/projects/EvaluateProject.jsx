@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const EvaluateProject = () => {
   const [formData, setFormData] = useState({
-    projectName: "", // Changed from projectId to projectName
+    projectName: "", // Change to projectName
     comment: "",
   });
 
+  const [projects, setProjects] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    // Fetch projects when the component mounts
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/projects/listeProjet"
+      );
+      setProjects(response.data);
+    } catch (error) {
+      console.error("Error fetching projects:", error.message);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,14 +37,16 @@ const EvaluateProject = () => {
 
     try {
       const storedToken = localStorage.getItem("token");
-      console.log("Stored Token:", storedToken);
       if (!storedToken) {
         throw new Error("User not authenticated");
       }
 
       const response = await axios.post(
         "http://localhost:8000/api/projects/evaluate",
-        formData,
+        {
+          projectName: formData.projectName, // Change to projectName
+          comment: formData.comment,
+        },
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,
@@ -40,10 +59,10 @@ const EvaluateProject = () => {
       }
 
       setFormData({
-        projectName: "", // Reset projectName instead of projectId
+        projectName: "", // Reset projectName
         comment: "",
       });
-      console.log("storedToken", storedToken);
+
       setSuccessMessage("Project evaluated successfully");
       setErrorMessage("");
     } catch (error) {
@@ -60,14 +79,19 @@ const EvaluateProject = () => {
       {successMessage && <div className="success">{successMessage}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="projectName">Project Name:</label>{" "}
-          {/* Changed from projectId to projectName */}
-          <input
-            type="text"
-            name="projectName"
+          <label htmlFor="projectName">Select Project:</label>{" "}
+          <select
+            name="projectName" // Change to projectName
             value={formData.projectName}
             onChange={handleChange}
-          />
+          >
+            <option value="">Select a project</option>
+            {projects.map((project) => (
+              <option key={project._id} value={project.titre}>
+                {project.titre}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="comment">Comment:</label>

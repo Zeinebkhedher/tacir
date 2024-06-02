@@ -26,17 +26,17 @@ const {
   sendNotificationMiddleware,
 } = require("./middlewares/sendNotificationMiddleware");
 const { userSocketMap } = require("./utils/socket");
-const absenceRoute = require("./routes/absenceRoute");
-const statisticsRoute = require("./routes/statistiqueRoute");
-const placementRoute = require("./routes/placementRoute");
 const cors = require("cors");
 const resetRoute = require("./routes/resetRoute");
 const membreTacirRoute = require("./routes/membreTacirRoute");
 const tacirProjectRoute = require("./routes/tacirProjectRoute");
-const creathonRoutes = require ('./routes/creathonRoute')
+const creathonRoutes = require("./routes/creathonRoute");
 const tacirFormationRoute = require("./routes/FormationTacirRoute");
 const candidatCreathon = require ("./routes/candidatCreathonRoute")
 const syntheseRoute = require ("./routes/syntheseRoute")
+const tacirContactRoute = require("./routes/contactRouteTacir");
+const besoinsRoutes = require("./routes/besoinRoutes");
+
 dotenv.config();
 
 mongoose
@@ -171,7 +171,9 @@ app.use("/api/projects", tacirProjectRoute);
 app.use("/api/creathons", creathonRoutes);
 app.use("/api/candidatureCreathon", candidatCreathon);
 app.use("/api/synthese", syntheseRoute);
-
+app.use("/api/besoins", besoinsRoutes)
 
 app.use("/api/formations", tacirFormationRoute);
+app.use("/api/contacts", tacirContactRoute);
+
 module.exports = app;
