@@ -1,0 +1,46 @@
+.content {
+    position: absolute;
+    top: 10vw;
+    left: 35vw;
+}
+
+.rendu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   
+}
+
+.rendu-card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out;
+    width: 35vw;
+}
+
+.rendu-card:hover {
+    transform: translateY(-5px);
+}
+
+.rendu-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.rendu-card p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.rendu-card .description {
+    color: #333;
+}
+
+.rendu-card .expiration {
+    color: #ff4500;
+    /* Orange color */
+}

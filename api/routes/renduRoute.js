@@ -14,16 +14,5 @@ router.post(
   renduController.uploadFile
 );
 router.get("/rendus", renduController.getAllRendus);
-router.get("/files/:filePath", (req, res) => {
-  const filePath = req.params.filePath;
-
-  // Check if the file exists
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ message: "File not found" });
-  }
-
-  // Stream the file to the response
-  const fileStream = fs.createReadStream(filePath);
-  fileStream.pipe(res);
-});
+router.get("/files/:filePath", renduController.downloadFile);
 module.exports = router;
