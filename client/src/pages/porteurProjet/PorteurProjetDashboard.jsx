@@ -6,6 +6,7 @@ import SinscrireFormation from "../../components/formations/SinscrireFormation";
 import UpcomingFormations from "../../components/formations/UpcomingFormations";
 import InterfaceCreathon from "../../components/interfaceCreathon/InterfaceCreathon";
 import Navbar1 from "../../components/navBar1/NavBar1";
+import PlannigAccompagnementInterface from "../../components/plannigAccompagnementInterface/PlannigAccompagnementInterface";
 import Profile from "../../components/profil/Profile";
 import AddProject from "../../components/projects/AddProject";
 import DeposerRendu from "../../components/rendu/DeposerRendu";
@@ -38,6 +39,7 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "creathonList" && <InterfaceCreathon />}
             {props.load === "syntheseInterface" && <SyntheseInterface />} 
             {props.load === "besoinAccompagnement" && <BesoinInterface />}
+            {props.load === "PlannigAccompagnementInterface" && <PlannigAccompagnementInterface />}
 
             {props.load === "upcomingFormations" && <UpcomingFormations />}
             {props.load === "AllFormation" && <AllFormationPage />}

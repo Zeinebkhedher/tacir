@@ -162,7 +162,11 @@ const App = () => {
           />
           <Route
             path="/dashboard/porteurProjet/formations/sinscrire/:formationId"
-            element={<PorteurProjetDashboard load="sinscrireFormation" />}
+            element={<PorteurProjetDashboard load="sinscrireFormation" />} 
+          />
+          <Route
+            path="/dashboard/potreur-de-projet/calendrier"
+            element={<PorteurProjetDashboard load="PlannigAccompagnementInterface" />}
           />
           <Route
             path="/dashboard/potreur-de-projet/besoinAccompagnement"
@@ -180,6 +184,8 @@ const App = () => {
             path="/dashboard/porteurProjet/Rendu/depot"
             element={<PorteurProjetDashboard load="deposerRendu" />}
           />
+
+
           <Route
             path="/dashboard/Mentor/ListeProjets"
             element={<MentorDashboard load="ListeProject" />}
@@ -215,7 +221,11 @@ const App = () => {
           />
           <Route
             path="/dashboard/Mentor/Rendu/espaceDepot"
-            element={<MentorDashboard load="espaceDepot" />}
+            element={<MentorDashboard load="espaceDepot" />} 
+          />
+            <Route
+            path="/dashboard/mentor/besoinsListes"
+            element={<MentorDashboard load="ListeBesoins" />}
           />
           <Route
             path="/dashboard/Mentor/Rendu/listeRendu"

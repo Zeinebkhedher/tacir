@@ -100,7 +100,17 @@ function SideBarMentor() {
           </a>
         </li>
       </NavLink>
-
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Besoins</span>
+      </li>
+      <NavLink to="/dashboard/mentor/besoinsListes" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Besoins des proteurs de projets</div>
+          </a>
+        </li>
+      </NavLink>
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Compte</span>

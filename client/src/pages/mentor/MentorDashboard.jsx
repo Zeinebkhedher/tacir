@@ -12,6 +12,7 @@ import ListeRendu from "../../components/rendu/ListeRendu";
 import SideBarMentor from "../../components/sideBarMentor/SideBarMentor";
 import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
 import HomePage from "../home/HomePage";
+import ListeBesoinInsterface from "../../components/listeBesoinsInterface/ListeBesoinInsterface";
 
 const MentorDashboard = (props) => {
   return (
@@ -36,6 +37,7 @@ const MentorDashboard = (props) => {
             {props.load === "ListeCandidatCreathonAcceptes" && <CreathonAcceptedInterface />}
 
             {props.load === "syntheseInterface" && <SyntheseInterface />}
+            {props.load === "ListeBesoins" && <ListeBesoinInsterface />}
 
             {props.load === "contact" && <Contact />}
             {props.load === "Evaluations" && <EvaluationTable />}
