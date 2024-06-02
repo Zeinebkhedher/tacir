@@ -168,6 +168,9 @@ const AddProject = () => {
         </div>
         <button type="submit">Add Project</button>
       </form>
+      <a href="/" className="btn">
+        Next
+      </a>
     </div>
   );
 };

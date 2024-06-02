@@ -4,7 +4,7 @@
     .container {
         position: absolute;
             left: 35vw;
-            top: 20vh;
+            top: 10vh;
             max-width: 500px;
             margin: auto;
             padding: 20px;
@@ -81,3 +81,8 @@
                     border-radius: 5px;
                     margin-bottom: 10px;
                 }
+.btn{
+    color:#fff;
+    background-color: blueviolet;
+    margin-left: 25vw;
+}

@@ -66,14 +66,6 @@ const ListeProjects = () => {
           </tbody>
         </table>
       </div>
-      {userRole !== "Mentor" ? (
-        <Link
-          to="/dashboard/porteurProjet/ListeProjets/addProject"
-          className="add-project-btn"
-        >
-          Add Project
-        </Link>
-      ) : null}
     </>
   );
 };

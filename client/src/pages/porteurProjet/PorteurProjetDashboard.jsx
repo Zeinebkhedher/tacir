@@ -34,7 +34,7 @@ const PorteurProjetDashboard = (props) => {
             <Navbar1 />
             {props.load === "home" && <HomePage />}
             {props.load === "ListeProjet" && <ListeProjets />}
-            {props.load === "AddProject" && <AddProject />}
+            
             {props.load === "Evaluation" && <AfficherEvaluation />}
             {props.load === "parametresComptes" && <Profile />}
             {props.load === "creathonList" && <InterfaceCreathon />}

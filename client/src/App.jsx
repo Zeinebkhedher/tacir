@@ -11,6 +11,7 @@ import HomePage from "./pages/home/HomePage";
 import Login from "./pages/login/Login";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
+import AddProject from "./components/projects/AddProject";
 const App = () => {
   return (
     <Router>
@@ -30,8 +31,13 @@ const App = () => {
           />
           <Route
             exact
-            path="/candidatFormulaire  "
+            path="/candidatFormulaire"
             element={<FormCandidature />}
+          />
+          <Route
+            exact
+            path="/dashboard/candidat/ListeProjets/addProject"
+            element={<AddProject />}
           />
           <Route
             path="/dashboard/admin/formations/createFormation"
@@ -137,10 +143,6 @@ const App = () => {
           <Route
             path="/dashboard/porteurProjet/creathonsList"
             element={<PorteurProjetDashboard load="creathonList" />}
-          />
-          <Route
-            path="/dashboard/porteurProjet/ListeProjets/addProject"
-            element={<PorteurProjetDashboard load="AddProject" />}
           />
           <Route
             path="/dashboard/porteurProjet/Formations/UpcomingFormations"
