@@ -5,22 +5,19 @@ const loggedMiddleware = async (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN");
     const membreId = decodedToken.membreId;
-    try {
-      const membre = await membres.findOne({ _id: membreId });
-      if (!membre) {
-        return res.status(404).json({
-          message: "Membre non trouvé",
-        });
-      }
-      req.auth = {
-        membreId: membreId,
-        role: membre.role,
-        email: membre.email,
-      };
-      next();
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
+
+    const membre = await membres.findById(membreId);
+    if (!membre) {
+      return res.status(404).json({ message: "Membre non trouvé" });
     }
+
+    req.auth = {
+      membreId: membreId,
+      role: membre.role,
+      email: membre.email,
+    };
+
+    next();
   } catch (error) {
     return res.status(401).json({ error: "please sign in first" });
   }
@@ -146,15 +143,27 @@ const isMentor = (req, res, next) => {
 };
 const isProteurProjet = (req, res, next) => {
   try {
-    if (req.auth.role === "PorteurProjet") {
+    if (req.auth && req.auth.role === "PorteurProjet") {
       next();
     } else {
-      res
-        .status(403)
-        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+      res.status(403).json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
   } catch (e) {
-    res.status(401).json({ error: error.message });
+    res.status(401).json({ error: e.message });
+  }
+};
+const extractPorteurProjetIdMiddleware = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, "RANDOM_TOKEN");
+    const userId = decodedToken.membreId; // Supposons que l'ID de l'utilisateur est stocké dans decodedToken.membreId
+
+    // Stockez l'ID du porteur de projet dans req.porteurProjetId
+    req.porteurProjetId = userId;
+
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: "Veuillez vous connecter d'abord" });
   }
 };
 
@@ -170,4 +179,5 @@ module.exports = {
   isChefChoeur,
   AdminManager,
   isProteurProjet,
+  extractPorteurProjetIdMiddleware
 };

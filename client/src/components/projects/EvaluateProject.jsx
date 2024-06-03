@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import "./EvaluateProject.css";
 const EvaluateProject = () => {
   const [formData, setFormData] = useState({
     projectName: "", // Change to projectName
@@ -73,7 +73,7 @@ const EvaluateProject = () => {
   };
 
   return (
-    <div className="container">
+    <div className="contentEvaluate">
       <h2>Evaluate Project</h2>
       {errorMessage && <div className="error">{errorMessage}</div>}
       {successMessage && <div className="success">{successMessage}</div>}

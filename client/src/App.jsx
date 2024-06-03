@@ -119,17 +119,18 @@ const App = () => {
             element={<CoordinateurGeneralDashboard load="creathonList" />}
           />
           <Route
-            path="/dashboard/coordinateurRegional/profile/parametresComptes"
-            element={<CoordinateurRegionalDashboard load="parametresComptes" />}
-          />
-          <Route
-            path="/dashboard/coordinateurGeneral/profile/parametresComptes"
+            path="/dashboard/porteur-de-projet/profile/parametresComptes"
             element={<PorteurProjetDashboard load="parametresComptes" />}
           />
           <Route
             exact
             path="/dashboard/porteur-de-projet"
             element={<PorteurProjetDashboard />}
+          />
+          <Route
+            exact
+            path="/dashboard/porteur-de-projet/home"
+            element={<PorteurProjetDashboard load="Home" />}
           />
           <Route
             path="/dashboard/potreur-de-projet/profile/parametresComptes"
@@ -177,6 +178,10 @@ const App = () => {
           <Route
             path="/dashboard/porteurProjet/Rendu/depot"
             element={<PorteurProjetDashboard load="deposerRendu" />}
+          />
+          <Route
+            path="/dashboard/porteurProjet/AcceptedCreathonsList"
+            element={<PorteurProjetDashboard load="AcceptedCreathonsList" />}
           />
           <Route
             path="/dashboard/porteurProjet/projet/MonProjet"
@@ -229,6 +234,40 @@ const App = () => {
           <Route
             path="/dashboard/Mentor/projets/Evaluations"
             element={<MentorDashboard load="ListeEvaluations" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/profile/parametresComptes"
+            element={<CoordinateurRegionalDashboard load="parametresComptes" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/AcountRegister"
+            element={<CoordinateurRegionalDashboard load="AcountRegister" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/mentorList"
+            element={<CoordinateurRegionalDashboard load="mentorList" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/ListeCandidats"
+            element={<CoordinateurRegionalDashboard load="ListeCandidats" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/creathons"
+            element={<CoordinateurRegionalDashboard load="creathonList" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/creathon"
+            element={<CoordinateurRegionalDashboard load="creathon" />}
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/demande_candidature_creathon"
+            element={
+              <CoordinateurRegionalDashboard load="demande_candidature_creathon" />
+            }
+          />
+          <Route
+            path="/dashboard/coordinateurRegional/ListeProjets"
+            element={<CoordinateurRegionalDashboard load="ListeProject" />}
           />
         </Routes>
       </>

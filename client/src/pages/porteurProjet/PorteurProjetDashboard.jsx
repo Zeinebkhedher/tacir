@@ -1,4 +1,5 @@
 import React from "react";
+import AcceptedCreathonsListInterface from "../../components/AcceptedCreathonsListInterface/AcceptedCreathonsListInterface";
 import Contact from "../../components/Contact/Contact";
 import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
 import BesoinInterface from "../../components/besoinInterface/BesoinInterface";
@@ -32,9 +33,9 @@ const PorteurProjetDashboard = (props) => {
               <SideBarPoreturProjet />
             </aside>
             <Navbar1 />
-            {props.load === "home" && <HomePage />}
+            {props.load === "Home" && <HomePage />}
             {props.load === "ListeProjet" && <ListeProjets />}
-            
+
             {props.load === "Evaluation" && <AfficherEvaluation />}
             {props.load === "parametresComptes" && <Profile />}
             {props.load === "creathonList" && <InterfaceCreathon />}
@@ -43,6 +44,13 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "PlannigAccompagnementInterface" && (
               <PlannigAccompagnementInterface />
             )}
+            {props.load === "PlannigAccompagnementInterface" && (
+              <PlannigAccompagnementInterface />
+            )}
+            {props.load === "AcceptedCreathonsList" && (
+              <AcceptedCreathonsListInterface />
+            )}
+
             {props.load === "upcomingFormations" && <UpcomingFormations />}
             {props.load === "AllFormation" && <AllFormationPage />}
             {props.load === "sinscrireFormation" && <SinscrireFormation />}

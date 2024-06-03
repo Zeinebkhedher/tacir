@@ -33,7 +33,7 @@ function SideBarPoreturProjet() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Pages</span>
       </li>
-      <NavLink to="/dashboard/potreur-de-projet/home">
+      <NavLink to="/dashboard/porteur-de-projet/home">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -51,6 +51,17 @@ function SideBarPoreturProjet() {
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Liste des créathons</div>
+          </a>
+        </li>
+      </NavLink>
+
+      <NavLink to="/dashboard/porteurProjet/AcceptedCreathonsList ">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">
+              Liste des créathons acceptés{" "}
+            </div>
           </a>
         </li>
       </NavLink>

@@ -32,8 +32,9 @@
         required: true,
       },
       membres: {
-        type: [String],
-        required: false,
+        type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Membres', 
+    required: true 
       },
       status:{
         type: String,

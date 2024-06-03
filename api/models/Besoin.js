@@ -11,9 +11,12 @@ const besoinSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+  porteurProjet: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Membre', // Le nom du modèle de porteur de projet
+    required: true
   }
-}
-,  { timestamps: true });
+}, { timestamps: true });
 
 module.exports = mongoose.model('Besoin', besoinSchema);
-

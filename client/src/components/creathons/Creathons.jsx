@@ -1,8 +1,11 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
 import React, { useEffect, useState } from "react";
 import {
-  FcAddressBook, FcBusinessContact, FcConferenceCall, FcContacts,
+  FcAddressBook, FcBusinessContact,
+  FcContacts,
   FcDribbble, FcGenericSortingDesc, FcIdea, FcLink
 } from "react-icons/fc";
 import "./creathons.css";
@@ -19,10 +22,24 @@ const Creathons = () => {
     descriptif: '',
     ideeProjet: '',
     lien: '',
-    membres: '',
-    creathon: ''
+    creathonId: '', 
+    creathonNom: '' 
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [porteurProjetId, setPorteurProjetId] = useState(null); 
+
+  useEffect(() => {
+    const extractPorteurProjetIdFromToken = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.membreId; 
+        setPorteurProjetId(userId); 
+      }
+    };
+
+    extractPorteurProjetIdFromToken(); 
+  }, []);
 
   useEffect(() => {
     const fetchCreathons = async () => {
@@ -54,8 +71,9 @@ const Creathons = () => {
   const handleOpen = (creathonId, creathonNom) => {
     setFormData({
       ...formData,
-      creathon: creathonId,  // Défini l'ID du créathon ici
-      creathonNom: creathonNom
+      creathonId: creathonId,
+      creathonNom: creathonNom,
+      membres: porteurProjetId 
     });
     setOpen(true);
   };
@@ -73,7 +91,7 @@ const Creathons = () => {
   };
 
   const handleSubmit = async () => {
-    const requiredFields = ['nom', 'prenom', 'email', 'titre', 'descriptif', 'ideeProjet', 'lien', 'membres', 'creathon'];
+    const requiredFields = ['nom', 'prenom', 'email', 'titre', 'descriptif', 'ideeProjet', 'lien', 'creathonId', 'creathonNom'];
     for (const field of requiredFields) {
       if (!formData[field]) {
         setErrorMessage(`Le champ ${field} est requis.`);
@@ -81,12 +99,21 @@ const Creathons = () => {
       }
     }
 
-    console.log('FormData before submission:', formData);
+    const token = localStorage.getItem("token");
 
     try {
       const response = await axios.post(
         'http://localhost:8000/api/candidatureCreathon/sendCandidatureCreathon',
-        formData
+        { 
+          ...formData, 
+          membres: porteurProjetId,
+          creathon: formData.creathonId // inclure le champ creathon avec l'ID du créathon
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
       setFormData({
         nom: '',
@@ -96,18 +123,18 @@ const Creathons = () => {
         descriptif: '',
         ideeProjet: '',
         lien: '',
-        membres: '',
-        creathon: ''
+        creathonId: '',
+        creathonNom: ''
       });
       setOpen(false);
       console.log('Inscription réussie !');
     } catch (error) {
-      console.error('Error creating candidat Creathon:', error.message);
+      console.error('Error creating candidat Creathon:',error.message);
       let errorMessage = 'Erreur lors de la création du candidat Creathon.';
       if (error.response) {
         console.log('Server response:', error.response.data);
-        if (error.response.data && error.response.data.error) {
-          errorMessage += ' ' + error.response.data.error;
+        if (error.response.data && error.response.data.message) {
+          errorMessage += ' ' + error.response.data.message;
         }
       }
       setErrorMessage(errorMessage);
@@ -164,7 +191,7 @@ const Creathons = () => {
         <DialogContent style={{ width: '400px', boxShadow: 'none' }}>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <div>
-            <p>ID du Créathon : {formData.creathon}</p>
+            <p>ID du Créathon : {formData.creathonId}</p>
             <p>Nom du Créathon : {formData.creathonNom}</p>
           </div>
           <div>
@@ -251,18 +278,7 @@ const Creathons = () => {
               onChange={handleChange}
             />
           </div>
-          <div>
-            <FcConferenceCall className="iconStyle" />
-            <input
-              className="inputStyle"
-              type="text"
-              id="membres"
-              name="membres"
-              placeholder="Membres de votre projet"
-              value={formData.membres}
-              onChange={handleChange}
-            />
-          </div>
+          {/* Le champ "membres" est désormais pré-rempli avec l'identifiant du porteur de projet */}
         </DialogContent>
 
         <DialogActions>
@@ -277,3 +293,4 @@ const Creathons = () => {
 };
 
 export default Creathons;
+

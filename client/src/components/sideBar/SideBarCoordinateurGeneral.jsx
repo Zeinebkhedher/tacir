@@ -35,7 +35,6 @@ function SidebarCoordinateurGeneral() {
         <span className="menu-header-text">Cearthons</span>
       </li>
 
-      
       <NavLink to="/dashboard/coordinateurGeneral/creathons">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -68,8 +67,7 @@ function SidebarCoordinateurGeneral() {
           </a>
         </li>
       </NavLink>
-      
-     
+
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Projets</span>
       </li>
@@ -86,14 +84,7 @@ function SidebarCoordinateurGeneral() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>
       </li>
-      <NavLink to="/dashboard/coordinateurGeneral/register" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Création des comptes</div>
-          </a>
-        </li>
-      </NavLink>
+
       <NavLink
         to="/dashboard/coordinateurGeneral/profile/parametresComptes"
         onClick={goup}
@@ -106,7 +97,7 @@ function SidebarCoordinateurGeneral() {
         </li>
       </NavLink>
     </ul>
-  );  
+  );
 }
 
 export default SidebarCoordinateurGeneral;

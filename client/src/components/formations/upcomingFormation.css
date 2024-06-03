@@ -14,11 +14,8 @@
 
 .containerFormation{
    
-        max-width: 700px;
-        margin: auto;
-        padding: 20px;
         position: absolute;
-        top: 20vh;
+        top: 30vh;
         left: 30vw;
        
 }

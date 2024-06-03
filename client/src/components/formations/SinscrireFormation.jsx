@@ -49,7 +49,7 @@ function SinscrireFormation() {
   };
 
   return (
-    <div className="container">
+    <div className="containerInscription">
       <h2>Inscription à la Formation</h2>
       {errorMessage && <p className="error">{errorMessage}</p>}
       {successMessage && <p className="success">{successMessage}</p>}

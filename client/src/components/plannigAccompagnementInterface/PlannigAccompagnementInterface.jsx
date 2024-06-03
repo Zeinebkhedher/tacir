@@ -4,7 +4,7 @@ import PlannigAccompagnement from '../plannigAccompagnement/PlannigAccompagnemen
 
 const PlannigAccompagnementInterface = () => {
   return (
-    <div   className="position-absolute top-50 start-50 translate-middle" style={{ transform: 'translate(-50%, -50%)' }}> {/* Utilisez une classe pour définir le conteneur de MentorListInterface */}
+    <div   className="position-absolute top-50 start-50 " style={{ transform: 'translate(-80%, -50%)' }}> {/* Utilisez une classe pour définir le conteneur de MentorListInterface */}
       <PlannigAccompagnement  />
     </div>
   );
