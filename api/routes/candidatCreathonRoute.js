@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const candidatCreathonController = require("../controllers/candidatCreathonController");
+const { loggedMiddleware, isProteurProjet, extractPorteurProjetIdMiddleware } = require('../middlewares/auth');
 
 // Route pour créer un candidat Creathon
-router.post("/sendCandidatureCreathon", candidatCreathonController.createCandidatCreathon);
+router.post("/sendCandidatureCreathon", extractPorteurProjetIdMiddleware, loggedMiddleware, candidatCreathonController.createCandidatCreathon);
 
 // Route pour obtenir tous les candidats Creathon
 router.get("/", candidatCreathonController.getCandidatCreathon);
@@ -20,6 +21,6 @@ router.get('/confirmed', candidatCreathonController.getConfirmedCandidats);
 router.get('/rejected', candidatCreathonController.getRejectedCandidatures);
 router.get('/acceptedCandidaturesCreathonListe', candidatCreathonController.getAcceptedCandidaturesCreathon);
 router.patch('/synthese/:id', candidatCreathonController.addSynthese);
-
+router.get('/acceptedCreathons', extractPorteurProjetIdMiddleware,loggedMiddleware, candidatCreathonController.getAcceptedCreathonsByPorteurProjet);
 
 module.exports = router;

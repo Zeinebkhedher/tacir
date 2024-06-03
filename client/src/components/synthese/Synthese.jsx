@@ -1,14 +1,14 @@
 import {
-    Alert,
-    Box,
-    Button,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    Snackbar,
-    TextField,
-    Typography,
+  Alert,
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Snackbar,
+  TextField,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -85,15 +85,15 @@ const Synthese = () => {
             <Typography variant="h4" align="center" gutterBottom>
                 Synthèse Journalière de la Créathon
             </Typography>
-            <Snackbar
+           {/* <Snackbar
                 open={openAlert}
                 autoHideDuration={6000}
                 onClose={handleAlertClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             >
                 <Alert severity={alertSeverity}>{alertMessage}</Alert>
-            </Snackbar>
-            <form onSubmit={handleSubmit}>
+    </Snackbar>*/}
+           { /*<form onSubmit={handleSubmit}>
                 <FormControl fullWidth margin="normal">
                     <InputLabel id="day-label">Sélectionnez le jour</InputLabel>
                     <Select
@@ -124,7 +124,7 @@ const Synthese = () => {
                         Enregistrer la synthèse
                     </Button>
                 </Box>
-            </form>
+            </form>*/}
 
             <div style={{ marginTop: "40px" }}>
                 <Typography variant="h5" align="center" gutterBottom>

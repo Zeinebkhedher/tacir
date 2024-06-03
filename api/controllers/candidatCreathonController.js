@@ -5,6 +5,9 @@ const Synthese = require('../models/syntheseModel');
 
 const createCandidatCreathon = async (req, res) => {
   try {
+    // Récupérer l'identifiant du porteur de projet connecté à partir des informations d'authentification
+    const porteurProjetId = req.auth.membreId; // Assurez-vous que req.auth.membreId contient l'identifiant du porteur de projet connecté
+
     // Création d'un candidat Creathon avec les données de la requête
     const candidatCreathon = new candidatCreathonModel({
       nom: req.body.nom,
@@ -14,10 +17,10 @@ const createCandidatCreathon = async (req, res) => {
       descriptif: req.body.descriptif,
       ideeProjet: req.body.ideeProjet,
       lien: req.body.lien,
-      membres: req.body.membres,
+      membres: [porteurProjetId], // Utilisez l'identifiant du porteur de projet connecté
       status: req.body.status,
-      confirm: req.body.confirm || false, 
-      creathon: req.body.creathon,// Par défaut à false si non fourni
+      confirm: req.body.confirm || false,
+      creathon: req.body.creathon,
     });
 
     // Enregistrement du candidat Creathon dans la base de données
@@ -31,6 +34,8 @@ const createCandidatCreathon = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
 
 const getCandidatCreathon = async (req, res) => {
   try {
@@ -275,6 +280,25 @@ const addSynthese = async (req, res) => {
   }
 };
 
+const getAcceptedCreathonsByPorteurProjet = async (req, res) => {
+  try {
+    const userId = req.auth.membreId;
+
+    // Recherchez les candidats Creathons acceptés par le porteur de projet avec l'ID `userId`
+    const candidats = await candidatCreathonModel.find({ membres: userId, confirm: true }).populate('creathon');
+
+    // Obtenez les Creathons associés à ces candidats
+    const creathons = candidats.map(candidat => candidat.creathon);
+
+    res.json(creathons);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des Creathons acceptés par le porteur de projet :', error.message);
+    res.status(500).json({ error: 'Erreur lors de la récupération des Creathons acceptés par le porteur de projet' });
+  }
+};
+
+
+
 
 
 module.exports = {
@@ -288,5 +312,6 @@ module.exports = {
   getRejectedCandidatures,
   sendRejectionEmail , 
   getAcceptedCandidaturesCreathon, 
-  addSynthese
+  addSynthese, 
+  getAcceptedCreathonsByPorteurProjet
 };

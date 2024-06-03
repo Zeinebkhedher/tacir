@@ -1,9 +1,20 @@
 const Planning = require('../models/Planning');
-const candidatCreathon = require('../models/candidatCreathon'); // Correction du nom de l'import
+const CandidatCreathon = require('../models/candidatCreathon'); // Correction du nom de l'import
 
 const getAllEvents = async (req, res) => {
     try {
-        const events = await Planning.find().populate('candidatsCreathon');
+        // Récupérer l'ID de l'utilisateur connecté à partir du token JWT
+        const userId = req.userId;
+
+        // Récupérer les candidatures Creathon associées à l'utilisateur connecté
+        const candidatures = await CandidatCreathon.find({ candidatId: userId });
+
+        // Récupérer les IDs des candidatures Creathon
+        const candidatureIds = candidatures.map(candidature => candidature._id);
+
+        // Récupérer les événements associés aux candidatures Creathon de l'utilisateur connecté
+        const events = await Planning.find({ candidatsCreathon: { $in: candidatureIds } });
+
         res.json(events);
     } catch (error) {
         console.error('Erreur lors de la récupération des événements :', error.message);
@@ -14,9 +25,11 @@ const getAllEvents = async (req, res) => {
 const createEvent = async (req, res) => {
     try {
         const { title, start, end, candidatsCreathonId } = req.body;
-        const candidatCreathon = await candidatCreathon.findById(candidatsCreathonId); // Correction du nom de la variable
+        console.log('Requête reçue:', req.body); // Log de la requête
+        const candidat = await CandidatCreathon.findById(candidatsCreathonId); // Utilisation d'un autre nom de variable
 
-        if (!candidatCreathon) {
+        if (!candidat) {
+            console.log('candidatsCreathon non trouvée'); // Log pour vérification
             return res.status(404).json({ error: 'candidatsCreathon non trouvée' });
         }
 
@@ -45,3 +58,4 @@ module.exports = {
     createEvent,
     deleteEvent
 };
+    

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { CircularProgress, Container, Typography } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
-import { Container, Typography, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 const BesoinsList = () => {
   const [besoins, setBesoins] = useState([]);
@@ -10,7 +11,7 @@ const BesoinsList = () => {
   useEffect(() => {
     const fetchBesoins = async () => {
       try {
-        const response = await axios.get('/besoins');
+        const response = await axios.get('http://localhost:8000/api/besoins/besoinsListe');
         setBesoins(response.data);
       } catch (err) {
         setError(err.message);
@@ -30,31 +31,33 @@ const BesoinsList = () => {
     return <Typography color="error">Erreur: {error}</Typography>;
   }
 
+  // Définition des colonnes avec utilisation de la fonction de formatage de date
+  const columns = [
+    { field: 'porteurProjet.nom', headerName: 'Nom du porteur', width: 200 },
+    { field: 'porteurProjet.email', headerName: 'Email du porteur', width: 200 },
+    { field: 'type', headerName: 'Type de besoin', width: 200 },
+    { field: 'description', headerName: 'Description', width: 400 },
+    { field: 'createdAt', headerName: 'Date de création', width: 200, valueGetter: (params) => params.row.createdAt ? new Date(params.row.createdAt).toLocaleDateString() : 'N/A' },
+  ];
+
   return (
     <Container>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Liste des besoins
+      <Typography variant="h4" component="h1" gutterBottom style={{marginLeft:"12%"}}>
+        Liste des besoins par porteur de projet
       </Typography>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Date</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {besoins.map((besoin) => (
-              <TableRow key={besoin.id}>
-                <TableCell>{besoin.id}</TableCell>
-                <TableCell>{besoin.description}</TableCell>
-                <TableCell>{new Date(besoin.date).toLocaleDateString()}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {besoins.length > 0 ? (
+        <div style={{ height: 400, width: '100%' , marginLeft:"12%"}}>
+          <DataGrid
+            rows={besoins}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5, 10, 20]}
+            getRowId={(row) => row._id}
+          />
+        </div>
+      ) : (
+        <Typography variant="body1">Aucun besoin trouvé.</Typography>
+      )}
     </Container>
   );
 };

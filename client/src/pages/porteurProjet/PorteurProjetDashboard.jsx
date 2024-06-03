@@ -1,4 +1,5 @@
 import React from "react";
+import AcceptedCreathonsListInterface from "../../components/AcceptedCreathonsListInterface/AcceptedCreathonsListInterface";
 import Contact from "../../components/Contact/Contact";
 import AfficherEvaluation from "../../components/EvaluationProjet/AfficherEvaluation";
 import BesoinInterface from "../../components/besoinInterface/BesoinInterface";
@@ -40,6 +41,7 @@ const PorteurProjetDashboard = (props) => {
             {props.load === "syntheseInterface" && <SyntheseInterface />} 
             {props.load === "besoinAccompagnement" && <BesoinInterface />}
             {props.load === "PlannigAccompagnementInterface" && <PlannigAccompagnementInterface />}
+            {props.load === "AcceptedCreathonsList" && <AcceptedCreathonsListInterface />}
 
             {props.load === "upcomingFormations" && <UpcomingFormations />}
             {props.load === "AllFormation" && <AllFormationPage />}

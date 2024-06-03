@@ -56,6 +56,15 @@ function SideBarPoreturProjet() {
         </li>
       </NavLink>
       
+      <NavLink to="/dashboard/porteurProjet/AcceptedCreathonsList ">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des créathons acceptés </div>
+          </a>
+        </li>
+      </NavLink>
+      
 
       
 

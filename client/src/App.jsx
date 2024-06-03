@@ -183,8 +183,11 @@ const App = () => {
           <Route
             path="/dashboard/porteurProjet/Rendu/depot"
             element={<PorteurProjetDashboard load="deposerRendu" />}
+          /> 
+              <Route
+            path="/dashboard/porteurProjet/AcceptedCreathonsList"
+            element={<PorteurProjetDashboard load="AcceptedCreathonsList" />}
           />
-
 
           <Route
             path="/dashboard/Mentor/ListeProjets"
