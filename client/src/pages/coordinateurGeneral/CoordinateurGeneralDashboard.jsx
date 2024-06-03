@@ -11,6 +11,7 @@ import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
+import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 
 const CoordinateurGeneralDashboard = (props) => {
   return (
@@ -32,11 +33,12 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
             {props.load === "parametresComptes" && <Profile/>}
             {props.load === "mentorList" && <MentorListInterface/>}
+            {props.load === "AcountRegister" && <AccountRegister />}
 
 
             {props.load === "parametresComptes" && <CompteInterface />}
             {props.load === "ListeProject" && <ListeProjects />}
-            {props.load === "creathonList" && <Creathons />}
+            {props.load === "creathonList" && <CreathonInterface />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />
