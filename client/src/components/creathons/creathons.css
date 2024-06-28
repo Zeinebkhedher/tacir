@@ -1,121 +1,100 @@
-/* creathonList.css */
+.containerCreathon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+}
 
-.containerFCreathon {
-    margin-top: 70px;
-    max-width: 800px;
-    margin: auto;
-  }
-  
-  .containerFCreathon h2 {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .main-container { /* Assuming this is the parent container */
-    padding: 20px;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 300px);
-    justify-content: space-between;
-    margin-left: 2px; /* Add 20px of space between items */
-    /* Display 3 creathons per line */
-    gap: 40px;
-  }
-  .flex-container {
-    display: flex;
-    justify-content: space-between; /* Add 20px of space between items */
-    align-items: center;
-  }
-  /* Smaller layout for screens below 768px */
-  @media (max-width: 768px) {
-    .grid-container {
-      grid-template-columns: repeat(2, 200px);
-    }
-  }
-  
-  /* Even smaller layout for screens below 576px */
-  @media (max-width: 576px) {
-    .grid-container {
-      grid-template-columns: repeat(1, 100%);
-    }
-  }
-  .formation-box {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s;
-    width: 50px
+.creathon {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: #f5f5f5;
+  transition: transform 0.2s;
+}
 
-  }
-  
-  .past {
-    background-color: #f7f7f7;
-  }
-  
-  .formation {
-    padding: 20px;
-  }
-  
-  .formation h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .contentFormation {
-    padding-left: 20px;
-  }
-  
-  .line {
-    display: flex;
-    
-  }
-  
-  .line p {
-    font-weight: bold;
-    text-decoration: none;
-    
-  }
-  
-  .line span {
-    font-size: 16px;
-  }
-  
-  .btn-annuler {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px; /* Ajoutez une marge pour l'espace entre les boutons */
-  }
-  .formation-box:hover {
-    transform: scale(1.05);
-  }
-  
-  .inputStyle  {
-    width: 100%;
-    padding : 10px;
-    border: 1px solid #cccccc;
-    borderRadius: 5px;
-    boxSizing: border-box;
-  }
-  
-.inputContainerStyle {
-    display: flex;
-    alignItems: center;
-    marginBottom: 20px;
-  }
+.creathon:hover {
+  transform: scale(1.05);
+}
 
-  .iconStyle  {
-    marginRight: 20px;
-    fontSize: 45px;
-  }
+.fini {
+  opacity: 0.5;
+}
 
-  .separator {
-    border-top: 1px solid #ccc; /* Couleur gris clair */
-  /* Espacement sous la ligne */
-  }
+.contentCreathon {
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Ajout d'une marge pour plus de clarté */
+}
+
+.line p {
+  font-weight: bold;
+  margin-right: 10px; /* Espacement entre le titre et le contenu */
+}
+
+.line span {
+  font-size: 16px;
+}
+
+.iconStyle {
+  margin-right: 10px;
+}
+
+.inputStyle {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #e50b4f;
+  border-radius: 5px;
+}
+
+.red-button {
+  background-color: #e50b4f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.red-button:hover {
+  background-color: #c40942;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+}
+
+.separator {
+  height: 2px;
+  width: 80%;
+  margin: 20px 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Ajustement automatique des colonnes */
+  gap: 20px;
+  justify-content: center;
+}

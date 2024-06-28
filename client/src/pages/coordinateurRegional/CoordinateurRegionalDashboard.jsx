@@ -3,15 +3,15 @@ import Navbar1 from "../../components/navBar1/NavBar1";
 
 import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
-import SidebarCoordinateurRegional from "../../components/sideBar/SideBarCoordinateurRegional";
-import "../admin/adminDashboard.css";
-import HomePage from "../home/HomePage";
-import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 import CreathonList from "../../components/creathonList/CreathonList";
 import InterfaceDemandeCreathon from "../../components/inetrfaceDemandeCreathon/InterfaceDeamndeCreathon";
 import ListeProjects from "../../components/projects/ListeProjects";
+import SidebarCoordinateurRegional from "../../components/sideBar/SideBarCoordinateurRegional";
+import "../admin/adminDashboard.css";
+import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
+import HomePage from "../home/HomePage";
+import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
 
 const CoordinateurRegionalDashboard = (props) => {
   return (
@@ -41,6 +41,7 @@ const CoordinateurRegionalDashboard = (props) => {
           {props.load === "ListeProject" && <ListeProjects />}
 
 
+           
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

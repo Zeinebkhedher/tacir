@@ -6,6 +6,7 @@ const authMiddleware = require("../middlewares/auth");
 const { addEvaluation } = require("../controllers/tacirProjetController");
 const { getEvaluationById } = require("../controllers/tacirProjetController");
 const { getAllEvaluations } = require("../controllers/tacirProjetController");
+const { getProjectByUserId } = require("../controllers/tacirProjetController");
 
 // Route to create a new project
 router.post(
@@ -23,5 +24,10 @@ router.get(
   getEvaluationById
 );
 router.get("/evaluations", getAllEvaluations);
+router.get(
+  "/user/:userId",
+  authMiddleware.loggedMiddleware,
+  getProjectByUserId
+);
 
 module.exports = router;

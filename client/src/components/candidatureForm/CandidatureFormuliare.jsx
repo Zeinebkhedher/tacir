@@ -17,10 +17,10 @@ import {
   FcIdea,
   FcLink,
   FcPrevious,
-  FcRating
+  FcRating,
 } from "react-icons/fc";
 import { GiPerson } from "react-icons/gi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import note from "../../assets/img/tacir_logo.jpg";
 import confirm from "../../assets/img/valide.png";
@@ -736,6 +736,7 @@ const CandidatureFormulaire = () => {
                       Your application has been submitted successfully!{" "}
                       <BiSolidWinkSmile />
                     </p>
+                   
                     <a href="/" style={buttonStyle} className="btn">
                       Next
                     </a>

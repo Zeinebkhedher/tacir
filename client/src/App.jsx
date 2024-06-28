@@ -11,6 +11,7 @@ import HomePage from "./pages/home/HomePage";
 import Login from "./pages/login/Login";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
+import AddProject from "./components/projects/AddProject";
 const App = () => {
   return (
     <Router>
@@ -30,8 +31,13 @@ const App = () => {
           />
           <Route
             exact
-            path="/candidatFormulaire  "
+            path="/candidatFormulaire"
             element={<FormCandidature />}
+          />
+          <Route
+            exact
+            path="/dashboard/candidat/ListeProjets/addProject"
+            element={<AddProject />}
           />
           <Route
             path="/dashboard/admin/formations/createFormation"
@@ -55,16 +61,14 @@ const App = () => {
             path="/dashboard/admin/creathonForm"
             element={<AdminDashboard load="creathonForm" />}
           />
-           <Route
+          <Route
             path="/dashboard/admin/PorteurProjetListe"
             element={<AdminDashboard load="PorteurProjetListe" />}
           />
-
           <Route
             path="/dashboard/admin/coordinateurRegionalListe"
             element={<AdminDashboard load="coordinateurRegionalListe" />}
           />
-          
           <Route
             path="/dashboard/admin/formations"
             element={<AdminDashboard load="formation" />}
@@ -73,19 +77,15 @@ const App = () => {
             path="/dashboard/admin/CoordinateurGeneraleInterface"
             element={<AdminDashboard load="CoordinateurGeneraleInterface" />}
           />
-
           <Route
             path="/dashboard/admin/creathonList"
             element={<AdminDashboard load="creathonList" />}
-          />  
-
-<Route
+          />
+          <Route
             exact
             path="/dashboard/admin/listesCandidats"
             element={<AdminDashboard load="ListeCandidats" />}
           />
-
-          
           <Route
             path="/dashboard/admin/demande_candidature_creathon"
             element={<AdminDashboard load="demande_candidature_creathon" />}
@@ -126,7 +126,7 @@ const App = () => {
           />
          
           <Route
-            path="/dashboard/potreur-de-projet/profile/parametresComptes"
+            path="/dashboard/potreur-de-projet/p/parametresComptes"
             element={<PorteurProjetDashboard load="parametresComptes" />}
           />
           <Route
@@ -134,15 +134,16 @@ const App = () => {
             path="/dashboard/porteur-de-projet"
             element={<PorteurProjetDashboard />}
           />
-            
-
           <Route
-            path="/dashboard/potreur-de-projet/profile/parametresComptes"
-            element={<PorteurProjetDashboard load="parametresComptes" />}
+            exact
+            path="/dashboard/porteur-de-projet/home"
+            element={<PorteurProjetDashboard load="Home" />}
+          />
+          <Route
+            path="/dashboard/coordinateurGeneral/profile/parametresComptes"
+            element={<CoordinateurGeneralDashboard load="parametresComptes" />}
           />
           <Route exact path="/dashboard/admin" element={<AdminDashboard />} />
-          
-          
           <Route
             path="/dashboard/porteurProjet/ListeProjets"
             element={<PorteurProjetDashboard load="ListeProjet" />}
@@ -150,10 +151,6 @@ const App = () => {
           <Route
             path="/dashboard/porteurProjet/creathonsList"
             element={<PorteurProjetDashboard load="creathonList" />}
-          />
-          <Route
-            path="/dashboard/porteurProjet/ListeProjets/addProject"
-            element={<PorteurProjetDashboard load="AddProject" />}
           />
           <Route
             path="/dashboard/porteurProjet/Formations/UpcomingFormations"
@@ -165,17 +162,19 @@ const App = () => {
           />
           <Route
             path="/dashboard/porteurProjet/formations/sinscrire/:formationId"
-            element={<PorteurProjetDashboard load="sinscrireFormation" />} 
+            element={<PorteurProjetDashboard load="sinscrireFormation" />}
           />
           <Route
             path="/dashboard/potreur-de-projet/calendrier"
-            element={<PorteurProjetDashboard load="PlannigAccompagnementInterface" />}
+            element={
+              <PorteurProjetDashboard load="PlannigAccompagnementInterface" />
+            }
           />
           <Route
             path="/dashboard/potreur-de-projet/besoinAccompagnement"
             element={<PorteurProjetDashboard load="besoinAccompagnement" />}
           />
-           <Route
+          <Route
             path="/dashboard/porteurProjet/formations"
             element={<PorteurProjetDashboard load="AllFormation" />}
           />
@@ -186,12 +185,15 @@ const App = () => {
           <Route
             path="/dashboard/porteurProjet/Rendu/depot"
             element={<PorteurProjetDashboard load="deposerRendu" />}
-          /> 
-              <Route
+          />
+          <Route
             path="/dashboard/porteurProjet/AcceptedCreathonsList"
             element={<PorteurProjetDashboard load="AcceptedCreathonsList" />}
           />
-
+          <Route
+            path="/dashboard/porteurProjet/projet/MonProjet"
+            element={<PorteurProjetDashboard load="Monprojet" />}
+          />
           <Route
             path="/dashboard/Mentor/ListeProjets"
             element={<MentorDashboard load="ListeProject" />}
@@ -216,7 +218,6 @@ const App = () => {
             path="/dashboard/Mentor/ListeCandidatCreathonAcceptes"
             element={<MentorDashboard load="ListeCandidatCreathonAcceptes" />}
           />
-          
           <Route
             path="/dashboard/Mentor/updateprofile"
             element={<MentorDashboard load="updateprofil" />}
@@ -227,9 +228,9 @@ const App = () => {
           />
           <Route
             path="/dashboard/Mentor/Rendu/espaceDepot"
-            element={<MentorDashboard load="espaceDepot" />} 
+            element={<MentorDashboard load="espaceDepot" />}
           />
-            <Route
+          <Route
             path="/dashboard/mentor/besoinsListes"
             element={<MentorDashboard load="ListeBesoins" />}
           />
@@ -274,6 +275,7 @@ const App = () => {
       </>
     </Router>
   );
-};
+}
+;
 
 export default App;

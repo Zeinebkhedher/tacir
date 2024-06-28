@@ -5,3 +5,13 @@ border-radius: 5px;
 height: 6vh;
 margin-bottom: 20px;
 }
+.containerInscription {
+    position: absolute;
+    top: 25vh;
+    left: 35vw;
+    padding: 20px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}

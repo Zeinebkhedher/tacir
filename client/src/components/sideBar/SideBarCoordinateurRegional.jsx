@@ -34,6 +34,7 @@ function SidebarCoordinateurRegional() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Projets</span>
       </li>
+
       <NavLink to="/dashboard/coordinateurRegional/ListeProjets">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -56,14 +57,14 @@ function SidebarCoordinateurRegional() {
           </a>
         </li>
       </NavLink>   
-      <NavLink to="/dashboard/coordinateurRegional/creathon">
+      {/*<NavLink to="/dashboard/coordinateurRegional/creathon">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Liste creathons</div>
           </a>
         </li>
-      </NavLink>  
+  </NavLink>*/}  
       <NavLink to="/dashboard/coordinateurRegional/demande_candidature_creathon">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -90,6 +91,38 @@ function SidebarCoordinateurRegional() {
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des creathons</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/coordinateurRegional/demande_candidature_creathon">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des inscriptions</div>
+          </a>
+        </li>
+      </NavLink>
+
+      {/* auditions */}
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Membres de TACIR</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurRegional/ListeCandidats"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des candidatures</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/coordinateurRegional/mentorList" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
             <div data-i18n="Account Settings">Liste des mentors</div>
           </a>
         </li>
@@ -100,7 +133,11 @@ function SidebarCoordinateurRegional() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>
       </li>
-      <NavLink to="/dashboard/coordinateurRegional/AcountRegister" onClick={goup}>
+      
+      <NavLink
+        to="/dashboard/coordinateurRegional/AcountRegister"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -108,7 +145,10 @@ function SidebarCoordinateurRegional() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/coordinateurRegional/profile/parametresComptes" onClick={goup}>
+      <NavLink
+        to="/dashboard/coordinateurRegional/profile/parametresComptes"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />

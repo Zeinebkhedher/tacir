@@ -1,28 +1,45 @@
-/* creathonDetails.css */
-.creathon-details-container {
-    position: relative; /* Changer à relative pour que les éléments enfants puissent être positionnés correctement */
-    border: 1px solid #ccc; /* Utiliser une couleur de bordure plus douce */
+.creathon-details {
+    text-align: center;
+    background-color: #f0f8ff;
     border-radius: 15px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 700px;
-    width: 100%; /* Utiliser la largeur complète du parent */
-    margin: 0 auto; /* Centrer horizontalement */
-}
+    padding: 30px;
 
-.creathon-details-title {
-    margin: 0 0 10px; /* Supprimer la marge inférieure pour l'image et réduire la marge sous le titre */
-    font-size: 24px;
-    font-weight: bold;
-}
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background: linear-gradient(to right, #ffafbd, #ffc3a0, #fffeab, #b3ffab, #abffef);
+    position: absolute;
+    width: 50vw;
+    top: 30vh;
+    left: 35vw;
+    
+ 
 
-.creathon-details-info {
-    margin-bottom: 10px; /* Ajuster l'espacement entre les éléments d'information */
-    font-size: 16px;
 }
-
-.creathon-details-description {
-    font-size: 14px;
-    line-height: 1.6; /* Augmenter l'espacement entre les lignes pour une meilleure lisibilité */
-}
+  
+  .creathon-details h1 {
+    color: #ff6f61;
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 20px;
+    
+  }
+  
+  .creathon-details p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .date-time {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+  }
+  
+  .date-time p {
+    margin: 5px 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #555;
+  }
+  

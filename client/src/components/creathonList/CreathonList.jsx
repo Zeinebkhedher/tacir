@@ -1,7 +1,7 @@
     import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-    import { DataGrid } from '@mui/x-data-grid';
-    import React, { useEffect, useState } from "react";
-    import "./creathonList.css";
+import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect, useState } from "react";
+import "./creathonList.css";
 
     const CreathonList = () => {
       const [creathons, setCreathons] = useState([]);
@@ -136,17 +136,15 @@
       ];
 
       return (
-        <div className="containerFormation" style={{ flexDirection: 'column'}}> 
-        <h2 style={{ marginBottom: '10px' }}>Liste des Creathons</h2>
-        <div style={{ display: 'flex' }}>
-          <Button onClick={() => handleFilter("all")} style={filterButtonStyle}>Tous</Button>
-          <Button onClick={() => handleFilter("en cours")} style={filterButtonStyle}>En Cours</Button>
-          <Button onClick={() => handleFilter("fini")} style={filterButtonStyle}>Fini</Button>
-        </div>
+        <div className="position-absolute top-50 start-50 translate-middle">
+          <h2>Liste des Creathons</h2>
+          <div style={{ display: 'flex', marginBottom: '10px' }}>
+            <Button onClick={() => handleFilter("all")} style={filterButtonStyle}>Tous</Button>
+            <Button onClick={() => handleFilter("en cours")} style={filterButtonStyle}>En Cours</Button>
+            <Button onClick={() => handleFilter("fini")} style={filterButtonStyle}>Fini</Button>
+          </div>
     
-      
-      
-          <div style={{ height: 400, width: '150%', marginTop:"20px" }}>
+          <div style={{ height: 400, width: '100%' }}>
             <DataGrid
               rows={filteredCreathons}
               columns={columns}
@@ -169,7 +167,7 @@
         </div>
       );
     }
-
+    
     const filterButtonStyle = {
       margin: '0 10px', // Spacing between buttons
       padding: '10px 10px',

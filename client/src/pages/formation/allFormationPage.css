@@ -1,6 +1,22 @@
-.containerFormation {
+.formationsss {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 25vh;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 80vw; /* Adjust this as necessary */
+}
+
+.tilteFormation {
+    position: absolute;
+    top: 20vh;
+    left: 40%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 
 .formation-box {
@@ -9,14 +25,14 @@
     margin: 10px;
     padding: 10px;
     background-color: #fff;
-    width: 50vw;
+    width: 40vw;
+    margin-bottom: 20px;
 }
 
 .formation-box.past {
-    background-color:lightgray;
+    background-color: lightgray;
     color: #fff;
 }
-
 
 .line {
     margin-bottom: 5px;
@@ -25,4 +41,3 @@
 .line p {
     font-weight: bold;
 }
-

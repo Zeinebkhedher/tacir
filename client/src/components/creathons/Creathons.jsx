@@ -142,49 +142,48 @@ const Creathons = () => {
   };
 
   return (
-    <div className="containerFormation">
+    <div className="">
       <h2>Les Creathons</h2>
       <hr className="separator" />  
-      <div className="grid-container" style={{width:"500px"}}>
-        {filteredCreathons.map((creathon) => (
-          <div
-            style={{ width: "320px" }}
-            key={creathon._id}
-            className={`formation-box ${creathon.status === "fini" ? "fini" : ""}`}
-          >
-            <div className="formation">
-              <h3>{creathon.titre}</h3>
-              <div className="contentFormation">
-                <div className="line">
-                  <p>Statut: </p>
-                  <span style={{ marginBottom: "16px" }}>{creathon.status}</span>
-                </div>
-                <div className="line">
-                  <p>Date de début: </p>
-                  <span style={{ marginBottom: "16px" }}>{new Date(creathon.dateDebut).toLocaleDateString("fr-FR")}</span>
-                </div>
-                <div className="line">
-                  <p>Date de fin: </p>
-                  <span style={{ marginBottom: "16px" }}>{new Date(creathon.dateFin).toLocaleDateString("fr-FR")}</span>
-                </div>
-                <div className="line">
-                  <p>Lieu:</p>
-                  <span style={{ marginBottom: "16px" }}>{creathon.lieu}</span>
-                </div>
-                <div className="line">
-                  <p>Affiche:</p>
-                  <span style={{ marginBottom: "16px" }}>{creathon.affiche}</span>
-                </div>
-                <div>
-                  <Button className="red-button" onClick={() => handleOpen(creathon._id, creathon.titre)}>
-                    S'inscrire
-                  </Button>
-                </div>
-              </div>
-            </div>
+      <div className="grid-container">
+  {filteredCreathons.map((creathon) => (
+    <div
+      key={creathon._id}
+      className={`creathon-box ${creathon.status === "fini" ? "fini" : ""}`}
+    >
+      <div className="creathon">
+        <h3>{creathon.titre}</h3>
+        <div className="contentCreathon">
+          <div className="line">
+            <p>Statut: </p>
+            <span style={{ marginBottom: "16px" }}>{creathon.status}</span>
           </div>
-        ))}
+          <div className="line">
+            <p>Date de début: </p>
+            <span style={{ marginBottom: "16px" }}>{new Date(creathon.dateDebut).toLocaleDateString("fr-FR")}</span>
+          </div>
+          <div className="line">
+            <p>Date de fin: </p>
+            <span style={{ marginBottom: "16px" }}>{new Date(creathon.dateFin).toLocaleDateString("fr-FR")}</span>
+          </div>
+          <div className="line">
+            <p>Lieu:</p>
+            <span style={{ marginBottom: "16px" }}>{creathon.lieu}</span>
+          </div>
+          <div className="line">
+            <p>Affiche:</p>
+            <span style={{ marginBottom: "16px" }}>{creathon.affiche}</span>
+          </div>
+          <div>
+            <Button className="red-button" onClick={() => handleOpen(creathon._id, creathon.titre)}>
+              S'inscrire
+            </Button>
+          </div>
+        </div>
       </div>
+    </div>
+  ))}
+</div>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Inscription</DialogTitle>

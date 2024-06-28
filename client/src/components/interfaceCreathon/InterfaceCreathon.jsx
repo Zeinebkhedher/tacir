@@ -4,7 +4,7 @@ import Creathons from '../creathons/Creathons';
 
 const InterfaceCreathon = () => {
   return (
-    <div  className="position-absolute  "> 
+    <div  className="position-absolute top-50 start-50 translate-middle"> 
       <Creathons />
     </div>
   );

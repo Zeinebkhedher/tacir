@@ -3,22 +3,20 @@
     /* Border color is blue */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Add shadow effect */
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
     /* Add some spacing between formation boxes */
     text-align: center;
+    width: 40vw;
     background-color:wheat;
 }
 
 
 
-.containerFormation{
+.FormationUpcomming{
    
-        max-width: 700px;
-        margin: auto;
-        padding: 20px;
         position: absolute;
-        top: 20vh;
+        top: 30vh;
         left: 30vw;
        
 }
@@ -44,7 +42,7 @@
 .line{
     display: flex;
 }
-.formation{
+.formations{
   
     align-content: center;
 

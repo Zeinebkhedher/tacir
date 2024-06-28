@@ -46,11 +46,11 @@ function FormationList() {
   };
 
   return (
-    <div className="containerFormation">
+    <div className="FormationUpcomming">
       <h2>Upcoming Formations</h2>
       {upcomingFormations.map((formation) => (
         <div key={formation._id} className="formation-box">
-          <div className="formation">
+          <div className="formations">
             <h3>{formation.Name}</h3>
             <div className="contentFormation">
               <div className="line">

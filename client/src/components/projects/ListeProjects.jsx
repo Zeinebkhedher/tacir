@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./listProjects.css";
 import { jwtDecode } from "jwt-decode";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import EvaluateProject from "./EvaluateProject";
+import "./listProjects.css";
 const ListeProjects = () => {
   const [projects, setProjects] = useState([]);
   const [userRole, setUserRole] = useState("");
@@ -38,7 +39,10 @@ const ListeProjects = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="evaluateContent">
+        <EvaluateProject />
+      </div>
+      <div className="CONTAINER">
         <h2>List of Projects</h2>
 
         <table className="project-table">
@@ -61,15 +65,11 @@ const ListeProjects = () => {
             ))}
           </tbody>
         </table>
+        <Link to="/dashboard/candidat/ListeProjets/addProject">
+                      <button type="button">Add Project</button>
+                    </Link>
+
       </div>
-      {userRole !== "Mentor" ? (
-        <Link
-          to="/dashboard/porteurProjet/ListeProjets/addProject"
-          className="add-project-btn"
-        >
-          Add Project
-        </Link>
-      ) : null}
     </>
   );
 };

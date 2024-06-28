@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
-import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
-import Creathons from "../../components/creathons/Creathons";
+import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 import Profile from "../../components/profil/Profile";
 import ListeProjects from "../../components/projects/ListeProjects";
 import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordinateurGeneral";
@@ -11,7 +10,6 @@ import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 
 const CoordinateurGeneralDashboard = (props) => {
   return (
@@ -32,11 +30,12 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
             {props.load === "parametresComptes" && <Profile/>}
-            {props.load === "mentorList" && <MentorListInterface/>}
+            {props.load === "mentorList" && <MentorListInterface />}
             {props.load === "AcountRegister" && <AccountRegister />}
 
+            {props.load === "parametresComptes" && <Profile />}
+            {props.load === "mentorList" && <MentorListInterface />}
 
-            {props.load === "parametresComptes" && <CompteInterface />}
             {props.load === "ListeProject" && <ListeProjects />}
             {props.load === "creathonList" && <CreathonInterface />}
           </div>

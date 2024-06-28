@@ -68,19 +68,19 @@ function SideBarMentor() {
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste de projets</div>
+            <div data-i18n="Account Settings">Evaluation de projets</div>
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/Mentor/ListeProjets/EvaluateProject">
+      <NavLink to="/dashboard/Mentor/ListeProjets/Evaluations">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Evaluate Project</div>
+            <div data-i18n="Account Settings">Liste des evaluations</div>
           </a>
         </li>
       </NavLink>
-      
+
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text"> Espace de depot</span>
       </li>
@@ -107,7 +107,9 @@ function SideBarMentor() {
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Besoins des proteurs de projets</div>
+            <div data-i18n="Account Settings">
+              Besoins des proteurs de projets
+            </div>
           </a>
         </li>
       </NavLink>*/}
