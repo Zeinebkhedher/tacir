@@ -8,16 +8,16 @@ const AddProject = () => {
     titre: "",
     description: "",
     region: "",
+    type: "",
     comments: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [ownerId, setOwnerId] = useState("");
   const [storedToken, setStoredToken] = useState("");
+
   useEffect(() => {
     const storedTokenValue = localStorage.getItem("token");
-
     if (storedTokenValue && storedTokenValue !== "null") {
       setStoredToken(storedTokenValue);
     }
@@ -31,7 +31,7 @@ const AddProject = () => {
   const addMember = () => {
     setFormData({
       ...formData,
-      members: [...formData.members, { FullName: "", age: "" }],
+      members: [...formData.members, { FullName: "", age: "", email: "" }],
     });
   };
 
@@ -46,9 +46,6 @@ const AddProject = () => {
     e.preventDefault();
 
     try {
-      // Get the stored token from localStorage
-      const storedToken = localStorage.getItem("token");
-
       if (!storedToken) {
         throw new Error("Token not found");
       }
@@ -59,7 +56,7 @@ const AddProject = () => {
 
       const formDataWithOwner = {
         ...formData,
-        ownerId: ownerId,
+        owner: ownerId,
       };
 
       const response = await fetch("http://localhost:8000/api/projects/add", {
@@ -81,6 +78,7 @@ const AddProject = () => {
         titre: "",
         description: "",
         region: "",
+        type: "",
         comments: "",
       });
 
@@ -115,6 +113,13 @@ const AddProject = () => {
                 name="age"
                 value={member.age}
                 placeholder="Age"
+                onChange={(e) => handleMemberChange(index, e)}
+              />
+              <input
+                type="text"
+                name="email"
+                value={member.email}
+                placeholder="Email"
                 onChange={(e) => handleMemberChange(index, e)}
               />
             </div>
@@ -158,6 +163,14 @@ const AddProject = () => {
           </select>
         </div>
         <div className="form-group">
+          <label htmlFor="type">Type:</label>
+          <select name="type" value={formData.type} onChange={handleChange}>
+            <option value="">Select Type</option>
+            <option value="CREA">CREA</option>
+            <option value="INOV">INOV</option>
+          </select>
+        </div>
+        <div className="form-group">
           <label htmlFor="comments">Comments:</label>
           <input
             type="text"
@@ -168,9 +181,6 @@ const AddProject = () => {
         </div>
         <button type="submit">Add Project</button>
       </form>
-      <a href="/" className="btn">
-        Next
-      </a>
     </div>
   );
 };

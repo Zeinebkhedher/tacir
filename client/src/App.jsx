@@ -12,6 +12,8 @@ import Login from "./pages/login/Login";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
 import AddProject from "./components/projects/AddProject";
+import CoordinateurComposanteDashboard from "./pages/CoordinateurComposante/CoordinateurComposanteDashboard";
+import CandidatDashboard from "./pages/candidat/CandidatDashbord";
 const App = () => {
   return (
     <Router>
@@ -19,6 +21,24 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/home" element={<HomePage />} />
+          <Route
+            exact
+            path="/dashboard/candidat/Home"
+            element={<CandidatDashboard load="Home" />}
+          />
+          <Route
+            exact
+            path="/dashboard/candidat/ListeProjets/addProject"
+            element={<CandidatDashboard load="addProject" />}
+          />
+          <Route
+            path="/dashboard/candidat/creathonForm"
+            element={<CandidatDashboard load="creathonForm" />}
+          />
+          <Route
+            path="/dashboard/candidat/profile/parametresComptes"
+            element={<CandidatDashboard load="parametre" />}
+          />
           <Route
             exact
             path="/emailVerification"
@@ -33,11 +53,6 @@ const App = () => {
             exact
             path="/candidatFormulaire"
             element={<FormCandidature />}
-          />
-          <Route
-            exact
-            path="/dashboard/candidat/ListeProjets/addProject"
-            element={<AddProject />}
           />
           <Route
             path="/dashboard/admin/formations/createFormation"
@@ -268,6 +283,43 @@ const App = () => {
           <Route
             path="/dashboard/coordinateurRegional/ListeProjets"
             element={<CoordinateurRegionalDashboard load="ListeProject" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/ListeProjets"
+            element={<CoordinateurComposanteDashboard load="ListeProject" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/profile/parametresComptes"
+            element={
+              <CoordinateurComposanteDashboard load="parametresComptes" />
+            }
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/ListeCandidats"
+            element={<CoordinateurComposanteDashboard load="ListeCandidats" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/mentorList"
+            element={<CoordinateurComposanteDashboard load="mentorList" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/projets/Evaluations"
+            element={
+              <CoordinateurComposanteDashboard load="ListeEvaluations" />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/home"
+            element={<CoordinateurComposanteDashboard load="Home" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/creathons"
+            element={<CoordinateurComposanteDashboard load="creathonList" />}
+          />
+          <Route
+            path="/dashboard/oordinateurComposante/creathon"
+            element={<CoordinateurComposanteDashboard load="creathon" />}
           />
         </Routes>
       </>

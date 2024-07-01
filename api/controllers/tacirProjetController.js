@@ -5,27 +5,20 @@ const Membres = require("../models/membreTacirModel");
 // Controller function to create a new project
 const createProject = async (req, res) => {
   try {
-    const {
-      candidats,
-      Dateprojet,
-      titre,
-      description,
-      region,
-      comments,
-      members,
-    } = req.body;
+    const { Dateprojet, titre, description, region, type, comments, members } =
+      req.body;
 
     // Get the ID of the authenticated user from the request
-    const ownerId = req.auth.membreId; // Assuming the ID of the authenticated user is stored in req.user.id
+    const ownerId = req.auth.membreId; // Assuming the ID of the authenticated user is stored in req.auth.membreId
 
     // Create a new project instance with the owner set to the ID of the authenticated user
     const newProject = new Project({
       owner: ownerId,
-      candidats,
       Dateprojet,
       titre,
       description,
       region,
+      type,
       comments,
       members,
     });

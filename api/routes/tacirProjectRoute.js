@@ -12,7 +12,7 @@ const { getProjectByUserId } = require("../controllers/tacirProjetController");
 router.post(
   "/add",
   authMiddleware.loggedMiddleware,
-  authMiddleware.isProteurProjet,
+  authMiddleware.isCandidat,
   createProject
 );
 router.get("/listeProjet", getAllProjects);

@@ -11,6 +11,7 @@ const projetSchema = new mongoose.Schema(
       {
         FullName: { type: String, required: true },
         age: { type: Number, required: true },
+        email: { type: String, required: true },
       },
     ],
     Dateprojet: {
@@ -29,6 +30,10 @@ const projetSchema = new mongoose.Schema(
     region: {
       type: String,
       enum: ["TUNIS", "KEF"],
+    },
+    type: {
+      type: String,
+      enum: ["CREA", "INOV"],
     },
     comments: {
       type: String,

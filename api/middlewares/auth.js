@@ -146,7 +146,22 @@ const isProteurProjet = (req, res, next) => {
     if (req.auth && req.auth.role === "PorteurProjet") {
       next();
     } else {
-      res.status(403).json({ error: "Vous ne pouvez pas accéder à cette route" });
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
+    }
+  } catch (e) {
+    res.status(401).json({ error: e.message });
+  }
+};
+const isCandidat = (req, res, next) => {
+  try {
+    if (req.auth && req.auth.role === "candidat") {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "Vous ne pouvez pas accéder à cette route" });
     }
   } catch (e) {
     res.status(401).json({ error: e.message });
@@ -179,5 +194,6 @@ module.exports = {
   isChefChoeur,
   AdminManager,
   isProteurProjet,
-  extractPorteurProjetIdMiddleware
+  isCandidat,
+  extractPorteurProjetIdMiddleware,
 };

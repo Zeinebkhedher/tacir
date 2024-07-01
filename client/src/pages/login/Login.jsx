@@ -10,6 +10,8 @@ import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurR
 import MentorDashboard from "../mentor/MentorDashboard";
 import PorteurProjetDashboard from "../porteurProjet/PorteurProjetDashboard";
 import "./login.css";
+import CandidatDashboard from "../candidat/CandidatDashbord";
+import CoordinateurComposanteDashboard from "../CoordinateurComposante/CoordinateurComposanteDashboard";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -134,9 +136,13 @@ const Login = () => {
                 <MentorDashboard socket={socket} load="home" />
               ) : decodedToken.role === "PorteurProjet" ? (
                 <PorteurProjetDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "candidat" ? (
+                <CandidatDashboard socket={socket} load="home" />
+              ) : decodedToken.role === "coordinateurComposante" ? (
+                <CoordinateurComposanteDashboard socket={socket} load="home" />
               ) : decodedToken.role === "coordinateurGeneral" ? (
                 <CoordinateurGeneralDashboard socket={socket} load="home" />
-              ): (
+              ) : (
                 // Redirection vers une page par défaut ou affichage d'un message d'erreur
                 <p>
                   {console.log(decodedToken)}
@@ -225,11 +231,14 @@ const Login = () => {
                 </div>
               )}
               <p className="login__register">
-  Don't have an account? apply for a membership{" "}
-  <Link to="/emailVerification" style={{ textDecoration: "none", color: "white" }}>
-    here
-  </Link>
-</p>
+                Don't have an account? apply for a membership{" "}
+                <Link
+                  to="/emailVerification"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  here
+                </Link>
+              </p>
             </form>
           </div>
         </div>
