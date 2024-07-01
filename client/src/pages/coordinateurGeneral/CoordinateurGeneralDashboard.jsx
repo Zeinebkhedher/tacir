@@ -33,7 +33,6 @@ const CoordinateurGeneralDashboard = (props) => {
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
             {props.load === "parametresComptes" && <Profile />}
             {props.load === "mentorList" && <MentorListInterface />}
-
             {props.load === "parametresComptes" && <CompteInterface />}
             {props.load === "ListeProject" && <ListeProjects />}
             {props.load === "creathonList" && <CreathonInterface />}
