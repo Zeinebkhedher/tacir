@@ -7,6 +7,8 @@ const { addEvaluation } = require("../controllers/tacirProjetController");
 const { getEvaluationById } = require("../controllers/tacirProjetController");
 const { getAllEvaluations } = require("../controllers/tacirProjetController");
 const { getProjectByUserId } = require("../controllers/tacirProjetController");
+const { getInovProjects } = require("../controllers/tacirProjetController");
+const { getCreaProjects } = require("../controllers/tacirProjetController");
 
 // Route to create a new project
 router.post(
@@ -29,5 +31,8 @@ router.get(
   authMiddleware.loggedMiddleware,
   getProjectByUserId
 );
+router.get("/inov", getInovProjects);
+
+router.get("/crea", getCreaProjects);
 
 module.exports = router;

@@ -64,6 +64,22 @@ function SideBarMentor() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Projets</span>
       </li>
+      <NavLink to="/dashboard/Mentor/ListInovProjects">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste Projets INOV</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/Mentor/ListCreaProjects">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste Projets CREA</div>
+          </a>
+        </li>
+      </NavLink>
       <NavLink to="/dashboard/Mentor/ListeProjets">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
@@ -100,7 +116,7 @@ function SideBarMentor() {
           </a>
         </li>
       </NavLink>
-     { /*<li className="menu-header small text-uppercase">
+      {/*<li className="menu-header small text-uppercase">
         <span className="menu-header-text">Besoins</span>
       </li>
       <NavLink to="/dashboard/mentor/besoinsListes" onClick={goup}>

@@ -1,15 +1,15 @@
 
-.CONTAINER{
+.listProjet{
     position: absolute;
     top: 20vh;
-    left: 25vw;
+    left: 20vw;
+    width: 50vw;
 }
 .evaluateContent
 {
 position: absolute;
     top: 8vh;
-    left: 25vw;
-    
+    left: 35vw;
     width: 60vw;
 }
 h2 {

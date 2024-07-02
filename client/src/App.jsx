@@ -251,6 +251,14 @@ const App = () => {
             element={<MentorDashboard load="ListeEvaluations" />}
           />
           <Route
+            path="/dashboard/Mentor/ListInovProjects"
+            element={<MentorDashboard load="ListInovProjects" />}
+          />
+          <Route
+            path="/dashboard/Mentor/ListCreaProjects"
+            element={<MentorDashboard load="ListCreaProjects" />}
+          />
+          <Route
             path="/dashboard/coordinateurRegional/profile/parametresComptes"
             element={<CoordinateurRegionalDashboard load="parametresComptes" />}
           />

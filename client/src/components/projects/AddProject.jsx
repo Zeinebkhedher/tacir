@@ -50,7 +50,6 @@ const AddProject = () => {
         throw new Error("Token not found");
       }
 
-      // Decode the token to extract the owner's ID
       const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
       const ownerId = decodedToken.membreId;
 
@@ -69,7 +68,8 @@ const AddProject = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Error adding project");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error adding project");
       }
 
       setFormData({
@@ -85,7 +85,7 @@ const AddProject = () => {
       setSuccessMessage("Project added successfully");
       setErrorMessage("");
     } catch (error) {
-      setErrorMessage("Error adding project");
+      setErrorMessage(error.message);
       setSuccessMessage("");
       console.error("Error adding project:", error.message);
     }
