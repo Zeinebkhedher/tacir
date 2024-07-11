@@ -12,6 +12,8 @@ import Login from "./pages/login/Login";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
 import AddProject from "./components/projects/AddProject";
+import BeneficiaireFormationDashboard from "./pages/beneficiaireFormation/BeneficiaireFormationDashboard";
+
 const App = () => {
   return (
     <Router>
@@ -270,6 +272,14 @@ const App = () => {
           <Route
             path="/dashboard/coordinateurRegional/ListeProjets"
             element={<CoordinateurRegionalDashboard load="ListeProject" />}
+          />
+  <Route
+            path="/dashboard/BeneficiaireFormationDashboard"
+            element={<BeneficiaireFormationDashboard load="home" />}
+          />
+            <Route
+            path="/dashboard/BeneficiaireFormationDashboard/home"
+            element={<BeneficiaireFormationDashboard load="home" />}
           />
         </Routes>
       </>

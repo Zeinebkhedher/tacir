@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import TacirLogo from "../../assets/img/tacir_logo.jpg";
 import AdminDashboard from "../admin/AdminDashboard";
+import BeneficiaireFormationDashboard from "../beneficiaireFormation/BeneficiaireFormationDashboard";
 import CoordinateurGeneralDashboard from "../coordinateurGeneral/CoordinateurGeneralDashboard";
 import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurRegionalDashboard";
 import MentorDashboard from "../mentor/MentorDashboard";
@@ -136,7 +137,9 @@ const Login = () => {
                 <PorteurProjetDashboard socket={socket} load="home" />
               ) : decodedToken.role === "coordinateurGeneral" ? (
                 <CoordinateurGeneralDashboard socket={socket} load="home" />
-              ): (
+              ): decodedToken.role === "beneficiaraie" ? (
+                <BeneficiaireFormationDashboard socket={socket} load="home" />
+              ) :(
                 // Redirection vers une page par défaut ou affichage d'un message d'erreur
                 <p>
                   {console.log(decodedToken)}

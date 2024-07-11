@@ -227,7 +227,7 @@ const getRejectedCandidatures = async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la récupération des candidatures rejetées." });
   }
 };
-const getAcceptedCandidaturesCreathon = async (req, res) => {
+const   getAcceptedCandidaturesCreathon = async (req, res) => {
 
   try {
     const acceptedCandidatures = await candidatCreathonModel.find({ confirm: true }).populate('creathon');
