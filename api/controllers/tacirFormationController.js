@@ -23,16 +23,8 @@ exports.addParticipantToFormation = async (req, res) => {
         .json({ status: "fail", message: "Formation not found" });
     }
 
-    // Find the member in the porteur projet model using their email
-    const porteurProjet = await PorteurProjet.findOne({ email });
-    if (!porteurProjet) {
-      return res
-        .status(404)
-        .json({ status: "fail", message: "Porteur projet not found" });
-    }
-
-    // Add the member's ID to the participants array in the formation model
-    formation.participants.push(porteurProjet._id);
+    // Add the participant as an object to the participants array
+    formation.participants.push({ Name: fullName, email });
 
     // Save the updated formation document
     await formation.save();
@@ -46,6 +38,49 @@ exports.addParticipantToFormation = async (req, res) => {
     });
   }
 };
+
+exports.addBeneficiaire = async (req, res) => {
+  const { id } = req.params;
+  const { nom, prenom, email } = req.body;
+
+  try {
+    // Find the formation by its ID
+    const formation = await Formation.findById(id);
+    if (!formation) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Formation not found" });
+    }
+
+    // Check if email already exists in beneficiaire array
+    const beneficiaireExists = formation.beneficiaire.some(
+      (b) => b.email === email
+    );
+    if (beneficiaireExists) {
+      return res
+        .status(400)
+        .json({
+          status: "fail",
+          message: "Email already exists in beneficiaire",
+        });
+    }
+
+    // Add the beneficiaire to the beneficiaire array
+    formation.beneficiaire.push({ nom, prenom, email });
+
+    // Save the updated formation document
+    const updatedFormation = await formation.save();
+
+    res.status(200).json({ status: "success", data: updatedFormation });
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({
+      status: "error",
+      message: "Failed to add beneficiaire to the formation",
+    });
+  }
+};
+
 
 // Get all formations
 exports.getAllFormations = async (req, res) => {

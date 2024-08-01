@@ -41,7 +41,14 @@ const formationSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "Membres" }],
+  participants: [{ Name: { type: String }, email: { type: String } }],
+  beneficiaire: [
+    {
+      nom: { type: String, required: true },
+      prenom: { type: String, required: true },
+      email: { type: String, required: true, unique: true },
+    },
+  ],
 });
 
 module.exports = mongoose.model("formation", formationSchema);

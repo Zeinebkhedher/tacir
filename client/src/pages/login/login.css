@@ -240,3 +240,17 @@ label.login__label {
 .login__eye:hover {
   cursor: pointer;
 }
+.btnformation {
+  background-color: #C81364;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 80vh;
+  left: 85vw;
+  font-size: 16px;
+  text-decoration:none
+}
+

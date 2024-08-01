@@ -1,4 +1,9 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import "./assets/css/demo.css";
 import "./assets/vendor/css/core.css";
 import "./assets/vendor/css/theme-default.css";
@@ -14,6 +19,10 @@ import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard
 import AddProject from "./components/projects/AddProject";
 import CoordinateurComposanteDashboard from "./pages/CoordinateurComposante/CoordinateurComposanteDashboard";
 import CandidatDashboard from "./pages/candidat/CandidatDashbord";
+import BeneficiaireDashboard from "./pages/Beneficiaire/BeneficiaireDashboard";
+import SinscrireFormation from "./components/formations/SinscrireFormation";
+import InscriptionForm from "./pages/Beneficiaire/FormInscriptionFormation";
+import FormationBeneficiaire from "./pages/Beneficiaire/SinscrireFormationBeneficiare";
 const App = () => {
   return (
     <Router>
@@ -169,9 +178,15 @@ const App = () => {
             element={<PorteurProjetDashboard load="Evaluation" />}
           />
           <Route
-            path="/dashboard/porteurProjet/formations/sinscrire/:formationId"
-            element={<PorteurProjetDashboard load="sinscrireFormation" />}
+            path="/formations/sinscrire/:formationId"
+            element={<SinscrireFormation />}
           />
+          <Route
+            path="/formations/sinscrireBeneficiaire/:formationId"
+            element={<InscriptionFormWrapper />}
+          />
+          <Route path="/formations" element={<FormationBeneficiaire />} />
+          <Route path="/formations" element={<FormationBeneficiaire />} />
           <Route
             path="/dashboard/potreur-de-projet/calendrier"
             element={
@@ -318,7 +333,7 @@ const App = () => {
           />
           <Route
             exact
-            path="/dashboard/coordinateurComposante/home"
+            path="/dashboard/coordinateurComposante/Home"
             element={<CoordinateurComposanteDashboard load="Home" />}
           />
           <Route
@@ -329,10 +344,25 @@ const App = () => {
             path="/dashboard/oordinateurComposante/creathon"
             element={<CoordinateurComposanteDashboard load="creathon" />}
           />
+          <Route
+            path="/dashboard/beneficiaire/home"
+            element={<BeneficiaireDashboard load="Home" />}
+          />
+          <Route
+            path="/dashboard/beneficiaire/formations"
+            element={<BeneficiaireDashboard load="ALLformation" />}
+          />
+          <Route
+            path="/dashboard/beneficiaire/Formations/FormationList"
+            element={<BeneficiaireDashboard load="FormationList" />}
+          />
         </Routes>
       </>
     </Router>
   );
 };
-
+function InscriptionFormWrapper() {
+  const { formationId } = useParams();
+  return <InscriptionForm formationId={formationId} />;
+}
 export default App;

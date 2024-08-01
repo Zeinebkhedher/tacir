@@ -6,7 +6,7 @@
 }
 .tilteFormation{
 position: absolute;
-top: 20vh;
+top: 15vh;
 left: 35vw;
 bottom: 10vh;
 }
@@ -34,3 +34,20 @@ bottom: 10vh;
     font-weight: bold;
 }
 
+.inscription{
+    font-size: 16px;
+    color: white;
+    background-color: green;
+}
+.link-no-decoration {
+    color: white;
+    background-color: green;
+}
+.link-no-decoration:hover {
+    color: white;
+    background-color: green;
+}
+.inscription:hover{
+    color: white;
+        background-color: green;
+}
