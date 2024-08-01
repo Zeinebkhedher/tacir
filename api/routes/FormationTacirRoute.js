@@ -22,5 +22,8 @@ router.post(
   "/beneficiaire/:id/",
   formationController.addBeneficiaire
 );
-
+router.get(
+  "/:id/beneficiaires",
+  formationController.getBeneficiairesByFormation
+);
 module.exports = router;

@@ -143,7 +143,7 @@ const Login = () => {
                 ) : decodedToken.role === "coordinateurComposante" ? (
                   <CoordinateurComposanteDashboard
                     socket={socket}
-                    load="Home"
+                    navigate="/dashboard/coordinateurComposante/Home"
                   />
                 ) : decodedToken.role === "beneficiaireFormation" ? (
                   <BeneficiaireDashboard socket={socket} load="home" />

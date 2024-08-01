@@ -41,9 +41,24 @@ exports.addParticipantToFormation = async (req, res) => {
 
 exports.addBeneficiaire = async (req, res) => {
   const { id } = req.params;
-  const { nom, prenom, email } = req.body;
+  const { nom, prenom, email, numTel, motivation, adressePostale } = req.body;
 
   try {
+    // Validate request body
+    if (
+      !nom ||
+      !prenom ||
+      !email ||
+      !numTel ||
+      !motivation ||
+      !adressePostale
+    ) {
+      return res.status(400).json({
+        status: "fail",
+        message: "All fields are required",
+      });
+    }
+
     // Find the formation by its ID
     const formation = await Formation.findById(id);
     if (!formation) {
@@ -57,16 +72,21 @@ exports.addBeneficiaire = async (req, res) => {
       (b) => b.email === email
     );
     if (beneficiaireExists) {
-      return res
-        .status(400)
-        .json({
-          status: "fail",
-          message: "Email already exists in beneficiaire",
-        });
+      return res.status(400).json({
+        status: "fail",
+        message: "Email already exists in beneficiaire",
+      });
     }
 
     // Add the beneficiaire to the beneficiaire array
-    formation.beneficiaire.push({ nom, prenom, email });
+    formation.beneficiaire.push({
+      nom,
+      prenom,
+      email,
+      numTel,
+      motivation,
+      adressePostale,
+    });
 
     // Save the updated formation document
     const updatedFormation = await formation.save();
@@ -74,14 +94,47 @@ exports.addBeneficiaire = async (req, res) => {
     res.status(200).json({ status: "success", data: updatedFormation });
   } catch (error) {
     console.error("Error:", error.message);
-    res.status(500).json({
-      status: "error",
-      message: "Failed to add beneficiaire to the formation",
-    });
+
+    if (error.name === "ValidationError") {
+      res.status(400).json({
+        status: "error",
+        message: "Validation error: " + error.message,
+      });
+    } else if (error.name === "MongoError" && error.code === 11000) {
+      res.status(400).json({
+        status: "error",
+        message: "Duplicate field error: " + JSON.stringify(error.keyValue),
+      });
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: "Failed to add beneficiaire to the formation",
+      });
+    }
   }
 };
+exports.getBeneficiairesByFormation = async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    // Find formation by ID and populate the beneficiaries
+    const formation = await Formation.findById(id).select("beneficiaire");
 
+    if (!formation) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Formation not found" });
+    }
+
+    // Send beneficiaries data
+    res.status(200).json({ status: "success", data: formation.beneficiaire });
+  } catch (error) {
+    console.error("Error fetching beneficiaries:", error);
+    res
+      .status(500)
+      .json({ status: "error", message: "Failed to fetch beneficiaries" });
+  }
+};
 // Get all formations
 exports.getAllFormations = async (req, res) => {
   try {

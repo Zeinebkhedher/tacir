@@ -10,7 +10,9 @@ const InscriptionForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [numTel, setNumTel] = useState("");
+  const [motivation, setMotivation] = useState("");
+  const [adressePostale, setAdressePostale] = useState("");
   console.log("Formation ID:", formationId); // Check the formationId
 
   const handleSubmit = async (e) => {
@@ -19,7 +21,16 @@ const InscriptionForm = () => {
     try {
       setIsLoading(true);
 
-      const beneficiaireData = { nom, prenom, email };
+      const beneficiaireData = {
+        nom,
+        prenom,
+        email,
+        numTel,
+        motivation,
+        adressePostale,
+      };
+
+      console.log("Beneficiaire Data:", beneficiaireData); // Add this line to verify data before sending
 
       const response = await fetch(
         `http://localhost:8000/api/formations/beneficiaire/${formationId}`,
@@ -50,6 +61,7 @@ const InscriptionForm = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="container">
@@ -84,6 +96,36 @@ const InscriptionForm = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="numTel">Numero de telephone: </label>
+          <input
+            type="text"
+            id="numTel"
+            value={numTel}
+            onChange={(e) => setNumTel(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="adressePostale">Adresse postale: </label>
+          <input
+            type="text"
+            id="adressePostale"
+            value={adressePostale}
+            onChange={(e) => setAdressePostale(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="motivation">Motivation: </label>
+          <input
+            type="text"
+            id="motivation"
+            value={motivation}
+            onChange={(e) => setMotivation(e.target.value)}
             required
           />
         </div>

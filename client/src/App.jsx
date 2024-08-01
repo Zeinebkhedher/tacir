@@ -337,12 +337,34 @@ const App = () => {
             element={<CoordinateurComposanteDashboard load="Home" />}
           />
           <Route
-            path="/dashboard/coordinateurComposante/creathons"
-            element={<CoordinateurComposanteDashboard load="creathonList" />}
+            exact
+            path="/dashboard/coordinateurComposante/listeFormations"
+            element={<CoordinateurComposanteDashboard load="listeFormations" />}
           />
           <Route
-            path="/dashboard/oordinateurComposante/creathon"
-            element={<CoordinateurComposanteDashboard load="creathon" />}
+            exact
+            path="/dashboard/coordinateurComposante/ListeProjets/inov"
+            element={<CoordinateurComposanteDashboard load="projetInov" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/ListeProjets/crea"
+            element={<CoordinateurComposanteDashboard load="projetCrea" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/contact"
+            element={<CoordinateurComposanteDashboard load="contact" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/demanderRendu"
+            element={<CoordinateurComposanteDashboard load="demanderRendu" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/ListRendu"
+            element={<CoordinateurComposanteDashboard load="ListRendu" />}
           />
           <Route
             path="/dashboard/beneficiaire/home"

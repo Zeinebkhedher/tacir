@@ -13,6 +13,13 @@ import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
 import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 import SidebarCoordinateurComposante from "../../components/sideBar/SideBarCoordinateurComposante";
+import ListeFormations from "../../components/formations/ListeFormations";
+import CreaProjects from "../../components/projects/ListCreaProjects";
+import InovProjects from "../../components/projects/ListInovProjects";
+import Contact from "../../components/Contact/Contact";
+import ListeRendu from "../../components/rendu/ListeRendu";
+import DeposerRendu from "../../components/rendu/DeposerRendu";
+import EspaceDepot from "../../components/rendu/EspaceDepot";
 
 const CoordinateurComposanteDashboard = (props) => {
   return (
@@ -34,8 +41,12 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "parametresComptes" && <Profile />}
             {props.load === "mentorList" && <MentorListInterface />}
             {props.load === "ListeProject" && <ListeProjects />}
-            {props.load === "creathonList" && <CreathonInterface />}
-            {props.load === "creathon" && <Creathons />}
+            {props.load === "listeFormations" && <ListeFormations />}
+            {props.load === "projetCrea" && <CreaProjects />}
+            {props.load === "projetInov" && <InovProjects />}
+            {props.load === "contact" && <Contact />}
+            {props.load === "ListRendu" && <ListeRendu />}
+            {props.load === "demanderRendu" && <EspaceDepot />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />
