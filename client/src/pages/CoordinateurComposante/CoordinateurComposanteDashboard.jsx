@@ -20,6 +20,11 @@ import Contact from "../../components/Contact/Contact";
 import ListeRendu from "../../components/rendu/ListeRendu";
 import DeposerRendu from "../../components/rendu/DeposerRendu";
 import EspaceDepot from "../../components/rendu/EspaceDepot";
+import CreateFormation from "../../components/formations/CreateFormation";
+import FormationList from "../../components/formations/UpcomingFormations";
+import AllFormationPage from "../formation/AllFormationPage";
+import PlanifierReunion from "../../components/meetings/PlanifierReunion";
+import PlanifierMentorat from "../../components/Mentorat/CreateMentorat";
 
 const CoordinateurComposanteDashboard = (props) => {
   return (
@@ -47,6 +52,10 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "contact" && <Contact />}
             {props.load === "ListRendu" && <ListeRendu />}
             {props.load === "demanderRendu" && <EspaceDepot />}
+            {props.load === "createFormation" && <CreateFormation />}
+            {props.load === "upcomingFormation" && <AllFormationPage />}
+            {props.load === "planifierReunion" && <PlanifierReunion />}
+            {props.load === "planifierMentorat" && <PlanifierMentorat />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

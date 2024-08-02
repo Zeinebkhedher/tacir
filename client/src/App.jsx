@@ -367,6 +367,32 @@ const App = () => {
             element={<CoordinateurComposanteDashboard load="ListRendu" />}
           />
           <Route
+            exact
+            path="/dashboard/coordinateurComposante/createFormation"
+            element={<CoordinateurComposanteDashboard load="createFormation" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/upcomingFormation"
+            element={
+              <CoordinateurComposanteDashboard load="upcomingFormation" />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/planifierReunion"
+            element={
+              <CoordinateurComposanteDashboard load="planifierReunion" />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/planifierMentorat"
+            element={
+              <CoordinateurComposanteDashboard load="planifierMentorat" />
+            }
+          />
+          <Route
             path="/dashboard/beneficiaire/home"
             element={<BeneficiaireDashboard load="Home" />}
           />

@@ -38,6 +38,9 @@ const tacirContactRoute = require("./routes/contactRouteTacir");
 const besoinsRoutes = require("./routes/besoinRoutes");
 const renduRoute = require("./routes/renduRoute");
 const planningRoutes = require('./routes/plannigRoutes');
+const reunionRoute = require("./routes/reunionRoute");
+const mentoratRoute = require("./routes/mentoratRoute");
+
 
 dotenv.config();
 
@@ -175,9 +178,11 @@ app.use("/api/candidatureCreathon", candidatCreathon);
 app.use("/api/synthese", syntheseRoute);
 app.use("/api/besoins", besoinsRoutes)
 app.use("/api/plannig", planningRoutes);
-
 app.use("/api/formations", tacirFormationRoute);
 app.use("/api/contacts", tacirContactRoute);
 app.use("/api/rendus", renduRoute);
+app.use("/api/reunions", reunionRoute);
+app.use("/api/mentorats", mentoratRoute);
+
 
 module.exports = app;

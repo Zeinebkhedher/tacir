@@ -30,45 +30,20 @@ function SidebarCoordinateurComposante() {
           </a>
         </li>
       </NavLink>
-
       <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Formations</span>
+        <span className="menu-header-text">Sessions Mentorats</span>
       </li>
       <NavLink
-        to="/dashboard/coordinateurComposante/listeFormations"
+        to="/dashboard/coordinateurComposante/planifierMentorat"
         onClick={goup}
       >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des formations</div>
+            <div data-i18n="Account Settings">créer session mentorat</div>
           </a>
         </li>
       </NavLink>
-
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Membres de TACIR</span>
-      </li>
-      <NavLink
-        to="/dashboard/coordinateurComposante/ListeCandidats"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidats</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/coordinateurComposante/mentorList" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des mentors</div>
-          </a>
-        </li>
-      </NavLink>
-
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Projets</span>
       </li>
@@ -107,6 +82,69 @@ function SidebarCoordinateurComposante() {
       </NavLink>
 
       <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Formations</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurComposante/createFormation"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Créer formation</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink
+        to="/dashboard/coordinateurComposante/listeFormations"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des formations</div>
+          </a>
+        </li>
+      </NavLink>
+
+      <NavLink
+        to="/dashboard/coordinateurComposante/upcomingFormation"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">
+              Liste des prochaines formations{" "}
+            </div>
+          </a>
+        </li>
+      </NavLink>
+
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Membres de TACIR</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurComposante/ListeCandidats"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des candidats</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/coordinateurComposante/mentorList" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des mentors</div>
+          </a>
+        </li>
+      </NavLink>
+
+      <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Rendus</span>
       </li>
       <NavLink
@@ -120,10 +158,7 @@ function SidebarCoordinateurComposante() {
           </a>
         </li>
       </NavLink>
-      <NavLink
-        to="/dashboard/coordinateurComposante/ListRendu"
-        onClick={goup}
-      >
+      <NavLink to="/dashboard/coordinateurComposante/ListRendu" onClick={goup}>
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -131,6 +166,22 @@ function SidebarCoordinateurComposante() {
           </a>
         </li>
       </NavLink>
+
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Meetings</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurComposante/planifierReunion"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Planifier Reunions</div>
+          </a>
+        </li>
+      </NavLink>
+
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">contact</span>
       </li>
