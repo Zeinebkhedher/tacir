@@ -7,12 +7,14 @@ const { addEvaluation } = require("../controllers/tacirProjetController");
 const { getEvaluationById } = require("../controllers/tacirProjetController");
 const { getAllEvaluations } = require("../controllers/tacirProjetController");
 const { getProjectByUserId } = require("../controllers/tacirProjetController");
+const { getInovProjects } = require("../controllers/tacirProjetController");
+const { getCreaProjects } = require("../controllers/tacirProjetController");
 
 // Route to create a new project
 router.post(
   "/add",
   authMiddleware.loggedMiddleware,
-  authMiddleware.isProteurProjet,
+  authMiddleware.isCandidat,
   createProject
 );
 router.get("/listeProjet", getAllProjects);
@@ -29,5 +31,8 @@ router.get(
   authMiddleware.loggedMiddleware,
   getProjectByUserId
 );
+router.get("/inov", getInovProjects);
+
+router.get("/crea", getCreaProjects);
 
 module.exports = router;

@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from "react";
+import "./listProjects.css";
 import { jwtDecode } from "jwt-decode";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import EvaluateProject from "./EvaluateProject";
 import "./listProjects.css";
+import { Link } from "react-router-dom";
 const ListeProjects = () => {
   const [projects, setProjects] = useState([]);
   const [userRole, setUserRole] = useState("");
@@ -42,7 +43,7 @@ const ListeProjects = () => {
       <div className="evaluateContent">
         <EvaluateProject />
       </div>
-      <div className="CONTAINER">
+      <div className="listProjet">
         <h2>List of Projects</h2>
 
         <table className="project-table">

@@ -23,7 +23,8 @@ const membreTacirSchema = mongoose.Schema({
       "coordinateurGeneral",
       "coordinateurRegional",
       "candidat",
-      "beneficiaraie"
+      "coordinateurComposante",
+      "beneficiaireFormation",
     ],
     required: true,
   },

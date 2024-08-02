@@ -3,7 +3,7 @@ import Navbar1 from "../../components/navBar1/NavBar1";
 
 import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
-import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
+import Creathons from "../../components/creathons/Creathons";
 import Profile from "../../components/profil/Profile";
 import ListeProjects from "../../components/projects/ListeProjects";
 import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordinateurGeneral";
@@ -11,8 +11,10 @@ import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
+import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
+import SidebarCoordinateurComposante from "../../components/sideBar/SideBarCoordinateurComposante";
 
-const CoordinateurGeneralDashboard = (props) => {
+const CoordinateurComposanteDashboard = (props) => {
   return (
     <div>
       <div>
@@ -22,24 +24,18 @@ const CoordinateurGeneralDashboard = (props) => {
               id="layout-menu"
               className="layout-menu menu-vertical menu bg-menu-theme"
             >
-              <SidebarCoordinateurGeneral />
+              <SidebarCoordinateurComposante />
             </aside>
 
             <Navbar1 />
 
             {props.load === "Home" && <HomePage />}
-            {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
-            {props.load === "parametresComptes" && <Profile/>}
-            {props.load === "mentorList" && <MentorListInterface />}
-            {props.load === "AcountRegister" && <AccountRegister />}
-
             {props.load === "parametresComptes" && <Profile />}
             {props.load === "mentorList" && <MentorListInterface />}
-
-            {props.load === "parametresComptes" && <CompteInterface />}
             {props.load === "ListeProject" && <ListeProjects />}
             {props.load === "creathonList" && <CreathonInterface />}
+            {props.load === "creathon" && <Creathons />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />
@@ -49,4 +45,4 @@ const CoordinateurGeneralDashboard = (props) => {
   );
 };
 
-export default CoordinateurGeneralDashboard;
+export default CoordinateurComposanteDashboard;

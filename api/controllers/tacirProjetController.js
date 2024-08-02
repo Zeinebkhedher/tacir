@@ -5,27 +5,26 @@ const Membres = require("../models/membreTacirModel");
 // Controller function to create a new project
 const createProject = async (req, res) => {
   try {
-    const {
-      candidats,
-      Dateprojet,
-      titre,
-      description,
-      region,
-      comments,
-      members,
-    } = req.body;
+    const { Dateprojet, titre, description, region, type, comments, members } =
+      req.body;
 
     // Get the ID of the authenticated user from the request
-    const ownerId = req.auth.membreId; // Assuming the ID of the authenticated user is stored in req.user.id
+    const ownerId = req.auth.membreId;
+
+    // Check if the user already has a project
+    const existingProject = await Project.findOne({ owner: ownerId });
+    if (existingProject) {
+      return res.status(400).json({ message: "You already have a project" });
+    }
 
     // Create a new project instance with the owner set to the ID of the authenticated user
     const newProject = new Project({
       owner: ownerId,
-      candidats,
       Dateprojet,
       titre,
       description,
       region,
+      type,
       comments,
       members,
     });
@@ -139,6 +138,41 @@ const getProjectByUserId = async (req, res) => {
   }
 };
 
+const getInovProjects = async (req, res) => {
+  try {
+    let query = { type: "INOV" };
+
+    // Check if region query parameter is provided
+    if (req.query.region) {
+      query.region = req.query.region;
+    }
+
+    const inovProjects = await Project.find(query).populate("owner");
+    res.status(200).json(inovProjects);
+  } catch (error) {
+    console.error("Error fetching INOV projects:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+const getCreaProjects = async (req, res) => {
+  try {
+    let query = { type: "CREA" };
+
+    // Check if region query parameter is provided
+    if (req.query.region) {
+      query.region = req.query.region;
+    }
+
+    const creaProjects = await Project.find(query).populate("owner");
+    res.status(200).json(creaProjects);
+  } catch (error) {
+    console.error("Error fetching CREA projects:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
 module.exports = {
   createProject,
   getAllProjects,
@@ -146,4 +180,6 @@ module.exports = {
   getEvaluationById,
   getAllEvaluations,
   getProjectByUserId,
+  getInovProjects,
+  getCreaProjects,
 };

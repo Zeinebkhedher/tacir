@@ -8,16 +8,16 @@ const AddProject = () => {
     titre: "",
     description: "",
     region: "",
+    type: "",
     comments: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [ownerId, setOwnerId] = useState("");
   const [storedToken, setStoredToken] = useState("");
+
   useEffect(() => {
     const storedTokenValue = localStorage.getItem("token");
-
     if (storedTokenValue && storedTokenValue !== "null") {
       setStoredToken(storedTokenValue);
     }
@@ -31,7 +31,7 @@ const AddProject = () => {
   const addMember = () => {
     setFormData({
       ...formData,
-      members: [...formData.members, { FullName: "", age: "" }],
+      members: [...formData.members, { FullName: "", age: "", email: "" }],
     });
   };
 
@@ -46,20 +46,16 @@ const AddProject = () => {
     e.preventDefault();
 
     try {
-      // Get the stored token from localStorage
-      const storedToken = localStorage.getItem("token");
-
       if (!storedToken) {
         throw new Error("Token not found");
       }
 
-      // Decode the token to extract the owner's ID
       const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
       const ownerId = decodedToken.membreId;
 
       const formDataWithOwner = {
         ...formData,
-        ownerId: ownerId,
+        owner: ownerId,
       };
 
       const response = await fetch("http://localhost:8000/api/projects/add", {
@@ -72,7 +68,8 @@ const AddProject = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Error adding project");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error adding project");
       }
 
       setFormData({
@@ -81,13 +78,14 @@ const AddProject = () => {
         titre: "",
         description: "",
         region: "",
+        type: "",
         comments: "",
       });
 
       setSuccessMessage("Project added successfully");
       setErrorMessage("");
     } catch (error) {
-      setErrorMessage("Error adding project");
+      setErrorMessage(error.message);
       setSuccessMessage("");
       console.error("Error adding project:", error.message);
     }
@@ -115,6 +113,13 @@ const AddProject = () => {
                 name="age"
                 value={member.age}
                 placeholder="Age"
+                onChange={(e) => handleMemberChange(index, e)}
+              />
+              <input
+                type="text"
+                name="email"
+                value={member.email}
+                placeholder="Email"
                 onChange={(e) => handleMemberChange(index, e)}
               />
             </div>
@@ -158,6 +163,14 @@ const AddProject = () => {
           </select>
         </div>
         <div className="form-group">
+          <label htmlFor="type">Type:</label>
+          <select name="type" value={formData.type} onChange={handleChange}>
+            <option value="">Select Type</option>
+            <option value="CREA">CREA</option>
+            <option value="INOV">INOV</option>
+          </select>
+        </div>
+        <div className="form-group">
           <label htmlFor="comments">Comments:</label>
           <input
             type="text"
@@ -168,9 +181,6 @@ const AddProject = () => {
         </div>
         <button type="submit">Add Project</button>
       </form>
-      <a href="/" className="btn">
-        Next
-      </a>
     </div>
   );
 };

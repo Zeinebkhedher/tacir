@@ -14,6 +14,8 @@ import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterf
 import HomePage from "../home/HomePage";
 import ListeBesoinInsterface from "../../components/listeBesoinsInterface/ListeBesoinInsterface";
 import EvaluationList from "../../components/projects/ListeEvaluations";
+import InovProjects from "../../components/projects/ListInovProjects";
+import CreaProjectsByRegion from "../../components/projects/ListCreaProjects";
 
 const MentorDashboard = (props) => {
   return (
@@ -47,6 +49,8 @@ const MentorDashboard = (props) => {
             {props.load === "espaceDepot" && <EspaceDepot />}
             {props.load === "ListeRendu" && <ListeRendu />}
             {props.load === "ListeEvaluations" && <EvaluationList />}
+            {props.load === "ListInovProjects" && <InovProjects />}
+            {props.load === "ListCreaProjects" && <CreaProjectsByRegion />}
           </div>
           {/* Overlay */}
           <div className="layout-overlay layout-menu-toggle" />
