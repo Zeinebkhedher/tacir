@@ -22,7 +22,7 @@ function SidebarCoordinateurRegional() {
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Pages</span>
       </li>
-      <NavLink to="/dashboard/admin/home">
+      <NavLink to="/dashboard/coordinateurRegional/Home">
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
@@ -43,6 +43,36 @@ function SidebarCoordinateurRegional() {
           </a>
         </li>
       </NavLink>
+      <NavLink to="/dashboard/coordinateurRegional/projetInov">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">projets Inov</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink to="/dashboard/coordinateurRegional/projetCrea">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">projets Crea</div>
+          </a>
+        </li>
+      </NavLink>
+
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Sessions de mentorats</span>
+      </li>
+
+      <NavLink to="/dashboard/coordinateurRegional/listMentorat">
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste des mentorats</div>
+          </a>
+        </li>
+      </NavLink>
+
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Cearthons</span>
       </li>
@@ -63,16 +93,33 @@ function SidebarCoordinateurRegional() {
           </a>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/coordinateurRegional/demande_candidature_creathon">
+
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text"> Formations</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurRegional/creerFormation"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des inscriptions</div>
+            <div data-i18n="Account Settings">Créer formation</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink
+        to="/dashboard/coordinateurRegional/ListFormation"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Liste formations</div>
           </a>
         </li>
       </NavLink>
 
-      {/* auditions */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>
       </li>

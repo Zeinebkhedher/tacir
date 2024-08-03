@@ -274,6 +274,36 @@ const App = () => {
             element={<MentorDashboard load="ListCreaProjects" />}
           />
           <Route
+            exact
+            path="/dashboard/coordinateurRegional/Home"
+            element={<CoordinateurRegionalDashboard load="Home" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurRegional/creerFormation"
+            element={<CoordinateurRegionalDashboard load="creerFormation" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurRegional/ListFormation"
+            element={<CoordinateurRegionalDashboard load="ListFormation" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurRegional/projetInov"
+            element={<CoordinateurRegionalDashboard load="projetInov" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurRegional/projetCrea"
+            element={<CoordinateurRegionalDashboard load="projetCrea" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurRegional/listMentorat"
+            element={<CoordinateurRegionalDashboard load="listMentorat" />}
+          />
+          <Route
             path="/dashboard/coordinateurRegional/profile/parametresComptes"
             element={<CoordinateurRegionalDashboard load="parametresComptes" />}
           />
@@ -324,6 +354,10 @@ const App = () => {
           <Route
             path="/dashboard/coordinateurComposante/mentorList"
             element={<CoordinateurComposanteDashboard load="mentorList" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/ListMentorat"
+            element={<CoordinateurComposanteDashboard load="ListMentorat" />}
           />
           <Route
             path="/dashboard/coordinateurComposante/projets/Evaluations"

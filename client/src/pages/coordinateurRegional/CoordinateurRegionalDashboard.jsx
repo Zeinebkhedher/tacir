@@ -13,6 +13,12 @@ import CreathonInterface from "../../components/creathonInterface/CreathonInterf
 import CreathonList from "../../components/creathonList/CreathonList";
 import InterfaceDemandeCreathon from "../../components/inetrfaceDemandeCreathon/InterfaceDeamndeCreathon";
 import ListeProjects from "../../components/projects/ListeProjects";
+import CreateFormation from "../../components/formations/CreateFormation";
+import FormationList from "../../components/formations/UpcomingFormations";
+import FormationPage from "../formation/FormationPage";
+import CreaProjects from "../../components/projects/ListCreaProjects";
+import InovProjects from "../../components/projects/ListInovProjects";
+import ListMentorat from "../../components/Mentorat/ListMentorat";
 
 const CoordinateurRegionalDashboard = (props) => {
   return (
@@ -29,7 +35,7 @@ const CoordinateurRegionalDashboard = (props) => {
 
             <Navbar1 />
 
-            {props.load === "home" && <HomePage />}
+            {props.load === "Home" && <HomePage />}
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "parametresComptes" && <ParametreCompte />}
             {props.load === "mentorList" && <MentorListInterface />}
@@ -40,6 +46,11 @@ const CoordinateurRegionalDashboard = (props) => {
               <InterfaceDemandeCreathon />
             )}
             {props.load === "ListeProject" && <ListeProjects />}
+            {props.load === "creerFormation" && <CreateFormation />}
+            {props.load === "ListFormation" && <FormationPage />}
+            {props.load === "projetCrea" && <CreaProjects />}
+            {props.load === "projetInov" && <InovProjects />}
+            {props.load === "listMentorat" && <ListMentorat />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

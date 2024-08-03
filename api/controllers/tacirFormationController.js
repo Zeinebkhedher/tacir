@@ -8,6 +8,9 @@ exports.createFormation = async (req, res) => {
     res.status(400).json({ status: "fail", message: err.message });
   }
 };
+
+
+
 const PorteurProjet = require("../models/membreTacirModel"); // Assuming you have a model for Porteur Projet
 
 exports.addParticipantToFormation = async (req, res) => {
@@ -138,26 +141,33 @@ exports.getBeneficiairesByFormation = async (req, res) => {
 // Get all formations
 exports.getAllFormations = async (req, res) => {
   try {
-    // Fetch all formations from the database
-    let formations = await Formation.find();
+    const { region } = req.query; // Extract region from query parameters
 
-    // Check the date of each formation
+    // Construct filter object
+    let filter = {};
+    if (region) {
+      filter.region = region; // Filter by region if provided
+    }
+
+    // Fetch formations from the database based on the filter
+    let formations = await Formation.find(filter);
+
+    // Check the date of each formation and update the status
     formations.forEach(async (formation) => {
       if (new Date(formation.Date) < new Date()) {
-        // Update the status to "Past"
         formation.status = "Past";
-        // Save the updated formation to the database
-        await formation.save();
+        await formation.save(); // Save the updated formation to the database
       }
     });
 
-    // Send the formations in the response
-    formations = await Formation.find(); // Re-fetch formations to include the updated ones
+    // Re-fetch formations to include the updated ones
+    formations = await Formation.find(filter);
     res.status(200).json({ status: "success", data: formations });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
 };
+
 
 // Get a single formation by ID
 exports.getFormationById = async (req, res) => {

@@ -46,11 +46,10 @@ Cordialement`,
   }
 };
 
-
 // Create Mentorat function
 const createMentorat = async (req, res) => {
   try {
-    const { titre, dateDebut, dateFin, description } = req.body;
+    const { titre, dateDebut, dateFin, description, region } = req.body;
 
     // Find member IDs based on the role "PorteurProjet"
     const destinataires = await Membres.find({ role: "PorteurProjet" }).select(
@@ -72,6 +71,7 @@ const createMentorat = async (req, res) => {
       dateDebut,
       dateFin,
       description,
+      region,
       destinataires: destinataires.map((member) => member._id),
       mentors: mentors.map((mentor) => mentor._id),
     });
@@ -91,7 +91,34 @@ const createMentorat = async (req, res) => {
   }
 };
 
+const getMentoratsByRegion = async (req, res) => {
+  try {
+    const { region } = req.query; // Extract region from query parameters
+
+    if (!region) {
+      return res
+        .status(400)
+        .json({ message: "Region query parameter is required" });
+    }
+
+    // Find mentorats filtered by region
+    const mentorats = await Mentorat.find({ region });
+
+    if (mentorats.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No mentorats found for this region" });
+    }
+
+    res.status(200).json({ status: "success", data: mentorats });
+  } catch (error) {
+    console.error("Error fetching mentorats:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   createMentorat,
   sendMentoratEmails,
+  getMentoratsByRegion,
 };

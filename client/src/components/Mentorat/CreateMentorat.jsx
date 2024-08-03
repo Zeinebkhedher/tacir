@@ -7,6 +7,7 @@ const PlanifierMentorat = () => {
   const [dateDebut, setDateDebut] = useState("");
   const [dateFin, setDateFin] = useState("");
   const [description, setDescription] = useState("");
+  const [region, setRegion] = useState(""); // New state for region
   const [mentors, setMentors] = useState([]);
   const [destinataires, setDestinataires] = useState([]);
   const [selectedMentors, setSelectedMentors] = useState([]);
@@ -49,6 +50,7 @@ const PlanifierMentorat = () => {
       dateDebut,
       dateFin,
       description,
+      region, // Include the region
       mentors: selectedMentors,
       destinataires: selectedDestinataires,
     };
@@ -62,6 +64,7 @@ const PlanifierMentorat = () => {
       setDateDebut("");
       setDateFin("");
       setDescription("");
+      setRegion(""); // Clear region
       setSelectedMentors([]);
       setSelectedDestinataires([]);
     } catch (error) {
@@ -125,6 +128,21 @@ const PlanifierMentorat = () => {
             required
           />
         </div>
+
+        <div>
+          <label htmlFor="region">Region:</label>
+          <select
+            id="region"
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
+            required
+          >
+            <option value="">Select Region</option>
+            <option value="KEF">KEF</option>
+            <option value="TUNIS">TUNIS</option>
+          </select>
+        </div>
+
         <div>
           <label htmlFor="mentors">Mentors:</label>
           <div className="dropdown">

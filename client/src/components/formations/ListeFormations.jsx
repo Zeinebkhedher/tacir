@@ -8,17 +8,26 @@ function ListeFormations() {
   const [showParticipants, setShowParticipants] = useState(false);
   const [showBeneficiaries, setShowBeneficiaries] = useState(false);
   const [selectedFormationId, setSelectedFormationId] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState("");
 
+  // Fetch formations based on the selected region
   useEffect(() => {
-    // Fetch formations when the component mounts
-    fetch("http://localhost:8000/api/formations/")
-      .then((response) => response.json())
-      .then((data) => {
-        setFormations(data.data);})
-      .catch((error) => {
+    const fetchFormations = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/formations${
+            selectedRegion ? `?region=${selectedRegion}` : ""
+          }`
+        );
+        const data = await response.json();
+        setFormations(data.data);
+      } catch (error) {
         console.error("Error fetching formations:", error);
-      });
-  }, []); // Empty dependency array to execute the effect only once when the component mounts
+      }
+    };
+
+    fetchFormations();
+  }, [selectedRegion]); // Re-fetch formations whenever the selected region changes
 
   const handleShowParticipants = async (id) => {
     try {
@@ -53,9 +62,25 @@ function ListeFormations() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="Formation">
         <h2>Liste des Formations</h2>
+
+        {/* Region Filter Dropdown */}
+        <div>
+          <label htmlFor="region">Region:</label>
+          <select
+            id="region"
+            value={selectedRegion}
+            onChange={(e) => setSelectedRegion(e.target.value)}
+          >
+            <option value="">All Regions</option>
+            <option value="TUNIS">Tunis</option>
+            <option value="KEF">Kef</option>
+            {/* Add more options as needed */}
+          </select>
+        </div>
+
         <table className="tableFormation">
           <thead>
             <tr>
@@ -63,7 +88,7 @@ function ListeFormations() {
               <th>Date</th>
               <th>Heure de début</th>
               <th>Heure de fin</th>
-              <th>Formateur FistName</th>
+              <th>Formateur FirstName</th>
               <th>Formateur LastName</th>
               <th>Formateur infos</th>
               <th>Participants</th>
@@ -112,14 +137,13 @@ function ListeFormations() {
       {(showParticipants || showBeneficiaries) && (
         <div
           style={{
-            position:"absolute",
-            top:"30vh",
-            right:"1vw",
+            position: "absolute",
+            top: "30vh",
+            right: "1vw",
             border: "1px solid #ccc",
             padding: "10px",
             borderRadius: "5px",
             boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.2)",
-            
           }}
         >
           <h2>{showParticipants ? "Participants" : "Beneficiaries"}</h2>

@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 
 function FormationPage() {
   return (
-    <div className="ForamtionContainer">
+    <div>
       <ListeFormations />
-      <Link to="/dashboard/admin/formations/createFormation">
-        <button className="CreateFormationButton">Créer une formation</button>
-      </Link>
     </div>
   );
 }
