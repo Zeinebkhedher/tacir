@@ -282,7 +282,26 @@
       console.error("Error fetching creathon by id:", error.message);
       res.status(500).json({ message: "Internal server error" });
     }
+  }; 
+
+  const fetchAllCreathons = async () => {
+    const token = localStorage.getItem('authToken');
+    console.log('Fetching creathons from:', 'http://localhost:8000/api/creathonsListe');
+    try {
+      const responseCreathons = await axios.get(
+        'http://localhost:8000/api/creathonsListe',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log('Creathons data:', responseCreathons.data);
+      setEvents(responseCreathons.data.creathons);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des créathons/formation:', error.message);
+    }
   };
-  module.exports = {createSynthesis,createCreathon,listPresenceByPupitre,updateCreathonStatus,deleteCreathon,getRepetitionById,getAllCreathons,updateRepetition, getCreathonById};
+  module.exports = {fetchAllCreathons, createSynthesis,createCreathon,listPresenceByPupitre,updateCreathonStatus,deleteCreathon,getRepetitionById,getAllCreathons,updateRepetition, getCreathonById};
 
 

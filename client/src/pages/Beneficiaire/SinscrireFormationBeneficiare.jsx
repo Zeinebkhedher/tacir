@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "./upcomingFormation.css"; // Import CSS file for component-specific styles
+import "../formation/allFormationPage.css"; // Import CSS file for component-specific styles
 
-function FormationList() {
-  const [upcomingFormations, setUpcomingFormations] = useState([]);
+function FormationBeneficiaire() {
+  const [formations, setFormations] = useState([]);
 
   useEffect(() => {
-    // Fetch formations from the backend API
+    // Fetch all formations from the backend API
     fetch("http://localhost:8000/api/formations")
       .then((response) => {
         if (!response.ok) {
@@ -15,45 +14,34 @@ function FormationList() {
         return response.json();
       })
       .then((responseData) => {
-        // Extract the array of formations from the response data
-        const formations = responseData.data || [];
-        console.log(formations); // Log the formations to inspect their structure
-        // Filter formations with status "Upcoming"
-        const upcoming = formations.filter(
-          (formation) => formation.status === "Upcoming"
-        );
-        // Format the date in "dd-mm-yy" format
-        const formattedFormations = upcoming.map((formation) => {
-          return {
-            ...formation,
-            Date: formatDate(formation.Date), // Format the date
-          };
-        });
-        setUpcomingFormations(formattedFormations);
+        // Extract the formations array from the response data
+        const formationsData = responseData.data || [];
+        console.log(formationsData); // Log the formations to inspect their structure
+        setFormations(formationsData);
       })
       .catch((error) => {
         console.error("Error fetching formations:", error.message);
       });
   }, []);
 
-  // Function to format the date in "dd-mm-yy" format
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear().toString().slice(2);
-    return `${day}-${month}-${year}`;
-  };
-
   return (
     <>
-      <h2 className="title">Upcoming Formations</h2>
+      <h2 className="tilteFormation">All Formations</h2>
       <div className="containerFormation">
-        {upcomingFormations.map((formation) => (
-          <div key={formation._id} className="formation-box">
+        {formations.map((formation) => (
+          <div
+            key={formation._id}
+            className={`formation-box ${
+              formation.status === "Past" ? "past" : ""
+            }`}
+          >
             <div className="formation">
               <h3>{formation.Name}</h3>
               <div className="contentFormation">
+                <div className="line">
+                  <p>status: </p>
+                  <span>{formation.status}</span>
+                </div>
                 <div className="line">
                   <p>Date: </p>
                   <span>{formation.Date}</span>
@@ -82,9 +70,16 @@ function FormationList() {
                 </div>
               </div>
             </div>
-            <Link to={`/formations/sinscrire/${formation._id}`}>
-              <button className="sinscrire">S'inscrire</button>
-            </Link>
+            {formation.status === "Upcoming" && (
+              <button className="inscription">
+                <a
+                  href={`/formations/sinscrireBeneficiaire/${formation._id}`}
+                  className="link-no-decoration"
+                >
+                  S'inscrire
+                </a>
+              </button>
+            )}
           </div>
         ))}
       </div>
@@ -92,4 +87,4 @@ function FormationList() {
   );
 }
 
-export default FormationList;
+export default FormationBeneficiaire;

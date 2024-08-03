@@ -18,5 +18,12 @@ router.put("/:id", formationController.updateFormation);
 
 // Delete a formation
 router.delete("/:id", formationController.deleteFormation);
-
+router.post(
+  "/beneficiaire/:id/",
+  formationController.addBeneficiaire
+);
+router.get(
+  "/:id/beneficiaires",
+  formationController.getBeneficiairesByFormation
+);
 module.exports = router;

@@ -10,13 +10,11 @@
     padding: 10px;
     width: 80vw; /* Adjust this as necessary */
 }
-
-.tilteFormation {
-    position: absolute;
-    top: 20vh;
-    left: 40%;
-    transform: translateX(-50%);
-    text-align: center;
+.tilteFormation{
+position: absolute;
+top: 15vh;
+left: 35vw;
+bottom: 10vh;
 }
 
 .formation-box {
@@ -40,4 +38,22 @@
 
 .line p {
     font-weight: bold;
+}
+
+.inscription{
+    font-size: 16px;
+    color: white;
+    background-color: green;
+}
+.link-no-decoration {
+    color: white;
+    background-color: green;
+}
+.link-no-decoration:hover {
+    color: white;
+    background-color: green;
+}
+.inscription:hover{
+    color: white;
+        background-color: green;
 }

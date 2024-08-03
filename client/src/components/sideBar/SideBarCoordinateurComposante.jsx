@@ -30,29 +30,22 @@ function SidebarCoordinateurComposante() {
           </a>
         </li>
       </NavLink>
-      {/* Concerts */}
+
       <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Cearthons</span>
+        <span className="menu-header-text">Formations</span>
       </li>
-
-      <NavLink to="/dashboard/coordinateurComposante/creathons">
+      <NavLink
+        to="/dashboard/coordinateurComposante/listeFormations"
+        onClick={goup}
+      >
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">creathons</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/oordinateurComposante/creathon">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste creathons</div>
+            <div data-i18n="Account Settings">Liste des formations</div>
           </a>
         </li>
       </NavLink>
 
-      {/* auditions */}
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>
       </li>
@@ -86,7 +79,80 @@ function SidebarCoordinateurComposante() {
         <li className="menu-item">
           <a href="javascript:void(0);" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Projets</div>
+            <div data-i18n="Account Settings">Evaluer Projets</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink
+        to="/dashboard/coordinateurComposante/ListeProjets/crea"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Projets CREA</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink
+        to="/dashboard/coordinateurComposante/ListeProjets/inov"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Projets INOV</div>
+          </a>
+        </li>
+      </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Calendrier</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurComposante/calendrier"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Calendrier </div>
+          </a>
+        </li>
+      </NavLink>
+
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Rendus</span>
+      </li>
+      <NavLink
+        to="/dashboard/coordinateurComposante/demanderRendu"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">demander Rendu</div>
+          </a>
+        </li>
+      </NavLink>
+      <NavLink
+        to="/dashboard/coordinateurComposante/ListRendu"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">liste des Rendus</div>
+          </a>
+        </li>
+      </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">contact</span>
+      </li>
+      <NavLink to="/dashboard/coordinateurComposante/contact" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">contacter membres</div>
           </a>
         </li>
       </NavLink>

@@ -1,9 +1,20 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import "./assets/css/demo.css";
 import "./assets/vendor/css/core.css";
 import "./assets/vendor/css/theme-default.css";
+import SinscrireFormation from "./components/formations/SinscrireFormation";
 import EmailVerification from "./components/verify/EmailVerification";
+import BeneficiaireDashboard from "./pages/Beneficiaire/BeneficiaireDashboard";
+import InscriptionForm from "./pages/Beneficiaire/FormInscriptionFormation";
+import FormationBeneficiaire from "./pages/Beneficiaire/SinscrireFormationBeneficiare";
+import CoordinateurComposanteDashboard from "./pages/CoordinateurComposante/CoordinateurComposanteDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import CandidatDashboard from "./pages/candidat/CandidatDashbord";
 import FormCandidature from "./pages/candidat/FormCandidature";
 import CoordinateurGeneralDashboard from "./pages/coordinateurGeneral/CoordinateurGeneralDashboard";
 import CoordinateurRegionalDashboard from "./pages/coordinateurRegional/CoordinateurRegionalDashboard";
@@ -11,11 +22,6 @@ import HomePage from "./pages/home/HomePage";
 import Login from "./pages/login/Login";
 import MentorDashboard from "./pages/mentor/MentorDashboard";
 import PorteurProjetDashboard from "./pages/porteurProjet/PorteurProjetDashboard";
-import AddProject from "./components/projects/AddProject";
-import BeneficiaireFormationDashboard from "./pages/beneficiaireFormation/BeneficiaireFormationDashboard";
-
-import CoordinateurComposanteDashboard from "./pages/CoordinateurComposante/CoordinateurComposanteDashboard";
-import CandidatDashboard from "./pages/candidat/CandidatDashbord";
 const App = () => {
   return (
     <Router>
@@ -178,9 +184,15 @@ const App = () => {
             element={<PorteurProjetDashboard load="Evaluation" />}
           />
           <Route
-            path="/dashboard/porteurProjet/formations/sinscrire/:formationId"
-            element={<PorteurProjetDashboard load="sinscrireFormation" />}
+            path="/formations/sinscrire/:formationId"
+            element={<SinscrireFormation />}
           />
+          <Route
+            path="/formations/sinscrireBeneficiaire/:formationId"
+            element={<InscriptionFormWrapper />}
+          />
+          <Route path="/formations" element={<FormationBeneficiaire />} />
+          <Route path="/formations" element={<FormationBeneficiaire />} />
           <Route
             path="/dashboard/potreur-de-projet/calendrier"
             element={
@@ -325,30 +337,63 @@ const App = () => {
           />
           <Route
             exact
-            path="/dashboard/coordinateurComposante/home"
+            path="/dashboard/coordinateurComposante/Home"
             element={<CoordinateurComposanteDashboard load="Home" />}
           />
           <Route
-            path="/dashboard/coordinateurComposante/creathons"
-            element={<CoordinateurComposanteDashboard load="creathonList" />}
+            exact
+            path="/dashboard/coordinateurComposante/listeFormations"
+            element={<CoordinateurComposanteDashboard load="listeFormations" />}
           />
           <Route
-            path="/dashboard/oordinateurComposante/creathon"
-            element={<CoordinateurComposanteDashboard load="creathon" />}
+            exact
+            path="/dashboard/coordinateurComposante/ListeProjets/inov"
+            element={<CoordinateurComposanteDashboard load="projetInov" />}
           />
-  <Route
-            path="/dashboard/BeneficiaireFormationDashboard"
-            element={<BeneficiaireFormationDashboard load="home" />}
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/ListeProjets/crea"
+            element={<CoordinateurComposanteDashboard load="projetCrea" />}
           />
-            <Route
-            path="/dashboard/BeneficiaireFormationDashboard/home"
-            element={<BeneficiaireFormationDashboard load="home" />}
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/contact"
+            element={<CoordinateurComposanteDashboard load="contact" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/demanderRendu"
+            element={<CoordinateurComposanteDashboard load="demanderRendu" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/ListRendu"
+            element={<CoordinateurComposanteDashboard load="ListRendu" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/calendrier"
+            element={<CoordinateurComposanteDashboard load="calendrier" />}
+          />
+          <Route
+            path="/dashboard/beneficiaire/home"
+            element={<BeneficiaireDashboard load="Home" />}
+          />
+          <Route
+            path="/dashboard/beneficiaire/formations"
+            element={<BeneficiaireDashboard load="ALLformation" />}
+          />
+          <Route
+            path="/dashboard/beneficiaire/Formations/FormationList"
+            element={<BeneficiaireDashboard load="FormationList" />}
           />
         </Routes>
       </>
     </Router>
   );
+};
+function InscriptionFormWrapper() {
+  const { formationId } = useParams();
+  return <InscriptionForm formationId={formationId} />;
 }
-;
-
 export default App;

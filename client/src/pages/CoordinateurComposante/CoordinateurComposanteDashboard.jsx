@@ -1,18 +1,20 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
-import CompteInterface from "../../components/compteInterface/CompteInterface";
-import AccountRegister from "../../components/comptes/AccountRegister";
-import Creathons from "../../components/creathons/Creathons";
+import Contact from "../../components/Contact/Contact";
+import ListeFormations from "../../components/formations/ListeFormations";
+import PlannigCordiComposante from "../../components/plannigCordiComposante/PlannigCordiComposante";
 import Profile from "../../components/profil/Profile";
+import CreaProjects from "../../components/projects/ListCreaProjects";
 import ListeProjects from "../../components/projects/ListeProjects";
-import SidebarCoordinateurGeneral from "../../components/sideBar/SideBarCoordinateurGeneral";
+import InovProjects from "../../components/projects/ListInovProjects";
+import EspaceDepot from "../../components/rendu/EspaceDepot";
+import ListeRendu from "../../components/rendu/ListeRendu";
+import SidebarCoordinateurComposante from "../../components/sideBar/SideBarCoordinateurComposante";
 import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
-import SidebarCoordinateurComposante from "../../components/sideBar/SideBarCoordinateurComposante";
 
 const CoordinateurComposanteDashboard = (props) => {
   return (
@@ -34,8 +36,13 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "parametresComptes" && <Profile />}
             {props.load === "mentorList" && <MentorListInterface />}
             {props.load === "ListeProject" && <ListeProjects />}
-            {props.load === "creathonList" && <CreathonInterface />}
-            {props.load === "creathon" && <Creathons />}
+            {props.load === "listeFormations" && <ListeFormations />}
+            {props.load === "projetCrea" && <CreaProjects />}
+            {props.load === "projetInov" && <InovProjects />}
+            {props.load === "contact" && <Contact />}
+            {props.load === "ListRendu" && <ListeRendu />}
+            {props.load === "demanderRendu" && <EspaceDepot />}
+            {props.load === "calendrier" && <PlannigCordiComposante />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

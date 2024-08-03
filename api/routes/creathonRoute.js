@@ -31,4 +31,6 @@ router.get(
   /*middlewareRepetition.loggedMiddleware, middlewareRepetition.isAdmin,*/
   creathonController.getCreathonById
 );
+router.get('/creathonsListe', creathonController.getAllCreathons);
+
 module.exports = router;

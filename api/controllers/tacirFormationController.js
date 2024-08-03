@@ -23,16 +23,8 @@ exports.addParticipantToFormation = async (req, res) => {
         .json({ status: "fail", message: "Formation not found" });
     }
 
-    // Find the member in the porteur projet model using their email
-    const porteurProjet = await PorteurProjet.findOne({ email });
-    if (!porteurProjet) {
-      return res
-        .status(404)
-        .json({ status: "fail", message: "Porteur projet not found" });
-    }
-
-    // Add the member's ID to the participants array in the formation model
-    formation.participants.push(porteurProjet._id);
+    // Add the participant as an object to the participants array
+    formation.participants.push({ Name: fullName, email });
 
     // Save the updated formation document
     await formation.save();
@@ -47,29 +39,124 @@ exports.addParticipantToFormation = async (req, res) => {
   }
 };
 
+exports.addBeneficiaire = async (req, res) => {
+  const { id } = req.params;
+  const { nom, prenom, email, numTel, motivation, adressePostale } = req.body;
+
+  try {
+    // Validate request body
+    if (
+      !nom ||
+      !prenom ||
+      !email ||
+      !numTel ||
+      !motivation ||
+      !adressePostale
+    ) {
+      return res.status(400).json({
+        status: "fail",
+        message: "All fields are required",
+      });
+    }
+
+    // Find the formation by its ID
+    const formation = await Formation.findById(id);
+    if (!formation) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Formation not found" });
+    }
+
+    // Check if email already exists in beneficiaire array
+    const beneficiaireExists = formation.beneficiaire.some(
+      (b) => b.email === email
+    );
+    if (beneficiaireExists) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Email already exists in beneficiaire",
+      });
+    }
+
+    // Add the beneficiaire to the beneficiaire array
+    formation.beneficiaire.push({
+      nom,
+      prenom,
+      email,
+      numTel,
+      motivation,
+      adressePostale,
+    });
+
+    // Save the updated formation document
+    const updatedFormation = await formation.save();
+
+    res.status(200).json({ status: "success", data: updatedFormation });
+  } catch (error) {
+    console.error("Error:", error.message);
+
+    if (error.name === "ValidationError") {
+      res.status(400).json({
+        status: "error",
+        message: "Validation error: " + error.message,
+      });
+    } else if (error.name === "MongoError" && error.code === 11000) {
+      res.status(400).json({
+        status: "error",
+        message: "Duplicate field error: " + JSON.stringify(error.keyValue),
+      });
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: "Failed to add beneficiaire to the formation",
+      });
+    }
+  }
+};
+exports.getBeneficiairesByFormation = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find formation by ID and populate the beneficiaries
+    const formation = await Formation.findById(id).select("beneficiaire");
+
+    if (!formation) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Formation not found" });
+    }
+
+    // Send beneficiaries data
+    res.status(200).json({ status: "success", data: formation.beneficiaire });
+  } catch (error) {
+    console.error("Error fetching beneficiaries:", error);
+    res
+      .status(500)
+      .json({ status: "error", message: "Failed to fetch beneficiaries" });
+  }
+};
 // Get all formations
 exports.getAllFormations = async (req, res) => {
   try {
     // Fetch all formations from the database
     let formations = await Formation.find();
 
-    // Check the date of each formation
+    // Check the date of each formation and update status if necessary
     formations.forEach(async (formation) => {
       if (new Date(formation.Date) < new Date()) {
-        // Update the status to "Past"
         formation.status = "Past";
-        // Save the updated formation to the database
         await formation.save();
       }
     });
 
-    // Send the formations in the response
-    formations = await Formation.find(); // Re-fetch formations to include the updated ones
+    // Re-fetch formations to include the updated ones
+    formations = await Formation.find(); 
     res.status(200).json({ status: "success", data: formations });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
 };
+
 
 // Get a single formation by ID
 exports.getFormationById = async (req, res) => {

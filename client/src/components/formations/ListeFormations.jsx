@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import "./ListeFormations.css";
 
 function ListeFormations() {
   const [formations, setFormations] = useState([]);
   const [participants, setParticipants] = useState([]);
+  const [beneficiaries, setBeneficiaries] = useState([]);
   const [showParticipants, setShowParticipants] = useState(false);
+  const [showBeneficiaries, setShowBeneficiaries] = useState(false);
   const [selectedFormationId, setSelectedFormationId] = useState(null);
 
   useEffect(() => {
@@ -11,9 +14,7 @@ function ListeFormations() {
     fetch("http://localhost:8000/api/formations/")
       .then((response) => response.json())
       .then((data) => {
-        // Set the fetched formations to the state
-        setFormations(data.data); // Assuming the response data structure has a 'data' property containing the formations
-      })
+        setFormations(data.data);})
       .catch((error) => {
         console.error("Error fetching formations:", error);
       });
@@ -29,16 +30,33 @@ function ListeFormations() {
       setParticipants(data.data); // Set participants data
       setSelectedFormationId(id); // Set selected formation ID
       setShowParticipants(true); // Show participants frame
+      setShowBeneficiaries(false); // Hide beneficiaries frame
     } catch (error) {
       console.error("Error fetching participants:", error);
     }
   };
 
+  const handleShowBeneficiaries = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/formations/${id}/beneficiaires`
+      );
+      const data = await response.json();
+      console.log(data); // Assuming the response contains the list of beneficiaries
+      setBeneficiaries(data.data); // Set beneficiaries data
+      setSelectedFormationId(id); // Set selected formation ID
+      setShowBeneficiaries(true); // Show beneficiaries frame
+      setShowParticipants(false); // Hide participants frame
+    } catch (error) {
+      console.error("Error fetching beneficiaries:", error);
+    }
+  };
+
   return (
     <div style={{ display: "flex" }}>
-      <div>
+      <div className="Formation">
         <h2>Liste des Formations</h2>
-        <table>
+        <table className="tableFormation">
           <thead>
             <tr>
               <th>Nom</th>
@@ -49,6 +67,7 @@ function ListeFormations() {
               <th>Formateur LastName</th>
               <th>Formateur infos</th>
               <th>Participants</th>
+              <th>Beneficiaries</th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +94,14 @@ function ListeFormations() {
                 </td>
                 <td>
                   <button onClick={() => handleShowParticipants(formation._id)}>
-                    Show Participants
+                    Participants
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleShowBeneficiaries(formation._id)}
+                  >
+                    Beneficiaries
                   </button>
                 </td>
               </tr>
@@ -83,30 +109,33 @@ function ListeFormations() {
           </tbody>
         </table>
       </div>
-      {showParticipants && (
+      {(showParticipants || showBeneficiaries) && (
         <div
           style={{
-            marginLeft: "20px",
+            position:"absolute",
+            top:"30vh",
+            right:"1vw",
             border: "1px solid #ccc",
             padding: "10px",
             borderRadius: "5px",
             boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.2)",
+            
           }}
         >
-          <h2>Participants</h2>
+          <h2>{showParticipants ? "Participants" : "Beneficiaries"}</h2>
           <ul style={{ listStyleType: "none", padding: 0 }}>
-            {participants.map((participant) => (
+            {(showParticipants ? participants : beneficiaries).map((item) => (
               <li
-                key={participant._id}
+                key={item._id}
                 style={{
-                  marginBottom: "10px",
+                  marginTop: "20px",
                   borderBottom: "1px solid #eee",
                   paddingBottom: "5px",
                 }}
               >
-                <strong>Name:</strong> {participant.prenom} {participant.nom}
+                <strong>Name:</strong> {item.prenom} {item.nom}
                 <br />
-                <strong>Email:</strong> {participant.email}
+                <strong>Email:</strong> {item.email}
               </li>
             ))}
           </ul>
