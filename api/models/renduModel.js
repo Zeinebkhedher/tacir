@@ -27,6 +27,10 @@ const renduSchema = new mongoose.Schema(
     destinataires: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Membres", required: true },
     ],
+    region: {
+      type: String,
+      enum: ["TUNIS", "KEF"], // Enum for region
+    },
   },
   { timestamps: true }
 );

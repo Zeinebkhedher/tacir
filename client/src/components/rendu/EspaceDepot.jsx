@@ -9,6 +9,7 @@ const EspaceDepot = () => {
   const [destinataires, setDestinataires] = useState([]);
   const [selectedDestinataires, setSelectedDestinataires] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+  const [region, setRegion] = useState(""); // New state for region
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState("");
 
@@ -35,6 +36,7 @@ const EspaceDepot = () => {
       description,
       expirationDate,
       destinataires: selectedDestinataires,
+      region, // Include the region
     };
 
     try {
@@ -50,6 +52,7 @@ const EspaceDepot = () => {
       setDescription("");
       setExpirationDate("");
       setSelectedDestinataires([]);
+      setRegion(""); // Clear region
     } catch (error) {
       setError("Error creating rendu. Please try again.");
       setSuccess("");
@@ -100,9 +103,22 @@ const EspaceDepot = () => {
           />
         </div>
         <div>
+          <label htmlFor="region">Region:</label>
+          <select
+            id="region"
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
+            required
+          >
+            <option value="">Select Region</option>
+            <option value="TUNIS">TUNIS</option>
+            <option value="KEF">KEF</option>
+          </select>
+        </div>
+        <div>
           <label htmlFor="destinataires">Destinataires:</label>
           <div className="dropdown">
-            <button  className="dropbtn" onClick={toggleDropdown}>
+            <button className="dropbtn" onClick={toggleDropdown}>
               {selectedDestinataires.length > 0
                 ? `${selectedDestinataires.length} selected`
                 : "Select Destinataires"}

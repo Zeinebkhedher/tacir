@@ -3,7 +3,7 @@ const Membres = require("../models/membreTacirModel");
 const nodemailer = require("nodemailer");
 const addRendu = async (req, res) => {
   try {
-    const { titre, description, expirationDate, commentaire, destinataires } =
+    const { titre, description, expirationDate, region,commentaire, destinataires } =
       req.body;
 
     // Find member IDs based on the emails provided in destinataires
@@ -24,6 +24,7 @@ const addRendu = async (req, res) => {
       description,
       expirationDate,
       commentaire,
+      region,
       destinataires: members.map((member) => member._id),
     });
 
@@ -194,6 +195,31 @@ const getRendusForUser = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+const getRendusByRegion = async (req, res) => {
+  try {
+    const { region } = req.query; // Extract region from query parameters
+
+    if (!region) {
+      return res
+        .status(400)
+        .json({ message: "Region query parameter is required" });
+    }
+
+    // Find rendus filtered by region
+    const rendus = await Rendu.find({ region });
+
+    if (rendus.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No rendus found for this region" });
+    }
+
+    res.status(200).json({ status: "success", data: rendus });
+  } catch (error) {
+    console.error("Error fetching rendus:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 module.exports = {
   addRendu,
   deleteRendu,
@@ -202,4 +228,5 @@ module.exports = {
   getAllRendus,
   downloadFile,
   getRendusForUser,
+  getRendusByRegion,
 };

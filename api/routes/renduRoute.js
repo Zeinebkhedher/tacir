@@ -17,5 +17,6 @@ router.post(
 router.get("/rendus", renduController.getAllRendus);
 router.get("/files/:filePath", renduController.downloadFile);
 router.get("/forUser", auth.logged, renduController.getRendusForUser);
+router.get("/byRegion", renduController.getRendusByRegion);
 
 module.exports = router;
