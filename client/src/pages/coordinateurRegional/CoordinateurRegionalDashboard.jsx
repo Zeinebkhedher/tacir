@@ -5,14 +5,17 @@ import CompteInterface from "../../components/compteInterface/CompteInterface";
 import AccountRegister from "../../components/comptes/AccountRegister";
 import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
 import CreathonList from "../../components/creathonList/CreathonList";
+import CreateFormation from "../../components/formations/CreateFormation";
 import InterfaceDemandeCreathon from "../../components/inetrfaceDemandeCreathon/InterfaceDeamndeCreathon";
+import ListMentorat from "../../components/Mentorat/ListMentorat";
+import CreaProjects from "../../components/projects/ListCreaProjects";
 import ListeProjects from "../../components/projects/ListeProjects";
+import InovProjects from "../../components/projects/ListInovProjects";
 import SidebarCoordinateurRegional from "../../components/sideBar/SideBarCoordinateurRegional";
-import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
+import FormationPage from "../formation/FormationPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-
 const CoordinateurRegionalDashboard = (props) => {
   return (
     <div>
@@ -28,20 +31,22 @@ const CoordinateurRegionalDashboard = (props) => {
 
             <Navbar1 />
 
-            {props.load === "home" && <HomePage />}
+            {props.load === "Home" && <HomePage />}
             {props.load === "AcountRegister" && <AccountRegister />}
             {props.load === "parametresComptes" && <CompteInterface />}
             {props.load === "mentorList" && <MentorListInterface />}
             {props.load === "ListeCandidats" && <ListeCandidatsPage />}
             {props.load === "creathonList" && <CreathonInterface />}
             {props.load === "creathon" && <CreathonList />}
-            {props.load === "demande_candidature_creathon" && (
+            {props.load === "demande_candidature_creathon" &&
               <InterfaceDemandeCreathon />
-            )}
-          {props.load === "ListeProject" && <ListeProjects />}
-
-
-           
+            }
+            {props.load === "ListeProject" && <ListeProjects />}
+            {props.load === "creerFormation" && <CreateFormation />}
+            {props.load === "ListFormation" && <FormationPage />}
+            {props.load === "projetCrea" && <CreaProjects />}
+            {props.load === "projetInov" && <InovProjects />}
+            {props.load === "listMentorat" && <ListMentorat />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

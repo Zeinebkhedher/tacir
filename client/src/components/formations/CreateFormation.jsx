@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import axios from "axios"; // Assuming you're using axios for HTTP requests
+import axios from "axios";
 
 const CreateFormation = () => {
   const [formationData, setFormationData] = useState({
     Name: "",
-    FirstName: "",
-    LastName: "",
-    informations: "",
+    formateur: {
+      FirstName: "",
+      LastName: "",
+      informations: "",
+    },
     Date: "",
     description: "",
     startHour: "",
     FinishHour: "",
-    status: "Upcoming", // Assuming default status is "Upcoming"
-    region: "TUNIS", // Assuming default region is "TUNIS"
+    status: "Upcoming", // Default value
+    region: "",
   });
 
   const [successMessage, setSuccessMessage] = useState("");
@@ -20,31 +22,53 @@ const CreateFormation = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormationData({ ...formationData, [name]: value });
+    if (name.startsWith("formateur.")) {
+      const key = name.split(".")[1];
+      setFormationData({
+        ...formationData,
+        formateur: { ...formationData.formateur, [key]: value },
+      });
+    } else {
+      setFormationData({ ...formationData, [name]: value });
+    }
+  };
+
+  const calculateStatus = (dateString) => {
+    const today = new Date();
+    const formationDate = new Date(dateString);
+    return formationDate < today ? "Past" : "Upcoming";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const updatedStatus = calculateStatus(formationData.Date);
+
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/formations/",
-        formationData
-      ); // Adjust the URL if needed
+        "http://localhost:8000/api/formations/", // Adjust URL if needed
+        {
+          ...formationData,
+          status: updatedStatus,
+          formateur: [formationData.formateur], // Ensure formateur is an array
+        }
+      );
       setSuccessMessage("Formation created successfully.");
       setErrorMessage("");
       console.log("Formation created:", response.data);
       // Reset form data after successful creation
       setFormationData({
         Name: "",
-        FirstName: "",
-        LastName: "",
-        informations: "",
+        formateur: {
+          FirstName: "",
+          LastName: "",
+          informations: "",
+        },
         Date: "",
         description: "",
         startHour: "",
         FinishHour: "",
         status: "Upcoming",
-        region: "TUNIS",
+        region: "",
       });
     } catch (error) {
       setSuccessMessage("");
@@ -74,8 +98,8 @@ const CreateFormation = () => {
           Formateur First Name:
           <input
             type="text"
-            name="FirstName"
-            value={formationData.FirstName}
+            name="formateur.FirstName"
+            value={formationData.formateur.FirstName}
             onChange={handleChange}
             placeholder="Formateur First Name"
             required
@@ -85,8 +109,8 @@ const CreateFormation = () => {
           Formateur Last Name:
           <input
             type="text"
-            name="LastName"
-            value={formationData.LastName}
+            name="formateur.LastName"
+            value={formationData.formateur.LastName}
             onChange={handleChange}
             placeholder="Formateur Last Name"
             required
@@ -96,8 +120,8 @@ const CreateFormation = () => {
           Informations:
           <input
             type="text"
-            name="informations"
-            value={formationData.informations}
+            name="formateur.informations"
+            value={formationData.formateur.informations}
             onChange={handleChange}
             placeholder="Informations"
             required
@@ -144,6 +168,19 @@ const CreateFormation = () => {
             placeholder="Finish Hour"
             required
           />
+        </label>
+        <label>
+          Region:
+          <select
+            name="region"
+            value={formationData.region}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Region</option>
+            <option value="TUNIS">Tunis</option>
+            <option value="KEF">Kef</option>
+          </select>
         </label>
         <button type="submit">Create Formation</button>
       </form>

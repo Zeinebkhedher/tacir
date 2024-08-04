@@ -11,6 +11,11 @@ const mentoratSchema = mongoose.Schema({
   mentors: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Membres", required: true },
   ],
+  region: {
+    type: String,
+    enum: ["KEF", "TUNIS"], // Adding enum values
+    required: true, // Making the field required
+  },
 });
 
 const Mentorat = mongoose.model("Mentorat", mentoratSchema);

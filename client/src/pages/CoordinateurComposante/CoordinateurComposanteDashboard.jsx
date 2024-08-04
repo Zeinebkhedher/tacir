@@ -22,6 +22,7 @@ import FormationList from "../../components/formations/UpcomingFormations";
 import AllFormationPage from "../formation/AllFormationPage";
 import PlanifierReunion from "../../components/meetings/PlanifierReunion";
 import PlanifierMentorat from "../../components/Mentorat/CreateMentorat";
+import ListMentorat from "../../components/Mentorat/ListMentorat";
 
 const CoordinateurComposanteDashboard = (props) => {
   return (
@@ -54,6 +55,7 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "upcomingFormation" && <AllFormationPage />}
             {props.load === "planifierReunion" && <PlanifierReunion />}
             {props.load === "planifierMentorat" && <PlanifierMentorat />}
+            {props.load === "ListMentorat" && <ListMentorat />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

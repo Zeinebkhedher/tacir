@@ -8,6 +8,9 @@ exports.createFormation = async (req, res) => {
     res.status(400).json({ status: "fail", message: err.message });
   }
 };
+
+
+
 const PorteurProjet = require("../models/membreTacirModel"); // Assuming you have a model for Porteur Projet
 
 exports.addParticipantToFormation = async (req, res) => {
@@ -138,19 +141,27 @@ exports.getBeneficiairesByFormation = async (req, res) => {
 // Get all formations
 exports.getAllFormations = async (req, res) => {
   try {
-    // Fetch all formations from the database
-    let formations = await Formation.find();
+    const { region } = req.query; // Extract region from query parameters
 
-    // Check the date of each formation and update status if necessary
+    // Construct filter object
+    let filter = {};
+    if (region) {
+      filter.region = region; // Filter by region if provided
+    }
+
+    // Fetch formations from the database based on the filter
+    let formations = await Formation.find(filter);
+
+    // Check the date of each formation and update the status
     formations.forEach(async (formation) => {
       if (new Date(formation.Date) < new Date()) {
         formation.status = "Past";
-        await formation.save();
+        await formation.save(); // Save the updated formation to the database
       }
     });
 
     // Re-fetch formations to include the updated ones
-    formations = await Formation.find(); 
+    formations = await Formation.find(filter);
     res.status(200).json({ status: "success", data: formations });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
@@ -228,11 +239,12 @@ exports.getParticipantsByFormationId = async (req, res) => {
     });
   }
 };
-
 exports.getFormationsWithAcceptedBeneficiaires = async (req, res) => {
   try {
-    const formations = await Formation.find({ "beneficiaire.status": "accepted" });
-    console.log("Formations with accepted beneficiaries:", formations); // Add this line
+    const formations = await Formation.find({
+      "beneficiaire.status": "accepted",
+    });
+
     res.status(200).json({ status: "success", data: formations });
   } catch (error) {
     res.status(500).json({ status: "error", message: "Failed to fetch formations with accepted beneficiaries" });
