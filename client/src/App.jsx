@@ -149,6 +149,11 @@ const App = () => {
           />
          
           <Route
+          exact
+            path="/dashboard/coordinateurGeneral/calendrier"
+            element={<CoordinateurGeneralDashboard load="calendrier" />}
+          />
+          <Route
             path="/dashboard/potreur-de-projet/p/parametresComptes"
             element={<PorteurProjetDashboard load="parametresComptes" />}
           />
@@ -372,6 +377,32 @@ const App = () => {
           />
           <Route
             exact
+            path="/dashboard/coordinateurComposante/createFormation"
+            element={<CoordinateurComposanteDashboard load="createFormation" />}
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/upcomingFormation"
+            element={
+              <CoordinateurComposanteDashboard load="upcomingFormation" />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/planifierReunion"
+            element={
+              <CoordinateurComposanteDashboard load="planifierReunion" />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard/coordinateurComposante/planifierMentorat"
+            element={
+              <CoordinateurComposanteDashboard load="planifierMentorat" />
+            }
+          />
+
+<Route
             path="/dashboard/coordinateurComposante/calendrier"
             element={<CoordinateurComposanteDashboard load="calendrier" />}
           />
@@ -386,6 +417,10 @@ const App = () => {
           <Route
             path="/dashboard/beneficiaire/Formations/FormationList"
             element={<BeneficiaireDashboard load="FormationList" />}
+          />
+           <Route
+            path="/dashboard/beneficiaire/calendrier"
+            element={<BeneficiaireDashboard load="calendrier" />}
           />
         </Routes>
       </>

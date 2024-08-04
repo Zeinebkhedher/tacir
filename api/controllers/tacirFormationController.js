@@ -228,3 +228,13 @@ exports.getParticipantsByFormationId = async (req, res) => {
     });
   }
 };
+
+exports.getFormationsWithAcceptedBeneficiaires = async (req, res) => {
+  try {
+    const formations = await Formation.find({ "beneficiaire.status": "accepted" });
+    console.log("Formations with accepted beneficiaries:", formations); // Add this line
+    res.status(200).json({ status: "success", data: formations });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: "Failed to fetch formations with accepted beneficiaries" });
+  }
+};

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+{/*import { NavLink } from "react-router-dom";
 
 function SideBarBeneficiaireFormation() {
   function goup() {
@@ -12,7 +12,7 @@ function SideBarBeneficiaireFormation() {
   return (
     <ul className="menu-inner py-1">
       {/* Dashboard */}
-      <li className="menu-item active">
+     {/* <li className="menu-item active">
         <a href="index.html" className="menu-link">
           <i className="menu-icon tf-icons bx bx-home-circle" />
           <div data-i18n="Analytics">Dashboard</div>
@@ -31,7 +31,7 @@ function SideBarBeneficiaireFormation() {
         </li>
       </NavLink>
       {/* Concerts */}
-      <li className="menu-header small text-uppercase">
+ {/*    <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Calendrier </span>
       </li>
 
@@ -48,7 +48,7 @@ function SideBarBeneficiaireFormation() {
      
 
       {/* gestion des compte */}
-      <li className="menu-header small text-uppercase">
+   {/*   <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Comptes</span>
       </li>
 
@@ -68,3 +68,4 @@ function SideBarBeneficiaireFormation() {
 }
 
 export default SideBarBeneficiaireFormation;
+*/}   

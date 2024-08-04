@@ -15,6 +15,13 @@ import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
+import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
+import DeposerRendu from "../../components/rendu/DeposerRendu";
+import CreateFormation from "../../components/formations/CreateFormation";
+import FormationList from "../../components/formations/UpcomingFormations";
+import AllFormationPage from "../formation/AllFormationPage";
+import PlanifierReunion from "../../components/meetings/PlanifierReunion";
+import PlanifierMentorat from "../../components/Mentorat/CreateMentorat";
 
 const CoordinateurComposanteDashboard = (props) => {
   return (
@@ -43,6 +50,10 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "ListRendu" && <ListeRendu />}
             {props.load === "demanderRendu" && <EspaceDepot />}
             {props.load === "calendrier" && <PlannigCordiComposante />}
+            {props.load === "createFormation" && <CreateFormation />}
+            {props.load === "upcomingFormation" && <AllFormationPage />}
+            {props.load === "planifierReunion" && <PlanifierReunion />}
+            {props.load === "planifierMentorat" && <PlanifierMentorat />}
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

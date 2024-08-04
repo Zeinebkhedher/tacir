@@ -1,14 +1,12 @@
 import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
-import Sidebar from "../../components/sideBar/SideBar";
 
-import "../admin/adminDashboard.css";
-import HomePage from "../home/HomePage";
-import FormationPage from "../formation/FormationPage";
-import SinscrireFormation from "../../components/formations/SinscrireFormation";
-import SideBarBeneficiare from "../../components/sideBar/SideBarBeneficiaire";
-import AllFormationPage from "../formation/AllFormationPage";
 import FormationList from "../../components/formations/UpcomingFormations";
+import PlannigBeneficiare from "../../components/plannigBeneficiare/PlannigBeneficiare";
+import SideBarBeneficiare from "../../components/sideBar/SideBarBeneficiaire";
+import "../admin/adminDashboard.css";
+import AllFormationPage from "../formation/AllFormationPage";
+import HomePage from "../home/HomePage";
 
 const BeneficiaireDashboard = (props) => {
   return (
@@ -30,6 +28,8 @@ const BeneficiaireDashboard = (props) => {
             {props.load === "ALLformation" && <AllFormationPage />}
 
             {props.load === "FormationList" && <FormationList />}
+            {props.load === "calendrier" && <PlannigBeneficiare />}
+
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

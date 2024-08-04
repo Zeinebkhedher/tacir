@@ -79,6 +79,18 @@ function SidebarCoordinateurGeneral() {
           </a>
         </li>
       </NavLink>
+      <li className="menu-header small text-uppercase">
+        <span className="menu-header-text">Planning </span>
+      </li>
+      <NavLink to="/dashboard/coordinateurGeneral/calendrier" onClick={goup}>
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">Calendrier</div>
+          </a>
+        </li>
+      </NavLink>
+
 
       {/* gestion des compte */}
       <li className="menu-header small text-uppercase">

@@ -22,6 +22,7 @@ const BeneficiaireFormationDashboard = (props) => {
 
             {props.load === "Home" && <HomePage />} 
             
+            
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

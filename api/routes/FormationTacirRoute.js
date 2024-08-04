@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const formationController = require("../controllers/tacirFormationController");
 
+router.get("/formations-with-accepted-beneficiaries", formationController.getFormationsWithAcceptedBeneficiaires);
+
 router.post("/", formationController.createFormation);
 router.post("/:id", formationController.addParticipantToFormation);
 
@@ -13,6 +15,7 @@ router.get(
   "/:id/participants",
   formationController.getParticipantsByFormationId
 );
+  
 // Update a formation
 router.put("/:id", formationController.updateFormation);
 
@@ -26,4 +29,5 @@ router.get(
   "/:id/beneficiaires",
   formationController.getBeneficiairesByFormation
 );
+
 module.exports = router;

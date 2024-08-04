@@ -178,7 +178,7 @@ const updateMember = async (req, res) => {
 
 const getAllMentors = async (req, res) => {
   try {
-    const mentors = await Membre.find({ role: "Mentor" }, "-password");
+    const mentors = await Membre.find({ role: "Mentor" }).select("email -_id"); // Select only the email field
     res.status(200).json({
       message: "Mentors retrieved successfully",
       mentors,
@@ -187,10 +187,11 @@ const getAllMentors = async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve mentors" });
   }
 };
-
 const getAllPorteurDeProjet = async (req, res) => {
   try {
-    const porteurs = await Membre.find({ role: "PorteurProjet" }, "-password");
+    const porteurs = await Membre.find({ role: "PorteurProjet" }).select(
+      "email -_id"
+    ); 
     res.status(200).json({
       message: "Porteur de projet retrieved successfully",
       porteurs,
