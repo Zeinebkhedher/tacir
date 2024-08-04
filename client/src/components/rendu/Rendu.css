@@ -44,3 +44,27 @@
     color: #ff4500;
     /* Orange color */
 }
+/* Styles for rendu cards */
+.rendu-card {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Styles for expired rendus */
+.rendu-card.expired {
+    background-color: #d3d3d3;
+    /* Gray background for expired rendus */
+    color: #888;
+    /* Optional: change text color to be more readable */
+}
+
+/* Optional: alternate row colors */
+.rendu-card.even {
+    background-color: #f9f9f9;
+}
+
+.rendu-card.odd {
+    background-color: #fff;
+}
