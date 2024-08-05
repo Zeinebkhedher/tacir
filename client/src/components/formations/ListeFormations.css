@@ -1,9 +1,75 @@
-.Formation
-{
-    position: absolute;
-        top: 20vh;
-        left: 20vw;
-}
-.tableFormation{
-    width: 60vw;
-}
+.Formation {
+    position: absolute; /* Use absolute positioning for the centered container */
+    top : 15% ;
+    left: 25%; 
+    /* Ensure it is correctly positioned within the container */
+  }
+  
+  .tableFormation, .tableDetails {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .tableFormation th, .tableDetails th, 
+  .tableFormation td, .tableDetails td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .tableFormation th, .tableDetails th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .detailsContainer {
+    position: absolute; /* Use absolute positioning for the centered container */
+    top: 50%; /* Adjust this value to move the container higher */
+    left: 50%;
+    transform: translate(30%, -5%); /* Center the container */
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%; /* Adjust width as needed */
+  }
+  
+  .backButton {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .backButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .acceptButton {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .rejectButton {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .acceptButton:hover {
+    background-color: #218838;
+  }
+  
+  .rejectButton:hover {
+    background-color: #c82333;
+  }
+  

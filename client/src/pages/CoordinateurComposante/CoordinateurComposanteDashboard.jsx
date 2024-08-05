@@ -2,7 +2,12 @@ import React from "react";
 import Navbar1 from "../../components/navBar1/NavBar1";
 
 import Contact from "../../components/Contact/Contact";
+import DemandeFormationInterface from "../../components/demandeFormationsInterface/DemandeFormationInterface";
+import CreateFormation from "../../components/formations/CreateFormation";
 import ListeFormations from "../../components/formations/ListeFormations";
+import PlanifierReunion from "../../components/meetings/PlanifierReunion";
+import PlanifierMentorat from "../../components/Mentorat/CreateMentorat";
+import ListMentorat from "../../components/Mentorat/ListMentorat";
 import PlannigCordiComposante from "../../components/plannigCordiComposante/PlannigCordiComposante";
 import Profile from "../../components/profil/Profile";
 import CreaProjects from "../../components/projects/ListCreaProjects";
@@ -13,16 +18,9 @@ import ListeRendu from "../../components/rendu/ListeRendu";
 import SidebarCoordinateurComposante from "../../components/sideBar/SideBarCoordinateurComposante";
 import "../admin/adminDashboard.css";
 import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
+import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-import CreathonInterface from "../../components/creathonInterface/CreathonInterface";
-import DeposerRendu from "../../components/rendu/DeposerRendu";
-import CreateFormation from "../../components/formations/CreateFormation";
-import FormationList from "../../components/formations/UpcomingFormations";
-import AllFormationPage from "../formation/AllFormationPage";
-import PlanifierReunion from "../../components/meetings/PlanifierReunion";
-import PlanifierMentorat from "../../components/Mentorat/CreateMentorat";
-import ListMentorat from "../../components/Mentorat/ListMentorat";
 
 const CoordinateurComposanteDashboard = (props) => {
   return (
@@ -55,7 +53,9 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "upcomingFormation" && <AllFormationPage />}
             {props.load === "planifierReunion" && <PlanifierReunion />}
             {props.load === "planifierMentorat" && <PlanifierMentorat />}
-            {props.load === "ListMentorat" && <ListMentorat />}
+            {props.load === "ListMentorat" && <ListMentorat />}  
+            {props.load === "demandesFormations" && <DemandeFormationInterface />}  
+            
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

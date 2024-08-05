@@ -1,4 +1,241 @@
 const Formation = require("../models/formationModel"); // Assuming your model file is in the same directory
+const nodemailer = require("nodemailer");
+const PorteurProjet = require("../models/membreTacirModel"); // Assuming you have a model for Porteur Projet
+const Membre = require('../models/membreTacirModel'); // Assuming you renamed the model
+const crypto = require('crypto');
+const sendEmail = require("../utils/sendEmail"); // Adjust the path as necessary
+const bcrypt = require("bcrypt");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "zeinebkheder8@gmail.com",
+		pass: "nrrp wryu mrhm lmdy",
+  },
+});
+
+const generateRandomPassword = () => {
+  return generatePassword(12, false); // Generates a 12-character password
+};
+
+exports.acceptBeneficiary = async (req, res) => {
+  try {
+    const { beneficiaryId, formationId } = req.params; // Extract IDs from request
+
+    // Generate a random password
+    const randomPassword = generateRandomPassword();
+    const hashedPassword = await bcrypt.hash(randomPassword, 10);
+
+    // Create a new member with role 'beneficiaireFormation'
+    const newMember = new Membre({
+      ...req.body, // Spread the existing beneficiary data
+      password: hashedPassword,
+      role: "beneficiaireFormation",
+    });
+
+    // Save the new member
+    const savedMember = await newMember.save();
+
+    // Send an email to the new member
+    const emailBody = `
+      Bonjour ${savedMember.prenom} ${savedMember.nom},<br>
+      Félicitations ! Votre demande de participation a été acceptée.<br>
+      Voici vos informations de connexion :<br>
+      Email : ${savedMember.email}<br>
+      Mot de passe : ${randomPassword}<br>
+      Cordialement,<br>
+      L'équipe de formation
+    `;
+    await sendEmail(savedMember.email, "Informations d'inscription", emailBody);
+
+    // Update the beneficiary status in the formation
+    await Formation.findByIdAndUpdate(formationId, {
+      $set: { "beneficiaire.$[elem].status": "accepted" }
+    }, {
+      arrayFilters: [{ "elem._id": beneficiaryId }],
+      new: true
+    });
+
+    res.status(200).json({
+      message: "Beneficiary accepted and email sent",
+      member: savedMember
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+exports.refuseBeneficiary = async (req, res) => {
+  const { formationId, beneficiaryId } = req.params;
+
+  try {
+    const formation = await Formation.findOne({ _id: formationId, 'beneficiaire._id': beneficiaryId });
+
+    if (!formation) {
+      return res.status(404).send('Formation or beneficiary not found');
+    }
+
+    const beneficiary = formation.beneficiaire.id(beneficiaryId);
+    if (!beneficiary) {
+      return res.status(404).send('Beneficiary not found');
+    }
+
+    beneficiary.status = 'rejected';
+    await formation.save();
+
+    // Send refusal email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: beneficiary.email,
+      subject: 'Votre demande de formation est refusée',
+      text: `
+        Cher(e) ${beneficiary.prenom} ${beneficiary.nom},
+
+        Nous regrettons de vous informer que votre demande de participation à la formation a été refusée.
+
+        Nous vous souhaitons une bonne continuation.
+
+        Cordialement,
+        L'équipe de formation
+      `,
+    });
+
+    res.send('Beneficiary refused and email sent');
+  } catch (error) {
+    console.error('Error refusing beneficiary:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.sendAcceptanceEmail = async (participant, formation) => {
+  const mailOptions = {
+    from: 'your-email@gmail.com',
+    to: participant.email,
+    subject: `Votre demande de formation est acceptée!`, // Subject line
+    text: `
+      Cher(e) ${participant.prenom} ${participant.nom},
+
+      Nous avons le plaisir de vous informer que votre demande de participation à la formation suivante a été acceptée :
+
+      Formation: ${formation.Name}
+      Date de début: ${formation.Date}
+
+      Veuillez vérifier votre calendrier pour plus de détails.
+
+      Cordialement,
+      L'équipe de formation
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Acceptance email sent successfully");
+  } catch (error) {
+    console.error("Error sending acceptance email:", error);
+  }
+};
+
+exports.acceptParticipant = async (req, res) => {
+  const { formationId } = req.params;
+  const { participantId } = req.body;
+
+  try {
+    const formation = await Formation.findById(formationId);
+    if (!formation) {
+      return res.status(404).send('Formation not found');
+    }
+
+    const participant = formation.participants.id(participantId);
+    if (!participant) {
+      return res.status(404).send('Participant not found');
+    }
+
+    participant.status = 'accepted';
+    await formation.save();
+
+    // Send email to participant
+    const mailOptions = {
+      from: 'your-email@gmail.com',
+      to: participant.email,
+      subject: `Votre demande de formation est acceptée!`, // Subject line
+      text: `
+        Cher(e) ${participant.prenom} ${participant.nom},
+  
+        Nous avons le plaisir de vous informer que votre demande de participation à la formation suivante a été acceptée :
+  
+        Formation: ${formation.Name}
+        Date de début: ${formation.Date}
+  
+        Veuillez vérifier votre calendrier pour plus de détails.
+  
+        Cordialement,
+        L'équipe de formation TACIR
+      `,   };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+        return res.status(500).send('Error sending email');
+      }
+      console.log('Email sent:', info.response);
+    });
+
+    res.status(200).send('Participant accepted');
+  } catch (error) {
+    console.error('Error accepting participant:', error);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.refusParticipant = async (req, res) => {
+  const { formationId } = req.params;
+  const { participantId } = req.body;
+
+  try {
+    const formation = await Formation.findById(formationId);
+    if (!formation) {
+      return res.status(404).send('Formation not found');
+    }
+
+    const participant = formation.participants.id(participantId);
+    if (!participant) {
+      return res.status(404).send('Participant not found');
+    }
+
+    participant.status = 'refused';
+    await formation.save();
+
+    // Send email to participant
+    const mailOptions = {
+      from: 'your-email@gmail.com',
+      to: participant.email,
+      subject: 'Votre demande de formation est refusée',
+      text: `
+        Cher(e) ${participant.prenom} ${participant.nom},
+
+        Nous vous remercions pour votre intérêt pour notre formation.
+
+        Nous regrettons de vous informer que nous ne pouvons pas accepter votre demande pour cette session. Nous comprenons que cette nouvelle puisse être décevante et vous encourageons à postuler à de futures sessions qui pourraient mieux correspondre à vos disponibilités et intérêts.
+
+        Merci de votre compréhension et nous espérons avoir l'occasion de vous accueillir lors d'une prochaine formation.
+
+        Cordialement,
+        L'équipe de formation TACIR
+      `  };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+        return res.status(500).send('Error sending email');
+      }
+      console.log('Email sent:', info.response);
+    });
+
+    res.status(200).send('Participant refused');
+  } catch (error) {
+    console.error('Error refusing participant:', error);
+    res.status(500).send('Server error');
+  }
+};
 
 exports.createFormation = async (req, res) => {
   try {
@@ -9,9 +246,83 @@ exports.createFormation = async (req, res) => {
   }
 };
 
+exports.refuseParticipant = async (req, res) => {
+  try {
+    const participantId = req.params.participantId;
+    const participant = await Participant.findById(participantId);
 
+    if (!participant) {
+      return res.status(404).json({ message: "Participant not found" });
+    }
 
-const PorteurProjet = require("../models/membreTacirModel"); // Assuming you have a model for Porteur Projet
+    // Update the participant's status to refused
+    participant.status = 'refused';
+    await participant.save();
+
+    // Fetch the related formation details
+    const formation = await Formation.findById(participant.formationId);
+
+    if (!formation) {
+      return res.status(404).json({ message: "Formation not found" });
+    }
+
+    // Send the refusal email
+    await sendRefusalEmail(participant, formation);
+
+    res.status(200).json({ message: "Participant refused and notified" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+const sendAcceptanceEmail = async (participant, formation) => {
+  const mailOptions = {
+    from: 'your-email@gmail.com',
+    to: participant.email,
+    subject: `Your application for ${formation.Name} has been accepted`,
+    text: `Dear ${participant.prenom} ${participant.nom},
+
+Congratulations! Your application for the formation "${formation.Name}" has been accepted.
+
+Formation Start Date: ${formation.Date}
+
+Please check your calendar for more details.
+
+Best regards,
+Your Team`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Acceptance email sent successfully");
+  } catch (error) {
+    console.error("Error sending acceptance email:", error);
+  }
+};
+
+exports.sendRefusalEmail = async (participant, formation) => {
+  const mailOptions = {
+    from: 'zeinebkheder8@gmail.com',
+    to: participant.email,
+    subject: `Your application for ${formation.Name} has been refused`,
+    text: `Dear ${participant.prenom} ${participant.nom},
+
+We regret to inform you that your application for the formation "${formation.Name}" has been refused.
+
+Thank you for your interest.
+
+Best regards,
+Your Team`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Refusal email sent successfully");
+  } catch (error) {
+    console.error("Error sending refusal email:", error);
+  }
+};
+
 
 exports.addParticipantToFormation = async (req, res) => {
   const { id } = req.params;
@@ -242,11 +553,62 @@ exports.getParticipantsByFormationId = async (req, res) => {
 exports.getFormationsWithAcceptedBeneficiaires = async (req, res) => {
   try {
     const formations = await Formation.find({
-      "beneficiaire.status": "accepted",
+      'beneficiaire.status': 'accepted'
     });
-
-    res.status(200).json({ status: "success", data: formations });
+    res.status(200).json({ status: 'success', data: formations });
   } catch (error) {
-    res.status(500).json({ status: "error", message: "Failed to fetch formations with accepted beneficiaries" });
+    console.error('Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to fetch formations with accepted beneficiaries' });
+  }
+};
+
+exports.getParticipantsAndBeneficiariesByFormationId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const formation = await Formation.findById(id);
+
+    if (!formation) {
+      return res.status(404).json({ status: 'fail', message: 'Formation not found' });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        participants: formation.participants,
+        beneficiaires: formation.beneficiaire,
+      },
+    });
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).json({
+      status: 'error',
+      message: 'Failed to fetch participants and beneficiaries',
+    });
+  }
+};
+
+exports.updateBeneficiaireStatus = async (req, res) => {
+  const { formationId, beneficiaireId } = req.params;
+  const { status } = req.body;
+
+  try {
+    const formation = await Formation.findById(formationId);
+    if (!formation) {
+      return res.status(404).json({ status: "fail", message: "Formation not found" });
+    }
+
+    const beneficiaire = formation.beneficiaire.id(beneficiaireId);
+    if (!beneficiaire) {
+      return res.status(404).json({ status: "fail", message: "Beneficiaire not found" });
+    }
+
+    beneficiaire.status = status;
+    await formation.save();
+
+    res.status(200).json({ status: "success", data: beneficiaire });
+  } catch (error) {
+    console.error("Error updating beneficiaire status:", error);
+    res.status(500).json({ status: "error", message: "Failed to update beneficiaire status" });
   }
 };

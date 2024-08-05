@@ -131,7 +131,19 @@ function SidebarCoordinateurComposante() {
           </a>
         </li>
       </NavLink>
-
+      <NavLink
+        to="/dashboard/coordinateurComposante/listeDemandesFormations"
+        onClick={goup}
+      >
+        <li className="menu-item">
+          <a href="javascript:void(0);" className="menu-link menu-toggle">
+            <i className="menu-icon tf-icons bx bx-dock-top" />
+            <div data-i18n="Account Settings">
+              Liste des demandes
+            </div>
+          </a>
+        </li>
+      </NavLink>
       <li className="menu-header small text-uppercase">
         <span className="menu-header-text">Membres de TACIR</span>
       </li>

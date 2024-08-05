@@ -423,6 +423,13 @@ const App = () => {
           />
           <Route
             exact
+            path="/dashboard/coordinateurComposante/listeDemandesFormations"
+            element={
+              <CoordinateurComposanteDashboard load="demandesFormations" />
+            }
+          />
+          <Route
+            exact
             path="/dashboard/coordinateurComposante/planifierReunion"
             element={
               <CoordinateurComposanteDashboard load="planifierReunion" />

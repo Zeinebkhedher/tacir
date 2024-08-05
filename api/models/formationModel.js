@@ -50,7 +50,7 @@ const formationSchema = new mongoose.Schema({
       numTel: { type: String, required: true },
       motivation: { type: String, required: true },
       adressePostale: { type: String, required: true },
-      status: { type: String, enum: ["accepted", "pending", "rejected"], required: true }, // Add status field
+      status: { type: String, enum: ["accepted", "pending", "rejected"],}, // Add status field
 
     },
   ],
