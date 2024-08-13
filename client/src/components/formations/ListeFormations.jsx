@@ -105,11 +105,31 @@ function ListeFormations() {
     }
   };
   const handleAcceptBeneficiary = async (beneficiaryId) => {
+    const beneficiary = beneficiaries.find(b => b._id === beneficiaryId);
+
+    if (!beneficiary) {
+      console.error("Beneficiary not found");
+      return;
+    }
+  
+    // Prepare the beneficiary data for the request
+    const beneficiaryData = {
+      nom: beneficiary.nom,
+      prenom: beneficiary.prenom,
+      email: beneficiary.email
+    };
+  
+  
     try {
+      console.log('Sending request with data:', beneficiaryData);
+  
       const response = await axios.patch(
-        `http://localhost:8000/api/formations/${selectedFormationId}/beneficiaires/${beneficiaryId}/accept`
+        `http://localhost:8000/api/formations/${selectedFormationId}/beneficiaires/${beneficiaryId}/accept`,
+        beneficiaryData // Inclure les données du bénéficiaire dans la requête
       );
-      console.log('Beneficiary accepted response:', response);
+  
+      console.log('Beneficiary accepted response:', response.data);
+  
       setBeneficiaries((prevBeneficiaries) =>
         prevBeneficiaries.map((beneficiary) =>
           beneficiary._id === beneficiaryId
@@ -118,10 +138,10 @@ function ListeFormations() {
         )
       );
     } catch (error) {
-      console.error("Error accepting beneficiary:", error);
+      console.error("Error accepting beneficiary:", error.response ? error.response.data : error.message);
     }
   };
-
+  
   const handleRefuseBeneficiary = async (beneficiaryId) => {
     try {
       const response = await axios.patch(

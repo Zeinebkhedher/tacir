@@ -1,0 +1,9 @@
+.mentoratOutput-list-container{
+    position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  max-width: 1200px;
+  padding: 20px;
+}

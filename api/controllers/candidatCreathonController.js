@@ -283,10 +283,10 @@ const addSynthese = async (req, res) => {
 const getAcceptedCreathonsByPorteurProjet = async (req, res) => {
   try {
     const userId = req.auth.membreId;
-
+console.log('user id', userId);
     // Recherchez les candidats Creathons acceptés par le porteur de projet avec l'ID `userId`
     const candidats = await candidatCreathonModel.find({ membres: userId, confirm: true }).populate('creathon');
-
+console.log('candidat', candidats);
     // Obtenez les Creathons associés à ces candidats
     const creathons = candidats.map(candidat => candidat.creathon);
 

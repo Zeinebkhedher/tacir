@@ -37,7 +37,7 @@ const membreTacirSchema = mongoose.Schema({
   motivation: { type: String },
   status: {
     type: String,
-    enum: ['en attente', 'accepté', 'rejeté'], // Ajoutez 'en attente' ici
+    enum: ['en attente', 'accepté', 'rejeté'], 
     default: 'en attente'
   },
   confirm: { type: Boolean, default: false },

@@ -5,6 +5,7 @@ const Membre = require('../models/membreTacirModel'); // Assuming you renamed th
 const crypto = require('crypto');
 const sendEmail = require("../utils/sendEmail"); // Adjust the path as necessary
 const bcrypt = require("bcrypt");
+const generatePassword = require("generate-password");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -15,28 +16,87 @@ const transporter = nodemailer.createTransport({
 });
 
 const generateRandomPassword = () => {
-  return generatePassword(12, false); // Generates a 12-character password
+  return generatePassword.generate({
+    length: 12,
+    numbers: true,
+    uppercase: true,
+    lowercase: true,
+    symbols: true,
+  });
+};
+
+exports.getAcceptedFormations = async (req, res) => {
+  try {
+    // Obtenez le token du header Authorization
+    const token = req.header('Authorization').replace('Bearer ', '');
+    if (!token) {
+      return res.status(401).json({ message: 'Token manquant' });
+    }
+
+    // Décodez le token
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const participantId = decodedToken.membreId;
+
+    console.log('Participant ID:', participantId); // Log du participant ID
+
+    // Recherchez les formations acceptées
+    const acceptedFormations = await Formation.find({
+      'participants': { $elemMatch: { participant: participantId, status: 'accepté' } },
+    });
+
+    console.log('Formations acceptées:', acceptedFormations); // Log des formations acceptées
+
+    res.status(200).json(acceptedFormations);
+  } catch (error) {
+    console.error('Error fetching accepted formations:', error.message);
+    res.status(500).json({ message: 'Erreur lors de la récupération des formations acceptées', error: error.message });
+  }
 };
 
 exports.acceptBeneficiary = async (req, res) => {
   try {
-    const { beneficiaryId, formationId } = req.params; // Extract IDs from request
+    const { beneficiaryId, formationId } = req.params;
+    const { nom, prenom, email } = req.body;
 
-    // Generate a random password
+    // Log input data
+    console.log('Request body:', req.body);
+    console.log('Request params:', req.params);
+
+    // Validate input
+    if (!nom || !prenom || !email) {
+      return res.status(400).json({ message: "Nom, prénom, et email sont requis" });
+    }
+
+    // Generate password and hash it
     const randomPassword = generateRandomPassword();
     const hashedPassword = await bcrypt.hash(randomPassword, 10);
 
-    // Create a new member with role 'beneficiaireFormation'
+    // Create and save new member
     const newMember = new Membre({
-      ...req.body, // Spread the existing beneficiary data
+      nom: req.body.nom,
+      prenom: req.body.prenom,
+      email: req.body.email,
       password: hashedPassword,
+      sexe: null,
+      dateNaissance: null,
+      nationalite: null,
+      CIN: null,
+      taille: null,
+      situationPerso: null,
+      connaissanceMusic: null,
+      activite: null,
+      telephone: null,
       role: "beneficiaireFormation",
+      statut: null,
+      pupitre: null
     });
 
-    // Save the new member
     const savedMember = await newMember.save();
 
-    // Send an email to the new member
+    // Log saved member details
+    console.log('Saved member:', savedMember);
+
+    // Send email to new member
     const emailBody = `
       Bonjour ${savedMember.prenom} ${savedMember.nom},<br>
       Félicitations ! Votre demande de participation a été acceptée.<br>
@@ -48,22 +108,34 @@ exports.acceptBeneficiary = async (req, res) => {
     `;
     await sendEmail(savedMember.email, "Informations d'inscription", emailBody);
 
-    // Update the beneficiary status in the formation
-    await Formation.findByIdAndUpdate(formationId, {
-      $set: { "beneficiaire.$[elem].status": "accepted" }
-    }, {
-      arrayFilters: [{ "elem._id": beneficiaryId }],
-      new: true
-    });
+    // Log formation before update
+    const formationBeforeUpdate = await Formation.findById(formationId);
+    console.log('Formation before update:', formationBeforeUpdate);
+
+    // Update beneficiary status
+    const result = await Formation.findByIdAndUpdate(
+      formationId,
+      { $set: { "beneficiaire.$[elem].status": "accepted" } },
+      { arrayFilters: [{ "elem._id": beneficiaryId }], new: true }
+    );
+
+    // Log result after update
+    console.log('Result after update:', result);
+
+    if (!result) {
+      return res.status(404).json({ message: "Formation or beneficiary not found" });
+    }
 
     res.status(200).json({
       message: "Beneficiary accepted and email sent",
       member: savedMember
     });
   } catch (error) {
+    console.error("Error accepting beneficiary:", error);
     res.status(400).json({ error: error.message });
   }
 };
+
 exports.refuseBeneficiary = async (req, res) => {
   const { formationId, beneficiaryId } = req.params;
 
@@ -149,7 +221,7 @@ exports.acceptParticipant = async (req, res) => {
       return res.status(404).send('Participant not found');
     }
 
-    participant.status = 'accepted';
+    participant.accepted = true;
     await formation.save();
 
     // Send email to participant

@@ -1,0 +1,87 @@
+/* Conteneur général */
+.creathonOutput-list-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Style pour les cartes */
+.card-yellow {
+    background-color: #ffffe0; /* Jaune clair */
+    border: 1px solid #f0e68c; /* Jaune foncé pour le bord */
+    border-radius: 15px; /* Coins arrondis */
+}
+
+/* Contenu des cartes */
+.card-content {
+    padding: 16px;
+    border-radius: 15px; /* Coins arrondis */
+}
+
+/* Styles personnalisés pour les boutons */
+.button-yellow, .button-orange, .button-pink {
+    background-color: transparent; /* Pour annuler le style primaire */
+    border: 1px solid transparent; /* Pour rendre la bordure invisible */
+    color: #000; /* Texte noir pour contraste */
+    border-radius: 20px; /* Coins arrondis */
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-transform: none; /* Désactiver la mise en majuscules */
+    font-size: 14px; /* Ajustez la taille de la police */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour l'effet de survol */
+}
+
+/* Couleurs personnalisées pour chaque bouton */
+.button-yellow {
+    background-color: #ffffe0;
+}
+
+.button-orange {
+    background-color: #ffe4b5;
+}
+
+.button-pink {
+    background-color: #ffb6c1;
+}
+
+/* Effets de survol pour les boutons */
+.button-yellow:hover {
+    background-color: #f0e68c;
+}
+
+.button-orange:hover {
+    background-color: #f5deb3;
+}
+
+.button-pink:hover {
+    background-color: #ff69b4;
+}
+
+/* Style des actions dans les dialogues */
+.dialog-actions {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Styles personnalisés pour les icônes */
+.icon-button {
+    color: yellow; /* Couleur noire pour les icônes */
+    border-radius: 50%; /* Icônes arrondies */
+    padding: 8px; /* Réduire la taille du padding pour des icônes plus petites */
+    font-size: 10px; /* Taille des icônes plus petite */
+    transition: color 0.3s ease; 
+    background-color: red;
+}
+
+
+
+/* Style pour les éléments de la liste */
+.list-item {
+    border-bottom: 1px solid #f0e68c; /* Ligne séparatrice */
+    padding: 8px 0;
+}

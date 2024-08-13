@@ -7,7 +7,7 @@
   const {sendNotificationMiddleware} = require("../middlewares/sendNotificationMiddleware")
   const { userSocketMap } = require("../utils/socket");
   const mongoose = require("mongoose");
-
+const Output = require ('../models/outputModel'); 
   const genererListeMembres=async(pupitre,pourcentage)=>{
     const membresPupitre=await Membre.find({pupitre,role:{$in:['choriste']},statut:{$ne:'En congé'}})
     if (pourcentage > 0 && pourcentage <= 100 && membresPupitre.length > 0) {
@@ -302,6 +302,25 @@
       console.error('Erreur lors de la récupération des créathons/formation:', error.message);
     }
   };
-  module.exports = {fetchAllCreathons, createSynthesis,createCreathon,listPresenceByPupitre,updateCreathonStatus,deleteCreathon,getRepetitionById,getAllCreathons,updateRepetition, getCreathonById};
+
+  const getCreathonWithOutputs = async (req, res) => {
+    try {
+      const { creathonId } = req.params;
+      const creathon = await Creathon.findById(creathonId);
+      if (!creathon) {
+        return res.status(404).json({ message: 'Creathon not found' });
+      }
+  
+      const outputs = await Output.find({ creathonId: creathonId }).populate('porteurId', 'nom email'); // Assurez-vous que `porteurId` est une référence au modèle `MembreTacir`
+  console.log("porteur",outputs);
+  
+      res.status(200).json({ creathon, outputs });
+    } catch (error) {
+      console.error("Error fetching creathon with outputs:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
+ 
+  module.exports = {getCreathonWithOutputs,fetchAllCreathons, createSynthesis,createCreathon,listPresenceByPupitre,updateCreathonStatus,deleteCreathon,getRepetitionById,getAllCreathons,updateRepetition, getCreathonById};
 
 

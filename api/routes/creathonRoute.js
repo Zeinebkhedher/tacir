@@ -32,5 +32,7 @@ router.get(
   creathonController.getCreathonById
 );
 router.get('/creathonsListe', creathonController.getAllCreathons);
+router.get('/:creathonId/outputs', creathonController.getCreathonWithOutputs);
+router.get('/creathon/:creathonId/outputs', creathonController.getCreathonWithOutputs);
 
 module.exports = router;

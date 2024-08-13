@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { DataGrid } from "@mui/x-data-grid";
+import Button from "@mui/material/Button";
 import "./listMentorat.css"
+import { useNavigate } from 'react-router-dom';
+
 const ListMentorat = () => {
   const [mentorats, setMentorats] = useState([]);
   const [region, setRegion] = useState("TUNIS");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMentorats = async () => {
@@ -27,6 +32,44 @@ const ListMentorat = () => {
     fetchMentorats();
   }, [region]);
 
+  const handleViewOutputs = (mentoratId) => {
+    if (mentoratId) {
+      console.log("ID du créathon:", mentoratId);
+      navigate(`/dashboard/coordinateurComposante/mentorats/${mentoratId}/mentoratOutputs`);
+    } else {
+      console.error('ID du créathon manquant');
+    }    console.log(`View outputs for mentorat ID: ${mentoratId}`);
+  };
+
+  const columns = [
+    { field: "titre", headerName: "Titre", width: 200 },
+    { field: "dateDebut", headerName: "Date Debut", width: 150 },
+    { field: "dateFin", headerName: "Date Fin", width: 150 },
+    { field: "description", headerName: "Description", width: 300 },
+    {
+      field: "actions",
+      headerName: "Actions",
+      width: 150,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleViewOutputs(params.row.id)}
+        >
+          View Outputs
+        </Button>
+      ),
+    },
+  ];
+
+  const rows = mentorats.map((mentorat, index) => ({
+    id: mentorat._id,
+    titre: mentorat.titre,
+    dateDebut: new Date(mentorat.dateDebut).toLocaleDateString(),
+    dateFin: new Date(mentorat.dateFin).toLocaleDateString(),
+    description: mentorat.description,
+  }));
+
   return (
     <div className="mentorat">
       <h2>List of Mentorat</h2>
@@ -45,26 +88,9 @@ const ListMentorat = () => {
       {mentorats.length === 0 ? (
         <p>No mentorats found for the selected region.</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Titre</th>
-              <th>Date Debut</th>
-              <th>Date Fin</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {mentorats.map((mentorat) => (
-              <tr key={mentorat._id}>
-                <td>{mentorat.titre}</td>
-                <td>{new Date(mentorat.dateDebut).toLocaleDateString()}</td>
-                <td>{new Date(mentorat.dateFin).toLocaleDateString()}</td>
-                <td>{mentorat.description}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid rows={rows} columns={columns} pageSize={5} />
+        </div>
       )}
     </div>
   );

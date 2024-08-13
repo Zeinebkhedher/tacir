@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const Mentorat = require("../models/mentoratModel");
 const Membres = require("../models/membreTacirModel");
-
+const Output = require("../models/outputMentoratModel");
 // Create a Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -125,9 +125,64 @@ const getAllMentorats = async (req, res) => {
   }
 };
 
+// Assurez-vous que l'objet que vous essayez d'accéder est bien défini avant d'accéder à ses propriétés.
+const getMentoratsForUser = async (req, res) => {
+  try {
+    console.log('user data', req.auth);  // Déboguer avec req.auth
+
+    const userId = req.auth ? req.auth.membreId : null;
+    console.log('id', userId);
+
+    if (!userId) {
+      return res.status(400).json({ message: "L'ID utilisateur est manquant." });
+    }
+
+    const mentorats = await Mentorat.find({ destinataires: userId });
+    console.log("Mentorat data:", mentorats); // Ajoutez ce log pour vérifier les données
+
+    res.json({ data: mentorats });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des mentorats:", error);
+    res.status(500).json({ message: "Erreur lors de la récupération des mentorats." });
+  }
+};
+
+const getMentoratById = async (req, res) => {
+  try {
+    const mentorat = await Mentorat.findById(req.params.mentoratId);
+    if (!mentorat) return res.status(404).send('Mentorat non trouvé');
+    res.json(mentorat);
+  } catch (error) {
+    res.status(500).send('Erreur serveur');
+  }
+};
+const getMentoratWithOutputs = async (req, res) => {
+  try {
+    const { mentoratId } = req.params;
+    console.log("mentoratId",mentoratId);
+    const mentorat = await Mentorat.findById(mentoratId);
+    console.log("mentorat",mentorat);
+        if (!mentorat) {
+      return res.status(404).json({ message: 'Creathon not found' });
+    }
+
+    const outputs = await Output.find({ mentoratId: mentoratId }).populate('porteurId', 'nom email'); // Assurez-vous que `porteurId` est une référence au modèle `MembreTacir`
+console.log("outputs",outputs);
+
+    res.status(200).json({ mentorat, outputs });
+  } catch (error) {
+    console.error("Error fetching creathon with outputs:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 module.exports = {
   createMentorat,
   sendMentoratEmails,
   getMentoratsByRegion,
-  getAllMentorats
+  getAllMentorats,
+  getMentoratsForUser,
+  getMentoratById,
+  getMentoratWithOutputs
 };

@@ -21,7 +21,9 @@ import ListeCandidatsPage from "../candidat/ListeCandidatsPage";
 import AllFormationPage from "../formation/AllFormationPage";
 import HomePage from "../home/HomePage";
 import MentorListInterface from "../mentor/mentorListInterface/MentorListInterface";
-
+import CreathonListeDetailsInterface from "../../components/creathonOutputs/creathonListOutputs/CreathonListeDetailsInterface";
+import CreathonOutputs from "../../components/creathonOutputs/creathonOutput/CreathonOutputs";
+import MentoratOutputs from "../../components/mentoratOutputs/MentoratOutputs";
 const CoordinateurComposanteDashboard = (props) => {
   return (
     <div>
@@ -54,8 +56,13 @@ const CoordinateurComposanteDashboard = (props) => {
             {props.load === "planifierReunion" && <PlanifierReunion />}
             {props.load === "planifierMentorat" && <PlanifierMentorat />}
             {props.load === "ListMentorat" && <ListMentorat />}  
-            {props.load === "demandesFormations" && <DemandeFormationInterface />}  
-            
+            {props.load === "demandesFormations" && <DemandeFormationInterface />}    
+            {props.load === "creathonListeDetailsInterface" && <CreathonListeDetailsInterface />}  
+            {props.load === "outputs" && < CreathonOutputs/>}  
+            {props.load === "mentoratOutputs" && < MentoratOutputs/>}  
+
+
+
           </div>
 
           <div className="layout-overlay layout-menu-toggle" />

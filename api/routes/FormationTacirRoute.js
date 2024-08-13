@@ -1,7 +1,6 @@
   const express = require("express");
   const router = express.Router();
   const formationController = require("../controllers/tacirFormationController");
-
   router.get("/formations-with-accepted-beneficiaries", formationController.getFormationsWithAcceptedBeneficiaires);
   router.get('/formations/:id/participants-beneficiaries', formationController.getParticipantsAndBeneficiariesByFormationId);
   router.put("/:formationId/beneficiaire/:beneficiaireId", formationController.updateBeneficiaireStatus);
@@ -9,7 +8,8 @@
   //router.patch('/:participantId/refus', formationController.refuseParticipant);
   router.patch('/:formationId/accept', formationController.acceptParticipant);
 router.patch('/:formationId/refus', formationController.refusParticipant);
-router.patch('/:formationId/beneficiaires/:beneficiaryId/accept', formationController.acceptBeneficiary);
+router.patch("/:formationId/beneficiaires/:beneficiaryId/accept", formationController.acceptBeneficiary);
+router.get('/acceptedFormations'  ,formationController.getAcceptedFormations);
 
 // Endpoint for refusing a beneficiary
 router.patch('/:formationId/beneficiaires/:beneficiaryId/refuse', formationController.refuseBeneficiary);

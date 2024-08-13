@@ -41,7 +41,8 @@ const formationSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  participants: [{ Name: { type: String }, email: { type: String } }],
+  participants: [{ Name: { type: String }, email: { type: String },     accepted: { type: Boolean, default: false }
+  }],
   beneficiaire: [
     {
       nom: { type: String, required: true },

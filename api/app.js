@@ -40,8 +40,8 @@ const renduRoute = require("./routes/renduRoute");
 const planningRoutes = require('./routes/plannigRoutes');
 const reunionRoute = require("./routes/reunionRoute");
 const mentoratRoute = require("./routes/mentoratRoute");
-
-
+const outputRoutes = require ("./routes/outputRoutes"); 
+const outputMentoratRoutes = require ("./routes/outputMentoratRoutes");
 dotenv.config();
 
 mongoose
@@ -183,6 +183,8 @@ app.use("/api/contacts", tacirContactRoute);
 app.use("/api/rendus", renduRoute);
 app.use("/api/reunions", reunionRoute);
 app.use("/api/mentorats", mentoratRoute);
+app.use("/api/outputs", outputRoutes);
+app.use('/api/outputMentorat', outputMentoratRoutes);
 
 
 module.exports = app;

@@ -1,7 +1,9 @@
 .Formation {
-    position: absolute; /* Use absolute positioning for the centered container */
-    top : 15% ;
-    left: 25%; 
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  
     /* Ensure it is correctly positioned within the container */
   }
   

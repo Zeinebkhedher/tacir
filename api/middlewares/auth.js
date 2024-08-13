@@ -15,6 +15,8 @@ const loggedMiddleware = async (req, res, next) => {
       membreId: membreId,
       role: membre.role,
       email: membre.email,
+      _id: membre._id // Ajoutez cet attribut si vous voulez y accéder par _id
+
     };
 
     next();
@@ -22,6 +24,22 @@ const loggedMiddleware = async (req, res, next) => {
     return res.status(401).json({ error: "please sign in first" });
   }
 };
+
+const loggedMiddlewareReunion = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ message: 'Token manquant' });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN');
+    req.userId = decodedToken.membreId;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Token invalide' });
+  }
+};
+
 const isAdmin = (req, res, next) => {
   try {
     if (req.auth.role === "admin") {
@@ -196,4 +214,5 @@ module.exports = {
   isProteurProjet,
   isCandidat,
   extractPorteurProjetIdMiddleware,
+  loggedMiddlewareReunion
 };

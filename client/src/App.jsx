@@ -228,6 +228,24 @@ const App = () => {
             path="/dashboard/porteurProjet/projet/MonProjet"
             element={<PorteurProjetDashboard load="Monprojet" />}
           />
+           
+        <Route
+          path="/dashboard/porteurProjet/outputs/:creathonId"
+          element={<PorteurProjetDashboard load="outputList" />}
+        />
+           <Route
+          path="/dashboard/porteurProjet/outputMentorat/:mentoratId"
+          element={<PorteurProjetDashboard load="mentoratList" />}
+        />
+
+<Route
+          path="/dashboard/porteurProjet/mentorats/listeMentoratsAcceptes"
+          element={<PorteurProjetDashboard load="listeMentoratsAcceptes" />}
+        />
+        <Route
+          path="/dashboard/potreur-de-projet/profile/historique"
+          element={<PorteurProjetDashboard load="historique" />}
+        />
           <Route
             path="/dashboard/Mentor/ListeProjets"
             element={<MentorDashboard load="ListeProject" />}
@@ -446,6 +464,20 @@ const App = () => {
 <Route
             path="/dashboard/coordinateurComposante/calendrier"
             element={<CoordinateurComposanteDashboard load="calendrier" />}
+          />
+
+
+<Route
+            path="/dashboard/coordinateurComposante/outputListe"
+            element={<CoordinateurComposanteDashboard load="creathonListeDetailsInterface" />}
+          />
+          <Route
+            path="/dashboard/coordinateurComposante/creathons/:creathonId/outputs"
+            element={<CoordinateurComposanteDashboard load="outputs" />}
+          />
+<Route
+            path="/dashboard/coordinateurComposante/mentorats/:mentoratId/mentoratOutputs"
+            element={<CoordinateurComposanteDashboard load="mentoratOutputs" />}
           />
           <Route
             path="/dashboard/beneficiaire/home"

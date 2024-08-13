@@ -1,0 +1,21 @@
+.mentorat-list-container {
+   
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  max-width: 1200px;
+  padding: 20px;
+  }
+  
+  .mentorat-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mentorat-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  

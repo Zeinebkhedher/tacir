@@ -98,10 +98,34 @@ const getReunionsByProjectHolderId = async (req, res) => {
   }
 };
 
+// Controller
+const getReunionsByUserId = async (req, res) => {
+  try {
+    const userId = req.userId;
+    console.log("user IDD", userId);  // Assurez-vous que `userId` est défini
+    if (!userId) {
+      return res.status(400).json({ message: "ID d'utilisateur non fourni" });
+    }
+
+    const reunions = await Reunion.find({
+      destinataires: userId,
+    });
+
+    console.log('Reunions trouvées:', reunions);
+
+    res.status(200).json(reunions);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des réunions:', error);
+    res.status(500).json({ message: "Erreur lors de la récupération des réunions" });
+  }
+};  
+
+
 
 module.exports = {
   createReunion,
   sendReunionEmails,
   getAllReunions,
-  getReunionsByProjectHolderId
+  getReunionsByProjectHolderId,
+  getReunionsByUserId
 };

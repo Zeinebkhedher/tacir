@@ -1,0 +1,41 @@
+.historique-porteur-container {
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.typography-title {
+  color: #ff6f00; /* Orange */
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.typography-subtitle {
+  color: #ffb300; /* Jaune */
+  margin-bottom: 8px;
+}
+
+.list-item {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 16px;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item-text {
+  color: #333;
+}
