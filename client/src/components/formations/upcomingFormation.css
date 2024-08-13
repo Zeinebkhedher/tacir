@@ -1,5 +1,5 @@
 .formation-box {
-    border: 2px solid ;
+    border: 2px solid;
     /* Border color is blue */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Add shadow effect */
@@ -8,27 +8,25 @@
     margin-bottom: 20px;
     /* Add some spacing between formation boxes */
     text-align: center;
-    background-color:ivory;
+    background-color: ivory;
 }
-.title{
+
+.title {
     position: absolute;
-        top: 20vh;
-        left: 30vw;
+    top: 20vh;
+    left: 30vw;
 }
 
 
-.FormationUpcomming{
-   
-        position: absolute;
-        top: 35vh;
-        left: 30vw;
-       
+.containerFormation {
+
+    position: absolute;
+    top: 35vh;
+    left: 30vw;
+
 }
-.formation .line {
-    margin: 5px 0;
-    width:70vw;    
-    text-align: center;
-}
+
+
 
 .formation .line p {
     text-decoration: underline;
@@ -41,20 +39,22 @@
 
 .formation .line span {
     color: #000;
-    margin-left:5px;
+   
 }
-.line{
+
+.line {
     display: flex;
 }
-.formations{
-  
+
+.formation {
+
     align-content: center;
 
 }
-.sinscrire
-{
-  margin-left: 20vw;
-  width: 10vw;
-font-weight: bold;
-font-size: large;
+
+.sinscrire {
+    margin-left: 20vw;
+    width: 10vw;
+    font-weight: bold;
+    font-size: large;
 }
