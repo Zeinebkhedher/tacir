@@ -38,6 +38,33 @@ const loggedMiddlewareReunion = (req, res, next) => {
   } catch (error) {
     return res.status(401).json({ message: 'Token invalide' });
   }
+}
+const logged = async (req, res, next) => {
+    try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, "RANDOM_TOKEN");
+    const membreId = decodedToken.membreId;
+
+    console.log("Decoded token:", decodedToken); // Logging
+
+    const membre = await membres.findById(membreId);
+    if (!membre) {
+      return res.status(404).json({ message: "Membre non trouvé" });
+    }
+
+    req.auth = {
+      membreId: membreId,
+      role: membre.role,
+      email: membre.email,
+    };
+
+    console.log("req.auth:", req.auth); // Logging
+
+    next();
+  } catch (error) {
+    console.error("Error in middleware:", error);
+    return res.status(401).json({ error: "please sign in first" });
+  }
 };
 
 const isAdmin = (req, res, next) => {
@@ -214,5 +241,6 @@ module.exports = {
   isProteurProjet,
   isCandidat,
   extractPorteurProjetIdMiddleware,
-  loggedMiddlewareReunion
+  loggedMiddlewareReunion,
+  logged,
 };

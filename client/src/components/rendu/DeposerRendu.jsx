@@ -7,12 +7,20 @@ const DeposerRendu = () => {
   const [selectedRenduId, setSelectedRenduId] = useState("");
   const [rendus, setRendus] = useState([]);
   const [file, setFile] = useState(null);
+  const [selectedRendu, setSelectedRendu] = useState(null);
 
   useEffect(() => {
     const fetchRendus = async () => {
       try {
+        // Fetch rendus for the logged-in user
+        const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:8000/api/rendus/rendus"
+          "http://localhost:8000/api/rendus/forUser", 
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setRendus(response.data);
       } catch (error) {
@@ -21,6 +29,13 @@ const DeposerRendu = () => {
     };
     fetchRendus();
   }, []);
+
+  useEffect(() => {
+    if (selectedRenduId) {
+      const selected = rendus.find((rendu) => rendu._id === selectedRenduId);
+      setSelectedRendu(selected);
+    }
+  }, [selectedRenduId, rendus]);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -33,8 +48,13 @@ const DeposerRendu = () => {
         return;
       }
 
+      if (!file) {
+        alert("Please choose a file to upload");
+        return;
+      }
+
       const formData = new FormData();
-      formData.append("program", file);
+      formData.append("file", file);
 
       await axios.post(
         `http://localhost:8000/api/rendus/rendu/${selectedRenduId}/upload`,
@@ -54,6 +74,9 @@ const DeposerRendu = () => {
     }
   };
 
+  const isUploadDisabled =
+    selectedRendu && new Date(selectedRendu.expirationDate) < new Date();
+
   return (
     <>
       <div className="contenuRendu">
@@ -66,14 +89,30 @@ const DeposerRendu = () => {
           onChange={(e) => setSelectedRenduId(e.target.value)}
         >
           <option value="">Select a Rendu</option>
-          {rendus.map((rendu) => (
-            <option key={rendu._id} value={rendu._id}>
-              {rendu.titre}
-            </option>
-          ))}
+          {rendus.map((rendu) => {
+            const isExpired = new Date(rendu.expirationDate) < new Date();
+            return (
+              <option
+                key={rendu._id}
+                value={rendu._id}
+                style={{
+                  backgroundColor: isExpired ? "#d3d3d3" : "transparent",
+                }}
+              >
+                {rendu.titre}
+              </option>
+            );
+          })}
         </select>
         <input type="file" onChange={handleFileChange} />
-        <button onClick={handleFileUpload}>Upload File</button>
+        <button onClick={handleFileUpload} disabled={isUploadDisabled}>
+          Upload File
+        </button>
+        {isUploadDisabled && (
+          <p className="error">
+            This rendu has expired. You cannot upload files.
+          </p>
+        )}
       </div>
     </>
   );

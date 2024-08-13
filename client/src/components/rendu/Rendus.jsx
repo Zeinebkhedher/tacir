@@ -36,18 +36,21 @@ const Rendus = () => {
     <div className="content">
       <div className="rendu-container">
         <h2>Liste des Rendus</h2>
-        {rendus.map((rendu, index) => (
-          <div
-            key={rendu._id}
-            className={`rendu-card ${index % 2 === 0 ? "even" : "odd"}`}
-          >
-            <h3>{rendu.titre}</h3>
-            <p className="description">Description: {rendu.description}</p>
-            <p className="expiration">
-              Date d'expiration: {formatDate(rendu.expirationDate)}
-            </p>
-          </div>
-        ))}
+        {rendus.map((rendu) => {
+          const isExpired = new Date(rendu.expirationDate) < new Date();
+          return (
+            <div
+              key={rendu._id}
+              className={`rendu-card ${isExpired ? "expired" : ""}`}
+            >
+              <h3>{rendu.titre}</h3>
+              <p className="description">Description: {rendu.description}</p>
+              <p className="expiration">
+                Date d'expiration: {formatDate(rendu.expirationDate)}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

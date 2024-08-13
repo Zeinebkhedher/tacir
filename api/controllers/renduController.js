@@ -1,24 +1,68 @@
 const Rendu = require("../models/renduModel");
-
-// Controller function to add a new rendu (submission)
+const Membres = require("../models/membreTacirModel");
+const nodemailer = require("nodemailer");
 const addRendu = async (req, res) => {
   try {
-    const { titre, description, expirationDate } = req.body;
+    const { titre, description, expirationDate, region,commentaire, destinataires } =
+      req.body;
 
+    // Find member IDs based on the emails provided in destinataires
+    const members = await Membres.find({
+      email: { $in: destinataires },
+      role: "PorteurProjet",
+    }).select("_id email");
+
+    if (members.length === 0) {
+      return res.status(400).json({
+        message: "No PorteurProjet members with the provided emails found",
+      });
+    }
+
+    // Create a new Rendu instance with the found member IDs
     const newRendu = new Rendu({
       titre,
       description,
       expirationDate,
+      commentaire,
+      region,
+      destinataires: members.map((member) => member._id),
     });
 
     const createdRendu = await newRendu.save();
 
-    res.status(201).json(createdRendu);
+    // Configure nodemailer
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "zeinebkheder8@gmail.com",
+        pass: "nrrp wryu mrhm lmdy",
+      },
+    });
+
+    // Send email to each valid destinataire
+    const mailOptions = {
+      from: "your-email@gmail.com",
+      to: members.map((m) => m.email),
+      subject: "nouveau Rendu",
+      text: `nouveau travail à faire est déposé\n\nTitle: ${titre}\nDescription: ${description}\nExpiration Date: ${expirationDate}\nCommentaire: ${commentaire}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+
+    res.status(201).json(createdRendu); // Return the created rendu in the response
   } catch (error) {
     console.error("Error adding rendu:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+
 
 // Controller function to delete a rendu by ID
 const deleteRendu = async (req, res) => {
@@ -108,7 +152,6 @@ const uploadFile = async (req, res) => {
   });
 };
 
-
 const getAllRendus = async (req, res) => {
   try {
     const rendus = await Rendu.find();
@@ -141,7 +184,42 @@ const downloadFile = (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+// Example for a new API endpoint to get rendus for a specific recipient
+const getRendusForUser = async (req, res) => {
+  try {
+    const userId = req.auth.membreId; // Use req.auth
+    const rendus = await Rendu.find({ destinataires: userId });
+    res.status(200).json(rendus);
+  } catch (error) {
+    console.error("Error fetching rendus for user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+const getRendusByRegion = async (req, res) => {
+  try {
+    const { region } = req.query; // Extract region from query parameters
 
+    if (!region) {
+      return res
+        .status(400)
+        .json({ message: "Region query parameter is required" });
+    }
+
+    // Find rendus filtered by region
+    const rendus = await Rendu.find({ region });
+
+    if (rendus.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No rendus found for this region" });
+    }
+
+    res.status(200).json({ status: "success", data: rendus });
+  } catch (error) {
+    console.error("Error fetching rendus:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 module.exports = {
   addRendu,
   deleteRendu,
@@ -149,4 +227,6 @@ module.exports = {
   uploadFile,
   getAllRendus,
   downloadFile,
+  getRendusForUser,
+  getRendusByRegion,
 };
