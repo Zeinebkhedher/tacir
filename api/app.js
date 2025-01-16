@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const dotenv = require("dotenv");
@@ -49,7 +50,7 @@ mongoose
   .then(console.log("connected to mongodb"))
   .catch((err) => console.log(err));
 
-cron.schedule("03 18 * * *", async (req, res) => {
+/*cron.schedule("03 18 * * *", async (req, res) => {
   try {
     const adminUsers = await User.find({ role: "admin" });
 
@@ -73,7 +74,7 @@ cron.schedule("03 18 * * *", async (req, res) => {
     console.log(adminUsers);
     console.log(userSocketMap);
 
-    adminUsers.forEach(async (adminUser) => {
+    /*adminUsers.forEach(async (adminUser) => {
       const adminSocketId = userSocketMap[adminUser._id];
 
       if (adminSocketId) {
@@ -147,10 +148,7 @@ cron.schedule("09 18 * * *", async (req, res) => {
 });
 
 io.listen(5000);
-const app = express();
-app.use(cors());
-app.use(express.json());
-//app.use(upload.array());
+
 
 const options = {
   definition: {
@@ -166,9 +164,13 @@ const options = {
 const swaggerSpec = swaggerJsdoc(options);
 app.get("/", (req, res) => {
   res.json("Hello");
-});
-app.use("/api/choeur", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+});*/
 
+const app = express();
+app.use(cors());
+app.use(express.json());
+//app.use(upload.array());
+//app.use("/api/choeur", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/Candidats", candidatTacirRoute);
 app.use("/api/membres", membreTacirRoute);
 app.use("/api/profile", ProfileRoute);

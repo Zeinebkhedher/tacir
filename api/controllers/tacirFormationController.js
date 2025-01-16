@@ -5,6 +5,8 @@ const Membre = require('../models/membreTacirModel'); // Assuming you renamed th
 const crypto = require('crypto');
 const sendEmail = require("../utils/sendEmail"); // Adjust the path as necessary
 const bcrypt = require("bcrypt");
+//const bcrypt = require('bcryptjs');
+
 const generatePassword = require("generate-password");
 
 const transporter = nodemailer.createTransport({

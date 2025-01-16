@@ -9,6 +9,7 @@ const DateRange = require("../models/dateRangeModel");
 const path = require("path");
 const generatePassword = require('generate-password')
 const bcrypt=require("bcrypt")
+//const bcrypt = require('bcryptjs');
 
 function paginatedResults(model, page, limit) {
   const startIndex = (page - 1) * limit;

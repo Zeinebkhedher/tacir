@@ -5,6 +5,7 @@ const sendEmail = require("../utils/sendEmail");
 const DateRange = require("../models/dateRangeModel");
 const generatePassword = require("generate-password");
 const bcrypt = require("bcrypt");
+//const bcrypt = require('bcryptjs');
 
 // Pagination function
 function paginatedResults(model, page, limit) {

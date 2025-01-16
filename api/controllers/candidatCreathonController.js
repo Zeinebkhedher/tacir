@@ -5,8 +5,13 @@ const Synthese = require('../models/syntheseModel');
 
 const createCandidatCreathon = async (req, res) => {
   try {
-    // Récupérer l'identifiant du porteur de projet connecté à partir des informations d'authentification
-    const porteurProjetId = req.auth.membreId; // Assurez-vous que req.auth.membreId contient l'identifiant du porteur de projet connecté
+    // Vérifiez si le porteur de projet est authentifié
+    if (!req.auth || !req.auth.membreId) {
+      return res.status(403).json({ error: "Invalid token" });
+    }
+
+    // Récupérer l'identifiant du porteur de projet connecté
+    const porteurProjetId = req.auth.membreId;
 
     // Création d'un candidat Creathon avec les données de la requête
     const candidatCreathon = new candidatCreathonModel({
@@ -31,9 +36,12 @@ const createCandidatCreathon = async (req, res) => {
       candidatCreathon: response,
     });
   } catch (error) {
+    // Log the error for debugging purposes
+    console.error("Erreur lors de la création du candidat Creathon:", error.message);
     res.status(400).json({ error: error.message });
   }
 };
+
 
 
 
