@@ -44,16 +44,6 @@ function UpdateProfile() {
     situationPerso: "",
   });
 
-  useEffect(() => {
-    const storedTokenValue = String(localStorage.getItem("token"));
-
-    if (storedTokenValue && storedTokenValue !== "null") {
-      setStoredToken(storedTokenValue);
-      if (storedToken) {
-        fetchUser();
-      }
-    }
-  }, [storedToken,fetchUser]);
 
   useEffect(() => {
     if (socket && user) {
@@ -96,6 +86,16 @@ function UpdateProfile() {
     }
   };
 
+  useEffect(() => {
+    const storedTokenValue = String(localStorage.getItem("token"));
+
+    if (storedTokenValue && storedTokenValue !== "null") {
+      setStoredToken(storedTokenValue);
+      if (storedToken) {
+        fetchUser();
+      }
+    }
+  }, [storedToken,fetchUser]);
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditData((prevData) => ({

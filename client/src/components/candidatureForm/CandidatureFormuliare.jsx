@@ -63,11 +63,11 @@ const CandidatureFormulaire = () => {
       [name]: "",
     }));
   };
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+  /*useEffect(() => {
+    //const params = new URLSearchParams(window.location.search);
     //const idFromUrl = params.get("id");
     //const tokenFromUrl = params.get("token");
-  }, []);
+  }, []);*/
 
   useEffect(() => {
     const fetchTokenId = async () => {

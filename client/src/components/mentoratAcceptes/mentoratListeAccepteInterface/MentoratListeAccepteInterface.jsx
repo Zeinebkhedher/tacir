@@ -1,5 +1,5 @@
 import React from 'react';
-import MentoratListeAcceptes from '../mentoratListeAcceptes/AcceptedMentoratsListByPorteurProjet';
+//import MentoratListeAcceptes from '../mentoratListeAcceptes/AcceptedMentoratsListByPorteurProjet';
 import AcceptedMentoratsListByPorteurProjet from '../mentoratListeAcceptes/AcceptedMentoratsListByPorteurProjet';
 // Importez le fichier CSS
 

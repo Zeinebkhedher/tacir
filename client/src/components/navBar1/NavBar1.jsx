@@ -15,7 +15,7 @@ function Navbar1() {
   const [couter, setCouter] = useState(false);
   const [storedToken, setStoredToken] = useState();
   const [user, setUser] = useState();
-  const [candidates, setCandidates] = useState([]);
+  const [setCandidates] = useState([]);
   const [hideDropDownMenu, sethideDropDownMenu] = useState(
     "dropdown-menu dropdown-menu-end"
   );
@@ -51,7 +51,7 @@ function Navbar1() {
         fetchUser();
       }
     }
-  }, [storedToken,fetchUser]);
+  }, [storedToken]);
   const fetchUser = async () => {
     if (storedToken) {
       const decodedToken = jwtDecode(storedToken);
@@ -191,7 +191,7 @@ function Navbar1() {
   </button>
   <ul className={hideDropDownMenu} style={{ right: "0" }}>
     <li>
-      <a className="dropdown-item" href="#">
+      <a className="dropdown-item"  href="javascript:void(0);">
         <div className="d-flex">
           <div className="flex-shrink-0 me-3">
             <div className="avatar avatar-online">

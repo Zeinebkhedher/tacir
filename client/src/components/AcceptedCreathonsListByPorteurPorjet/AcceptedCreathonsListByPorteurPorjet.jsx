@@ -18,8 +18,8 @@ const AcceptedCreathonsListByPorteurProjet = () => {
     const fetchAcceptedCreathons = async () => {
       try {
         const token = localStorage.getItem('token');
-        const decodedToken = jwtDecode(token);
-        const userId = decodedToken.membreId;
+       // const decodedToken = jwtDecode(token);
+        //const userId = decodedToken.membreId;
         //setPorteurProjetId(userId);
 
         const response = await axios.get("http://localhost:8000/api/candidatureCreathon/acceptedCreathons", {

@@ -15,7 +15,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { io } from "socket.io-client";
 import "./profil.css";
 
@@ -30,8 +30,8 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [historiqueStatut, setHistoriqueStatut] = useState([]);
-  const [historiqueStatut2, setHistoriqueStatut2] = useState([]);
-  const [historiqueLoading, setHistoriqueLoading] = useState(true);
+  const [ setHistoriqueStatut2] = useState([]);
+  const [ setHistoriqueLoading] = useState(true);
 
   const handleExpand = () => {
     setExpanded((prevExpanded) => !prevExpanded);
@@ -50,17 +50,7 @@ function Profile() {
       };
     }
   }, [user, socket]);
-  useEffect(() => {
-    const storedTokenValue = String(localStorage.getItem("token"));
-
-    if (storedTokenValue && storedTokenValue !== "null") {
-      setStoredToken(storedTokenValue);
-      if (storedToken) {
-        console.log(storedToken);
-        fetchUser();
-      }
-    }
-  }, [storedToken,fetchUser]);
+  
   const fetchUser = async () => {
     if (storedToken) {
       const decodedToken = jwtDecode(storedToken);
@@ -91,6 +81,19 @@ function Profile() {
       console.error("Error fetching historical status:", error);
     }
   };
+
+  useEffect(() => {
+    const storedTokenValue = String(localStorage.getItem("token"));
+
+    if (storedTokenValue && storedTokenValue !== "null") {
+      setStoredToken(storedTokenValue);
+      if (storedToken) {
+        console.log(storedToken);
+        fetchUser();
+      }
+    }
+  }, [storedToken,fetchUser]);
+  
   useEffect(() => {
     const fetchHistoriqueStatut = async () => {
       try {

@@ -12,15 +12,11 @@ const PlanningAccompagnement = () => {
   const [events, setEvents] = useState([]);
   const API_URL = 'http://localhost:8000/api';
 
-  useEffect(() => {
-    fetchAcceptedCreathons();
-    fetchReunions();
-  }, [fetchAcceptedCreathons,fetchReunions]);
-
+  
   const fetchAcceptedCreathons = async () => {
     try {
       const token = localStorage.getItem('token');
-      const decodedToken = jwtDecode(token);
+     // const decodedToken = jwtDecode(token);
       //const userId = decodedToken.membreId;
 
       const response = await axios.get(
@@ -94,6 +90,11 @@ const PlanningAccompagnement = () => {
       );
     }
   };
+
+  useEffect(() => {
+    fetchAcceptedCreathons();
+    fetchReunions();
+  }, [fetchAcceptedCreathons,fetchReunions]);
 
   const formatDate = (date) => {
     if (typeof date === 'string') {

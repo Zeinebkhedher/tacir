@@ -1,7 +1,7 @@
 import React from "react";
 import "./planifierReunion.css";
 import { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 
 const PlanifierReunion = () => {
   const [titre, setTitre] = useState("");
@@ -16,14 +16,14 @@ const PlanifierReunion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const reunionData = {
+    /*const reunionData = {
       titre,
       date,
       heureDebut,
       heureFin,
       link,
       destinataires: destinataires.split(",").map((email) => email.trim()),
-    };
+    };*/
 
     try {
       /*const response = await axios.post(

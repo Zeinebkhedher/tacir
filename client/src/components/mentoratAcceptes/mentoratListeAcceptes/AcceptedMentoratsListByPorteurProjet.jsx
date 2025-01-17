@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AcceptedMentoratsListByPorteurProjet = () => {
   const [mentorats, setMentorats] = useState([]);
-  const [porteurProjetId, setPorteurProjetId] = useState(null);
+  const [setPorteurProjetId] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedMentorat, setSelectedMentorat] = useState(null);
   const [file, setFile] = useState(null);

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./candidatureCreathon.css";
 
 const CandidaturesCreathon = () => {
@@ -24,9 +24,9 @@ const CandidaturesCreathon = () => {
   const [rejectedCandidatures, setRejectedCandidatures] = useState([]);
   const [acceptedCandidatures, setAcceptedCandidatures] = useState([]);
 
-  useEffect(() => {
+ /* useEffect(() => {
     fetchAllCandidatures();
-  }, [fetchAllCandidatures]);
+  }, [fetchAllCandidatures]);*/
 
   const fetchAllCandidatures = async () => {
     try {
