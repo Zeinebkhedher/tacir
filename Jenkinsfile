@@ -8,7 +8,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Zeinebkhedher/tacir.git'  // Remplace par l'URL de ton dépôt Git
+                git(
+                    url: 'https://github.com/Zeinebkhedher/tacir.git',  // Remplace par l'URL de ton dépôt Git
+                    credentialsId: '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'  // Utiliser l'ID du token GitHub
+                )
             }
         }
         
