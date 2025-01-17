@@ -31,12 +31,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  "eslintConfig": 
+    {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ],
+      "rules": {
+        "no-useless-escape": "off"
+      }
+    },
   "browserslist": {
     "production": [
       ">0.2%",
