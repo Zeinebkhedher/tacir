@@ -38,6 +38,7 @@
         "react-app/jest"
       ],
       "rules": {
+        "eslint/no-unused-vars": "off",
         "jsx-a11y/anchor-is-valid": "off",
         "no-script-url": "off"
       }
