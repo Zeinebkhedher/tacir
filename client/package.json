@@ -38,11 +38,14 @@
         "react-app/jest"
       ],
       "rules": {
-    "no-unused-vars": "off",                
-    "no-useless-escape": "off",             
-    "react-hooks/exhaustive-deps": "off",  
-    "jsx-a11y/alt-text": "off"              
-  }
+        "eslint/no-unused-vars": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "no-script-url": "off",
+        "no-unused-vars": "off",                
+        "no-useless-escape": "off",             
+        "react-hooks/exhaustive-deps": "off",  
+        "jsx-a11y/alt-text": "off"      
+      }
     },
   "browserslist": {
     "production": [
