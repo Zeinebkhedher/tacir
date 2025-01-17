@@ -31,22 +31,21 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": 
-    {
-      "extends": [
-        "react-app",
-        "react-app/jest"
-      ],
-      "rules": {
-        "eslint/no-unused-vars": "off",
-        "jsx-a11y/anchor-is-valid": "off",
-        "no-script-url": "off",
-        "no-unused-vars": "off",                
-        "no-useless-escape": "off",             
-        "react-hooks/exhaustive-deps": "off",  
-        "jsx-a11y/alt-text": "off"      
-      }
-    },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "eslint/no-unused-vars": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "no-script-url": "off",
+      "no-unused-vars": "off",
+      "no-useless-escape": "off",
+      "react-hooks/exhaustive-deps": "off",
+      "jsx-a11y/alt-text": "off"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -60,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "react-scripts": "^5.0.1"
   }
 }
