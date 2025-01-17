@@ -38,7 +38,8 @@
         "react-app/jest"
       ],
       "rules": {
-        "no-useless-escape": "off"
+        "jsx-a11y/anchor-is-valid": "off",
+        "no-script-url": "off"
       }
     },
   "browserslist": {
