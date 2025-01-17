@@ -22,7 +22,7 @@ const ListeProjects = () => {
       setUserRole(decodedToken.role);
       console.log("userRole", userRole);
     }
-  }, []);
+  }, [userRole]);
   const fetchProjects = async () => {
     try {
       const response = await fetch(

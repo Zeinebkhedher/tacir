@@ -1,7 +1,6 @@
 import React from 'react';
-import CoordinateurGeneraleListe from '../corrdinateurGeneraleListe/CoordinateurGeneraleListe';
 import Synthese from '../synthese/Synthese';
-// Importez le fichier CSS
+
 
 const SyntheseInterface = () => {
   return (

@@ -4,7 +4,7 @@ function SideBarPoreturProjet() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
       scrollInterval = setInterval(function () {
-        if (window.scrollY != 0) {
+        if (window.scrollY !== 0) {
           window.scrollBy(0, scrollStep);
         } else clearInterval(scrollInterval);
       }, 15);
@@ -34,167 +34,171 @@ function SideBarPoreturProjet() {
         <span className="menu-header-text">Pages</span>
       </li>
       <NavLink to="/dashboard/porteur-de-projet/home">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Home</div>
-          </a>
-        </li>
-      </NavLink>
-      {/* Concerts */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Cearthons</span>
-      </li>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Home</div>
+    </a>
+  </li>
+</NavLink>
+{/* Concerts */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Cearthons</span>
+</li>
 
-      <NavLink to="/dashboard/porteurProjet/creathonsList">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des créathons</div>
-          </a>
-        </li>
-      </NavLink>
+<NavLink to="/dashboard/porteurProjet/creathonsList">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des créathons</div>
+    </a>
+  </li>
+</NavLink>
 
-      <NavLink to="/dashboard/porteurProjet/AcceptedCreathonsList ">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">
-              Liste des créathons acceptés{" "}
-            </div>
-          </a>
-        </li>
-      </NavLink>
+<NavLink to="/dashboard/porteurProjet/AcceptedCreathonsList">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">
+        Liste des créathons acceptés{" "}
+      </div>
+    </a>
+  </li>
+</NavLink>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Projects</span>
-      </li>
-      <NavLink to="/dashboard/porteurProjet/ListeProjets">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste de projets</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/porteurProjet/projet/MonProjet">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Mon Projet</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/porteurProjet/ListeProjets/evaluation">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Evaluation</div>
-          </a>
-        </li>
-      </NavLink>
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Formations</span>
-      </li>
-      <NavLink to="/dashboard/porteurProjet/Formations/UpcomingFormations">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">UpcomingFormations</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/porteurProjet/formations">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Formations</div>
-          </a>
-        </li>
-      </NavLink>
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Projects</span>
+</li>
+<NavLink to="/dashboard/porteurProjet/ListeProjets">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste de projets</div>
+    </a>
+  </li>
+</NavLink>
+<NavLink to="/dashboard/porteurProjet/projet/MonProjet">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Mon Projet</div>
+    </a>
+  </li>
+</NavLink>
+<NavLink to="/dashboard/porteurProjet/ListeProjets/evaluation">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Evaluation</div>
+    </a>
+  </li>
+</NavLink>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Mentorats</span>
-      </li>
-      <NavLink to="/dashboard/porteurProjet/mentorats/listeMentoratsAcceptes">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des mentorats accéptés</div>
-          </a>
-        </li>
-      </NavLink>
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Accompagnement</span>
-      </li>
-      <NavLink to="/dashboard/potreur-de-projet/calendrier">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Calendrier d'accompagnement</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/potreur-de-projet/besoinAccompagnement">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">
-              Besoin au cours de l'accompagnement
-            </div>
-          </a>
-        </li>
-      </NavLink>
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Rendu</span>
-      </li>
-      <NavLink to="/dashboard/porteurProjet/Rendu/depot">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Dépot des rendus</div>
-          </a>
-        </li>
-      </NavLink>
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Formations</span>
+</li>
+<NavLink to="/dashboard/porteurProjet/Formations/UpcomingFormations">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">UpcomingFormations</div>
+    </a>
+  </li>
+</NavLink>
+<NavLink to="/dashboard/porteurProjet/formations">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Formations</div>
+    </a>
+  </li>
+</NavLink>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Contacts</span>
-      </li>
-      <NavLink to="/dashboard/porteurProjet/contact" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">contact</div>
-          </a>
-        </li>
-      </NavLink>
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Mentorats</span>
+</li>
+<NavLink to="/dashboard/porteurProjet/mentorats/listeMentoratsAcceptes">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des mentorats accéptés</div>
+    </a>
+  </li>
+</NavLink>
 
-      {/* gestion des compte */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Compte</span>
-      </li>
-      <NavLink
-        to="/dashboard/potreur-de-projet/profile/parametresComptes"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Paramétres du compte</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink
-        to="/dashboard/potreur-de-projet/profile/historique"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Historique</div>
-          </a>
-        </li>
-      </NavLink>
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Accompagnement</span>
+</li>
+<NavLink to="/dashboard/potreur-de-projet/calendrier">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Calendrier d'accompagnement</div>
+    </a>
+  </li>
+</NavLink>
+<NavLink to="/dashboard/potreur-de-projet/besoinAccompagnement">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">
+        Besoin au cours de l'accompagnement
+      </div>
+    </a>
+  </li>
+</NavLink>
+
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Rendu</span>
+</li>
+<NavLink to="/dashboard/porteurProjet/Rendu/depot">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Dépot des rendus</div>
+    </a>
+  </li>
+</NavLink>
+
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Contacts</span>
+</li>
+<NavLink to="/dashboard/porteurProjet/contact" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">contact</div>
+    </a>
+  </li>
+</NavLink>
+
+{/* gestion des compte */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Compte</span>
+</li>
+<NavLink
+  to="/dashboard/potreur-de-projet/profile/parametresComptes"
+  onClick={goup}
+>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Paramétres du compte</div>
+    </a>
+  </li>
+</NavLink>
+<NavLink
+  to="/dashboard/potreur-de-projet/profile/historique"
+  onClick={goup}
+>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Historique</div>
+    </a>
+  </li>
+</NavLink>
+
     </ul>
   );
 }

@@ -4,7 +4,6 @@ import Navbar1 from "../../components/navBar1/NavBar1";
 import HomePage from "../home/HomePage";
 
 import SidebarCandidat from "../../components/sideBar/SideBarCandidat";
-import InterfaceDemandeCreathon from "../../components/inetrfaceDemandeCreathon/InterfaceDeamndeCreathon";
 import AddProject from "../../components/projects/AddProject";
 import CreathonForm from "../../components/creathonForm/CreathonForm";
 import Profile from "../../components/profil/Profile";

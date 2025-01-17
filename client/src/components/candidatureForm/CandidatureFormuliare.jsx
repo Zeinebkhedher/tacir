@@ -20,7 +20,7 @@ import {
   FcRating,
 } from "react-icons/fc";
 import { GiPerson } from "react-icons/gi";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import note from "../../assets/img/tacir_logo.jpg";
 import confirm from "../../assets/img/valide.png";
@@ -50,7 +50,7 @@ const CandidatureFormulaire = () => {
   const [errors, setErrors] = useState({});
   const [showPart2, setShowPart2] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [idFromToken, setIdFromToken] = useState("");
+  //const [idFromToken, setIdFromToken] = useState("");
   const { id, token } = useParams();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,8 +65,8 @@ const CandidatureFormulaire = () => {
   };
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const idFromUrl = params.get("id");
-    const tokenFromUrl = params.get("token");
+    //const idFromUrl = params.get("id");
+    //const tokenFromUrl = params.get("token");
   }, []);
 
   useEffect(() => {
@@ -782,14 +782,14 @@ const inputContainerStyle = {
   alignItems: "center",
   marginBottom: "20px",
 };
-const succesMessage = {
+/*const succesMessage = {
   backgroundColor: "#4caf50",
   color: "white",
   padding: "20px",
   borderRadius: "5px",
   marginTop: "20px",
   textAlign: "center",
-};
+};*/
 const iconStyle = {
   marginRight: "10px",
   fontSize: "25px",

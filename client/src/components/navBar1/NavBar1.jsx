@@ -4,7 +4,7 @@ import { Tooltip } from "@mui/material";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import {NavLink, useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import adminIcon from "../../assets/img/adminIcon.png";
 import Notification from "../../assets/img/notification.jpg";
@@ -44,14 +44,14 @@ function Navbar1() {
   useEffect(() => {
     const storedTokenValue = String(localStorage.getItem("token"));
 
-    if (storedTokenValue && storedTokenValue != "null") {
+    if (storedTokenValue && storedTokenValue !== "null") {
       setStoredToken(storedTokenValue);
       if (storedToken) {
         console.log(storedToken);
         fetchUser();
       }
     }
-  }, [storedToken]);
+  }, [storedToken,fetchUser]);
   const fetchUser = async () => {
     if (storedToken) {
       const decodedToken = jwtDecode(storedToken);
@@ -91,7 +91,7 @@ function Navbar1() {
         setCouter((prevCounter) => prevCounter + 1);
       });
     }
-  }, [socket]);
+  }, [socket,notifications]);
 
   const handleRead = () => {
     setCouter(0);
@@ -107,7 +107,7 @@ function Navbar1() {
   };
 
   const handleClickProfileImage = () => {
-    hideDropDownMenu == "dropdown-menu dropdown-menu-end"
+    hideDropDownMenu === "dropdown-menu dropdown-menu-end"
       ? sethideDropDownMenu("dropdown-menu dropdown-menu-end show")
       : sethideDropDownMenu("dropdown-menu dropdown-menu-end");
   };
@@ -120,13 +120,16 @@ function Navbar1() {
         id="layout-navbar"
       >
         <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-          <a
-            className="nav-item nav-link px-0 me-xl-4"
-            href="javascript:void(0)"
-          >
-            <i className="bx bx-menu bx-sm" />
-          </a>
-        </div>
+  <button
+    className="nav-item nav-link px-0 me-xl-4"
+    onClick={() => {
+      // Your menu toggle logic here
+    }}
+    aria-label="Toggle menu" // Add appropriate label for accessibility
+  >
+    <i className="bx bx-menu bx-sm" />
+  </button>
+</div>
         <div
           className="navbar-nav-right d-flex align-items-center"
           id="navbar-collapse"
@@ -176,116 +179,85 @@ function Navbar1() {
               )}
             </li>
             {/* User */}
-            <li
-              className="nav-item navbar-dropdown dropdown-user dropdown"
-              onClick={handleClickProfileImage}
-            >
-              <a
-                className="nav-link dropdown-toggle hide-arrow"
-                href="javascript:void(0);"
-                data-bs-toggle="dropdown"
-              >
-                <div className="avatar avatar-online">
-                  <img
-                    src={adminIcon}
-                    alt
-                    className="w-px-40 h-auto rounded-circle"
-                  />
-                </div>
-              </a>
-              <ul className={hideDropDownMenu} style={{ right: "0" }}>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    <div className="d-flex">
-                      <div className="flex-shrink-0 me-3">
-                        <div className="avatar avatar-online">
-                          <img
-                            src={adminIcon}
-                            alt
-                            className="w-px-40 h-auto rounded-circle"
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-grow-1">
-                        <span className="fw-semibold d-block">
-                          {user && `${user.prenom} ${user.nom}`}
-                        </span>
-                        <small className="text-muted">
-                          {user && user.role}
-                        </small>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="dropdown-divider" />
-                </li>
-                <li>
-  <Tooltip
-    title="Consulter votre profil"
-    placement="bottom-end"
-  >
-    {user?.role === "admin" && (
-      <NavLink
-        to="/dashboard/admin/profileadmin"
-        className="dropdown-item"
-      >
-        <PermIdentityRoundedIcon className="bx bx-user me-2" />
-        <span className="align-middle">Mon Profil</span>
-      </NavLink>
-    )}
-    {user?.role === "Mentor" && (
-      <NavLink
-        to="/dashboard/Mentor/profile"
-        className="dropdown-item"
-      >
-        <PermIdentityRoundedIcon className="bx bx-user me-2" />
-        <span className="align-middle">Mon Profil</span>
-      </NavLink>
-    )}
-    {user?.role === "coordinateur géneral" && (
-      <NavLink
-        to="/dashboard/coordinateur_géneral/profile"
-        className="dropdown-item"
-      >
-        <PermIdentityRoundedIcon className="bx bx-user me-2" />
-        <span className="align-middle">Mon Profil</span>
-      </NavLink>
-    )}
-      {user?.role === "Porteu de projet" && (
-      <NavLink
-        to="/dashboard/Porteu_ de_projet/profile"
-        className="dropdown-item"
-      >
-        <PermIdentityRoundedIcon className="bx bx-user me-2" />
-        <span className="align-middle">Mon Profil</span>
-      </NavLink>
-    )}
-       {user?.role === "coordinateur régional" && (
-      <NavLink
-        to="/dashboard/coordinateur_régional/profile"
-        className="dropdown-item"
-      >
-        <PermIdentityRoundedIcon className="bx bx-user me-2" />
-        <span className="align-middle">Mon Profil</span>
-      </NavLink>
-    )}
-  </Tooltip>
+            <li className="nav-item navbar-dropdown dropdown-user dropdown" onClick={handleClickProfileImage}>
+  <button className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-label="User dropdown">
+    <div className="avatar avatar-online">
+      <img
+        src={adminIcon}
+        alt=""  // Use alt="" for decorative images
+        className="w-px-40 h-auto rounded-circle"
+      />
+    </div>
+  </button>
+  <ul className={hideDropDownMenu} style={{ right: "0" }}>
+    <li>
+      <a className="dropdown-item" href="#">
+        <div className="d-flex">
+          <div className="flex-shrink-0 me-3">
+            <div className="avatar avatar-online">
+              <img
+                src={adminIcon}
+                alt=""  // Use alt="" for decorative images
+                className="w-px-40 h-auto rounded-circle"
+              />
+            </div>
+          </div>
+          <div className="flex-grow-1">
+            <span className="fw-semibold d-block">
+              {user && `${user.prenom} ${user.nom}`}
+            </span>
+            <small className="text-muted">
+              {user && user.role}
+            </small>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li><div className="dropdown-divider" /></li>
+    <li>
+      <Tooltip title="Consulter votre profil" placement="bottom-end">
+        {user?.role === "admin" && (
+          <NavLink to="/dashboard/admin/profileadmin" className="dropdown-item">
+            <PermIdentityRoundedIcon className="bx bx-user me-2" />
+            <span className="align-middle">Mon Profil</span>
+          </NavLink>
+        )}
+        {user?.role === "Mentor" && (
+          <NavLink to="/dashboard/Mentor/profile" className="dropdown-item">
+            <PermIdentityRoundedIcon className="bx bx-user me-2" />
+            <span className="align-middle">Mon Profil</span>
+          </NavLink>
+        )}
+        {user?.role === "coordinateur géneral" && (
+          <NavLink to="/dashboard/coordinateur_géneral/profile" className="dropdown-item">
+            <PermIdentityRoundedIcon className="bx bx-user me-2" />
+            <span className="align-middle">Mon Profil</span>
+          </NavLink>
+        )}
+        {user?.role === "Porteu de projet" && (
+          <NavLink to="/dashboard/Porteu_ de_projet/profile" className="dropdown-item">
+            <PermIdentityRoundedIcon className="bx bx-user me-2" />
+            <span className="align-middle">Mon Profil</span>
+          </NavLink>
+        )}
+        {user?.role === "coordinateur régional" && (
+          <NavLink to="/dashboard/coordinateur_régional/profile" className="dropdown-item">
+            <PermIdentityRoundedIcon className="bx bx-user me-2" />
+            <span className="align-middle">Mon Profil</span>
+          </NavLink>
+        )}
+      </Tooltip>
+    </li>
+    <li><div className="dropdown-divider" /></li>
+    <li>
+      <button className="dropdown-item" onClick={handleLogout} aria-label="Log Out">
+        <PowerSettingsNewRoundedIcon className="bx bx-power-off me-2" />
+        <span className="align-middle">Log Out</span>
+      </button>
+    </li>
+  </ul>
 </li>
 
-
-
-                <li>
-                  <div className="dropdown-divider" />
-                </li>
-                <li>
-                  <Link className="dropdown-item" onClick={handleLogout}>
-                    <PowerSettingsNewRoundedIcon className="bx bx-power-off me-2"></PowerSettingsNewRoundedIcon>
-                    <span className="align-middle">Log Out</span>
-                  </Link>
-                </li>
-              </ul>
-            </li>
             {/*/ User */}
           </ul>
         </div>

@@ -15,13 +15,13 @@ const PlanningAccompagnement = () => {
   useEffect(() => {
     fetchAcceptedCreathons();
     fetchReunions();
-  }, []);
+  }, [fetchAcceptedCreathons,fetchReunions]);
 
   const fetchAcceptedCreathons = async () => {
     try {
       const token = localStorage.getItem('token');
       const decodedToken = jwtDecode(token);
-      const userId = decodedToken.membreId;
+      //const userId = decodedToken.membreId;
 
       const response = await axios.get(
         `${API_URL}/candidatureCreathon/acceptedCreathons`,

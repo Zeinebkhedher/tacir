@@ -1,13 +1,4 @@
 import {
-  Alert,
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Snackbar,
-  TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -17,23 +8,21 @@ const Synthese = () => {
   // Etats
   const [selectedDay, setSelectedDay] = useState("");
   const [synthesis, setSynthesis] = useState("");
-  const [openAlert, setOpenAlert] = useState(false);
-  const [alertSeverity, setAlertSeverity] = useState("success");
-  const [alertMessage, setAlertMessage] = useState("");
+ 
   const [syntheses, setSyntheses] = useState([]);
 
   // Fonction pour changer le jour sélectionné
-  const handleDayChange = (event) => {
+ /* const handleDayChange = (event) => {
     setSelectedDay(event.target.value);
   };
 
   // Fonction pour changer la synthèse
   const handleSynthesisChange = (event) => {
     setSynthesis(event.target.value);
-  };
+  };*/
 
   // Fonction pour soumettre la synthèse
-  const handleSubmit = async (event) => {
+  /*const handleSubmit = async (event) => {
     event.preventDefault();
     if (!selectedDay || !synthesis) {
       setAlertSeverity("error");
@@ -57,12 +46,12 @@ const Synthese = () => {
       setAlertMessage("Erreur lors de l'enregistrement de la synthèse.");
       setOpenAlert(true);
     }
-  };
+  };*/
 
   // Fonction pour fermer l'alerte
-  const handleAlertClose = () => {
+/*  const handleAlertClose = () => {
     setOpenAlert(false);
-  };
+  };*/
 
   // Effet pour récupérer toutes les synthèses enregistrées
   useEffect(() => {

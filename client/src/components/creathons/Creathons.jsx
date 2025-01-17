@@ -59,14 +59,14 @@ const Creathons = () => {
     fetchCreathons();
   }, []);
 
-  const handleFilter = (status) => {
+  /*const handleFilter = (status) => {
     if (status === "all") {
       setFilteredCreathons(creathons);
     } else {
       const filtered = creathons.filter((creathon) => creathon.status === status);
       setFilteredCreathons(filtered);
     }
-  };
+  };*/
 
   const handleOpen = (creathonId, creathonNom) => {
     setFormData({
@@ -102,7 +102,7 @@ const Creathons = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await axios.post(
+      /*const response = await axios.post(
         'http://localhost:8000/api/candidatureCreathon/sendCandidatureCreathon',
         { 
           ...formData, 
@@ -114,7 +114,7 @@ const Creathons = () => {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      );*/
       setFormData({
         nom: '',
         prenom: '',

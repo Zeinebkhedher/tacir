@@ -26,10 +26,10 @@ const PlanifierReunion = () => {
     };
 
     try {
-      const response = await axios.post(
+      /*const response = await axios.post(
         "http://localhost:8000/api/reunions/add",
         reunionData
-      );
+      );*/
       setSuccess("Reunion created successfully!");
       setError(null);
       // Clear form fields after submission

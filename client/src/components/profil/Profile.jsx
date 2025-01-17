@@ -23,7 +23,7 @@ import manIcon from "../../assets/avatars/man.png";
 import womanIcon from "../../assets/avatars/woman.png";
 
 function Profile() {
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
   const socket = io.connect("http://localhost:5000/");
   const [user, setUser] = useState();
   const [storedToken, setStoredToken] = useState();
@@ -53,14 +53,14 @@ function Profile() {
   useEffect(() => {
     const storedTokenValue = String(localStorage.getItem("token"));
 
-    if (storedTokenValue && storedTokenValue != "null") {
+    if (storedTokenValue && storedTokenValue !== "null") {
       setStoredToken(storedTokenValue);
       if (storedToken) {
         console.log(storedToken);
         fetchUser();
       }
     }
-  }, [storedToken]);
+  }, [storedToken,fetchUser]);
   const fetchUser = async () => {
     if (storedToken) {
       const decodedToken = jwtDecode(storedToken);
@@ -132,11 +132,7 @@ function Profile() {
     if (!string) return "";
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-  const getDateFromCreatedAt = () => {
-    if (!user?.createdAt) return "";
-    const date = new Date(user?.createdAt);
-    return date.toLocaleDateString(); // Format date as per locale
-  };
+  
   const handleUpdateClick = async (season) => {
     try {
       const response = await axios.post(

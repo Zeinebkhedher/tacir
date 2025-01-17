@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import TacirLogo from "../../assets/img/tacir_logo.jpg";
 import AdminDashboard from "../admin/AdminDashboard";
-import BeneficiaireFormationDashboard from "../beneficiaireFormation/BeneficiaireFormationDashboard";
 import CoordinateurGeneralDashboard from "../coordinateurGeneral/CoordinateurGeneralDashboard";
 import CoordinateurRegionalDashboard from "../coordinateurRegional/CoordinateurRegionalDashboard";
 import MentorDashboard from "../mentor/MentorDashboard";
@@ -93,7 +92,7 @@ const Login = () => {
           }
         }
       } catch (e) {
-        if (e.response.status == 401) {
+        if (e.response.status === 401) {
           setWrongCredentials(true);
         }
       }
@@ -109,7 +108,7 @@ const Login = () => {
       console.log(decodedToken);
       setDecodedToken(jwtDecode(storedTokenValue));
     }
-  }, []);
+  }, [decodedToken]);
 
   const handleShowHidePass = () => {
     setShowPass((prevShowPass) =>
@@ -118,7 +117,7 @@ const Login = () => {
   };
 
   function validateEmail($email) {
-    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var reg = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]+\.[A-Za-z]{2,4}$/;
     return reg.test($email);
   }
 
@@ -167,7 +166,7 @@ const Login = () => {
         ) : (
           <div className="login-container">
             <div className="login">
-              <img src={TacirLogo} alt="login image" className="login__img" />
+              <img src={TacirLogo} alt="loginImage" className="login__img" />
               <form action className="login__form">
                 <h1 className="login__title">Login</h1>
                 <div className="login__content">

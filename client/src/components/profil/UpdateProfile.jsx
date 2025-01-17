@@ -30,7 +30,7 @@ function UpdateProfile() {
   const [storedToken, setStoredToken] = useState();
   const [openAlert, setOpenAlert] = useState(false);
   const [alertSeverity, setAlertSeverity] = useState("success");
-  const [alertMessage, setAlertMessage] = useState("");
+  //const [alertMessage, setAlertMessage] = useState("");
   const [message, setMessage] = useState("");
 
   const [editData, setEditData] = useState({
@@ -53,7 +53,7 @@ function UpdateProfile() {
         fetchUser();
       }
     }
-  }, [storedToken]);
+  }, [storedToken,fetchUser]);
 
   useEffect(() => {
     if (socket && user) {
@@ -145,11 +145,11 @@ function UpdateProfile() {
     }
   };
 
-  const handleOpenAlert = (severity, message) => {
+  /*const handleOpenAlert = (severity, message) => {
     setAlertSeverity(severity);
     setAlertMessage(message);
     setOpenAlert(true);
-  };
+  };*/
 
   return (
     <div
@@ -307,58 +307,3 @@ function UpdateProfile() {
 }
 
 export default UpdateProfile;
-
-{
-  /*
-  return (
-    <div
-      className={`position-absolute top-50 start-50 translate-middle profildiv`}
-    >
-      <div className="title-button-container">
-        <div className="titreprofil">Modifier Mon Profil</div>
-        <div className="boutoneditprofil">
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<EditIcon />}
-            style={{ marginTop: "-10px" }}
-            //onClick={handleUpdateProfile}
-          >
-            Retourner vers mon profil
-          </Button>
-        </div>
-      </div>
-      <Paper className="paperprofil">
-        <Grid spacing={2}>
-          <Grid container spacing={2} style={{ marginLeft: "60px" }}>
-            <Grid item className="avatarprofil">
-              {renderUserAvatar()}
-            </Grid>
-            <Grid item className="fullnameprofil"></Grid>
-          </Grid>
-
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item>
-                <Typography variant="h5"></Typography>
-                <Typography variant="subtitle1"></Typography>
-              </Grid>
-              <Grid
-                container
-                spacing={2}
-                style={{ marginLeft: "80px", marginTop: "7px" }}
-              >
-                
-                <Grid item xs={6}></Grid>
-                
-                <Grid item xs={6}></Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-    </div>
-  );
-}
-export default UpdateProfile;*/
-}

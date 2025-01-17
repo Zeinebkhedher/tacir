@@ -48,12 +48,6 @@ function EmailVerification() {
   };
 
   const formStyles = {
-    container: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      minHeight: "100vh",
-    },
     formContainer: {
       textAlign: "center",
       backgroundColor: "#fff",
@@ -92,7 +86,7 @@ function EmailVerification() {
     },
   };
 
-  const successStyles = {
+  /*const successStyles = {
     container: {
       textAlign: "center",
       opacity: 0,
@@ -112,7 +106,7 @@ function EmailVerification() {
       maxWidth: "50%",
       height: "auto",
     },
-  };
+  };*/
 
   return (
     <>
@@ -163,6 +157,7 @@ function EmailVerification() {
                 <>
                   <img
                     src={confirm}
+                    alt="confirm"
                     style={{
                       maxWidth: "60%",
                       height: "auto",

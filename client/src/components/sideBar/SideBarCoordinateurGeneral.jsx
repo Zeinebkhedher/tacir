@@ -4,7 +4,7 @@ function SidebarCoordinateurGeneral() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
       scrollInterval = setInterval(function () {
-        if (window.scrollY != 0) {
+        if (window.scrollY !== 0) {
           window.scrollBy(0, scrollStep);
         } else clearInterval(scrollInterval);
       }, 15);
@@ -23,91 +23,91 @@ function SidebarCoordinateurGeneral() {
         <span className="menu-header-text">Pages</span>
       </li>
       <NavLink to="/dashboard/coordinateurGeneral/Home">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Home</div>
-          </a>
-        </li>
-      </NavLink>
-      {/* Concerts */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Cearthons</span>
-      </li>
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Home</div>
+    </div>
+  </li>
+</NavLink>
 
-      <NavLink to="/dashboard/coordinateurGeneral/creathons">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">creathons</div>
-          </a>
-        </li>
-      </NavLink>
+{/* Concerts */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Cearthons</span>
+</li>
 
-      {/* auditions */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Membres de TACIR</span>
-      </li>
-      <NavLink
-        to="/dashboard/coordinateurGeneral/listesCandidats"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidats</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/coordinateurGeneral/mentorList" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des mentors</div>
-          </a>
-        </li>
-      </NavLink>
+<NavLink to="/dashboard/coordinateurGeneral/creathons">
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">creathons</div>
+    </div>
+  </li>
+</NavLink>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Projets</span>
-      </li>
-      <NavLink to="/dashboard/coordinateurGeneral/ListeProjets" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Projets</div>
-          </a>
-        </li>
-      </NavLink>
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Planning </span>
-      </li>
-      <NavLink to="/dashboard/coordinateurGeneral/calendrier" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Calendrier</div>
-          </a>
-        </li>
-      </NavLink>
+{/* auditions */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Membres de TACIR</span>
+</li>
 
+<NavLink to="/dashboard/coordinateurGeneral/listesCandidats" onClick={goup}>
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des candidats</div>
+    </div>
+  </li>
+</NavLink>
 
-      {/* gestion des compte */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Comptes</span>
-      </li>
+<NavLink to="/dashboard/coordinateurGeneral/mentorList" onClick={goup}>
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des mentors</div>
+    </div>
+  </li>
+</NavLink>
 
-      <NavLink
-        to="/dashboard/coordinateurGeneral/profile/parametresComptes"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Paramètres</div>
-          </a>
-        </li>
-      </NavLink>
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Projets</span>
+</li>
+
+<NavLink to="/dashboard/coordinateurGeneral/ListeProjets" onClick={goup}>
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Projets</div>
+    </div>
+  </li>
+</NavLink>
+
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Planning </span>
+</li>
+
+<NavLink to="/dashboard/coordinateurGeneral/calendrier" onClick={goup}>
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Calendrier</div>
+    </div>
+  </li>
+</NavLink>
+
+{/* gestion des compte */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Comptes</span>
+</li>
+
+<NavLink to="/dashboard/coordinateurGeneral/profile/parametresComptes" onClick={goup}>
+  <li className="menu-item">
+    <div className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Paramètres</div>
+    </div>
+  </li>
+</NavLink>
+
     </ul>
   );
 }

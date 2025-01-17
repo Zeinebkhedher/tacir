@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AcceptedCreathonsListByPorteurProjet = () => {
   const [creathons, setCreathons] = useState([]);
-  const [porteurProjetId, setPorteurProjetId] = useState(null);
+  //const [porteurProjetId, setPorteurProjetId] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedCreathon, setSelectedCreathon] = useState(null);
   const [file, setFile] = useState(null);
@@ -20,7 +20,7 @@ const AcceptedCreathonsListByPorteurProjet = () => {
         const token = localStorage.getItem('token');
         const decodedToken = jwtDecode(token);
         const userId = decodedToken.membreId;
-        setPorteurProjetId(userId);
+        //setPorteurProjetId(userId);
 
         const response = await axios.get("http://localhost:8000/api/candidatureCreathon/acceptedCreathons", {
           headers: {

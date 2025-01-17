@@ -26,7 +26,7 @@ const CandidaturesCreathon = () => {
 
   useEffect(() => {
     fetchAllCandidatures();
-  }, []);
+  }, [fetchAllCandidatures]);
 
   const fetchAllCandidatures = async () => {
     try {
@@ -162,12 +162,12 @@ const CandidaturesCreathon = () => {
     setConfirmationOpen(true);
   };
 
-  const handleShowAccepted = () => {
+  /*const handleShowAccepted = () => {
     fetchAcceptedCandidatures();
     setShowAccepted(true);
     setShowRejected(false);
     setShowConfirmed(false);
-  };
+  };*/
 
   const handleShowRejected = () => {
     fetchRejectedCandidatures();

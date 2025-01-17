@@ -9,7 +9,6 @@
   import Navbar1 from "../../components/navBar1/NavBar1";
   import PlannigAccompagnementInterface from "../../components/plannigAccompagnementInterface/PlannigAccompagnementInterface";
   import Profile from "../../components/profil/Profile";
-  import AddProject from "../../components/projects/AddProject";
   import DeposerRendu from "../../components/rendu/DeposerRendu";
   import SideBarPoreturProjet from "../../components/sideBarPorteurProjet/SideBarPorteurProjet";
   import SyntheseInterface from "../../components/syntheseInterface/SyntheseInterface";
@@ -20,10 +19,7 @@
   import OutputList from "../../components/outputList/OutputList";
   import { useParams } from 'react-router-dom';
 import MentoratListeAccepteInterface from "../../components/mentoratAcceptes/mentoratListeAccepteInterface/MentoratListeAccepteInterface";
-import MentoratList from "../../components/mentoratAcceptes/mentoratList/MentoratListeOutputs";
 import MentoratListeOutputs from "../../components/mentoratAcceptes/mentoratList/MentoratListeOutputs";
-import MentoratListeOutputsInterface from "../../components/mentoratAcceptes/mentoratList/MentoratListeOutputsInterface";
-import Historique from "../../components/historique/Historique";
 import HistoriqueInterface from "../../components/historique/HistoriqueInterface";
 
   const PorteurProjetDashboard = (props) => {

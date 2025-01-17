@@ -4,7 +4,7 @@ function SidebarCoordinateurRegional() {
   function goup() {
     var scrollStep = -window.scrollY / (400 / 15),
       scrollInterval = setInterval(function () {
-        if (window.scrollY != 0) {
+        if (window.scrollY !== 0) {
           window.scrollBy(0, scrollStep);
         } else clearInterval(scrollInterval);
       }, 15);
@@ -23,185 +23,152 @@ function SidebarCoordinateurRegional() {
         <span className="menu-header-text">Pages</span>
       </li>
       <NavLink to="/dashboard/coordinateurRegional/Home">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Home</div>
-          </a>
-        </li>
-      </NavLink>
-      {/* Concerts */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Projets</span>
-      </li>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Home</div>
+    </a>
+  </li>
+</NavLink>
 
-      <NavLink to="/dashboard/coordinateurRegional/ListeProjets">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste projets</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/coordinateurRegional/projetInov">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">projets Inov</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/coordinateurRegional/projetCrea">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">projets Crea</div>
-          </a>
-        </li>
-      </NavLink>
+{/* Projets */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Projets</span>
+</li>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Sessions de mentorats</span>
-      </li>
+<NavLink to="/dashboard/coordinateurRegional/ListeProjets">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste projets</div>
+    </a>
+  </li>
+</NavLink>
 
-      <NavLink to="/dashboard/coordinateurRegional/listMentorat">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des mentorats</div>
-          </a>
-        </li>
-      </NavLink>
+<NavLink to="/dashboard/coordinateurRegional/projetInov">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Projets Inov</div>
+    </a>
+  </li>
+</NavLink>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Cearthons</span>
-      </li>
+<NavLink to="/dashboard/coordinateurRegional/projetCrea">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Projets Crea</div>
+    </a>
+  </li>
+</NavLink>
 
-      
-      <NavLink to="/dashboard/coordinateurRegional/creathons">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">creathons</div>
-          </a>
-        </li>
-      </NavLink>   
-      {/*<NavLink to="/dashboard/coordinateurRegional/creathon">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste creathons</div>
-          </a>
-        </li>
-  </NavLink>*/}  
-      <NavLink to="/dashboard/coordinateurRegional/demande_candidature_creathon">
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des inscriptions </div>
-          </a>
-        </li>
-      </NavLink>  
-      
+{/* Sessions de mentorats */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Sessions de mentorats</span>
+</li>
 
-      {/* auditions */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Membres de TACIR</span>
-      </li>
-      <NavLink to="/dashboard/coordinateurRegional/ListeCandidats" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidatures</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/coordinateurRegional/mentorList" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des creathons</div>
-          </a>
-        </li>
-      </NavLink>
+<NavLink to="/dashboard/coordinateurRegional/listMentorat">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des mentorats</div>
+    </a>
+  </li>
+</NavLink>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text"> Formations</span>
-      </li>
-      <NavLink
-        to="/dashboard/coordinateurRegional/creerFormation"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Créer formation</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink
-        to="/dashboard/coordinateurRegional/ListFormation"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste formations</div>
-          </a>
-        </li>
-      </NavLink>
+{/* Cearthons */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Cearthons</span>
+</li>
 
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Membres de TACIR</span>
-      </li>
-      <NavLink
-        to="/dashboard/coordinateurRegional/ListeCandidats"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des candidatures</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink to="/dashboard/coordinateurRegional/mentorList" onClick={goup}>
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Liste des mentors</div>
-          </a>
-        </li>
-      </NavLink>
+<NavLink to="/dashboard/coordinateurRegional/creathons">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Cearthons</div>
+    </a>
+  </li>
+</NavLink>
 
+<NavLink to="/dashboard/coordinateurRegional/demande_candidature_creathon">
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des inscriptions</div>
+    </a>
+  </li>
+</NavLink>
 
-      {/* gestion des compte */}
-      <li className="menu-header small text-uppercase">
-        <span className="menu-header-text">Comptes</span>
-      </li>
-      
-      <NavLink
-        to="/dashboard/coordinateurRegional/AcountRegister"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Création des comptes</div>
-          </a>
-        </li>
-      </NavLink>
-      <NavLink
-        to="/dashboard/coordinateurRegional/profile/parametresComptes"
-        onClick={goup}
-      >
-        <li className="menu-item">
-          <a href="javascript:void(0);" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-dock-top" />
-            <div data-i18n="Account Settings">Paramètres</div>
-          </a>
-        </li>
-      </NavLink>
+{/* Membres de TACIR */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Membres de TACIR</span>
+</li>
+
+<NavLink to="/dashboard/coordinateurRegional/ListeCandidats" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des candidatures</div>
+    </a>
+  </li>
+</NavLink>
+
+<NavLink to="/dashboard/coordinateurRegional/mentorList" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste des mentors</div>
+    </a>
+  </li>
+</NavLink>
+
+{/* Formations */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Formations</span>
+</li>
+
+<NavLink to="/dashboard/coordinateurRegional/creerFormation" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Créer formation</div>
+    </a>
+  </li>
+</NavLink>
+
+<NavLink to="/dashboard/coordinateurRegional/ListFormation" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Liste formations</div>
+    </a>
+  </li>
+</NavLink>
+
+{/* Comptes */}
+<li className="menu-header small text-uppercase">
+  <span className="menu-header-text">Comptes</span>
+</li>
+
+<NavLink to="/dashboard/coordinateurRegional/AcountRegister" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Création des comptes</div>
+    </a>
+  </li>
+</NavLink>
+
+<NavLink to="/dashboard/coordinateurRegional/profile/parametresComptes" onClick={goup}>
+  <li className="menu-item">
+    <a href="javascript:void(0);" className="menu-link menu-toggle">
+      <i className="menu-icon tf-icons bx bx-dock-top" />
+      <div data-i18n="Account Settings">Paramètres</div>
+    </a>
+  </li>
+</NavLink>
+
     </ul>
   );
 }
