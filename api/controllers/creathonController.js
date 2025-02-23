@@ -2,8 +2,6 @@
   const router = express.Router();
   const Creathon = require("../models/creathonModel");
   const Membre = require("../models/membreTacirModel");
-  const Saison=require("../models/saisonModel")
-  const addQrCodeToRepetition = require("../middlewares/createQrCodeMiddleware");
   const {sendNotificationMiddleware} = require("../middlewares/sendNotificationMiddleware")
   const { userSocketMap } = require("../utils/socket");
   const mongoose = require("mongoose");

@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Member = require("../models/membreTacirModel");
-const Concert = require("../models/concertModel");
-const Oeuvre = require("../models/oeuvreModel");
-const Repetition = require("../models/repetitionModel");
-const Saison = require("../models/saisonModel");
 const sendEmail = require("../utils/sendEmail");
 
 const fetchHistory = async (req, res) => {

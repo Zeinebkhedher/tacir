@@ -44,12 +44,12 @@ describe('POST /api/creathons/create', () => {
     const response = await request(app)
       .post('/api/creathons/create')
       .send({
-        titre: 'Valid Creathon',
-        dateDebut: '2024-06-01T00:00:00.000Z',
-        dateFin: '2024-06-03T00:00:00.000Z',
-        lieu: 'Valid Location',
-        affiche: 'Valid Path',
-        status: 'en cours',
+        "titre": "Valid Creathon",
+        "dateDebut": "2025-12-11T00:00:00.000Z",
+        "dateFin": "2025-12-12T00:00:00.000Z",
+        "lieu": "Emplacement du creathon",
+        "affiche": "Chemin vers l'affiche",
+        "status": "en cours"
       });
 
     expect(response.status).toBe(201);

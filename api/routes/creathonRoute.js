@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const creathonController = require("../controllers/creathonController");
-const middlewareRepetition = require("../middlewares/auth");
 const updateCreathonStatusMiddleware = require("../middlewares/updateCreathonStatusMiddleware");
 
 router.post(
